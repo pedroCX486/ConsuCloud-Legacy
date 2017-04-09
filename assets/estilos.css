@@ -1,0 +1,25 @@
+
+/* Estilos de Margem de Campos de Input */
+    div.input-group {
+      margin-bottom: 5px;
+    }
+
+/* Estilos de Tabelas */
+    #rcorners1 {
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+/* Estilos de Mensagens de Alerta */
+    #rcorners2 {
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+/* Estilos da Busca de Exames e Prontuários */
+
+    .buscar {
+      margin-left: 230px;
+      margin-right: 230px;
+      margin-top: 50px;
+    }
