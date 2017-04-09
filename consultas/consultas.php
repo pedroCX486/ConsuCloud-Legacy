@@ -32,17 +32,21 @@
               <th class="titulos">DATA - HORA</th>
             </tr>
               <tr>
-                Fulano de Tal
+                </td>
+
+                 <!--Paciente -->
+                <td class="tg-yw4l">
+                  Fulano de Tal &nbsp;
                 </td>
 
                 <!--Tipo de Consulta -->
                 <td class="tg-yw4l">
-                  Primeira Consulta
+                  Primeira Consulta &nbsp;
                 </td>
 
                 <!--Nome do Medico-->
                 <td class="tg-yw4l">
-                  Médico Fulano
+                  Médico Fulano &nbsp;
                 </td>
 
                 <!--Data da Consulta-->
@@ -52,8 +56,8 @@
 
                 <!--Editar/Remover Consultas-->
                 <td class="tg-yw4l">
-                  <a href="editarconsultas.php?editar=" title="Editar Consulta"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a> &nbsp;
-                  <a href="remover.php?remover=&confirmaRemover=0" title="Remover Consulta"><span class="glyphicon glyphicon-trash" aria-hidden="true" /></a>
+                  <a href="consultas.php?editar=" title="Editar Consulta"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a> &nbsp;
+                  <a href="consultas.php?remover=&confirmaRemover=0" title="Remover Consulta"><span class="glyphicon glyphicon-trash" aria-hidden="true" /></a>
                 </td>
               </tr>
           </table>

@@ -27,13 +27,14 @@
           <table id="rcorners1" class="tg">
             <tr>
               <b>
-            <th class="titulos">PACIENTE</th>
-            <th class="titulos">RG</th>
-            <th class="titulos">NASCIMENTO</th>
-            <th class="titulos">EMAIL</th>
+            <th class="titulos">PACIENTE &nbsp;</th>
+            <th class="titulos">RG &nbsp;</th>
+            <th class="titulos">NASCIMENTO &nbsp;</th>
+            <th class="titulos">EMAIL &nbsp;</th>
             </b>
             </tr>
           </table>
+          <b>Dados de Consultas ficam aqui.</b>
         </center>
 
       </div>

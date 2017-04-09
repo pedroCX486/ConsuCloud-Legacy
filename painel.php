@@ -22,12 +22,13 @@
         <center>
           <table id="rcorners1" class="tg">
             <tr>
-              <th class="titulos">PACIENTE</th>
-              <th class="titulos">TIPO</th>
-              <th class="titulos">MÉDICO</th>
+              <th class="titulos">PACIENTE &nbsp;</th>
+              <th class="titulos">TIPO &nbsp;</th>
+              <th class="titulos">MÉDICO &nbsp;</th>
               <th class="titulos">DATA - HORA</th>
             </tr>
           </table>
+          <b>Dados de Consultas ficam aqui.</b>
         </center>
     </div>
   </div>

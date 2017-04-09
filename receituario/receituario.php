@@ -21,7 +21,7 @@
           <p>
 
             <div id="infocheck">
-              <b>Informações do Médico:</b><br> Dr. Fulano ---
+              <b>Informações do Médico:</b> Dr. Fulano ---<br>
               <b>Informações do Consultório:</b> Consultório -----
             </div>
 
