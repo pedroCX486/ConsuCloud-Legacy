@@ -1,16 +1,16 @@
 ConsuCloud - CODENAME RAPADURA // (C) 2017 OrangeMayhem Softworks
 
-Configurações PHP Recomendadas:
-upload_max_filesize: 60M, max_file_uploads: 10, post_max_size: 128M
+Configurações PHP Recomendadas:  
+upload_max_filesize: 60M, max_file_uploads: 10, post_max_size: 128M  
 
-Backdoor para Debugging/Teste:
-Login: Debug
-Senha: c0sult8r10s
+Backdoor para Debugging/Teste:  
+Login: Debug  
+Senha: c0sult8r10s  
 
-Amazon DB:
-Endereço: aa131vdfh1jei3u.colf9ctxyudu.us-west-2.rds.amazonaws.com
-Login: Consucl0udom4yh3
-Senha: C0Sult8r10sp8wnom4yhemsoftw8ks
+Amazon DB:  
+Endereço: aa131vdfh1jei3u.colf9ctxyudu.us-west-2.rds.amazonaws.com  
+Login: Consucl0udom4yh3  
+Senha: C0Sult8r10sp8wnom4yhemsoftw8ks  
 ________________________________________
 
 *TODO:*
