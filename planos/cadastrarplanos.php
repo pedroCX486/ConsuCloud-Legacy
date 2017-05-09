@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SESSION["isMedico"] == true || !$_SESSION){
+if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESSION){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
  }elseif(empty($_SESSION)){
@@ -15,9 +15,9 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
 
 <head>
   <meta charset="UTF-8">
-  <title>Pacientes - ConsuCloud</title>
-
-  <?php include "../assets/bootstrap.php";?>
+  <title>Planos de Saúde - ConsuCloud</title>
+    
+   <?php include "../assets/bootstrap.php";?>
 </head>
 
 <body>
@@ -39,53 +39,28 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
 
     <div class="container">
       <div class="jumbotron">
-        <h1><small>Cadastrar Paciente</small></h1><br>
+        <h1><small>Cadastrar Plano de Saúde</small></h1><br>
         <div class="cadastro">
           <form method="post" action="cadastrar.php">
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
-              <input required type="text" class="form-control" name="nomeComp" aria-describedby="basic-addon1" maxlength="150">
-            </div>
-
-            <p>
-              <div class="alert alert-warning" role="alert" id="rcorners2">
-                <b>Verifique estes dados duas vezes antes de continuar, pois não serão permitidas alterações posteriores.</b>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                      <input required type="text" class="form-control" name="numIdRG" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Orgão Expedidor/UF:*</span>
-                      <input required type="text" class="form-control" name="RG_UFEXP" aria-describedby="basic-addon1" maxlength="10">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </p>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</span>
-              <input required type="date" class="form-control" name="dataNasc" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+              <span class="input-group-addon" id="basic-addon1">Nome do Plano:*</span>
+              <input required type="text" class="form-control" name="nomePlano" aria-describedby="basic-addon1" maxlength="150">
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Telefone Fixo:</span>
-              <input type="text" class="form-control" name="telFixo" aria-describedby="basic-addon1" placeholder="00 12345678" maxlength="11" OnKeyPress="formatar('## ########', this)">
+              <span class="input-group-addon" id="basic-addon1">Telefone:*</span>
+              <input required type="text" class="form-control" name="telFixo" aria-describedby="basic-addon1" placeholder="00 12345678" maxlength="11" OnKeyPress="formatar('## ########', this)">
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Telefone Celular:*</span>
-              <input required type="text" class="form-control" name="telCel" aria-describedby="basic-addon1" placeholder="00 012345678" maxlength="12" OnKeyPress="formatar('## #########', this)">
+              <span class="input-group-addon" id="basic-addon1">Email:*</span>
+              <input required type="text" class="form-control" name="email" aria-describedby="basic-addon1" maxlength="150">
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Email:</span>
-              <input type="text" class="form-control" name="email" aria-describedby="basic-addon1" maxlength="100">
+              <span class="input-group-addon" id="basic-addon1">Informação sobre:*</span>
+              <input required type="text" class="form-control" name="infoPlano" aria-describedby="basic-addon1" maxlength="200">
             </div>
 
             <div class="panel-group" id="accordion">
@@ -105,7 +80,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
 
                     <div class="input-group">
                       <span class="input-group-addon" id="basic-addon1">Número:*</span>
-                      <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10">
                     </div>
 
                     <div class="input-group">
@@ -125,7 +100,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
 
                     <div class="input-group">
                       <span class="input-group-addon" id="basic-addon1">CEP:*</span>
-                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8">
                     </div>
 
                     <div class="form-group">

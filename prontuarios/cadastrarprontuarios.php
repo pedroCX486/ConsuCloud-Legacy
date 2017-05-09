@@ -1,3 +1,17 @@
+<?php
+require("../assets/connect.php");
+
+session_start();
+
+if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSION){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
+ }elseif(empty($_SESSION)){
+    header("Location: ../logout.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -29,11 +43,22 @@
       <div class="jumbotron">
         <h1><small>Cadastrar Prontuário</small></h1><br>
 
-          <form method="post" action="">
+          <form method="post" action="cadastrar.php">
 
             <div class="form-group">
               <select required name="paciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
+              <?php        
+              $select = $mysqli->query("SELECT * FROM pacientes");
+                $row = $select->num_rows;
+                if($row){              
+                  while($get = $select->fetch_array()){
+              ?>
+              <option value="<?php echo $get['numIdRG']; ?>" ><?php echo $get['numIdRG'] . ' - ' . $get['nomeComp']; ?></option>
+              <?php
+                  }
+                }
+              ?>
               </select>
             </div>
 

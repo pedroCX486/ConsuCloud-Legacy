@@ -1,3 +1,17 @@
+<?php
+require("../assets/connect.php");
+
+session_start();
+
+if($_SESSION["isMedico"] == true || !$_SESSION){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
+ }elseif(empty($_SESSION)){
+    header("Location: ../logout.php");
+    exit();
+}
+?>
+
   <!DOCTYPE html>
   <html>
 
@@ -30,11 +44,22 @@
         <h1><small>Cadastrar Consultas</small></h1><br>
         <div class="cadastro">
 
-          <form method="post" action="cadastrarconsultas.php">
+          <form method="post" action="cadastrar.php">
 		  
             <div class="form-group">
               <select required name="paciente" class="form-control">
             <option disabled selected value="">Nome do Paciente*</option>
+            <?php
+            $select = $mysqli->query("SELECT * FROM pacientes");
+              $row = $select->num_rows;
+              if($row){              
+                while($get = $select->fetch_array()){
+            ?>
+            <option value="<?php echo $get['numIdRG']; ?>" ><?php echo $get['numIdRG'] . " - " . $get['nomeComp']; ?></option>
+            <?php
+                }
+              }
+            ?>
             </select>
             </div>
 
@@ -57,6 +82,17 @@
               <div class="form-group">
                 <select required name="medico" class="form-control">
                 <option disabled selected value="">Médico da Consulta*</option>
+            <?php
+            $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
+            $row = $select->num_rows;
+              if($row){              
+                while($get = $select->fetch_array()){
+            ?>
+                <option value="<?php echo $get['crm']; ?>" ><?php echo $get['nomeComp']; ?></option>
+            <?php
+                }
+              }
+            ?>
                 </select>
               </div>
             </p>
@@ -64,6 +100,17 @@
             <div class="form-group">
               <select required name="planoConsulta" class="form-control">
           <option disabled selected value="">Plano de Consulta*</option>
+            <?php        
+            $select = $mysqli->query("SELECT * FROM planos");
+            $row = $select->num_rows;
+              if($row){              
+                while($get = $select->fetch_array()){
+            ?>
+          <option value="<?php echo $get['id']; ?>" ><?php echo $get['nomePlano']; ?></option>
+            <?php
+                }
+              }
+            ?>
           </select>
             </div>
 
