@@ -32,7 +32,7 @@ if(!$_SESSION){
   <div class="container">
     <div class="jumbotron">
 
-      <h2>
+      <h1>
         <?php
           if(date('H') >= "5" && date('H') < "13"){
             echo "Bom dia, ";
@@ -41,15 +41,14 @@ if(!$_SESSION){
           }elseif(date('H') >= "18"){
             echo "Boa noite, ";
           }
-          echo $_SESSION["username"] . "!" . "<br>";
+          echo $_SESSION["username"] . "!" . "<br></h1>";
 
           if($_SESSION["isSecretaria"] == true){
-            echo '<small>Todas as consultas agendadas para hoje:</small>';
+            echo '<p>Todas as consultas agendadas para hoje:</p>';
           }elseif($_SESSION["isMedico"] == true){
-            echo '<small>Todas as suas consultas agendadas para hoje:</small>';
+            echo '<p>Todas as suas consultas agendadas para hoje:</p>';
           }
         ?>
-      </h2>
 
       <br>
 

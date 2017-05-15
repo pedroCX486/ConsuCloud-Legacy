@@ -23,8 +23,10 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Ajuda<br><small>Tire aqui dúvidas sobre o sistema.</small></h1><br>
-      <p>
+      <h1>Ajuda</h1>
+			<p>Tire aqui dúvidas sobre o sistema.</p>
+			
+			<br>
 
         <div class="panel-group" id="accordion">
           <div class="panel panel-default">
@@ -94,8 +96,6 @@
 
         </div>
 
-      </p>
-      <br>
     </div>
   </div>
 

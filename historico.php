@@ -29,7 +29,8 @@ require("assets/connect.php");
   <div class="container">
     <div class="jumbotron">
 
-      <h1>Histórico de Consultas<br><small>Aqui ficam registradas todas as consultas passadas.</small></h1>
+      <h1>Histórico de Consultas</h1>
+			<p>Aqui ficam registradas todas as consultas passadas.</p>
 
       <br>
       <center>

@@ -30,14 +30,11 @@ require("assets/connect.php");
   <div class="container">
     <div class="jumbotron">
 
-      <h1>Olá,
-          <?php
-          echo $_SESSION["username"] . "!" . "<br>";
-          echo '<small>Aqui está sua agenda de consultas:</small>';
-          ?>
-        </h1>
-
+      <h1>Agenda</h1>
+      <p>Aqui está sua agenda de consultas:</p>
+       
       <br>
+        
       <center>
         <table id="rcorners1" class="tg">
           <tr>

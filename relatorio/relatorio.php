@@ -29,7 +29,8 @@ require("../assets/connect.php");
   <div class="container">
     <div class="jumbotron">
 
-      <h1>Relatório de Consultas<br><small>Aqui podem ser gerados relatórios de consultas em PDF.</small></h1>
+      <h1>Relatório de Consultas</h1>
+      <p>Aqui podem ser gerados relatórios de consultas.</p>
 
       <br>
       <center>
@@ -197,7 +198,7 @@ require("../assets/connect.php");
 
         <form method="get" action="gerar.php" target="_blank">
           <button class="btn btn-raised btn-primary" type="submit">Imprimir Relatório</button>
-          <p><h5><b>Nota:</b> Consultas não confirmadas (simbolo do <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>) não serão exibidas no relatório.</h5></p>
+          <p><h5><b>Nota:</b> Consultas não confirmadas (simbolo do <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>) não serão exibidas no relatório final.</h5></p>
           <input type="hidden" name="dataInicio" value="<?php echo $dataInicio; ?>">
           <input type="hidden" name="dataFim" value="<?php echo $dataFim; ?>">
           <input type="hidden" name="medico" value="<?php echo $medico; ?>">

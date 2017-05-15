@@ -48,7 +48,8 @@ $mysqli->close();
 
     <div class="container">
       <div class="jumbotron">
-        <h1>Configurações<br><small>As informações básicas do consultório ficam aqui.</small></h1>
+        <h1>Configurações</h1>
+        <p>As informações básicas do consultório ficam aqui.</p>
         <br>
         <p>
 

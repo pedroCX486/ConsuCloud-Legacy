@@ -23,7 +23,8 @@ if(!$_SESSION){
 
   <div class="container">
     <div class="jumbotron">
-      <h1>ConsuCloud<br><small>Desenvolvido por OrangeMayhem Softworks</small></h1><br>
+      <h1>ConsuCloud</h1>
+      <p>Desenvolvido por OrangeMayhem Softworks</p>
 
       <br>
 
@@ -32,7 +33,9 @@ if(!$_SESSION){
         <a href="http://getbootstrap.com/"><img src="assets/bootstrap.png" /></a>
       </center>
 
-      <br>Copyright © 2017 - Todos os direitos reservados.
+      <br>
+      
+      Copyright © 2017 - Todos os direitos reservados.
 
     </div>
   </div>
