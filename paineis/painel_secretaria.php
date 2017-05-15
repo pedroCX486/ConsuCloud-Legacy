@@ -7,28 +7,18 @@
             <th class="titulos">DATA - HORA</th>
         </tr>
             <?php
-                $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta = CURDATE() ORDER BY dataConsulta ASC");
+                $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta, idConsulta, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p 
+                                        JOIN usuarios AS u ON u.crm = c.medico 
+                                        WHERE dataConsulta = CURDATE() ORDER BY dataConsulta ASC");
                 $row = $select->num_rows;
                 if($row){
                 while($get = $select->fetch_array()){
-                    //Pegar dados necessários:
-                    $rgPacienteConsulta = $get['paciente'];
-                    $CRMconsulta = $get['medico'];
             ?>
             <tr>
                 <!--Nome do Paciente-->
                 <td class="tg-yw4l">
-                    <?php
-                        $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $rgPacienteConsulta");
-                        $row1 = $select1->num_rows;
-                        if($row1){
-                        while($get1 = $select1->fetch_array()){
-                            $nomePaciente = $get1['nomeComp'];
-                            $idPaciente = $get1['numIdRG'];
-                        }
-                        }
-                        if($rgPacienteConsulta == $idPaciente){echo $nomePaciente;}
-                    ?>
+                  <?php echo $get['nomePaciente']; ?>
                 </td>
 
                 <!--Tipo de Consulta-->
@@ -38,17 +28,7 @@
 
                 <!--Nome do Medico-->
                 <td class="tg-yw4l">
-                    <?php
-                        $select2 = $mysqli->query("SELECT * FROM usuarios where crm = $CRMconsulta");
-                        $row2 = $select2->num_rows;
-                        if($row2){
-                        while($get2 = $select2->fetch_array()){
-                            $nomeMedico = $get2['nomeComp'];
-                            $crmMedico = $get2['crm'];
-                        }
-                        }
-                        if($CRMconsulta == $crmMedico){echo $nomeMedico;}
-                    ?>
+                  <?php echo $get['nomeMedico']; ?>
                 </td>
 
                 <!--Data da Consulta-->
@@ -63,6 +43,7 @@
                 <!--Editar Consultas-->
                 <td class="tg-yw4l">
                     <a href="consultas/editarconsultas.php?editar=<?php echo $get['idConsulta']; ?>" title="Editar Consulta"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+                  
                     &nbsp;
 
                     <!-- Confirmar/Desconfirmar Consultas-->

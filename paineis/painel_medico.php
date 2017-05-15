@@ -6,29 +6,19 @@
             <th class="titulos">DATA - HORA</th>
         </tr>
         <?php
-            $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta = CURDATE() AND medico = $crm ORDER BY dataConsulta ASC");
+            $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p 
+                                        JOIN usuarios AS u ON u.crm = c.medico 
+                                        WHERE dataConsulta = CURDATE() AND c.medico = $crm ORDER BY dataConsulta ASC, horaConsulta ASC");
             $row = $select->num_rows;
             if($row){
               while($get = $select->fetch_array()){
-                //Pegar dados necessários:
-                $rgPacienteConsulta = $get['paciente'];
                 ?>
             <tr>
 
                 <!--Nome do Paciente INICIO-->
                 <td class="tg-yw4l">
-                    <?php
-                    $rgPaciente = $get['paciente'];
-                    $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $rgPacienteConsulta");
-                    $row1 = $select1->num_rows;
-                    if($row1){
-                      while($get1 = $select1->fetch_array()){
-                        $nomePaciente = $get1['nomeComp'];
-                        $idPaciente = $get1['numIdRG'];
-                      }
-                    }
-                    if($rgPacienteConsulta == $idPaciente){echo $nomePaciente;}
-                    ?>
+                  <?php echo $get['nomePaciente']; ?>
                 </td>
 
                 <!--Tipo de Consulta-->

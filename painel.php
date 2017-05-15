@@ -34,11 +34,11 @@ if(!$_SESSION){
 
       <h1>
         <?php
-          if(date('H') >= "5" && date('H') < "13"){
+          if(date('H') >= "05" && date('H') < "13"){ //Se mais ou igual a 5AM e menos que 13PM
             echo "Bom dia, ";
-          }elseif(date('H') >= "13" && date('H') < "18"){
+          }elseif(date('H') >= "13" && date('H') < "18"){ //Se mais ou igual a 13PM e menos que 18PM
             echo "Boa tarde, ";
-          }elseif(date('H') >= "18"){
+          }elseif(date('H') >= "18" || date('H') < "5"){ //Se mais ou igual a 18PM e menos que 5AM
             echo "Boa noite, ";
           }
           echo $_SESSION["username"] . "!" . "<br></h1>";

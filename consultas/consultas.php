@@ -46,10 +46,10 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
               <th class="titulos">DATA - HORA</th>
             </tr>
             <?php
-              $select = $mysqli->query("select p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta from consultas as c 
-                                        join pacientes as p 
-                                        join usuarios as u on u.crm = c.medico 
-                                        WHERE dataConsulta >= CURDATE() ORDER BY dataConsulta ASC");
+              $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p 
+                                        JOIN usuarios AS u ON u.crm = c.medico 
+                                        WHERE dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC");
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){
