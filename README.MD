@@ -13,9 +13,17 @@ Login: Consucl0udom4yh3
 Senha: C0Sult8r10sp8wnom4yhemsoftw8ks  
 ________________________________________
 
-*TODO:*
-
-
+*TODO:*  
+  
+Revisar código consultas ao DB:  
+  
+Usuários  
+Receituário  
+Prontuário  
+Planos  
+Pacientes  
+Exames  
+  
 ________________________________________
 
 *BANCO:*

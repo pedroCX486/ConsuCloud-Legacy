@@ -59,15 +59,15 @@ require("../assets/connect.php");
               <select required name="medico" class="form-control">
                 <option disabled selected value="">Médico das Consultas*</option>
                 <?php
-                $select00 = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
-                $row00 = $select00->num_rows;
-                if($row00){
-                  while($get00 = $select00->fetch_array()){
-                    ?>
-                    <option value="<?php echo $get00['crm']; ?>" ><?php echo $get00['nomeComp']; ?></option>
-                    <?php
+                  $selectMedico = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
+                  $rowMedico = $selectMedico->num_rows;
+                  if($rowMedico){
+                    while($getMedico = $selectMedico->fetch_array()){
+                      ?>
+                        <option value="<?php echo $getMedico['crm']; ?>" ><?php echo $getMedico['nomeComp']; ?></option>
+                      <?php
+                    }
                   }
-                }
                 ?>
               </select>
             </div>
@@ -77,15 +77,15 @@ require("../assets/connect.php");
               <select required name="plano" class="form-control">
                 <option disabled selected value="">Plano das Consultas*</option>
                 <?php
-                $select0 = $mysqli->query("SELECT * FROM planos");
-                $row0 = $select0->num_rows;
-                if($row0){
-                  while($get0 = $select0->fetch_array()){
-                    ?>
-                    <option value="<?php echo $get0['id']; ?>" ><?php echo $get0['nomePlano']; ?></option>
-                    <?php
+                  $selectPlano = $mysqli->query("SELECT * FROM planos");
+                  $rowPlano = $selectPlano->num_rows;
+                  if($rowPlano){
+                    while($getPlano = $selectPlano->fetch_array()){
+                      ?>
+                        <option value="<?php echo $getPlano['id']; ?>" ><?php echo $getPlano['nomePlano']; ?></option>
+                      <?php
+                    }
                   }
-                }
                 ?>
               </select>
             </div>
@@ -94,12 +94,12 @@ require("../assets/connect.php");
           </p>
         </form>
 
-        <!--Variáveis para query-->
+        <!--Variáveis para Mega Query-->
         <?php
-        $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
-        $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
-        $medico = $_GET['medico'];
-        $plano = $_GET['plano'];
+          $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
+          $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
+          $medico = $_GET['medico'];
+          $plano = $_GET['plano'];
         ?>
 
         <!--Tabela 2/Cabeçalho da Tabela 2-->
@@ -111,47 +111,28 @@ require("../assets/connect.php");
             <th class="titulos">PLANO (CARTEIRA)</th>
           </tr>
 
-          <!--Mega Query para buscar os dados do relatório-->
+          <!--Mega Query para dados do Relatório-->
           <?php
-          $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND medico = '$medico' and planoConsulta = '$plano' ORDER BY dataConsulta DESC");
-          $row = $select->num_rows;
-          if($row){
-            while($get = $select->fetch_array()){
-              //Pegar dados necessários:
-              $rgPacienteConsulta = $get['paciente'];
-              $CRMconsulta = $get['medico'];
-              $planoConsulta = $get['planoConsulta'];
+            $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
+                                      JOIN pacientes AS p 
+                                      join planos AS pl ON c.planoConsulta = pl.id
+                                      JOIN usuarios AS u ON u.crm = c.medico
+                                      WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' 
+                                      ORDER BY dataConsulta DESC, horaConsulta DESC");
+            $row = $select->num_rows;
+            if($row){
+              while($get = $select->fetch_array()){
               ?>
-              <tr>
+               <tr>
 
                 <!--Nome do Paciente-->
                 <td class="tg-yw4l">
-                  <?php
-                  $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $rgPacienteConsulta");
-                  $row1 = $select1->num_rows;
-                  if($row1){
-                    while($get1 = $select1->fetch_array()){
-                      $nomePaciente = $get1['nomeComp'];
-                      $idPaciente = $get1['numIdRG'];
-                    }
-                  }
-                  if($rgPacienteConsulta == $idPaciente){echo $nomePaciente;}
-                  ?>
+                  <?php echo $get['nomePaciente']; ?>
                 </td>
 
                 <!--Nome do Medico-->
                 <td class="tg-yw4l">
-                  <?php
-                  $select2 = $mysqli->query("SELECT * FROM usuarios where crm = $CRMconsulta");
-                  $row2 = $select2->num_rows;
-                  if($row2){
-                    while($get2 = $select2->fetch_array()){
-                      $nomeMedico = $get2['nomeComp'];
-                      $crmMedico = $get2['crm'];
-                    }
-                  }
-                  if($CRMconsulta == $crmMedico){echo $nomeMedico;}
-                  ?>
+                  <?php echo $get['nomeMedico']; ?>
                 </td>
 
                 <!--Data da Consulta-->
@@ -164,19 +145,11 @@ require("../assets/connect.php");
                 </td>
 
                 <!--Plano da Consulta-->
-                <td>
+                <td class="tg-yw4l">
                   <?php
-                    $select3 = $mysqli->query("SELECT * FROM planos where id = $planoConsulta");
-                    $row3 = $select3->num_rows;
-                    if($row3){
-                      while($get3 = $select3->fetch_array()){
-                        $nomePlano = $get3['nomePlano'];
-                        $idPlano = $get3['id'];
-                      }
-                    }
-                    if($planoConsulta == $idPlano && $idPlano == '1'){echo $nomePlano;}
-                    elseif($planoConsulta == $idPlano && $idPlano != '1'){echo $nomePlano . ' (' . $get['carteiraPlano'] . ')';}
-                  ?>
+                    echo $get['nomePlano'];
+                    if($get['carteiraPlano'] != '0'){echo ' ('.$get['carteiraPlano'].')';}
+                    ?>
                 </td>
 
                 <!-- Confirmar/Desconfirmar Consultas-->

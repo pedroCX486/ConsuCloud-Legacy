@@ -79,11 +79,13 @@ if($row1){
     </tr>
     <tr style="height: 130mm;">
       <th>
-        <center>
-        <?php
-          echo nl2br($_POST["prontuario"]);
-        ?>
-        </center>
+        <div style="margin-left:10px; padding: auto 0; border-left: 3px solid; border-color: #5fba7d;">
+					<div style="margin-left: 10px;">
+						<?php
+							echo nl2br($_POST["prontuario"]);
+						?>
+					</div>
+        </div>
       </th>
     </tr>
     <tr style="height: 10mm;">

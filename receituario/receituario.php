@@ -74,7 +74,7 @@ if($row1){
             </div>
 
             <form action="imprimir.php" method="post" target="_blank">
-              <textarea required name="prontuario" class="form-control" rows="10" cols="5" wrap="hard" maxlength="1632"></textarea>
+              <textarea required style="border-style: groove; border-width: 1px;"name="prontuario" class="form-control" rows="10" cols="5" wrap="hard" maxlength="1632"></textarea>
               <br>
               <center><button type="submit" class="btn btn-raised btn-primary btn-lg">IMPRIMIR</button></center>
             </form>

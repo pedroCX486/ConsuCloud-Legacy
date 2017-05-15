@@ -74,52 +74,33 @@ if($row0){
                 <th class="titulos">PLANO (CARTEIRA)</th>
               </tr>
 
-              <!--Mega Query para buscar os dados do relatório-->
+              <!--Mega Query para dados do relatório-->
               <?php
                 $dataInicio = $_GET['dataInicio'];
                 $dataFim = $_GET['dataFim'];
                 $medico = $_GET['medico'];
                 $plano = $_GET['plano'];
 
-                $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND medico = '$medico' and planoConsulta = '$plano' and confirmaConsulta = '1' ORDER BY dataConsulta DESC");
+                $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p 
+                                        join planos AS pl ON c.planoConsulta = pl.id
+                                        JOIN usuarios AS u ON u.crm = c.medico
+                                        WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' AND confirmaConsulta = '1'
+                                        ORDER BY dataConsulta DESC, horaConsulta DESC");
                 $row = $select->num_rows;
                 if($row){
                   while($get = $select->fetch_array()){
-                    //Pegar dados necessários:
-                    $rgPacienteConsulta = $get['paciente'];
-                    $CRMconsulta = $get['medico'];
-                    $planoConsulta = $get['planoConsulta'];
               ?>
                   <tr>
 
                     <!--Nome do Paciente-->
                     <td class="tg-yw4l">
-                      <?php
-                        $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $rgPacienteConsulta");
-                        $row1 = $select1->num_rows;
-                        if($row1){
-                          while($get1 = $select1->fetch_array()){
-                            $nomePaciente = $get1['nomeComp'];
-                            $idPaciente = $get1['numIdRG'];
-                          }
-                        }
-                        if($rgPacienteConsulta == $idPaciente){echo $nomePaciente;}
-                      ?>
+                      <?php echo $get['nomePaciente']; ?>
                     </td>
 
                     <!--Nome do Medico-->
                     <td class="tg-yw4l">
-                      <?php
-                        $select2 = $mysqli->query("SELECT * FROM usuarios where crm = $CRMconsulta");
-                        $row2 = $select2->num_rows;
-                        if($row2){
-                          while($get2 = $select2->fetch_array()){
-                            $nomeMedico = $get2['nomeComp'];
-                            $crmMedico = $get2['crm'];
-                          }
-                        }
-                        if($CRMconsulta == $crmMedico){echo $nomeMedico;}
-                      ?>
+                      <?php echo $get['nomeMedico']; ?>
                     </td>
 
                     <!--Data da Consulta-->
@@ -132,24 +113,16 @@ if($row0){
                     </td>
 
                     <!--Plano da Consulta-->
-                    <td>
+                    <td class="tg-yw4l">
                       <?php
-                        $select3 = $mysqli->query("SELECT * FROM planos where id = $planoConsulta");
-                        $row3 = $select3->num_rows;
-                        if($row3){
-                          while($get3 = $select3->fetch_array()){
-                            $nomePlano = $get3['nomePlano'];
-                            $idPlano = $get3['id'];
-                          }
-                        }
-                        if($planoConsulta == $idPlano && $idPlano == '1'){echo $nomePlano;}
-                        elseif($planoConsulta == $idPlano && $idPlano != '1'){echo $nomePlano . ' (' . $get['carteiraPlano'] . ')';}
+                        echo $get['nomePlano'];
+                        if($get['carteiraPlano'] != '0'){echo ' ('.$get['carteiraPlano'].')';}
                       ?>
                     </td>
                   </tr>
                   <?php
-                }
-              }else{echo '<b>Sem resultados.</b>';}
+                  }
+                }else{echo '<b>Sem resultados.</b>';}
               ?>
             </table>
 

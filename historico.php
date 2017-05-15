@@ -58,11 +58,10 @@ require("assets/connect.php");
             <th class="titulos">PLANO (CARTEIRA)</th>
           </tr>
           <?php
-              $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta DESC");
               $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, pl.nomePlano, carteiraPlano, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                         JOIN pacientes AS p 
                                         JOIN usuarios AS u ON u.crm = c.medico 
-																				JOIN planos AS pl on pl.id = c.planoConsulta
+																				JOIN planos AS pl ON pl.id = c.planoConsulta
                                         WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta DESC, horaConsulta DESC");
               $row = $select->num_rows;
               if($row){
@@ -92,7 +91,7 @@ require("assets/connect.php");
               </td>
 
               <!--Plano da Consulta/Carteira do Plano-->
-              <td>
+              <td class="tg-yw4l">
                 <?php
                   echo $get['nomePlano'];
 									if($get['carteiraPlano'] != '0'){echo ' ('.$get['carteiraPlano'].')';}
