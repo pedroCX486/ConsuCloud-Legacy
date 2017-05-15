@@ -63,29 +63,29 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       
       <div class="panel-group" id="accordion">
         <?php
-        if(!empty($_GET['paciente'])){
-          $paciente = $_GET['paciente'];
-          $crm = $_SESSION['CRM'];
-          $select = $mysqli->query("SELECT * FROM prontuarios WHERE paciente = $paciente AND medico = $crm ORDER BY dataProntuario DESC");
-          $row = $select->num_rows;
-          if($row){
-            while($get = $select->fetch_array()){
-              $rotacao++; //Sim isso é uma gambiarra
-              $dataProntuario = $get['dataProntuario'];
+          if(!empty($_GET['paciente'])){
+            $paciente = $_GET['paciente'];
+            $crm = $_SESSION['CRM'];
+            $select = $mysqli->query("SELECT * FROM prontuarios WHERE paciente = $paciente AND medico = $crm ORDER BY dataProntuario DESC");
+            $row = $select->num_rows;
+            if($row){
+              while($get = $select->fetch_array()){
+                $rotacao++; //Sim isso é uma gambiarra
+                $dataProntuario = $get['dataProntuario'];
               ?>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $dataProntuario.$rotacao;?>">
                       <?php
-                      $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $paciente");
-                      $row1 = $select1->num_rows;
-                      if($row1){
-                        while($get1 = $select1->fetch_array()){
-                          $nomePaciente = $get1['nomeComp'];
+                        $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $paciente");
+                        $row1 = $select1->num_rows;
+                        if($row1){
+                          while($get1 = $select1->fetch_array()){
+                            $nomePaciente = $get1['nomeComp'];
+                          }
                         }
-                      }
-                      if($get['paciente'] == $paciente){echo $nomePaciente . ' (' . $data = date('d-m-Y', strtotime($dataProntuario)) . ')';}
+                        if($get['paciente'] == $paciente){echo $nomePaciente . ' (' . $data = date('d-m-Y', strtotime($dataProntuario)) . ')';}
                       ?> ▾
                     </a>
                   </h4>
