@@ -44,7 +44,7 @@ require("assets/connect.php");
               </tr>
             </table>
 
-			     <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button>
+	          <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button>
           </p>
 
           <?php $mes = $_GET['timestamp_year'] . '-' . $_GET['timestamp_month'] . '-01'; ?>
@@ -59,43 +59,27 @@ require("assets/connect.php");
           </tr>
           <?php
               $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta DESC");
+              $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, pl.nomePlano, carteiraPlano, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p 
+                                        JOIN usuarios AS u ON u.crm = c.medico 
+																				JOIN planos AS pl on pl.id = c.planoConsulta
+                                        WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta DESC, horaConsulta DESC");
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){
-                  //Pegar dados necessários:
-                  $rgPacienteConsulta = $get['paciente'];
-                  $CRMconsulta = $get['medico'];
+									
+									
                   $planoConsulta = $get['planoConsulta'];
             ?>
             <tr>
               <!--Nome do Paciente-->
               <td class="tg-yw4l">
-                <?php
-                   $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $rgPacienteConsulta");
-                   $row1 = $select1->num_rows;
-                   if($row1){
-                    while($get1 = $select1->fetch_array()){
-                     $nomePaciente = $get1['nomeComp'];
-                     $idPaciente = $get1['numIdRG'];
-                    }
-                   }
-                  if($rgPacienteConsulta == $idPaciente){echo $nomePaciente;}
-                  ?>
+                  <?php echo $get['nomePaciente']; ?>
               </td>
 
               <!--Nome do Medico-->
               <td class="tg-yw4l">
-                <?php
-                   $select2 = $mysqli->query("SELECT * FROM usuarios where crm = $CRMconsulta");
-                   $row2 = $select2->num_rows;
-                   if($row2){
-                    while($get2 = $select2->fetch_array()){
-                      $nomeMedico = $get2['nomeComp'];
-                      $crmMedico = $get2['crm'];
-                    }
-                   }
-                  if($CRMconsulta == $crmMedico){echo $nomeMedico;}
-                  ?>
+                  <?php echo $get['nomeMedico']; ?>
               </td>
 
               <!--Data da Consulta-->
@@ -107,19 +91,11 @@ require("assets/connect.php");
                   ?>
               </td>
 
-              <!--Plano da Consulta-->
+              <!--Plano da Consulta/Carteira do Plano-->
               <td>
                 <?php
-                   $select2 = $mysqli->query("SELECT * FROM planos where id = $planoConsulta");
-                   $row2 = $select2->num_rows;
-                   if($row2){
-                    while($get2 = $select2->fetch_array()){
-                     $nomePlano = $get2['nomePlano'];
-                     $idPlano = $get2['id'];
-                    }
-                   }
-                  if($planoConsulta == $idPlano && $idPlano == '1'){echo $nomePlano;}
-                  elseif($planoConsulta == $idPlano && $idPlano != '1'){echo $nomePlano . ' (' . $get['carteiraPlano'] . ')';}
+                  echo $get['nomePlano'];
+									if($get['carteiraPlano'] != '0'){echo ' ('.$get['carteiraPlano'].')';}
                   ?>
               </td>
 

@@ -117,7 +117,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
             <p>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Número da Carteira do Plano:*</span>
-                <input required type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" placeholder="Digite apenas números, sem pontos ou traços.">
+                <input required type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" placeholder="Digite apenas números, sem pontos ou traços. Em caso de consulta particular, digite apenas o número 0 (ZERO).">
               </div>
             </p>
 
