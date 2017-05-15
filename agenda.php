@@ -1,0 +1,98 @@
+<?php
+session_start();
+$crm = $_SESSION["CRM"];
+
+if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSION){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
+ }elseif(empty($_SESSION)){
+    header("Location: ../logout.php");
+    exit();
+}
+
+require("assets/connect.php");
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda - ConsuCloud</title>
+
+   <?php include "assets/bootstrap.php";?>
+</head>
+
+<body>
+
+<?php include "barra.php"; ?>
+
+  <div class="container">
+    <div class="jumbotron">
+
+      <h1>Olá,
+          <?php
+          echo $_SESSION["username"] . "!" . "<br>";
+          echo '<small>Aqui está sua agenda de consultas:</small>';
+          ?>
+        </h1>
+
+      <br>
+      <center>
+        <table id="rcorners1" class="tg">
+          <tr>
+            <th class="titulos">PACIENTE</th>
+            <th class="titulos">TIPO</th>
+            <th class="titulos">DATA - HORA</th>
+          </tr>
+          <?php
+              $select = $mysqli->query("SELECT * FROM consultas WHERE dataConsulta > CURDATE() AND medico = $crm ORDER BY dataConsulta ASC");
+              $row = $select->num_rows;
+              if($row){
+                while($get = $select->fetch_array()){
+                  //Pegar dados necessários
+                  $rgPacienteConsulta = $get['paciente'];
+            ?>
+            <tr>
+              <!--Nome do Paciente INICIO-->
+              <td class="tg-yw4l">
+                <?php
+                   $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $rgPacienteConsulta");
+                   $row1 = $select1->num_rows;
+                   if($row1){
+                    while($get1 = $select1->fetch_array()){
+                     $nomePaciente = $get1['nomeComp'];
+                     $idPaciente = $get1['numIdRG'];
+                    }
+                   }
+                  if($rgPacienteConsulta == $idPaciente){echo $nomePaciente;}
+                  ?>
+              </td>
+
+              <!--Tipo da Consulta-->
+              <td class="tg-yw4l">
+                <?php if($get['tipoConsulta'] == "retorno"){echo "Retorno";}elseif($get['tipoConsulta'] == "primeiraConsulta"){echo "Primeira Consulta";}?>
+              </td>
+
+              <!--Data da Consulta-->
+              <td class="tg-yw4l">
+                <?php
+                  $data = date('d-m-Y', strtotime($get['dataConsulta']));
+                  $hora = date('H:i', strtotime($get['horaConsulta']));
+                  echo $data . ' - ' . $hora;
+                  ?>
+              </td>
+            </tr>
+            <?php
+               }
+                }else{echo '<b>Não existem consultas agendadas.</b>';}
+             ?>
+        </table>
+      </center>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
