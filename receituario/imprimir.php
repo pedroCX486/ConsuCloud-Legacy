@@ -48,6 +48,7 @@ if($row1){
 <html>
 
 <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <?php include "../assets/bootstrap.php";?>
   <style>
     table {
@@ -56,14 +57,9 @@ if($row1){
       height: 210mm;
       width: 140mm;
     }
-    @page {
-      size: A4;
-      margin: 3mm;
-	    size: landscape;
-    }
+    @page { size: A4 landscape; margin: 3mm; }
     html, body { height: 100%; width: 100%; margin: 0; }
   </style>
-</head>
 
 <body>
 

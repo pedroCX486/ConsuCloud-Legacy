@@ -85,7 +85,7 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
         $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
         $msgErroArqGrande = implode(" \\n ", array_filter($nomeArquivoGrande));
         echo '<script type="text/javascript">
-             alert("Os seguinte arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . ' \n\nO envio foi cancelado.");
+             alert("Os seguintes arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . ' \n\nO envio foi cancelado.");
              location.href="../exames/exames.php";
              </script>';
         exit();
@@ -93,7 +93,7 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
         $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
         $msgErroArqGrande = implode(" \\n ", array_filter($nomeArquivoGrande));
         echo '<script type="text/javascript">
-             alert("Os seguinte arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . '");
+             alert("Os seguintes arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . '");
              </script>';
         //Resetar flags
         $erroArquivoInvalido = 0;
@@ -101,7 +101,7 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
     }elseif(count($files) == 0 && $erroArquivoInvalido == 1){ //Verificar se a flag de arquivo inválido e nenhum arquivo foi ligada
         $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
         echo '<script type="text/javascript">
-             alert("Os seguinte arquivos não são válidos e não foram enviados: \n\n'. $msgErroArqInvalido .' \n\nO envio foi cancelado.");
+             alert("Os seguintes arquivos não são válidos e não foram enviados: \n\n'. $msgErroArqInvalido .' \n\nO envio foi cancelado.");
              location.href="../exames/exames.php";
              </script>';
         exit();

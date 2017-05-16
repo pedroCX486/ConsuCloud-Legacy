@@ -33,12 +33,12 @@ if($row0){
 <html>
 
 <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
   <?php include "../assets/bootstrap.php" ?>
   
   <style>
     #pagina {
-      border-style: solid;
-      border-width: 1px;
       height: 297mm;
       width: 210mm;
       align: center;
