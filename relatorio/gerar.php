@@ -82,10 +82,10 @@ if($row0){
                 $plano = $_GET['plano'];
 
                 $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p 
-                                        join planos AS pl ON c.planoConsulta = pl.id
-                                        JOIN usuarios AS u ON u.crm = c.medico
-                                        WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' AND confirmaConsulta = '1'
+                                        JOIN pacientes AS p ON p.numIdRG = c.paciente 
+                                        JOIN planos AS pl ON c.planoConsulta = pl.id 
+                                        JOIN usuarios AS u ON u.crm = c.medico 
+                                        WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' AND confirmaConsulta = '1' 
                                         ORDER BY dataConsulta DESC, horaConsulta DESC");
                 $row = $select->num_rows;
                 if($row){

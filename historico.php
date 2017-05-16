@@ -59,7 +59,7 @@ require("assets/connect.php");
           </tr>
           <?php
               $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, pl.nomePlano, carteiraPlano, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p 
+                                        JOIN pacientes AS p ON p.numIdRG = c.paciente 
                                         JOIN usuarios AS u ON u.crm = c.medico 
 																				JOIN planos AS pl ON pl.id = c.planoConsulta
                                         WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta DESC, horaConsulta DESC");

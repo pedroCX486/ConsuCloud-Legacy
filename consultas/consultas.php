@@ -47,7 +47,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
             </tr>
             <?php
               $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p 
+                                        JOIN pacientes AS p ON p.numIdRG = c.paciente 
                                         JOIN usuarios AS u ON u.crm = c.medico 
                                         WHERE dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC");
               $row = $select->num_rows;
