@@ -21,11 +21,8 @@ ________________________________________
   
 Revisar código consultas ao DB:  
   
-Usuários  
 Receituário  
 Prontuário  
-Planos  
-Pacientes  
 Exames  
   
 ________________________________________
