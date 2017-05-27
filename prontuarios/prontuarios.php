@@ -64,33 +64,29 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       <div class="panel-group" id="accordion">
         <?php
           if(!empty($_GET['paciente'])){
+            
             $paciente = $_GET['paciente'];
             $crm = $_SESSION['CRM'];
-            $select = $mysqli->query("SELECT * FROM prontuarios WHERE paciente = $paciente AND medico = $crm ORDER BY dataProntuario DESC");
+            
+            $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, dataProntuario, horaProntuario, prontuario FROM prontuarios AS pront 
+                                        JOIN pacientes AS p ON p.numIdRG = pront.paciente 
+                                        WHERE pront.paciente = $paciente AND pront.medico = $crm ORDER BY dataProntuario ASC, horaProntuario ASC");
             $row = $select->num_rows;
             if($row){
               while($get = $select->fetch_array()){
-                $rotacao++; //Sim isso é uma gambiarra
-                $dataProntuario = $get['dataProntuario'];
+                $hiperlink = $get['dataProntuario'].date('H-i-s', strtotime($get['horaProntuario']));
               ?>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $dataProntuario.$rotacao;?>">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $hiperlink;?>">
                       <?php
-                        $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $paciente");
-                        $row1 = $select1->num_rows;
-                        if($row1){
-                          while($get1 = $select1->fetch_array()){
-                            $nomePaciente = $get1['nomeComp'];
-                          }
-                        }
-                        if($get['paciente'] == $paciente){echo $nomePaciente . ' (' . $data = date('d-m-Y', strtotime($dataProntuario)) . ')';}
+                        echo $get['nomePaciente'] . ' (' . date('d-m-Y', strtotime($get['dataProntuario'])) . ' - ' . $get['horaProntuario'] . ')';
                       ?> ▾
                     </a>
                   </h4>
                 </div>
-                <div id="<?php echo $dataProntuario.$rotacao;?>" class="panel-collapse collapse">
+                <div id="<?php echo $hiperlink;?>" class="panel-collapse collapse">
                   <div class="panel-body">
                     <?php echo nl2br($get['prontuario']); ?>
                   </div>

@@ -146,6 +146,7 @@ CREATE TABLE `prontuarios` (
 	`medico` VARCHAR(20) NULL DEFAULT NULL,
 	`paciente` VARCHAR(20) NULL DEFAULT NULL,
 	`dataProntuario` DATE NULL DEFAULT NULL,
+	`horaProntuario` TIME NULL DEFAULT NULL,
 	`prontuario` LONGTEXT NULL COLLATE 'utf8_unicode_ci',
 	`idProntuario` INT(11) NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`idProntuario`)
