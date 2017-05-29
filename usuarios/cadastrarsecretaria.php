@@ -47,17 +47,12 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
           <form method="post" action="cadastrar.php">
             
             <input required type="radio" name="tipoUsuario" value="secretaria" checked hidden />
-
-            <p>
-              <div class="alert alert-warning" id="rcorners2" role="alert">
-                <b>Verifique esta informação duas vezes antes de continuar, pois não serão permitidas alterações posteriores.</b>
+            
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1" style="color: black"><b>CPF</b>:*</span>
                   <input required type="text" class="form-control validate" name="crm" id="cpf" aria-describedby="basic-addon1" maxlength="12" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onblur="validarDados('cpf', document.getElementById('cpf').value);">
                   <div id="campo_cpf"> </div>
                 </div>
-              </div>
-            </p>
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>

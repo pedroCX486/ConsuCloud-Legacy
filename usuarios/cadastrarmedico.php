@@ -47,14 +47,11 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
           <form method="post" action="cadastrar.php">
             
             <input required type="radio" name="tipoUsuario" value="medico" checked hidden />
-
-              <div class="alert alert-warning" id="rcorners2" role="alert">
-                <b>Verifique esta informação duas vezes antes de continuar, pois não serão permitidas alterações posteriores.</b>
+            
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1" style="color: black"><b>CRM</b>:*</span>
                   <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                 </div>
-              </div>
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
