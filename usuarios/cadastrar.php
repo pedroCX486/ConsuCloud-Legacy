@@ -25,19 +25,19 @@ $nomeCurto = trim(addslashes(strip_tags($_POST['nomeCurto'])));
 if(!ctype_digit($crm)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CRM.\nApenas caracteres numéricos são permitidos.");
-					location.href="../usuarios/cadastrarusuarios.php";
+					window.history.back();
 					</script>';
 	exit();
 }elseif(!ctype_digit($numIdRG)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
-					location.href="../usuarios/cadastrarusuarios.php";
+					window.history.back();
 					</script>';
 	exit();
 }elseif(!ctype_digit($endereco_cep)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
-					location.href="../usuarios/cadastrarusuarios.php";
+					window.history.back();
 					</script>';
 	exit();
 }
@@ -45,35 +45,47 @@ if(!ctype_digit($crm)) {
 //Processar criptografia da senha
 $senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_DEFAULT);
 
+//Processar data
 $dataNasc = date('Y-m-d',$dataNasc);
 
+//Conectar ao db
 require "../assets/connect.php";
 
+
+//Checar se nome de usuário já existe
 $select = $mysqli->query("SELECT * FROM usuarios WHERE login = '" . $login . "'");
 if($select->num_rows) {
-echo '<script type="text/javascript">
-					alert("ERRO: Nome de usuário já existe.");
-					location.href="../usuarios/cadastrarusuarios.php";
-					</script>';
+	echo '<script type="text/javascript">
+						alert("ERRO: Nome de usuário já existe.");
+						window.history.back();
+						</script>';
 	exit();
-}
-else{
-
-// Perform queries 
-$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeComp,areaAtuacao,numIdRG,RG_UFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
-endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
-VALUES ('$crm', '$tipoUsuario', '$nomeComp', '$areaAtuacao', '$numIdRG', '$RG_UFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
-'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', '$login', '$senha', '$nomeCurto')"); 
-
-if ($query){
-  echo '<script type="text/javascript">
-					alert("Cadastro realizado com sucesso.");
-					location.href="../usuarios/usuarios.php";
-					</script>';
 }else{
-  echo $mysqli->error;
-}
-
-$mysqli->close();
+	
+	//Executar query de acorco com tipo de usuário
+	if($tipoUsuario == 'medico'){
+		//Query Secretária
+		$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeComp,areaAtuacao,numIdRG,RG_UFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
+		endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
+		VALUES ('$crm', '$tipoUsuario', '$nomeComp', '$areaAtuacao', '$numIdRG', '$RG_UFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
+		'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', '$login', '$senha', '$nomeCurto')"); 
+	}elseif($tipoUsuario == 'secretaria'){
+		//Query Secretária
+		$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeComp,areaAtuacao,numIdRG,RG_UFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
+		endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
+		VALUES ('$crm', '$tipoUsuario', '$nomeComp', 'Secr. de Atendimento', '$numIdRG', '$RG_UFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
+		'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', '$login', '$senha', '$nomeCurto')"); 
+	}
+	
+	if ($query){
+	  echo '<script type="text/javascript">
+						alert("Cadastro realizado com sucesso.");
+						location.href="../usuarios/usuarios.php";
+						</script>';
+	}else{
+	  echo $mysqli->error;
+	}
+	
+	$mysqli->close();
 }
 ?>

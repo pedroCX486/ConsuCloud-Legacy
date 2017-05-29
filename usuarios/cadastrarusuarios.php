@@ -1,213 +1,45 @@
 <?php
+require("../assets/connect.php");
+
 session_start();
 
 if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESSION){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
- }elseif(empty($_SESSION)){
+}elseif(empty($_SESSION)){
     header("Location: ../logout.php");
     exit();
 }
 ?>
+  <!DOCTYPE html>
+  <html>
 
-<!DOCTYPE html>
-<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Usuários - ConsuCloud</title>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Usuários - ConsuCloud</title>
-
-  <?php include "../assets/bootstrap.php";?>
+   <?php include "../assets/bootstrap.php";?>
 </head>
 
 <body>
 
 <?php include "../barra.php"; ?>
 
-    <script>
-      function formatar(mascara, documento) {
-        var i = documento.value.length;
-        var saida = mascara.substring(0, 1);
-        var texto = mascara.substring(i)
-
-        if (texto.substring(0, 1) != saida) {
-          documento.value += texto.substring(0, 1);
-        }
-
-      }
-    </script>
-
     <div class="container">
       <div class="jumbotron">
-        <h1><small>Cadastrar Usuário</small></h1><br>
-        <div class="cadastro">
 
-          <form method="post" action="cadastrar.php">
-            
-            <div class="alert alert-info" id="rcorners2" role="alert">
-              <b>Tipo de Usuário:*</b>
-        			  <p>
-        			  &nbsp;
-              <label style="color: black"><input required type="radio" name="tipoUsuario" value="medico"> Médico</label> &nbsp;
-              <label style="color: black"><input required type="radio" name="tipoUsuario" value="secretaria"> Secretária</label>
-        			  </p>
-            </div>
+        <h1>Tipo de Usuário</h1>
 
-            <p>
-              <div class="alert alert-warning" id="rcorners2" role="alert">
-                <b>Verifique esta informação duas vezes antes de continuar, pois não serão permitidas alterações posteriores.</b>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1" style="color: black"><b>CRM</b> (Médicos) ou <b>CPF</b> (Secretárias):*</span>
-                  <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                </div>
-              </div>
-            </p>
+        <p>Selecione o tipo de usuário a ser cadastrado:</p>
+        <br><br>
 
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
-              <input required type="text" class="form-control" name="nomeComp" aria-describedby="basic-addon1" maxlength="150">
-            </div>
+        <center>
+          <table>
+            <tr><a href="cadastrarmedico.php"><button style="font-size: 24px;" type="button" class="btn btn-raised btn-success btn-lg">Médico</button></a></tr>
+            <tr><a href="cadastrarsecretaria.php"><button style="font-size: 24px;" type="button" class="btn btn-raised btn-info btn-lg">Secretária</button></a></tr>
+          </table>
+        </center>
 
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Área de Atuação:*</span>
-              <input required type="text" class="form-control" name="areaAtuacao" aria-describedby="basic-addon1" maxlength="150" placeholder="Ex.: Médico-Cirurgião ou Dentista Cirurgião. Ou várias áreas juntas, ex.: Psiquiatra & Otorrino">
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</span>
-              <input required type="date" class="form-control" name="dataNasc" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Telefone Fixo:</span>
-              <input type="text" class="form-control" name="telFixo" aria-describedby="basic-addon1" placeholder="00 12345678" maxlength="11" OnKeyPress="formatar('## ########', this)">
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Telefone Celular:*</span>
-              <input required type="text" class="form-control" name="telCel" aria-describedby="basic-addon1" placeholder="00 012345678" maxlength="12" OnKeyPress="formatar('## #########', this)">
-            </div>
-
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                  <input required type="text" class="form-control" name="numIdRG" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1">Orgão Expedidor/UF:*</span>
-                  <input required type="text" class="form-control" name="RG_UFEXP" aria-describedby="basic-addon1" maxlength="10">
-                </div>
-              </div>
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Email:*</span>
-              <input required type="text" class="form-control" name="email" aria-describedby="basic-addon1" maxlength="100">
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Nome Curto:*</span>
-              <input required type="text" class="form-control" name="nomeCurto" aria-describedby="basic-addon1" placeholder="Para exibição no sistema, exemplo: Dr. João Cláudio" maxlength="25">
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Login:*</span>
-              <input required type="text" class="form-control" name="login" aria-describedby="basic-addon1" maxlength="30">
-            </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Senha:*</span>
-              <input required type="password" class="form-control" name="senha" aria-describedby="basic-addon1" maxlength="20">
-            </div>
-
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾</a>
-              </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse">
-                  <div class="panel-body">
-
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Logradouro:*</span>
-                      <input required type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Número:*</span>
-                      <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Complemento:</span>
-                      <input type="text" class="form-control" name="endereco_complemento" aria-describedby="basic-addon1" maxlength="20">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Bairro:*</span>
-                      <input required type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Cidade:*</span>
-                      <input required type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" maxlength="100">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">CEP:*</span>
-                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                    </div>
-
-                    <div class="form-group">
-                      <select required name="endereco_estado" class="form-control">
-                          <option disabled selected value="">Estado ▾*</option>
-                          <option value="AC">Acre</option> 
-                          <option value="AL">Alagoas</option> 
-                          <option value="AP">Amapá</option> 
-                          <option value="AM">Amazonas</option> 
-                          <option value="BA">Bahia</option> 
-                          <option value="CE">Ceará</option> 
-                          <option value="DF">Distrito Federal</option> 
-                          <option value="ES">Espírito Santo</option> 
-                          <option value="GO">Goiás</option> 
-                          <option value="MA">Maranhão</option> 
-                          <option value="MT">Mato Grosso</option> 
-                          <option value="MS">Mato Grosso do Sul</option> 
-                          <option value="MG">Minas Gerais</option> 
-                          <option value="PA">Pará</option> 
-                          <option value="PB">Paraíba</option> 
-                          <option value="PR">Paraná</option> 
-                          <option value="PE">Pernambuco</option> 
-                          <option value="PI">Piauí</option> 
-                          <option value="RJ">Rio de Janeiro</option> 
-                          <option value="RN">Rio Grande do Norte</option>
-                          <option value="RS">Rio Grande do Sul</option> 
-                          <option value="RR">Rondônia</option> 
-                          <option value="RR">Roraima</option> 
-                          <option value="SC">Santa Catarina</option> 
-                          <option value="SP">São Paulo</option> 
-                          <option value="SE">Sergipe</option> 
-                          <option value="TO">Tocantins</option> 
-                    </select>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br>
-            <br>
-
-            <center><button type="submit" class="btn btn-raised btn-primary btn-lg">CADASTRAR</button></center>
-
-          </form>
-        </div>
       </div>
     </div>
 
