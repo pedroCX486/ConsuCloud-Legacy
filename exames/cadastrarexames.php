@@ -61,7 +61,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
                   if($row){              
                     while($get = $select->fetch_array()){
                       ?>
-                        <option value="<?php echo $get['numIdRG']; ?>" ><?php echo $get['numIdRG'] . ' - ' . $get['nomeComp']; ?></option>
+                        <option value="<?php echo $get['idPaciente']; ?>" ><?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?></option>
                       <?php
                     }
                   }

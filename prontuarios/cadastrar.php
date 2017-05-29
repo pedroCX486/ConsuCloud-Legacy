@@ -10,7 +10,7 @@ $prontuario = trim(addslashes(strip_tags($_POST['prontuario'])));
 $dataProntuario = date('Y-m-d',$dataProntuario);
 
 session_start();
-$medico = $_SESSION["CRM"];
+$medico = $_SESSION["idUsuario"];
 
 require "../assets/connect.php";
 

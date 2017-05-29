@@ -73,7 +73,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
                     if($row){              
                       while($get = $select->fetch_array()){
                   ?>
-                <option value="<?php echo $get['numIdRG'] . '" '; if($get['numIdRG'] == $paciente){echo 'selected';}?>><?php echo $get['numIdRG'] . " - " . $get['nomeComp']; ?></option>
+                <option value="<?php echo $get['idPaciente'] . '" '; if($get['idPaciente'] == $paciente){echo 'selected';}?>><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
                   <?php
                       }
                     }
@@ -106,7 +106,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
               if($row){              
                 while($get = $select->fetch_array()){
             ?>
-            <option value="<?php echo $get['crm'] . '"'; if($medico == $get['crm']){echo 'selected';}?>><?php echo $get['nomeComp']; ?></option>
+            <option value="<?php echo $get['idUsuario'] . '"'; if($medico == $get['idUsuario']){echo 'selected';}?>><?php echo $get['nomeCompleto']; ?></option>
             <?php
                 }
               }
@@ -124,7 +124,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
               if($row){              
                 while($get = $select->fetch_array()){
             ?>
-          <option value="<?php echo $get['id'] . '"'; if($planoConsulta == $get['id']){echo 'selected';}?>><?php echo $get['nomePlano']; ?></option>
+          <option value="<?php echo $get['idPlano'] . '"'; if($planoConsulta == $get['idPlano']){echo 'selected';}?>><?php echo $get['nomePlano']; ?></option>
             <?php
                 }
               }

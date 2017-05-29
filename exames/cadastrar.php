@@ -2,7 +2,7 @@
 header ('Content-type: text/html; charset=UTF-8');
 
 //Pegar dados enviados via POST
-$paciente = trim(addslashes(strip_tags($_POST['paciente'])));
+$idPaciente = trim(addslashes(strip_tags($_POST['idPaciente'])));
 $dataExame = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataExame'])))));
 $nomeExame = trim(addslashes(strip_tags($_POST['nomeExame'])));
 $descExame = trim(addslashes(strip_tags($_POST['descExame'])));
@@ -11,8 +11,8 @@ $descExame = trim(addslashes(strip_tags($_POST['descExame'])));
 $dataExame = date('Y-m-d',$dataExame);
 
 //Criar diretório do paciente para upload de exames
-if (!file_exists('arquivos/' . $paciente . '/')) {
-    mkdir('arquivos/' . $paciente . '/', 0777, true);
+if (!file_exists('arquivos/' . $idPaciente . '/')) {
+    mkdir('arquivos/' . $idPaciente . '/', 0777, true);
 }
 
 //Arquivos inválidos para upload - Nota: Se for usar esse, é preciso remover a negação (!) do IF e trocar o nome da array
@@ -53,11 +53,11 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
                 $shortname = $_FILES['arquivos']['name'][$i];
 
                 //Salvar a URL e o arquivo
-                $filePath = "arquivos/" . $paciente . "/" . $_FILES['arquivos']['name'][$i];
+                $filePath = "arquivos/" . $idPaciente . "/" . $_FILES['arquivos']['name'][$i];
 
 								//Verificar se o arquivo já existe
 								if(file_exists($filePath)) {
-									$filePath = "arquivos/" . $paciente . "/" . date('dmY-H.i A') . " " . $_FILES['arquivos']['name'][$i];
+									$filePath = "arquivos/" . $idPaciente . "/" . date('dmY-H.i A') . " " . $_FILES['arquivos']['name'][$i];
                                     $shortname = date('dmY-H.i A') . " " .  $_FILES['arquivos']['name'][$i];
 								}
 
@@ -137,7 +137,7 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
 
 //Iniciar a session e pegar o CRM do médico logado
 session_start();
-$medico = $_SESSION["CRM"];
+$idUsuario = $_SESSION["idUsuario"];
 
 //Puxar o connect do banco
 require "../assets/connect.php";
@@ -147,7 +147,7 @@ $arqsExame = implode(",", array_filter($files));
 
 //Executar a query
 $query = $mysqli->query("INSERT INTO exames (paciente,medico,dataExame,nomeExame,descExame,arqsExame) 
-VALUES ('$paciente', '$medico', '$dataExame', '$nomeExame', '$descExame', '$arqsExame')"); 
+VALUES ('$idPaciente', '$idUsuario', '$dataExame', '$nomeExame', '$descExame', '$arqsExame')"); 
 
 //Se der certo, ir embora daqui e encerrar conexão, senão, estourar um erro.
 if ($query){

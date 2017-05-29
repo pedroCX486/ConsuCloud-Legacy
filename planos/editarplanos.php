@@ -13,7 +13,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
 
 $idPlano = trim(addslashes(strip_tags($_GET['editar'])));
 
-$select = $mysqli->query("SELECT * FROM planos WHERE id = $idPlano");
+$select = $mysqli->query("SELECT * FROM planos WHERE idPlano = $idPlano");
 $row = $select->num_rows;
 if($row){              
   while($get = $select->fetch_array()){

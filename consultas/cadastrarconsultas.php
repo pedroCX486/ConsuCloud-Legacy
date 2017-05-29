@@ -55,7 +55,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
               if($row){              
                 while($get = $select->fetch_array()){
             ?>
-            <option value="<?php echo $get['numIdRG']; ?>" ><?php echo $get['numIdRG'] . " - " . $get['nomeComp']; ?></option>
+            <option value="<?php echo $get['idPaciente']; ?>" ><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
             <?php
                 }
               }
@@ -88,7 +88,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
               if($row){              
                 while($get = $select->fetch_array()){
             ?>
-                <option value="<?php echo $get['crm']; ?>" ><?php echo $get['nomeComp']; ?></option>
+                <option value="<?php echo $get['idUsuario']; ?>" ><?php echo $get['nomeCompleto']; ?></option>
             <?php
                 }
               }
@@ -106,7 +106,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
               if($row){              
                 while($get = $select->fetch_array()){
             ?>
-          <option value="<?php echo $get['id']; ?>" ><?php echo $get['nomePlano']; ?></option>
+          <option value="<?php echo $get['idPlano']; ?>" ><?php echo $get['nomePlano']; ?></option>
             <?php
                 }
               }

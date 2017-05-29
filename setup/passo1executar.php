@@ -26,8 +26,8 @@ VALUES ('Particular', '00 00000000', '$email', 'Consultas Particulares', '$ender
 
 if ($query && $query1){
   echo '<script type="text/javascript">
-					location.href="passo2.php";
-					</script>';
+			location.href="passo2.php";
+		</script>';
 }else{
   echo $mysqli->error;
 }

@@ -1,9 +1,10 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
 
-$nomeComp = trim(addslashes(strip_tags($_POST['nomeComp'])));
-$numIdRG = trim(addslashes(strip_tags($_POST['numIdRG'])));
-$RG_UFEXP = trim(addslashes(strip_tags($_POST['RG_UFEXP'])));
+$idPaciente = trim(addslashes(strip_tags($_POST['idPaciente'])));
+$nomePaciente = trim(addslashes(strip_tags($_POST['nomePaciente'])));
+$RG = trim(addslashes(strip_tags($_POST['RG'])));
+$RGUFEXP = trim(addslashes(strip_tags($_POST['RGUFEXP'])));
 $dataNasc = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataNasc'])))));
 $telCel = trim(addslashes(strip_tags($_POST['telCel'])));
 $telFixo = trim(addslashes(strip_tags($_POST['telFixo'])));
@@ -19,33 +20,33 @@ $endereco_estado = trim(addslashes(strip_tags($_POST['endereco_estado'])));
 $dataNasc = date('Y-m-d',$dataNasc);
 
 //Chegacem de caracteres invalidos em alguns campos (caso usuário burle no front-end)
-if(!ctype_digit($numIdRG)) {
+if(!ctype_digit($RG)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
-					location.href="../usuarios/cadastrarusuarios.php";
-					</script>';
+					window.history.back();
+				</script>';
 	exit();
 }elseif(!ctype_digit($endereco_cep)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
-					location.href="../usuarios/cadastrarusuarios.php";
-					</script>';
+					window.history.back();
+				</script>';
 	exit();
 }
 
 require "../assets/connect.php";
 
 // Perform queries 
-$query = $mysqli->query("UPDATE pacientes SET numIdRG = '$numIdRG', nomeComp = '$nomeComp', numIdRG = '$numIdRG', RG_UFEXP = '$RG_UFEXP', dataNasc = '$dataNasc', telCel ='$telCel', 
+$query = $mysqli->query("UPDATE pacientes SET RG = '$RG', nomePaciente = '$nomePaciente', RGUFEXP = '$RGUFEXP', dataNasc = '$dataNasc', telCel ='$telCel', 
 telFixo = '$telFixo', email = '$email', endereco_logradouro = '$endereco_logradouro', endereco_numero = '$endereco_numero', endereco_complemento = '$endereco_complemento', endereco_bairro = '$endereco_bairro', 
-endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_estado = '$endereco_estado' WHERE numIdRG = '$numIdRG'");
+endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_estado = '$endereco_estado' WHERE idPaciente = '$idPaciente'");
 
 
 if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");
 					location.href="../pacientes/pacientes.php";
-					</script>';
+				</script>';
 }else{
   echo $mysqli->error;
 }

@@ -15,20 +15,20 @@ if($_GET['editar'] == 'debugBackdoor' || $_GET['editar'] == 'SysAdmin'){
   header("Location: ../index.php?erro=ERROFATAL");
   exit();
 }else{
-  $edit = trim(addslashes(strip_tags($_GET['editar'])));
+  $idUsuario = trim(addslashes(strip_tags($_GET['idUsuario'])));
 }
 
-$select = $mysqli->query("SELECT * FROM usuarios WHERE crm = $edit");
+$select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario");
 $row = $select->num_rows;
 if($row){
   while($get = $select->fetch_array()){
     $crm = $get['crm'];
     $tipoUsuario = $get['tipoUsuario'];
     $contaAtiva = $get['contaAtiva'];
-    $nomeComp = $get['nomeComp'];
+    $nomeCompleto = $get['nomeCompleto'];
     $areaAtuacao = $get['areaAtuacao'];
-    $numIdRG = $get['numIdRG'];
-    $RG_UFEXP = $get['RG_UFEXP'];
+    $RG = $get['RG'];
+    $RGUFEXP = $get['RGUFEXP'];
     $dataNasc = $get['dataNasc'];
     $telCel = $get['telCel'];
     $telFixo = $get['telFixo'];
@@ -83,14 +83,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
         <div class="cadastro">
 
           <form method="post" action="editar.php">
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1"><?php if($tipoUsuario == 'medico'){echo "CRM (Médicos)";} else{echo "CPF (Secretárias)";} ?>:</span>
-              <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $crm; ?>" readonly>
-            </div>
-			
-			      <br>
-
+            
             <div class="alert alert-warning" id="rcorners2" role="alert">
               <b>Conta Ativada:</b>
               <p>
@@ -101,11 +94,16 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
-              <input required type="text" class="form-control" name="nomeComp" aria-describedby="basic-addon1" value="<?php echo $nomeComp; ?>" maxlength="150">
+              <span class="input-group-addon" id="basic-addon1"><?php if($tipoUsuario == 'medico'){echo "CRM (Médicos)";} else{echo "CPF (Secretárias)";} ?>:</span>
+              <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $crm; ?>">
             </div>
 
             <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
+              <input required type="text" class="form-control" name="nomeCompleto" aria-describedby="basic-addon1" value="<?php echo $nomeCompleto; ?>" maxlength="150">
+            </div>
+
+            <div class="input-group" <?php if($tipoUsuario == 'secretaria'){echo "style=\"display: none;\"";}?>>
               <span class="input-group-addon" id="basic-addon1">Área de Atuação:*</span>
               <input required type="text" class="form-control" name="areaAtuacao" aria-describedby="basic-addon1" value="<?php echo $areaAtuacao; ?>" maxlength="150">
             </div>
@@ -129,13 +127,13 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
               <div class="col-lg-6">
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                  <input required type="text" class="form-control" name="numIdRG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $numIdRG; ?>" readonly>
+                  <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $RG; ?>">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1">Orgão Expedidor/UF:*</span>
-                  <input required type="text" class="form-control" name="RG_UFEXP" aria-describedby="basic-addon1" maxlength="10" value="<?php echo $RG_UFEXP; ?>" readonly>
+                  <input required type="text" class="form-control" name="RGUFEXP" aria-describedby="basic-addon1" maxlength="10" value="<?php echo $RGUFEXP; ?>">
                 </div>
               </div>
             </div>
@@ -239,6 +237,8 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
             <br>
             <br>
+            
+            <input hidden type="text" name="idUsuario" value="<?php echo $idUsuario; ?>">
 
             <center><button type="submit" class="btn btn-raised btn-primary btn-lg">ATUALIZAR</button></center>
 

@@ -4,7 +4,7 @@ require("assets/connect.php");
 date_default_timezone_set('America/Recife');
 
 session_start();
-$crm = $_SESSION["CRM"];
+$idUsuario = $_SESSION["idUsuario"];
 
 if(!$_SESSION){
   header("Location: ../index.php?erro=ERROFATAL");

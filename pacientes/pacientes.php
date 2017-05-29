@@ -55,10 +55,10 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
             ?>
               <tr>
                 <td class="tg-yw4l">
-                  <?php echo $get['nomeComp']; ?>
+                  <?php echo $get['nomePaciente']; ?>
                 </td>
                 <td class="tg-yw4l">
-                  <?php echo $get['numIdRG']; ?>
+                  <?php echo $get['RG']; ?>
                 </td>
                 <td class="tg-yw4l">
                   <?php echo $data = date('d/m/Y', strtotime($get['dataNasc'])); ?>
@@ -67,7 +67,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
                   <?php echo $get['email']; ?>
                 </td>
                 <td class="tg-yw4l">
-                  <a href="editarpacientes.php?edit=<?php echo $get['numIdRG']; ?>" title="Editar Paciente"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+                  <a href="editarpacientes.php?idPaciente=<?php echo $get['idPaciente']; ?>" title="Editar Paciente"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
                 </td>
               </tr>
               <?php

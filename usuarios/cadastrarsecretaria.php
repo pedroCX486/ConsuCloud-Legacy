@@ -61,7 +61,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
-              <input required type="text" class="form-control" name="nomeComp" aria-describedby="basic-addon1" maxlength="150">
+              <input required type="text" class="form-control" name="nomeCompleto" aria-describedby="basic-addon1" maxlength="150">
             </div>
 
             <div class="input-group">
@@ -83,13 +83,13 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
               <div class="col-lg-6">
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                  <input required type="text" class="form-control" name="numIdRG" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                  <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1">Orgão Expedidor/UF:*</span>
-                  <input required type="text" class="form-control" name="RG_UFEXP" aria-describedby="basic-addon1" maxlength="10">
+                  <input required type="text" class="form-control" name="RGUFEXP" aria-describedby="basic-addon1" maxlength="10">
                 </div>
               </div>
             </div>

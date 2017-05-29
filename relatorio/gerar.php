@@ -41,7 +41,6 @@ if($row0){
     #pagina {
       height: 297mm;
       width: 210mm;
-      align: center;
     }
     @page {
       size: A4;
@@ -81,10 +80,10 @@ if($row0){
                 $medico = $_GET['medico'];
                 $plano = $_GET['plano'];
 
-                $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.numIdRG = c.paciente 
-                                        JOIN planos AS pl ON c.planoConsulta = pl.id 
-                                        JOIN usuarios AS u ON u.crm = c.medico 
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                        JOIN planos AS pl ON pl.idPlano = c.planoConsulta
+                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
                                         WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' AND confirmaConsulta = '1' 
                                         ORDER BY dataConsulta DESC, horaConsulta DESC");
                 $row = $select->num_rows;
@@ -100,7 +99,7 @@ if($row0){
 
                     <!--Nome do Medico-->
                     <td class="tg-yw4l">
-                      <?php echo $get['nomeMedico']; ?>
+                      <?php echo $get['nomeCompleto']; ?>
                     </td>
 
                     <!--Data da Consulta-->

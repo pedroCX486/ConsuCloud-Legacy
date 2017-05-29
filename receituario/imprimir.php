@@ -1,6 +1,6 @@
 <?php
 session_start();
-$crm = $_SESSION['CRM'];
+$idUsuario = $_SESSION['idUsuario'];
 
 if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
   header("Location: ../index.php?erro=ERROFATAL");
@@ -12,13 +12,14 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
 
 require("../assets/connect.php");
 
-$select = $mysqli->query("SELECT * FROM usuarios WHERE crm = '$crm'");
+$select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = '$idUsuario'");
 $row = $select->num_rows;
 if($row){
   while($get = $select->fetch_array()){
-    $nomeComp = $get['nomeComp'];
+    $nomeCompleto = $get['nomeCompleto'];
     $areaAtuacao = $get['areaAtuacao'];
     $estado = $get['endereco_estado'];
+    $crm = $get['crm'];
   }
 }
 
@@ -66,8 +67,8 @@ if($row1){
     </div>
     
     <div style="position: absolute; left: 15%; top: 5%;">
-      <div style="font-size: 35px;">Dr. <?php echo $nomeComp; ?></div>
-      <?php echo $areaAtuacao . ' - CRM-' . $estado . ": " .  $_SESSION['CRM']; ?>
+      <div style="font-size: 35px;">Dr. <?php echo $nomeCompleto; ?></div>
+      <?php echo $areaAtuacao . ' - CRM-' . $estado . ": " .  $crm; ?>
     </div>
   </div>
   

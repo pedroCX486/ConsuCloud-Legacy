@@ -37,7 +37,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       <div class="buscar">
         <form method="get" action="prontuarios.php">
           <div class="form-group">
-            <select required name="paciente" class="form-control">
+            <select required name="idPaciente" class="form-control">
               <option disabled selected value="">Selecione o paciente ▾</option>
               <?php
               $select = $mysqli->query("SELECT * FROM pacientes");
@@ -45,7 +45,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
               if($row){
                 while($get = $select->fetch_array()){
                   ?>
-                  <option value="<?php echo $get['numIdRG']; ?>"><?php echo $get['numIdRG'] . " - " . $get['nomeComp']; ?></option>
+                  <option value="<?php echo $get['idPaciente']; ?>"><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
                   <?php
                 }
               }
@@ -63,14 +63,14 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       
       <div class="panel-group" id="accordion">
         <?php
-          if(!empty($_GET['paciente'])){
+          if(!empty($_GET['idPaciente'])){
             
-            $paciente = $_GET['paciente'];
-            $crm = $_SESSION['CRM'];
+            $idPaciente = $_GET['idPaciente'];
+            $idUsuario = $_SESSION['idUsuario'];
             
-            $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, dataProntuario, horaProntuario, prontuario FROM prontuarios AS pront 
-                                        JOIN pacientes AS p ON p.numIdRG = pront.paciente 
-                                        WHERE pront.paciente = $paciente AND pront.medico = $crm ORDER BY dataProntuario ASC, horaProntuario ASC");
+            $select = $mysqli->query("SELECT p.nomePaciente, dataProntuario, horaProntuario, prontuario FROM prontuarios AS pront 
+                                        JOIN pacientes AS p ON p.idPaciente = pront.paciente 
+                                        WHERE pront.paciente = $idPaciente AND pront.medico = $idUsuario ORDER BY dataProntuario ASC, horaProntuario ASC");
             $row = $select->num_rows;
             if($row){
               while($get = $select->fetch_array()){

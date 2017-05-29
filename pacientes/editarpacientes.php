@@ -11,15 +11,15 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
     exit();
 }
 
-$edit = trim(addslashes(strip_tags($_GET['edit'])));
+$idPaciente = trim(addslashes(strip_tags($_GET['idPaciente'])));
 
-$select = $mysqli->query("SELECT * FROM pacientes WHERE numIdRG = $edit");
+$select = $mysqli->query("SELECT * FROM pacientes WHERE idPaciente = $idPaciente");
 $row = $select->num_rows;
 if($row){              
   while($get = $select->fetch_array()){
-    $nomeComp = $get['nomeComp'];
-    $numIdRG = $get['numIdRG'];
-    $RG_UFEXP = $get['RG_UFEXP'];
+    $nomePaciente = $get['nomePaciente'];
+    $RG = $get['RG'];
+    $RGUFEXP = $get['RGUFEXP'];
     $dataNasc = $get['dataNasc'];
     $telCel = $get['telCel'];
     $telFixo = $get['telFixo'];
@@ -73,7 +73,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
-              <input required type="text" class="form-control" name="nomeComp" aria-describedby="basic-addon1" value="<?php echo $nomeComp; ?>" maxlength="150">
+              <input required type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" value="<?php echo $nomePaciente; ?>" maxlength="150">
             </div>
 
             <div class="input-group">
@@ -95,13 +95,13 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
               <div class="col-lg-6">
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                  <input required type="text" class="form-control" name="numIdRG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $numIdRG; ?>" readonly>
+                  <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $RG; ?>">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon1">Orgão Expedidor/UF:*</span>
-                  <input required type="text" class="form-control" name="RG_UFEXP" aria-describedby="basic-addon1" maxlength="10" value="<?php echo $RG_UFEXP; ?>" readonly>
+                  <input required type="text" class="form-control" name="RGUFEXP" aria-describedby="basic-addon1" maxlength="10" value="<?php echo $RGUFEXP; ?>">
                 </div>
               </div>
             </div>
@@ -190,6 +190,8 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
             <br>
             <br>
+            
+            <input hidden type="text" name="idPaciente" value="<?php echo $idPaciente; ?>">
 
             <center><button type="submit" class="btn btn-raised btn-primary btn-lg">ATUALIZAR</button></center>
 

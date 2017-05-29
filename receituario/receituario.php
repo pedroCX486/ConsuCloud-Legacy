@@ -1,6 +1,6 @@
 <?php
 session_start();
-$crm = $_SESSION['CRM'];
+$idUsuario = $_SESSION['idUsuario'];
 
 if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSION){
     header("Location: ../index.php?erro=ERROFATAL");
@@ -12,13 +12,14 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
 
 require("../assets/connect.php");
 
-$select = $mysqli->query("SELECT * FROM usuarios WHERE crm = '$crm'");
+$select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = '$idUsuario'");
 $row = $select->num_rows;
 if($row){              
   while($get = $select->fetch_array()){
     $areaAtuacao = $get['areaAtuacao'];
-    $nomeComp = $get['nomeComp'];
+    $nomeCompleto = $get['nomeCompleto'];
     $estado = $get['endereco_estado'];
+    $crm = $get['crm'];
   }
 }
 
@@ -66,8 +67,8 @@ if($row1){
             <!-- Ele vai fazer uma query aqui e puxar info do médico e info do consultório das configs do sistema. Mesma coisa na página de impressão.-->
             <div id="infocheck">
               <b>Informações do Médico:</b><br> Dr.
-              <?php echo $nomeComp . ' - ' . $areaAtuacao . ' - '; ?>  CRM -
-              <?php echo $estado . ": " .  $_SESSION['CRM']; ?><br><br>
+              <?php echo $nomeCompleto . ' - ' . $areaAtuacao . ' - '; ?>  CRM -
+              <?php echo $estado . ": " .  $crm; ?><br><br>
               <b>Informações do Consultório:</b>
               <?php echo "<br>" . $nomeConsultorio . " - " . $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . " - CEP: "
                                                            . $endereco_cep . " - " . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . " - " .  "Telefones: " . $telefone; ?>

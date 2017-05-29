@@ -18,7 +18,7 @@ if($row){
     $senhaBanco = $get['senha'];
     $nomeCurto = $get['nomeCurto'];
     $tipoUsuario = $get['tipoUsuario'];
-    $crm = $get['crm'];
+    $idUsuario = $get['idUsuario'];
     $contaAtiva = $get['contaAtiva'];
   
     $mysqli->close();
@@ -29,7 +29,7 @@ if($row){
   if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
     session_start();
     $_SESSION["username"] = $nomeCurto;
-    $_SESSION["CRM"] = $crm;
+    $_SESSION["idUsuario"] = $idUsuario;
   
     if($tipoUsuario == "medico"){ //Testar se usuário é tipo médico
       $_SESSION['isMedico'] = true;

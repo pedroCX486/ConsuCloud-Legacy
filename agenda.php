@@ -1,6 +1,6 @@
 <?php
 session_start();
-$crm = $_SESSION["CRM"];
+$idUsuario = $_SESSION["idUsuario"];
 
 if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSION){
     header("Location: ../index.php?erro=ERROFATAL");
@@ -43,10 +43,10 @@ require("assets/connect.php");
             <th class="titulos">DATA - HORA</th>
           </tr>
           <?php
-              $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.numIdRG = c.paciente
-                                        JOIN usuarios AS u ON u.crm = c.medico 
-                                        WHERE dataConsulta > CURDATE() AND c.medico = $crm ORDER BY dataConsulta ASC, horaConsulta ASC");
+              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p ON p.idPaciente = c.paciente
+                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                        WHERE dataConsulta > CURDATE() AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){

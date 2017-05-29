@@ -7,9 +7,9 @@
             <th class="titulos">DATA - HORA</th>
         </tr>
             <?php
-                $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, tipoConsulta, dataConsulta, horaConsulta, idConsulta, confirmaConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.numIdRG = c.paciente 
-                                        JOIN usuarios AS u ON u.crm = c.medico 
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
                                         WHERE dataConsulta = CURDATE() ORDER BY dataConsulta ASC");
                 $row = $select->num_rows;
                 if($row){
@@ -28,7 +28,7 @@
 
                 <!--Nome do Medico-->
                 <td class="tg-yw4l">
-                  <?php echo $get['nomeMedico']; ?>
+                  <?php echo $get['nomeCompleto']; ?>
                 </td>
 
                 <!--Data da Consulta-->
@@ -42,7 +42,7 @@
 
                 <!--Editar Consultas-->
                 <td class="tg-yw4l">
-                    <a href="consultas/editarconsultas.php?editar=<?php echo $get['idConsulta']; ?>" title="Editar Consulta"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+                    <a href="consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" title="Editar Consulta"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
                   
                     &nbsp;
 

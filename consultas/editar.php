@@ -22,7 +22,7 @@ if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");
 					location.href="../consultas/consultas.php";
-					</script>';
+				</script>';
 }else{
   echo $mysqli->error;
 }

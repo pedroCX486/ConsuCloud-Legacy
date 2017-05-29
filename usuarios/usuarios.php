@@ -57,7 +57,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
                   <?php if($get['tipoUsuario'] == 'medico'){echo "Médico";} else{echo "Secretária";} ?>
                 </td>
                 <td class="tg-yw4l">
-                  <?php echo $get['nomeComp']; ?>
+                  <?php echo $get['nomeCompleto']; ?>
                 </td>
                 <td class="tg-yw4l">
                   <?php echo $get['areaAtuacao']; ?>
@@ -72,7 +72,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
                   <?php echo $get['email']; ?>
                 </td>
                 <td class="tg-yw4l">
-                  <a href="editarusuarios.php?editar=<?php echo $get['crm']; ?>" title="Editar Usuário"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+                  <a href="editarusuarios.php?idUsuario=<?php echo $get['idUsuario']; ?>" title="Editar Usuário"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
                 </td>
               </tr>
               <?php

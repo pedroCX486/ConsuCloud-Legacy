@@ -64,7 +64,7 @@ require("../assets/connect.php");
                   if($rowMedico){
                     while($getMedico = $selectMedico->fetch_array()){
                       ?>
-                        <option value="<?php echo $getMedico['crm']; ?>" ><?php echo $getMedico['nomeComp']; ?></option>
+                        <option value="<?php echo $getMedico['idUsuario']; ?>" ><?php echo $getMedico['nomeCompleto']; ?></option>
                       <?php
                     }
                   }
@@ -82,7 +82,7 @@ require("../assets/connect.php");
                   if($rowPlano){
                     while($getPlano = $selectPlano->fetch_array()){
                       ?>
-                        <option value="<?php echo $getPlano['id']; ?>" ><?php echo $getPlano['nomePlano']; ?></option>
+                        <option value="<?php echo $getPlano['idPlano']; ?>" ><?php echo $getPlano['nomePlano']; ?></option>
                       <?php
                     }
                   }
@@ -113,12 +113,12 @@ require("../assets/connect.php");
 
           <!--Mega Query para dados do Relatório-->
           <?php
-            $select = $mysqli->query("SELECT p.nomeComp AS nomePaciente, u.nomeComp AS nomeMedico, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
-                                      JOIN pacientes AS p ON p.numIdRG = c.paciente 
-                                      JOIN planos AS pl ON c.planoConsulta = pl.id
-                                      JOIN usuarios AS u ON u.crm = c.medico
-                                      WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' 
-                                      ORDER BY dataConsulta DESC, horaConsulta DESC");
+            $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
+                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                        JOIN planos AS pl ON pl.idPlano = c.planoConsulta
+                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                        WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano'
+                                        ORDER BY dataConsulta DESC, horaConsulta DESC");
             $row = $select->num_rows;
             if($row){
               while($get = $select->fetch_array()){
@@ -132,7 +132,7 @@ require("../assets/connect.php");
 
                 <!--Nome do Medico-->
                 <td class="tg-yw4l">
-                  <?php echo $get['nomeMedico']; ?>
+                  <?php echo $get['nomeCompleto']; ?>
                 </td>
 
                 <!--Data da Consulta-->

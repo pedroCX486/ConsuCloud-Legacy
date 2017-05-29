@@ -45,7 +45,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
               if($row){
                 while($get = $select->fetch_array()){
                   ?>
-                  <option value="<?php echo $get['numIdRG']; ?>"><?php echo $get['numIdRG'] . " - " . $get['nomeComp']; ?></option>
+                  <option value="<?php echo $get['idPaciente']; ?>"><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
                   <?php
                 }
               }
@@ -63,10 +63,10 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       
       <div class="panel-group" id="accordion">
         <?php
-        if(!empty($_GET['paciente'])){
-          $paciente = $_GET['paciente'];
+        if(!empty($_GET['idPaciente'])){
+          $idPaciente = $_GET['idPaciente'];
           //$crm = $_SESSION['CRM']; | AND medico = $crm 
-          $select = $mysqli->query("SELECT * FROM exames WHERE paciente = $paciente ORDER BY dataExame DESC");
+          $select = $mysqli->query("SELECT * FROM exames WHERE paciente = $idPaciente ORDER BY dataExame DESC");
           $row = $select->num_rows;
           if($row){
             while($get = $select->fetch_array()){
@@ -79,11 +79,11 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $dataExame.$rotacao;?>">
                       <?php
-                      $select1 = $mysqli->query("SELECT * FROM pacientes where numIdRG = $paciente");
+                      $select1 = $mysqli->query("SELECT * FROM pacientes where idPaciente = $idPaciente");
                       $row1 = $select1->num_rows;
                       if($row1){
                         while($get1 = $select1->fetch_array()){
-                          $nomePaciente = $get1['nomeComp'];
+                          $nomePaciente = $get1['nomePaciente'];
                         }
                       }
                       if($get['paciente'] == $paciente){echo $nomePaciente . ' - ' . $nomeExame  . ' (' . $data = date('d-m-Y', strtotime($dataExame)) . ')';}
@@ -104,7 +104,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
                     $arquivos = explode(",", $get['arqsExame']);
                       
                       foreach($arquivos as $arquivo){
-                        echo '<a href="arquivos/' . $paciente . '/' . $arquivo . '" download /> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
+                        echo '<a href="arquivos/' . $idPaciente . '/' . $arquivo . '" download /> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
                       }
                     ?>
 

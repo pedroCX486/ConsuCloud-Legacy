@@ -3,10 +3,10 @@ header ('Content-type: text/html; charset=UTF-8');
 
 $crm = trim(addslashes(strip_tags($_POST['crm'])));
 $tipoUsuario = trim(addslashes(strip_tags($_POST['tipoUsuario'])));
-$nomeComp = trim(addslashes(strip_tags($_POST['nomeComp'])));
+$nomeCompleto = trim(addslashes(strip_tags($_POST['nomeCompleto'])));
 $areaAtuacao = trim(addslashes(strip_tags($_POST['areaAtuacao'])));
-$numIdRG = trim(addslashes(strip_tags($_POST['numIdRG'])));
-$RG_UFEXP = trim(addslashes(strip_tags($_POST['RG_UFEXP'])));
+$RG = trim(addslashes(strip_tags($_POST['RG'])));
+$RGUFEXP = trim(addslashes(strip_tags($_POST['RGUFEXP'])));
 $dataNasc = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataNasc'])))));
 $telCel = trim(addslashes(strip_tags($_POST['telCel'])));
 $telFixo = trim(addslashes(strip_tags($_POST['telFixo'])));
@@ -26,19 +26,19 @@ if(!ctype_digit($crm)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CRM.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();
-					</script>';
+				</script>';
 	exit();
 }elseif(!ctype_digit($numIdRG)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();
-					</script>';
+				</script>';
 	exit();
 }elseif(!ctype_digit($endereco_cep)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();
-					</script>';
+				</script>';
 	exit();
 }
 
@@ -58,22 +58,22 @@ if($select->num_rows) {
 	echo '<script type="text/javascript">
 						alert("ERRO: Nome de usuário já existe.");
 						window.history.back();
-						</script>';
+					</script>';
 	exit();
 }else{
 	
 	//Executar query de acorco com tipo de usuário
 	if($tipoUsuario == 'medico'){
 		//Query Secretária
-		$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeComp,areaAtuacao,numIdRG,RG_UFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
+		$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeCompleto,areaAtuacao,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
 		endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
-		VALUES ('$crm', '$tipoUsuario', '$nomeComp', '$areaAtuacao', '$numIdRG', '$RG_UFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
+		VALUES ('$crm', '$tipoUsuario', '$nomeCompleto', '$areaAtuacao', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
 		'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', '$login', '$senha', '$nomeCurto')"); 
 	}elseif($tipoUsuario == 'secretaria'){
 		//Query Secretária
-		$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeComp,areaAtuacao,numIdRG,RG_UFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
+		$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeCompleto,areaAtuacao,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
 		endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
-		VALUES ('$crm', '$tipoUsuario', '$nomeComp', 'Secr. de Atendimento', '$numIdRG', '$RG_UFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
+		VALUES ('$crm', '$tipoUsuario', '$nomeCompleto', 'Secr. de Atendimento', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
 		'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', '$login', '$senha', '$nomeCurto')"); 
 	}
 	
@@ -81,7 +81,7 @@ if($select->num_rows) {
 	  echo '<script type="text/javascript">
 						alert("Cadastro realizado com sucesso.");
 						location.href="../usuarios/usuarios.php";
-						</script>';
+					</script>';
 	}else{
 	  echo $mysqli->error;
 	}

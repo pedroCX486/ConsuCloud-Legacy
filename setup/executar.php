@@ -45,16 +45,17 @@ ENGINE=InnoDB
 ;");
 
 $query2 = $mysqli->query("CREATE TABLE `usuarios` (
+	`idUsuario` INT(11) NOT NULL AUTO_INCREMENT,
 	`crm` VARCHAR(20) NOT NULL,
-	`tipoUsuario` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	`nomeComp` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`areaAtuacao` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`tipoUsuario` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`nomeCompleto` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`nomeCurto` VARCHAR(25) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`dataNasc` DATE NULL DEFAULT NULL,
 	`telFixo` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`telCel` VARCHAR(12) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	`numIdRG` VARCHAR(20) NULL DEFAULT NULL,
-	`RG_UFEXP` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`RG` VARCHAR(20) NOT NULL,
+	`RGUFEXP` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_logradouro` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_numero` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_complemento` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
@@ -66,19 +67,20 @@ $query2 = $mysqli->query("CREATE TABLE `usuarios` (
 	`login` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`senha` VARCHAR(300) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`contaAtiva` VARCHAR(1) NOT NULL DEFAULT '1',
-	PRIMARY KEY (`crm`)
+	PRIMARY KEY (`idUsuario`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
 ;");
   
 $query3 = $mysqli->query("CREATE TABLE `pacientes` (
-	`numIdRG` VARCHAR(20) NOT NULL,
-	`nomeComp` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`idPaciente` INT(11) NOT NULL AUTO_INCREMENT,
+	`nomePaciente` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`dataNasc` DATE NULL DEFAULT NULL,
 	`telFixo` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`telCel` VARCHAR(12) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	`RG_UFEXP` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`RG` VARCHAR(20) NOT NULL,
+	`RGUFEXP` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_logradouro` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_numero` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_complemento` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
@@ -87,7 +89,7 @@ $query3 = $mysqli->query("CREATE TABLE `pacientes` (
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	PRIMARY KEY (`numIdRG`)
+	PRIMARY KEY (`idPaciente`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
@@ -111,7 +113,7 @@ AUTO_INCREMENT=2
 ;");
 
 $query5 = $mysqli->query("CREATE TABLE `planos` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`idPlano` INT(11) NOT NULL AUTO_INCREMENT,
 	`nomePlano` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`infoPlano` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`telFixo` VARCHAR(11) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
@@ -123,7 +125,7 @@ $query5 = $mysqli->query("CREATE TABLE `planos` (
 	`endereco_cidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`idPlano`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
@@ -131,11 +133,12 @@ AUTO_INCREMENT=2
 ;");
 
 $query6 = $mysqli->query("CREATE TABLE `prontuarios` (
+	`idProntuario` INT(11) NOT NULL AUTO_INCREMENT,
 	`medico` VARCHAR(20) NULL DEFAULT NULL,
 	`paciente` VARCHAR(20) NULL DEFAULT NULL,
 	`dataProntuario` DATE NULL DEFAULT NULL,
+	`horaProntuario` TIME NULL DEFAULT NULL,
 	`prontuario` LONGTEXT NULL COLLATE 'utf8_unicode_ci',
-	`idProntuario` INT(11) NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`idProntuario`)
 )
 COLLATE='utf8_unicode_ci'
@@ -143,13 +146,13 @@ ENGINE=InnoDB
 ;");
 
 $query7 = $mysqli->query("CREATE TABLE `exames` (
+	`idExame` INT(11) NOT NULL AUTO_INCREMENT,
 	`medico` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`paciente` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`dataExame` DATE NULL DEFAULT NULL,
+	`nomeExame` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`descExame` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`arqsExame` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	`nomeExame` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	`idExame` INT(11) NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (`idExame`)
 )
 COLLATE='utf8_unicode_ci'
@@ -158,8 +161,8 @@ ENGINE=InnoDB
 
 if($query7){
   echo '<script type="text/javascript">
-					location.href="passo1.php";
-					</script>';
+			location.href="passo1.php";
+		</script>';
 }else{
   echo $mysqli->error;
 }
