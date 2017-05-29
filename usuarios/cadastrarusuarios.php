@@ -43,6 +43,15 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
         <div class="cadastro">
 
           <form method="post" action="cadastrar.php">
+            
+            <div class="alert alert-info" id="rcorners2" role="alert">
+              <b>Tipo de Usuário:*</b>
+        			  <p>
+        			  &nbsp;
+              <label style="color: black"><input required type="radio" name="tipoUsuario" value="medico"> Médico</label> &nbsp;
+              <label style="color: black"><input required type="radio" name="tipoUsuario" value="secretaria"> Secretária</label>
+        			  </p>
+            </div>
 
             <p>
               <div class="alert alert-warning" id="rcorners2" role="alert">
@@ -53,15 +62,6 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
                 </div>
               </div>
             </p>
-
-            <div class="alert alert-info" id="rcorners2" role="alert">
-              <b>Tipo de Usuário:*</b>
-			  <p>
-			  &nbsp;
-              <label style="color: black"><input required type="radio" name="tipoUsuario" value="medico"> Médico</label> &nbsp;
-              <label style="color: black"><input required type="radio" name="tipoUsuario" value="secretaria"> Secretária</label>
-			  </p>
-            </div>
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>

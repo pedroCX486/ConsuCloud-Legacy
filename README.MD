@@ -22,7 +22,6 @@ ________________________________________
 Revisar código consultas ao DB:  
   
 Receituário  
-Prontuário  
 Exames  
   
 ________________________________________

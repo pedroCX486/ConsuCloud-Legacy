@@ -77,6 +77,16 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
 require "../assets/connect.php";
 
 if($files){
+    $select = $mysqli->query("SELECT * FROM configs");
+    $row = $select->num_rows;
+    if($row){              
+      while($get = $select->fetch_array()){
+        $logotipo = $get['logotipo'];
+      }
+    }
+    
+    unlink($logotipo);
+    
     //Executar query
     $query = $mysqli->query("UPDATE configs SET nomeConsultorio = '$nomeConsultorio', telefone = '$telefone', email = '$email', logotipo = '$files', endereco_logradouro = '$endereco_logradouro', endereco_numero = '$endereco_numero', endereco_complemento = '$endereco_complemento', endereco_bairro = '$endereco_bairro', 
     endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_estado = '$endereco_estado'");

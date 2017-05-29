@@ -51,49 +51,53 @@ if($row1){
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <?php include "../assets/bootstrap.php";?>
   <style>
-    table {
-      border-style: solid;
-      border-width: 1px;
-      height: 210mm;
-      width: 140mm;
-    }
     @page { size: A4 landscape; margin: 3mm; }
     html, body { height: 100%; width: 100%; margin: 0; }
   </style>
 
 <body>
+  
+  <div style="border-style: solid; border-width: 1px; height: 100%; width: 50%">
 
-  <table>
-    <tr style="height: 25mm;">
-      <th>
-        <p>
-          <img style="width: 20%; height: 20%; margin-right: 20px;" align="right" src="../config/<?php echo $logotipo; ?>"/>
-          <div style="font-size: 250%; text-align: left; margin-left: 20px;">Dr. <?php echo $nomeComp; ?></div>
-          <div style="font-size: 80%; text-align: left; margin-left: 20px;"><?php echo $areaAtuacao . ' - CRM-' . $estado . ": " .  $_SESSION['CRM']; ?></div>
-        </p>
-      </th>
-    </tr>
-    <tr style="height: 130mm;">
-      <th>
-        <div style="margin-left:10px; padding: auto 0; border-left: 3px solid; border-color: #5fba7d;">
-					<div style="margin-left: 10px;">
-						<?php
-							echo nl2br($_POST["prontuario"]);
-						?>
-					</div>
-        </div>
-      </th>
-    </tr>
-    <tr style="height: 10mm;">
-      <th>
-        <div style="font-size: 80%; text-align: left; margin-left: 20px; margin-bottom: 10px;"><?php echo "<br><br><br>" . $nomeConsultorio . " - " . $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade ." - " . $endereco_estado . "<br>" . "Telefones: " . $telefone; ?></div>
-      </th>
-    </tr>
-  </table>
-
+  <!--Cabeçallho-->
+  <div style="position: relative; height: 80px;">
+    <div>
+      <img style="width: 12%; height: 12%; margin-left: 10px; margin-top: 15px;" align="left" src="../config/<?php echo $logotipo; ?>"/>
+    </div>
+    
+    <div style="position: absolute; left: 15%; top: 5%;">
+      <div style="font-size: 35px;">Dr. <?php echo $nomeComp; ?></div>
+      <?php echo $areaAtuacao . ' - CRM-' . $estado . ": " .  $_SESSION['CRM']; ?>
+    </div>
+  </div>
+  
+  <!--Corpo-->
+  <div style="position: relative; height: 165mm;">
+    <div style="position: absolute; height: 163mm">
+      <div style="margin-left: 10px; height: 100%; border-left: 3px solid; border-color: #8c8c8c;"></div>
+    </div>
+    
+    <div style="margin-left: 20px;">
+      <br>
+      <?php echo nl2br($_POST["receita"]); ?>
+    </div>
+  </div>
+  
+  <!--Rodapé-->
+  <div style="position: relative;">
+    <div style="position: absolute; text-align: left; vertical-align: bottom; margin-left: 10px;">
+      <?php echo $nomeConsultorio . " - " . $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade ." - " . $endereco_estado . "<br>" . "Telefones: " . $telefone; ?>
+    </div>
+  </div>
+  
+  </div>
+  
+  <!--JS para Invocar Impressão-->
   <script type="text/JavaScript">
-    setTimeout(function () { window.print(); }, 500);
-    setTimeout(window.close, 500);
+    $(window).bind("load", function() {
+      window.print();
+      window.top.close();
+    });
   </script>
 
 </body>
