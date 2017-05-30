@@ -100,7 +100,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESS
 
                     <div class="input-group">
                       <span class="input-group-addon" id="basic-addon1">CEP:*</span>
-                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8">
+                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
 
                     <div class="form-group">

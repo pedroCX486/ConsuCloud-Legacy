@@ -67,14 +67,15 @@
                 if($_SESSION["isMedico"] == true){
                   echo '<li role="separator" class="divider"></li>';
                   echo '<li><a href="../agenda.php">Agenda</a></li>';
+                  echo '<li><a href="../historico/historico_medico.php">Histórico de Consultas</a></li>';
                 }elseif($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
                   echo '<li role="separator" class="divider"></li>';
-                  echo '<li><a href="../historico.php">Histórico de Consultas</a></li>';
+                  echo '<li><a href="../historico/historico_secretaria.php">Histórico de Consultas</a></li>';
                   echo '<li><a href="../relatorio/relatorio.php">Relatório de Consultas</a></li>';
                 }elseif($_SESSION["isDebug"] == true){
                   echo '<li role="separator" class="divider"></li>';
                   echo '<li><a href="../agenda.php">Agenda</a></li>';
-                  echo '<li><a href="../historico.php">Histórico de Consultas</a></li>';
+                  echo '<li><a href="../historico/historico_secretaria.php">Histórico de Consultas (Secretária)</a></li>';
                   echo '<li><a href="../relatorio/relatorio.php">Relatório de Consultas</a></li>';
                 }
                 ?>

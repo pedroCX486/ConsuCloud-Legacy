@@ -32,8 +32,8 @@ VALUES ('$nomePlano', '$telFixo', '$email', '$infoPlano', '$endereco_logradouro'
 if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
-					location.href="../planos/planos.php";
-					</script>';
+					window.history.back();
+				</script>';
 }else{
   echo $mysqli->error;
 }

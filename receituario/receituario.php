@@ -32,7 +32,7 @@ if($row){
     $email = $get['email'];
     $endereco_logradouro = $get['endereco_logradouro'];
     $endereco_numero = $get['endereco_numero'];
-    $endereco_complemento = $get1['endereco_complemento'];
+    $endereco_complemento = $get['endereco_complemento'];
     $endereco_bairro = $get['endereco_bairro'];
     $endereco_cidade = $get['endereco_cidade'];
     $endereco_cep = $get['endereco_cep'];

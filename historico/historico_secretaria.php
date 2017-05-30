@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SESSION["isMedico"] == true || !$_SESSION){
+if($_SESSION["isMedico"] == true || $_SESSION["isAdmin"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
  }elseif(empty($_SESSION)){
@@ -9,7 +9,7 @@ if($_SESSION["isMedico"] == true || !$_SESSION){
     exit();
 }
 
-require("assets/connect.php");
+require("../assets/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +19,12 @@ require("assets/connect.php");
   <meta charset="UTF-8">
   <title>Histórico - ConsuCloud</title>
 
-   <?php include "assets/bootstrap.php";?>
+   <?php include "../assets/bootstrap.php";?>
 </head>
 
 <body>
 
-<?php include "barra.php"; ?>
+<?php include "../barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -35,7 +35,7 @@ require("assets/connect.php");
       <br>
       <center>
 
-        <form method="get" action="historico.php">
+        <form method="get" action="historico_secretaria.php">
           <p>
             <table style="width:350px;">
               <tr>
@@ -55,20 +55,18 @@ require("assets/connect.php");
             <th class="titulos">PACIENTE</th>
             <th class="titulos">MÉDICO</th>
             <th class="titulos">DATA - HORA</th>
+            <th class="titulos">TIPO</th>
             <th class="titulos">PLANO (CARTEIRA)</th>
           </tr>
           <?php
-              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, pl.nomePlano, carteiraPlano, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
+              $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                         JOIN usuarios AS u ON u.idUsuario = c.medico 
-																				JOIN planos AS pl ON pl.idPlano = c.planoConsulta
-                                        WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+                                        JOIN planos AS pl ON c.planoConsulta = pl.idPlano
+                                        WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta ASC, horaConsulta ASC");
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){
-									
-									
-                  $planoConsulta = $get['planoConsulta'];
             ?>
             <tr>
               <!--Nome do Paciente-->
@@ -88,6 +86,11 @@ require("assets/connect.php");
                   $hora = date('H:i', strtotime($get['horaConsulta']));
                   echo $data . ' - ' . $hora;
                   ?>
+              </td>
+              
+              <!--Tipo de Consulta -->
+              <td class="tg-yw4l">
+                <?php if($get['tipoConsulta'] == "retorno"){echo "Retorno";}elseif($get['tipoConsulta'] == "primeiraConsulta"){echo "Primeira Consulta";}?>
               </td>
 
               <!--Plano da Consulta/Carteira do Plano-->

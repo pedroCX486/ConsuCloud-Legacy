@@ -2,7 +2,7 @@
 session_start();
 $idUsuario = $_SESSION["idUsuario"];
 
-if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSION){
+if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
  }elseif(empty($_SESSION)){
