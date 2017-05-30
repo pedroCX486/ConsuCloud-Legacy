@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESSION){
+if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }elseif(empty($_SESSION)){
-    header("Location: ../logout.php");
+    header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }
 
-require "../assets/connect.php";
+require("../assets/connect.php");
 
 if($_GET['editar'] == 'debugBackdoor' || $_GET['editar'] == 'SysAdmin'){
   header("Location: ../index.php?erro=ERROFATAL");

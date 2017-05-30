@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION){
+if(empty($_SESSION)){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }

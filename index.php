@@ -48,8 +48,20 @@
 
             //Logging
             date_default_timezone_set('America/Recife');
+            
+            if($_SESSION['username'] == ""){
+              $user = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }elseif($_SERVER['HTTP_X_FORWARDED_FOR'] == ""){
+              $user = $_SESSION["username"];
+            }elseif(empty($_SESSION) && $_SERVER['HTTP_X_FORWARDED_FOR'] == ""){
+              $user = "Sem Username/Sem IP";
+            }else{
+              $user = $_SESSION["username"] . " - " . $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }
+            
+            $log = "\r\n Acesso não Autorizado - Usuário/IP: " . $user . " - Data/Hora: " . date('d/m/Y - h:i:s a', time());
+            
             $BaseDir = getcwd();
-            $log = "\r\n Acesso não Autorizado - Usuário: " . $_SESSION["username"] . " - Data/Hora: " . date('d/m/Y h:i:s a', time());
             $logfile = fopen("{$BaseDir}/logs.txt", 'a');
             fwrite($logfile, $log);
             fclose($logfile);

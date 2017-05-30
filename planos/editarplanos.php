@@ -1,13 +1,13 @@
 <?php
-require "../assets/connect.php";
+require("../assets/connect.php");
 
 session_start();
 
-if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true || !$_SESSION){
+if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
  }elseif(empty($_SESSION)){
-    header("Location: ../logout.php");
+    header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }
 

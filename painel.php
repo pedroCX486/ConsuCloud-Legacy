@@ -6,12 +6,9 @@ date_default_timezone_set('America/Recife');
 session_start();
 $idUsuario = $_SESSION["idUsuario"];
 
-if(!$_SESSION){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
-}elseif(empty($_SESSION)){
-  header("Location: ../logout.php");
-  exit();
+if(empty($_SESSION)){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
 }
 ?>
 

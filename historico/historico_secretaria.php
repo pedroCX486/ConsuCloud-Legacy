@@ -5,7 +5,7 @@ if($_SESSION["isMedico"] == true || $_SESSION["isAdmin"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
  }elseif(empty($_SESSION)){
-    header("Location: ../logout.php");
+    header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }
 
