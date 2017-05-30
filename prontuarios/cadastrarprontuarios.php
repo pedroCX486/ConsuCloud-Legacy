@@ -53,9 +53,9 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
                 $row = $select->num_rows;
                 if($row){              
                   while($get = $select->fetch_array()){
-              ?>
-              <option value="<?php echo $get['idPaciente']; ?>" ><?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?></option>
-              <?php
+                  ?>
+                    <option value="<?php echo $get['idPaciente']; ?>" ><?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?></option>
+                  <?php
                   }
                 }
               ?>

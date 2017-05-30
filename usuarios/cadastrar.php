@@ -28,7 +28,7 @@ if(!ctype_digit($crm)) {
 					window.history.back();
 				</script>';
 	exit();
-}elseif(!ctype_digit($numIdRG)) {
+}elseif(!ctype_digit($RG)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();

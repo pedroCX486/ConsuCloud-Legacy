@@ -12,32 +12,31 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
 
 require("../assets/connect.php");
 
-$select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = '$idUsuario'");
+$select = $mysqli->query("SELECT conf.nomeConsultorio, conf.telefone, conf.email, conf.endereco_logradouro, conf.endereco_numero, conf.endereco_complemento,
+                          conf.endereco_bairro, conf.endereco_cidade, conf.endereco_cep, conf.endereco_estado AS consultorioEstado, areaAtuacao, nomeCompleto, u.endereco_estado, crm FROM usuarios AS u 
+                          JOIN configs AS conf
+                          WHERE idUsuario = $idUsuario");
 $row = $select->num_rows;
 if($row){              
   while($get = $select->fetch_array()){
+    
+    //Informações do Médico
     $areaAtuacao = $get['areaAtuacao'];
     $nomeCompleto = $get['nomeCompleto'];
     $estado = $get['endereco_estado'];
     $crm = $get['crm'];
-  }
-}
-
-$select1 = $mysqli->query("SELECT * FROM configs");
-$row1 = $select1->num_rows;
-if($row1){              
-  while($get1 = $select1->fetch_array()){
-    $nomeConsultorio = $get1['nomeConsultorio'];
-    $telefone = $get1['telefone'];
-    $email = $get1['email'];
-    $endereco_logradouro = $get1['endereco_logradouro'];
-    $endereco_numero = $get1['endereco_numero'];
+    
+    //Informações de Consultório
+    $nomeConsultorio = $get['nomeConsultorio'];
+    $telefone = $get['telefone'];
+    $email = $get['email'];
+    $endereco_logradouro = $get['endereco_logradouro'];
+    $endereco_numero = $get['endereco_numero'];
     $endereco_complemento = $get1['endereco_complemento'];
-    $endereco_bairro = $get1['endereco_bairro'];
-    $endereco_cidade = $get1['endereco_cidade'];
-    $endereco_cep = $get1['endereco_cep'];
-    $endereco_estado = $get1['endereco_estado'];
-    $mysqli->close();
+    $endereco_bairro = $get['endereco_bairro'];
+    $endereco_cidade = $get['endereco_cidade'];
+    $endereco_cep = $get['endereco_cep'];
+    $endereco_estado = $get['consultorioEstado'];
   }
 }
 ?>

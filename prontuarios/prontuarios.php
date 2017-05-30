@@ -68,25 +68,24 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
             $idPaciente = $_GET['idPaciente'];
             $idUsuario = $_SESSION['idUsuario'];
             
-            $select = $mysqli->query("SELECT p.nomePaciente, dataProntuario, horaProntuario, prontuario FROM prontuarios AS pront 
+            $select = $mysqli->query("SELECT p.nomePaciente, dataProntuario, horaProntuario, prontuario, idProntuario FROM prontuarios AS pront 
                                         JOIN pacientes AS p ON p.idPaciente = pront.paciente 
                                         WHERE pront.paciente = $idPaciente AND pront.medico = $idUsuario ORDER BY dataProntuario ASC, horaProntuario ASC");
             $row = $select->num_rows;
             if($row){
               while($get = $select->fetch_array()){
-                $hiperlink = $get['dataProntuario'].date('H-i-s', strtotime($get['horaProntuario']));
               ?>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $hiperlink;?>">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idProntuario'];?>">
                       <?php
                         echo $get['nomePaciente'] . ' (' . date('d-m-Y', strtotime($get['dataProntuario'])) . ' - ' . $get['horaProntuario'] . ')';
                       ?> ▾
                     </a>
                   </h4>
                 </div>
-                <div id="<?php echo $hiperlink;?>" class="panel-collapse collapse">
+                <div id="<?php echo $get['idProntuario'];?>" class="panel-collapse collapse">
                   <div class="panel-body">
                     <?php echo nl2br($get['prontuario']); ?>
                   </div>

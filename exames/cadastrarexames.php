@@ -53,7 +53,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       <form method="post" action="cadastrar.php" enctype="multipart/form-data">
 
         <div class="form-group">
-          <select required name="paciente" class="form-control">
+          <select required name="idPaciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
                 <?php        
                   $select = $mysqli->query("SELECT * FROM pacientes");

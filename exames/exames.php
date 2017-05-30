@@ -37,7 +37,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
       <div class="buscar">
         <form method="get" action="exames.php">
           <div class="form-group">
-            <select required name="paciente" class="form-control">
+            <select required name="idPaciente" class="form-control">
               <option disabled selected value="">Selecione o paciente ▾</option>
               <?php
               $select = $mysqli->query("SELECT * FROM pacientes");
@@ -65,35 +65,29 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true || !$_SESSI
         <?php
         if(!empty($_GET['idPaciente'])){
           $idPaciente = $_GET['idPaciente'];
-          //$crm = $_SESSION['CRM']; | AND medico = $crm 
-          $select = $mysqli->query("SELECT * FROM exames WHERE paciente = $idPaciente ORDER BY dataExame DESC");
+          //$crm = $_SESSION['CRM']; | AND ex.medico = $idUsuario
+          $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
+                                    JOIN pacientes AS p ON p.idPaciente = ex.paciente 
+                                    WHERE ex.paciente = $idPaciente ORDER BY dataExame ASC");
+          
           $row = $select->num_rows;
           if($row){
             while($get = $select->fetch_array()){
-              $rotacao++; //Sim isso é uma gambiarra
-              $dataExame = $get['dataExame'];
-              $nomeExame = $get['nomeExame'];
               ?>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $dataExame.$rotacao;?>">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idExame'];?>">
                       <?php
-                      $select1 = $mysqli->query("SELECT * FROM pacientes where idPaciente = $idPaciente");
-                      $row1 = $select1->num_rows;
-                      if($row1){
-                        while($get1 = $select1->fetch_array()){
-                          $nomePaciente = $get1['nomePaciente'];
-                        }
-                      }
-                      if($get['paciente'] == $paciente){echo $nomePaciente . ' - ' . $nomeExame  . ' (' . $data = date('d-m-Y', strtotime($dataExame)) . ')';}
+                        echo $get['nomePaciente'] . ' - ' . $get['nomeExame']  . ' (' . $data = date('d-m-Y', strtotime($get['dataExame'])) . ')';
                       ?> ▾
                     </a>
                   </h4>
                 </div>
-                <div id="<?php echo $dataExame.$rotacao;?>" class="panel-collapse collapse">
+                <div id="<?php echo $get['idExame'];?>" class="panel-collapse collapse">
                   <div class="panel-body">
                     <h4>Descrição do Exame:</h4>
+                    
                     <?php echo nl2br($get['descExame']); ?>
 
                     <br><br>

@@ -17,18 +17,6 @@ PHPmyAdmin: https://consucloud-gafanhotz.c9users.io/phpmyadmin
 
 ________________________________________
 
-*TODO:*  
-  
-Revisar código consultas ao DB:  
-  
-Receituário  
-Exames  
-
-
-Plano: id -> idPlano
-Etc: PrimaryKeys -> IDs
-  
-________________________________________
 
 *BANCO:*
 
