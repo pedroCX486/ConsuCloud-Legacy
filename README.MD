@@ -13,7 +13,7 @@ Login: Consucl0udom4yh3
 Senha: C0Sult8r10sp8wnom4yhemsoftw8ks  
   
 Cloud9 IDE  
-PHPmyAdmin: https://consucloud-gafanhotz.c9users.io/phpmyadmin  
+PHPmyAdmin: https://consucloud-gafanhotz.c9users.io/  
 
 ________________________________________
 
