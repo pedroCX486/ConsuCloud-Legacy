@@ -1,0 +1,6 @@
+.git\
+Docs\
+tools\
+.gitignore
+Logs.txt
+README.MD
