@@ -44,7 +44,7 @@ if($row){
 
 if($crm == 'SysAdmin' || $crm == 'debugBackdoor'){
   echo '<script type="text/javascript">
-					alert("ERRO FATAL: Dados não inválidos foram recebidos do servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
+					alert("ERRO FATAL: Dados inválidos foram recebidos do servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
 					location.href="../index.php?erro=ERROFATAL";
 				</script>';
 	exit();

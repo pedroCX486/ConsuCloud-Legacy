@@ -42,7 +42,7 @@ if(!ctype_digit($crm)) {
 	exit();
 }elseif($tipoUsuario == "admin" || $tipoUsuario == "debug"){
     echo '<script type="text/javascript">
-					alert("ERRO FATAL: Dados não inválidos foram enviados ao servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
+					alert("ERRO FATAL: Dados inválidos foram enviados ao servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
 					location.href="../index.php?erro=ERROFATAL";
 				</script>';
 	exit();
