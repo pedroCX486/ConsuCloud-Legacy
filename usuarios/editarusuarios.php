@@ -11,12 +11,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
 
 require("../assets/connect.php");
 
-if($_GET['editar'] == 'debugBackdoor' || $_GET['editar'] == 'SysAdmin'){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
-}else{
-  $idUsuario = trim(addslashes(strip_tags($_GET['idUsuario'])));
-}
+$idUsuario = trim(addslashes(strip_tags($_GET['idUsuario'])));
 
 $select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario");
 $row = $select->num_rows;
@@ -45,6 +40,14 @@ if($row){
 
     $mysqli->close();
   }
+}
+
+if($crm == 'SysAdmin' || $crm == 'debugBackdoor'){
+  echo '<script type="text/javascript">
+					alert("ERRO FATAL: Dados não inválidos foram recebidos do servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
+					location.href="../index.php?erro=ERROFATAL";
+				</script>';
+	exit();
 }
 
 if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date("d/m/Y", strtotime($dataNasc));}

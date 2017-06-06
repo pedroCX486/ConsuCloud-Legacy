@@ -45,3 +45,23 @@
     ?>
   </div>
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Registro de Logs</h3>
+  </div>
+  <div class="panel-body">
+    <?php
+      if(file_exists("logs.txt")){
+        $logfile = fopen('logs.txt','r');
+        while ($line = fgets($logfile)) {
+          echo($line) . '<br> ';
+        }
+        fclose($logfile);
+      }else{
+        echo "Não existem logs gravados.";
+      }
+    ?>
+  </div>
+</div>
+

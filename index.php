@@ -59,7 +59,7 @@
               $user = $_SESSION["username"] . " - " . $_SERVER['HTTP_X_FORWARDED_FOR'];
             }
             
-            $log = "\r\n Acesso não Autorizado - Usuário/IP: " . $user . " - Data/Hora: " . date('d/m/Y - h:i:s a', time());
+            $log = "Acesso Não Autorizado - Usuário/IP: " . $user . " - Data/Hora: " . date('d/m/Y - h:i:s a', time()) . "\r\n";
             
             $BaseDir = getcwd();
             $logfile = fopen("{$BaseDir}/logs.txt", 'a');
