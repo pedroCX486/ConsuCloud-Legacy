@@ -51,17 +51,21 @@
     <h3 class="panel-title">Registro de Logs</h3>
   </div>
   <div class="panel-body">
-    <?php
-      if(file_exists("logs.txt")){
-        $logfile = fopen('logs.txt','r');
-        while ($line = fgets($logfile)) {
-          echo($line) . '<br> ';
+    <div id="log" style="overflow-y: scroll; height: 100px;">
+      <?php
+        if(file_exists("logs.txt")){
+          $logfile = fopen('logs.txt','r');
+          while ($line = fgets($logfile)) {
+            echo($line) . '<br> ';
+          }
+          fclose($logfile);
+        }else{
+          echo "Não existem logs gravados.";
         }
-        fclose($logfile);
-      }else{
-        echo "Não existem logs gravados.";
-      }
-    ?>
+      ?>
+    </div>
+    <!--Animar Scroll -->
+    <script>$("#log").animate({ scrollTop: $('#log')[0].scrollHeight}, 1000);</script>
   </div>
 </div>
 
