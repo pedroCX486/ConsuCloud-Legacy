@@ -4,9 +4,8 @@
     //Configurar Timezone
     date_default_timezone_set('America/Recife');
     
-    //Fazer request pelo IP do client
-    $http_headers = apache_request_headers(); 
-    $ip = $http_headers["x-forwarded-for"];
+    //Fazer request pelo IP do client (nem sempre retorna o IP real)
+    $ip = $_SERVER['REMOTE_ADDR'];
     
     //Buscar por Username (se aplicável) e aplicar a string do log
     if(!isset($_SESSION["username"]) && $ip == ""){
