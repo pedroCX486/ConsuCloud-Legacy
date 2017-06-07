@@ -4,15 +4,19 @@
     //Configurar Timezone
     date_default_timezone_set('America/Recife');
     
-    //Buscar por Username e/ou IP
-    if($_SESSION['username'] == ""){
-        $user = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    }elseif($_SERVER['HTTP_X_FORWARDED_FOR'] == ""){
-        $user = $_SESSION["username"];
-    }elseif(empty($_SESSION) && $_SERVER['HTTP_X_FORWARDED_FOR'] == ""){
+    //Fazer request pelo IP do client
+    $http_headers = apache_request_headers(); 
+    $ip = $http_headers["x-forwarded-for"];
+    
+    //Buscar por Username (se aplicável) e aplicar a string do log
+    if(!isset($_SESSION["username"]) && $ip == ""){
         $user = "Sem Username/Sem IP";
+    }elseif($ip == ""){
+        $user = $_SESSION["username"];
+    }elseif($_SESSION['username'] == ""){
+        $user = "Sem Username - " . $ip;
     }else{
-        $user = $_SESSION["username"] . " - " . $_SERVER['HTTP_X_FORWARDED_FOR'];
+        $user = $_SESSION["username"] . " - " . $ip;
     }
     
     //Processar tipo de Log
