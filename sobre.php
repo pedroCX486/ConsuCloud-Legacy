@@ -32,9 +32,21 @@ if(empty($_SESSION)){
       <center>
         <a href="http://php.net/"><img src="assets/php.png" /></a>
         <a href="http://getbootstrap.com/"><img src="assets/bootstrap.png" /></a>
+        <br>
+        <a href="https://jquery.com/"><img src="assets/jquery.png" /></a>
+        <a href="https://www.w3.org/standards/webdesign/htmlcss"><img src="assets/html5css3.png" /></a>
       </center>
 
-      <br>
+      <br><br>
+      
+      <b>Desenvolvimento:</b> Pedro Carneiro <br>
+      <b>Banco de Dados:</b> Luan Gandhi <br>
+      <b>Analista de Sistemas:</b> Marcela Oliveira <br>
+      <b>Analista de Negócios:</b> Márcio Melo <br>
+      <b>Analista de Documentação:</b> José Jackson <br>
+      <b>Analista de Testes:</b> Rodrigo Luna <br>
+      
+      <br><br>
       
       Copyright © 2017 - Todos os direitos reservados.
 

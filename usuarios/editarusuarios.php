@@ -153,12 +153,12 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Login:</span>
-              <input type="text" class="form-control" name="login" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade." maxlength="30" value="<?php echo $login; ?>">
+              <input autocomplete="off" type="text" class="form-control" name="login" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade." maxlength="30" value="<?php echo $login; ?>">
             </div>
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Senha:</span>
-              <input type="password" class="form-control" name="senha" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade." maxlength="20">
+              <input autocomplete="off" type="password" class="form-control" name="senha" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade." maxlength="20">
             </div>
 
             <div class="panel-group" id="accordion">
@@ -245,7 +245,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
             <center><button type="submit" class="btn btn-raised btn-primary btn-lg">ATUALIZAR</button></center>
 
-          </form>
+          </form> 
         </div>
       </div>
     </div>
