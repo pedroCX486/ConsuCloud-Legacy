@@ -45,26 +45,9 @@
             session_destroy();
           }elseif($erro == "ERROFATAL"){
             echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>UMA TENTATIVA DE ACESSO NÃO AUTORIZADO FOI DETECTADA E REGISTRADA.</b><br>Para continuar informe novamente seu nome de usuário e senha.</div>';
-
-            //Logging
-            date_default_timezone_set('America/Recife');
             
-            if($_SESSION['username'] == ""){
-              $user = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            }elseif($_SERVER['HTTP_X_FORWARDED_FOR'] == ""){
-              $user = $_SESSION["username"];
-            }elseif(empty($_SESSION) && $_SERVER['HTTP_X_FORWARDED_FOR'] == ""){
-              $user = "Sem Username/Sem IP";
-            }else{
-              $user = $_SESSION["username"] . " - " . $_SERVER['HTTP_X_FORWARDED_FOR'];
-            }
-            
-            $log = "Acesso Não Autorizado - Usuário/IP: " . $user . " - Data/Hora: " . date('d/m/Y - h:i:s a', time()) . "\r\n";
-            
-            $BaseDir = getcwd();
-            $logfile = fopen("{$BaseDir}/logs.txt", 'a');
-            fwrite($logfile, $log);
-            fclose($logfile);
+            $_SESSION['log'] = "403";
+            require("logs/gravarlog.php");
 
             session_unset();
             session_destroy();
@@ -74,6 +57,10 @@
             session_destroy();
           }elseif($erro == "ERROBANCO"){
             echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>ERRO DE CONEXÃO AO BANCO MYSQL.</b><br>Houve um erro de conexão com o Banco de Dados MySQL: <b>' . $_SESSION["ERROBANCO"] . '</b></div>';
+            
+            $_SESSION['log'] = "Banco";
+            require("logs/gravarlog.php");
+            
             session_unset();
             session_destroy();
           }

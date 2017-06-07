@@ -51,6 +51,9 @@ if($row){
     exit();
   }
 
+$_SESSION['log'] = "Login";
+require("logs/gravarlog.php");
+
 header("Location: ../painel.php");
 exit();
 ?>

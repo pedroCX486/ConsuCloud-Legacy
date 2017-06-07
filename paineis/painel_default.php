@@ -53,8 +53,8 @@
   <div class="panel-body">
     <div id="log" style="overflow-y: scroll; height: 100px;">
       <?php
-        if(file_exists("logs.txt")){
-          $logfile = fopen('logs.txt','r');
+        if(file_exists("{$_SERVER['DOCUMENT_ROOT']}/logs/logs.txt")){
+          $logfile = fopen("{$_SERVER['DOCUMENT_ROOT']}/logs/logs.txt","r");
           while ($line = fgets($logfile)) {
             echo($line) . '<br> ';
           }

@@ -151,11 +151,17 @@ VALUES ('$idPaciente', '$idUsuario', '$dataExame', '$nomeExame', '$descExame', '
 
 //Se der certo, ir embora daqui e encerrar conexão, senão, estourar um erro.
 if ($query){
+  
+  //Salvar log
+  $_SESSION['log'] = "Upload";
+  require "../logs/gravarlog.php";
+
+  //Exibir mensagem e finalizar
   $arqsMensagem = implode("\\n", array_filter($files));
   echo '<script type="text/javascript">
             alert("Cadastro realizado com sucesso. Arquivos enviados:\n\n' . $arqsMensagem . '");
             location.href="../exames/exames.php";
-            </script>';
+        </script>';
 }else{
   echo $mysqli->error;
 }
