@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head title="ConsuCloud Tools">
         <meta charset="UTF-8">
@@ -8,7 +9,7 @@
 
         <br><br>
 
-        <form method="post" action="gerapwd.php">
+        <form method="post" action="geraPwd.php">
         <input required type="text" name="senha" maxlength="20" placeholder="Máximo de 20 caracteres.">
         <button type="submit">GERAR</button>
         </form>
@@ -26,12 +27,12 @@
                 $query = $mysqli->query("UPDATE usuarios SET senha = '$senha' WHERE crm = 'SysAdmin'");
 
                 if($query){
-                        echo "Senha alterada com sucesso.";
+                    echo "Senha alterada com sucesso.";
+                    $mysqli->close();
                 }else{
-                        echo $mysqli->error;
-                     }
+                    echo $mysqli->error;
+                }
             }
-            $mysqli->close();
         ?>
 
     </body>
