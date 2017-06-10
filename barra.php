@@ -76,6 +76,7 @@
                   echo '<li role="separator" class="divider"></li>';
                   echo '<li><a href="../agenda.php">Agenda</a></li>';
                   echo '<li><a href="../historico/historico_secretaria.php">Histórico de Consultas (Secretária)</a></li>';
+                  echo '<li><a href="../historico/historico_medico.php">Histórico de Consultas (Médico)</a></li>';
                   echo '<li><a href="../relatorio/relatorio.php">Relatório de Consultas</a></li>';
                 }
                 ?>
