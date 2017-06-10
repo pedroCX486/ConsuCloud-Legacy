@@ -39,8 +39,10 @@ require("../assets/connect.php");
           <p>
             <table style="width:350px;">
               <tr>
-                <th><input required type="text" class="form-control" name="timestamp_month" placeholder="Mês" maxlength="2"></th>
-                <th><input required type="text" class="form-control" name="timestamp_year" placeholder="Ano" maxlength="4"></th>
+                <th><input type="text" class="form-control" name="timestamp_day" placeholder="Dia" maxlength="2" value="<?php echo $_GET['timestamp_day']; ?>"></th>
+                <th><input required type="text" class="form-control" name="timestamp_month" placeholder="Mês" maxlength="2" value="<?php echo $_GET['timestamp_month']; ?>"></th>
+                <th><input required type="text" class="form-control" name="timestamp_year" placeholder="Ano" maxlength="4" value="<?php echo $_GET['timestamp_year']; ?>"></th>
+                <th><a href="historico_secretaria.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></th>
               </tr>
             </table>
 
@@ -59,11 +61,30 @@ require("../assets/connect.php");
             <th class="titulos">PLANO (CARTEIRA)</th>
           </tr>
           <?php
+          
+          if(!empty($_GET)){
+            if($_GET['timestamp_day'] == ""){
+              $mes = $_GET['timestamp_year'] . '-' . $_GET['timestamp_month'] . '-01';
+              unset($data);
+            }else{
+              $data = $_GET['timestamp_year'] . '-' . $_GET['timestamp_month'] . '-' . $_GET['timestamp_day'];  
+              unset($mes);
+            }
+          }
+          
+          if($mes){
               $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                         JOIN usuarios AS u ON u.idUsuario = c.medico 
                                         JOIN planos AS pl ON c.planoConsulta = pl.idPlano
                                         WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') ORDER BY dataConsulta ASC, horaConsulta ASC");
+          }elseif($data){
+              $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
+                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                        JOIN planos AS pl ON c.planoConsulta = pl.idPlano
+                                        WHERE dataConsulta = '$data' ORDER BY dataConsulta ASC, horaConsulta ASC");
+          }
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){
