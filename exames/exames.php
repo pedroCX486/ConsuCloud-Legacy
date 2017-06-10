@@ -36,22 +36,16 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
 
       <div class="buscar">
         <form method="get" action="exames.php">
-          <div class="form-group">
-            <select required name="idPaciente" class="form-control">
-              <option disabled selected value="">Selecione o paciente ▾</option>
-              <?php
-              $select = $mysqli->query("SELECT * FROM pacientes");
-              $row = $select->num_rows;
-              if($row){
-                while($get = $select->fetch_array()){
-                  ?>
-                  <option value="<?php echo $get['idPaciente']; ?>"><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
-                  <?php
-                }
-              }
-              ?>
-            </select>
-          </div>
+        
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
+          <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos.">
+        </div>
+        
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
+          <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos.">
+        </div>
 
           <br>
 
@@ -63,12 +57,28 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
       
       <div class="panel-group" id="accordion">
         <?php
-        if(!empty($_GET['idPaciente'])){
-          $idPaciente = $_GET['idPaciente'];
-          //$crm = $_SESSION['CRM']; | AND ex.medico = $idUsuario
-          $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
+        if(!empty($_GET)){
+          
+          if($_GET['nomePaciente'] != ""){
+            $busca = $_GET['nomePaciente'];
+            
+            $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
                                     JOIN pacientes AS p ON p.idPaciente = ex.paciente 
-                                    WHERE ex.paciente = $idPaciente ORDER BY dataExame ASC");
+                                    WHERE p.nomePaciente = '$busca' ORDER BY dataExame ASC");
+          }elseif($_GET['rgPaciente'] != ""){
+            $busca = $_GET['rgPaciente'];
+            
+            $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
+                                    JOIN pacientes AS p ON p.idPaciente = ex.paciente 
+                                    WHERE p.RG = $busca ORDER BY dataExame ASC");
+          }else{
+            $busca1 = $_GET['rgPaciente'];
+            $busca2 = $_GET['nomePaciente'];
+            
+            $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
+                                    JOIN pacientes AS p ON p.idPaciente = ex.paciente 
+                                    WHERE p.RG = $busca1 AND p.nomePaciente = '$busca2' ORDER BY dataExame ASC");
+          }
           
           $row = $select->num_rows;
           if($row){
