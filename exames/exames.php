@@ -39,17 +39,17 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
         
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
-          <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos.">
+          <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['nomePaciente']; ?>">
         </div>
         
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-          <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos.">
+          <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['rgPaciente']; ?>">
         </div>
 
           <br>
 
-          <center><button type="submit" class="btn btn-raised btn-info">Buscar Exames</button></center>
+          <center><button type="submit" class="btn btn-raised btn-info">Buscar Exames</button> &nbsp; <a href="exames.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>
         </form>
       </div>
 
