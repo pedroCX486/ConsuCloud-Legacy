@@ -68,7 +68,6 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
               <select required name="paciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
               <?php
-              
               if(!empty($_GET)){
                 
                   $idUsuario = $_SESSION['idUsuario'];

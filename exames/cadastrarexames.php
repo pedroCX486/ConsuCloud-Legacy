@@ -47,16 +47,56 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
 <div class="container">
   <div class="jumbotron">
     <h1><small>Cadastrar Exame</small></h1><br>
+    
+        <div class="buscar">
+          <form method="get" action="cadastrarexames.php">
+  
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
+            <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['nomePaciente']; ?>">
+          </div>
+          
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
+            <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['rgPaciente']; ?>">
+          </div>
+  
+            <br>
+  
+            <center><button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp; <a href="cadastrarexames.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>
+          </form>
+        </div>
 
     <div class="cadastro">
-
       <form method="post" action="cadastrar.php" enctype="multipart/form-data">
 
         <div class="form-group">
           <select required name="idPaciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
                 <?php        
-                  $select = $mysqli->query("SELECT * FROM pacientes");
+                if(!empty($_GET)){
+                  
+                    $idUsuario = $_SESSION['idUsuario'];
+              
+                    if($_GET['nomePaciente'] != ""){
+                      $busca = $_GET['nomePaciente'];
+                      
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca'");
+                      
+                    }elseif($_GET['rgPaciente'] != ""){
+                      $busca = $_GET['rgPaciente'];
+                      
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
+                      
+                    }else{
+                      $busca1 = $_GET['rgPaciente'];
+                      $busca2 = $_GET['nomePaciente'];
+                      
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca1' AND RG = '$busca2'");
+                      
+                    }
+                
+                  }
                   $row = $select->num_rows;
                   if($row){              
                     while($get = $select->fetch_array()){
