@@ -68,12 +68,12 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
               <select required name="paciente" class="form-control">
                 <option disabled >Nome do Paciente</option>
                   <?php        
-                  $select = $mysqli->query("SELECT * FROM pacientes");
+                  $select = $mysqli->query("SELECT * FROM pacientes WHERE idPaciente = $paciente");
                     $row = $select->num_rows;
                     if($row){              
                       while($get = $select->fetch_array()){
                   ?>
-                <option value="<?php echo $get['idPaciente'] . '" '; if($get['idPaciente'] == $paciente){echo 'selected';}?>><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
+                <option value="<?php echo $get['idPaciente'];?>" selected><?php echo $get['RG'] . " - " . $get['nomePaciente']; ?></option>
                   <?php
                       }
                     }
@@ -99,37 +99,37 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
             <p>
               <div class="form-group">
                 <select required name="medico" class="form-control">
-          <option disabled>Médico da Consulta</option>
-            <?php        
-            $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
-            $row = $select->num_rows;
-              if($row){              
-                while($get = $select->fetch_array()){
-            ?>
-            <option value="<?php echo $get['idUsuario'] . '"'; if($medico == $get['idUsuario']){echo 'selected';}?>><?php echo $get['nomeCompleto']; ?></option>
-            <?php
-                }
-              }
-            ?>
-        </select>
+                  <option disabled>Médico da Consulta</option>
+                    <?php        
+                    $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
+                    $row = $select->num_rows;
+                      if($row){              
+                        while($get = $select->fetch_array()){
+                    ?>
+                    <option value="<?php echo $get['idUsuario'] . '"'; if($medico == $get['idUsuario']){echo 'selected';}?>><?php echo $get['nomeCompleto']; ?></option>
+                    <?php
+                        }
+                      }
+                    ?>
+                </select>
               </div>
             </p>
 
             <div class="form-group">
               <select required name="planoConsulta" class="form-control">
-          <option disabled>Plano de Consulta</option>
-            <?php        
-            $select = $mysqli->query("SELECT * FROM planos");
-            $row = $select->num_rows;
-              if($row){              
-                while($get = $select->fetch_array()){
-            ?>
-          <option value="<?php echo $get['idPlano'] . '"'; if($planoConsulta == $get['idPlano']){echo 'selected';}?>><?php echo $get['nomePlano']; ?></option>
-            <?php
-                }
-              }
-            ?>
-        </select>
+                <option disabled>Plano de Consulta</option>
+                  <?php        
+                  $select = $mysqli->query("SELECT * FROM planos");
+                  $row = $select->num_rows;
+                    if($row){              
+                      while($get = $select->fetch_array()){
+                  ?>
+                <option value="<?php echo $get['idPlano'] . '"'; if($planoConsulta == $get['idPlano']){echo 'selected';}?>><?php echo $get['nomePlano']; ?></option>
+                  <?php
+                      }
+                    }
+                  ?>
+              </select>
             </div>
 
             <p>
