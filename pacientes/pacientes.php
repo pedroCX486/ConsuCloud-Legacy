@@ -31,7 +31,39 @@ if($_SESSION["isMedico"] == true){
 
         <h1>Pacientes</h1>
 
-        <a href="cadastrarpacientes.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PACIENTE</button></a>
+        <div class="container">
+          <a href="cadastrarpacientes.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PACIENTE</button></a>
+          <button type="button" class="btn btn-info btn-raised pull-left" data-toggle="collapse" data-target="#filtros">FILTRAR PACIENTES</button>
+          
+          <br><br><br>
+          
+          <div id="filtros" class="collapse">
+          
+            <p>Filtrar pacientes:</p>
+  
+            <div class="buscar">
+              <form method="get" action="pacientes.php">
+      
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
+                <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['nomePaciente']; ?>">
+              </div>
+              
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
+                <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['rgPaciente']; ?>">
+              </div>
+      
+                <br>
+      
+                <center><button type="submit" class="btn btn-raised btn-info">Filtrar</button> &nbsp; <a href="pacientes.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+        
+        <br>
 
         <p>Pacientes cadastrados:</p>
 
@@ -48,7 +80,27 @@ if($_SESSION["isMedico"] == true){
             </b>
             </tr>
             <?php
-              $select = $mysqli->query("SELECT * FROM pacientes");
+              if(!empty($_GET)){
+              
+                $idUsuario = $_SESSION['idUsuario'];
+                
+                if($_GET['nomePaciente'] != ""){
+                $busca = $_GET['nomePaciente'];
+                
+                $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca'");
+              }elseif($_GET['rgPaciente'] != ""){
+                $busca = $_GET['rgPaciente'];
+                
+                $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
+              }else{
+                $busca1 = $_GET['rgPaciente'];
+                $busca2 = $_GET['nomePaciente'];
+                
+                $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca1' and nomePaciente = '$busca2'");
+              }
+            }else{
+             $select = $mysqli->query("SELECT * FROM pacientes");
+            }
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){

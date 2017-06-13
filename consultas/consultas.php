@@ -35,9 +35,9 @@ if($_SESSION["isMedico"] == true){
           <a href="cadastrarconsultas.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVA CONSULTA</button></a>
           <button type="button" class="btn btn-info btn-raised pull-left" data-toggle="collapse" data-target="#filtros">FILTRAR CONSULTAS</button>
           
+          <br><br><br>
+          
           <div id="filtros" class="collapse">
-            
-            <br><br><br>
           
             <p>Filtrar consultas:</p>
   
@@ -78,39 +78,39 @@ if($_SESSION["isMedico"] == true){
               <th class="titulos">DATA - HORA</th>
             </tr>
             <?php
-            if(!empty($_GET)){
-            
-              $idUsuario = $_SESSION['idUsuario'];
+              if(!empty($_GET)){
               
-              if($_GET['nomePaciente'] != ""){
-              $busca = $_GET['nomePaciente'];
-              
-              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE p.nomePaciente = '$busca' AND dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
-            }elseif($_GET['rgPaciente'] != ""){
-              $busca = $_GET['rgPaciente'];
-              
-              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE p.RG = $busca AND dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
+                $idUsuario = $_SESSION['idUsuario'];
+                
+                if($_GET['nomePaciente'] != ""){
+                $busca = $_GET['nomePaciente'];
+                
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
+                                          JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                          JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                          WHERE p.nomePaciente = '$busca' AND dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
+              }elseif($_GET['rgPaciente'] != ""){
+                $busca = $_GET['rgPaciente'];
+                
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
+                                          JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                          JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                          WHERE p.RG = $busca AND dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
+              }else{
+                $busca1 = $_GET['rgPaciente'];
+                $busca2 = $_GET['nomePaciente'];
+                
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
+                                          JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                          JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                          WHERE p.RG = $busca1 AND p.nomePaciente = '$busca2' AND dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
+              }
             }else{
-              $busca1 = $_GET['rgPaciente'];
-              $busca2 = $_GET['nomePaciente'];
-              
-              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE p.RG = $busca1 AND p.nomePaciente = '$busca2' AND dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
+             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
+                                          JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                          JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                          WHERE dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
             }
-          }else{
-           $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE dataConsulta >= CURDATE() ORDER BY dataConsulta ASC, horaConsulta ASC"); 
-          }
               $row = $select->num_rows;
               if($row){
                 while($get = $select->fetch_array()){

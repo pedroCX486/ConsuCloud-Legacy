@@ -46,20 +46,61 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
           <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
           <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['rgPaciente']; ?>">
         </div>
+        
+        <center><button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp; <a href="exames.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>
 
           <br>
+          
+        <div class="form-group">
+          <select name="idPaciente" class="form-control">
+              <option disabled selected value="">Nome do Paciente*</option>
+                <?php        
+                if(!empty($_GET['nomePaciente'] || !$_GET['rgPaciente'])){
+                  
+                    $idUsuario = $_SESSION['idUsuario'];
+              
+                    if($_GET['nomePaciente'] != ""){
+                      $busca = $_GET['nomePaciente'];
+                      
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca'");
+                      
+                    }elseif($_GET['rgPaciente'] != ""){
+                      $busca = $_GET['rgPaciente'];
+                      
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
+                      
+                    }else{
+                      $busca1 = $_GET['rgPaciente'];
+                      $busca2 = $_GET['nomePaciente'];
+                      
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca1' AND RG = '$busca2'");
+                      
+                    }
+                
+                  }
+                  $row = $select->num_rows;
+                  if($row){              
+                    while($get = $select->fetch_array()){
+                      ?>
+                        <option value="<?php echo $get['idPaciente']; ?>" ><?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?></option>
+                      <?php
+                    }
+                  }
+                ?>
+              </select>
+        </div>
 
-          <center><button type="submit" class="btn btn-raised btn-info">Buscar Exames</button> &nbsp; <a href="exames.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>
+          <center><button type="submit" class="btn btn-raised btn-info">Buscar Exames</button></center>
         </form>
       </div>
 
       <br><br>
+
       
       <div class="panel-group" id="accordion">
         <?php
-        if(!empty($_GET)){
-          
-          if($_GET['nomePaciente'] != ""){
+        if(!empty($_GET['idPaciente'])){
+        if($_GET['nomePaciente'] != ""){
             $busca = $_GET['nomePaciente'];
             
             $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
@@ -79,7 +120,6 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
                                     JOIN pacientes AS p ON p.idPaciente = ex.paciente 
                                     WHERE p.RG = $busca1 AND p.nomePaciente = '$busca2' ORDER BY dataExame ASC");
           }
-          
           $row = $select->num_rows;
           if($row){
             while($get = $select->fetch_array()){
