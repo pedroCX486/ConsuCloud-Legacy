@@ -26,6 +26,7 @@ if($row){
     $endereco_cep = $get['endereco_cep'];
     $endereco_estado = $get['endereco_estado'];
     $logotipo = $get['logotipo'];
+    $version = $get['version'];
     
 $mysqli->close();
   }
@@ -179,6 +180,20 @@ $mysqli->close();
 
         </p>
         <br>
+
+        <div style="font-size: 85%;">
+          Versão do Sistema: 
+          <?php
+            echo $version; 
+
+            if(file_exists("updates/deploy.zip")){
+              echo "<br>Atualização disponível. <a href='updates/upgrade.php'>Executar atualização?</a>";
+            }else{
+              echo "<br>Não existem atualizações disponíveis.";
+            }
+          ?>
+        </div>
+
       </div>
     </div>
 
