@@ -4,12 +4,14 @@
 @echo OrangeMayhem Softworks (C) 2017
 @echo.
 @echo.
+
 @echo Script de deploy: ConsuCloud - Projeto RAPADURA
 @echo.
 @pause
 @echo.
+
 @echo Executando deploy do ConsuCloud...
-timeout 3 > NUL
+timeout 2 > NUL
 @echo.
 
 for /f "tokens=1-6 delims=/ " %%i in ("%date%") do (
@@ -22,18 +24,22 @@ set datestr=%day%%month%%year%
 @echo Versao: DEPLOY-%datestr%-CONSUCLOUD-PROD
 @echo.
 
-xcopy C:\Users\Pedro\Source\Repos\ConsuCloud C:\Users\Pedro\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
+xcopy  %userprofile%\Source\Repos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
+@echo DEPLOY-%datestr%-CONSUCLOUD-PROD> %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\version.txt
 @echo.
+
 @echo Comprimindo...
 @timeout 2 > NUL
 @echo.
-@7z a -tzip C:\Users\Pedro\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD.zip C:\Users\Pedro\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\*
+@7z a -tzip  %userprofile%\Desktop\deploy.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\*
 @echo.
+
 @echo Executando limpeza...
 @echo.
-@rmdir /S /Q C:\Users\Pedro\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\
+@rmdir /S /Q  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\
 @echo.
-@echo Deploy executado em: C:\Users\Pedro\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD.zip
+
+@echo Deploy executado em:  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD.zip
 @echo.
 
 pause
