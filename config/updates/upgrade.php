@@ -2,8 +2,10 @@
 header ('Content-type: text/html; charset=UTF-8');
 
 $zip = new ZipArchive;
+$zip->open('deploy.zip');
+;
 
-if ($zip->open('deploy.zip') === TRUE) {
+if ($zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE) {
     $zip->extractTo($_SERVER['DOCUMENT_ROOT']);
     $zip->close();
 

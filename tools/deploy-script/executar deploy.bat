@@ -31,7 +31,7 @@ xcopy  %userprofile%\Source\Repos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%date
 @echo Comprimindo...
 @timeout 2 > NUL
 @echo.
-@7z a -tzip  %userprofile%\Desktop\deploy.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\*
+@7z a -tzip  %userprofile%\Desktop\deploy.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\* -pC0Sult8r10sp8wnom4yhemsoftw8ks
 @echo.
 
 @echo Executando limpeza...
