@@ -3,13 +3,13 @@ header ('Content-type: text/html; charset=UTF-8');
 
 $zip = new ZipArchive;
 $zip->open('deploy.zip');
-;
 
 if ($zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE) {
     $zip->extractTo($_SERVER['DOCUMENT_ROOT']);
     $zip->close();
 
-    $version = file($_SERVER['DOCUMENT_ROOT']."/version.txt");
+    $versionfile = file($_SERVER['DOCUMENT_ROOT']."/version.txt");
+    $version = preg_replace('/\s+/', '', $versionfile[0]);
 
     unlink($_SERVER['DOCUMENT_ROOT']."/version.txt");
     unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
@@ -18,7 +18,7 @@ if ($zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE) {
     require $_SERVER['DOCUMENT_ROOT']."/assets/connect.php";
 
     //Executar query
-    $query = $mysqli->query("UPDATE configs SET version = '$version[0]'");
+    $query = $mysqli->query("UPDATE configs SET version = '$version'");
 
     if ($query){
     echo '<script type="text/javascript">
