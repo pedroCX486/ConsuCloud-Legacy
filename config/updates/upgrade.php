@@ -1,6 +1,17 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
 
+function zip_is_encrypted($filename) {
+  $handle = fopen($filename, "rb");
+  $contents = fread($handle, 7);
+  fclose($handle);
+  return $contents[6] == 0x09;
+}
+
+var_dump(zip_is_encrypted("deploy.zip"));
+
+exit();
+
 $zip = new ZipArchive;
 $zip->open('deploy.zip');
 

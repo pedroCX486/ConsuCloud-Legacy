@@ -185,7 +185,6 @@ $mysqli->close();
           Versão do Sistema: 
           <?php
             echo $version; 
-
             if(file_exists("updates/deploy.zip")){
               echo "<br>Atualização disponível. <a href='updates/upgrade.php'>Executar atualização?</a>";
             }else{
