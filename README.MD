@@ -9,11 +9,6 @@ C0Sult8r10sp8wnom4yhemsoftw8ks
 Backdoor para Debugging/Teste:  
 Login: Debug  
 Senha: c0sult8r10s  
-
-Amazon DB:  
-Endereço: aa131vdfh1jei3u.colf9ctxyudu.us-west-2.rds.amazonaws.com  
-Login: Consucl0udom4yh3  
-Senha: C0Sult8r10sp8wnom4yhemsoftw8ks  
   
 Cloud9 IDE  
 PHPmyAdmin: https://consucloud-gafanhotz.c9users.io/  
@@ -81,6 +76,7 @@ ENGINE=InnoDB
 ________________________________________
 
 CREATE TABLE `configs` (
+	`idConsultorio` INT(11) NOT NULL AUTO_INCREMENT,
 	`nomeConsultorio` VARCHAR(150) NOT NULL COLLATE 'utf8_unicode_ci',
 	`telefone` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
@@ -92,7 +88,8 @@ CREATE TABLE `configs` (
 	`endereco_cidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	PRIMARY KEY (`nomeConsultorio`)
+	`version` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	PRIMARY KEY (`idConsultorio`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB

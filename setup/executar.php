@@ -27,6 +27,7 @@ if (!$mysqli->set_charset("utf8")) {
 }
 
 $query1 = $mysqli->query("CREATE TABLE `configs` (
+	`idConsultorio` INT(11) NOT NULL AUTO_INCREMENT,
 	`nomeConsultorio` VARCHAR(150) NOT NULL COLLATE 'utf8_unicode_ci',
 	`telefone` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
@@ -39,7 +40,7 @@ $query1 = $mysqli->query("CREATE TABLE `configs` (
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`version` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	PRIMARY KEY (`nomeConsultorio`)
+	PRIMARY KEY (`idConsultorio`)
 )
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
