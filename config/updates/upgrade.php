@@ -11,7 +11,10 @@ if($_SESSION["isMedico"] == true || $_SESSION["isSecretaria"] == true){
 }
 
 $zip = new ZipArchive;
-$zip->open('deploy.zip');
+$updateFile = "deploy.zip";
+$filePassword = "C0Sult8r10sp8wnom4yhemsoftw8ks";
+
+$zip->open($updateFile);
 
 if($zip->extractTo("updateVerify") === TRUE){
     echo '<script type="text/javascript">
@@ -23,7 +26,7 @@ if($zip->extractTo("updateVerify") === TRUE){
 
     $zip->close();
     unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
-}elseif($zip->extractTo("updateVerify") === FALSE && $zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE && $zip->extractTo($_SERVER['DOCUMENT_ROOT']) === TRUE){
+}elseif($zip->extractTo("updateVerify") === FALSE && $zip->setPassword($filePassword) === TRUE && $zip->extractTo($_SERVER['DOCUMENT_ROOT']) === TRUE){
     array_map('unlink', glob("updateVerify/*.*"));
     rmdir("updateVerify");
 
@@ -33,7 +36,7 @@ if($zip->extractTo("updateVerify") === TRUE){
     $version = preg_replace('/\s+/', '', $versionfile[0]);
 
     unlink($_SERVER['DOCUMENT_ROOT']."/version.txt");
-    unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
+    unlink($updateFile);
 
     //Conexão com db
     require $_SERVER['DOCUMENT_ROOT']."/assets/connect.php";
@@ -51,7 +54,7 @@ if($zip->extractTo("updateVerify") === TRUE){
     }
 
     $mysqli->close();
-}elseif($zip->extractTo("updateVerify") === FALSE && $zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE && $zip->extractTo($_SERVER['DOCUMENT_ROOT']) === FALSE){
+}elseif($zip->extractTo("updateVerify") === FALSE && $zip->setPassword($filePassword) === TRUE && $zip->extractTo($_SERVER['DOCUMENT_ROOT']) === FALSE){
     echo '<script type="text/javascript">
                         alert("Pacote de atualização inválido, tente novamente mais tarde ou contacte a equipe de suporte.");
                         location.href="/config/config.php";
@@ -60,7 +63,7 @@ if($zip->extractTo("updateVerify") === TRUE){
     rmdir("updateVerify");
     
     $zip->close();
-    unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
+    unlink($updateFile);
 }else{
     echo '<script type="text/javascript">
                         alert("Ocorreu um erro durante a atualização, tente novamente mais tarde ou contacte a equipe de suporte.");
@@ -70,6 +73,6 @@ if($zip->extractTo("updateVerify") === TRUE){
     rmdir("updateVerify");
 
     $zip->close();
-    unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
+    unlink($updateFile);
 }
 ?>
