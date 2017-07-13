@@ -1,5 +1,14 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
+
+if($_SESSION["isMedico"] == true || $_SESSION["isSecretaria"] == true){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
+ }elseif(empty($_SESSION)){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
+}
 
 $zip = new ZipArchive;
 $zip->open('deploy.zip');
