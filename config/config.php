@@ -87,7 +87,7 @@ $mysqli->close();
                     <div class="input-group">
                       <label class="input-group-btn">
                         <span class="btn btn-raised btn-primary">
-                          LOGOMARCA (MÁX. 10MB) <input type="file" id="arquivo" name="arquivos[]" accept=".jpg, .png, .jpeg, .gif, .bmp, .avi, .mp4, .pdf" style="display: none;">
+                          LOGOTIPO (MÁX. 10MB) <input type="file" id="arquivo" name="arquivos[]" accept=".jpg, .png, .jpeg, .gif, .bmp, .avi, .mp4, .pdf" style="display: none;">
                         </span>
                       </label>
                       <input type="text" class="form-control" placeholder="Arquivo atual: <?php echo $logotipo; ?> - Apenas altere em caso de necessidade." readonly>
