@@ -9,9 +9,11 @@ if($zip->extractTo("updateVerify") === TRUE){
                         alert("Pacote de atualização inválido, tente novamente mais tarde ou contacte a equipe de suporte.");
                         location.href="/config/config.php";
           </script>';
-      
     array_map('unlink', glob("updateVerify/*.*"));
     rmdir("updateVerify");
+
+    $zip->close();
+    unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
 }elseif($zip->extractTo("updateVerify") === FALSE && $zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE && $zip->extractTo($_SERVER['DOCUMENT_ROOT']) === TRUE){
     array_map('unlink', glob("updateVerify/*.*"));
     rmdir("updateVerify");
@@ -40,6 +42,16 @@ if($zip->extractTo("updateVerify") === TRUE){
     }
 
     $mysqli->close();
+}elseif($zip->extractTo("updateVerify") === FALSE && $zip->setPassword("C0Sult8r10sp8wnom4yhemsoftw8ks") === TRUE && $zip->extractTo($_SERVER['DOCUMENT_ROOT']) === FALSE){
+    echo '<script type="text/javascript">
+                        alert("Pacote de atualização inválido, tente novamente mais tarde ou contacte a equipe de suporte.");
+                        location.href="/config/config.php";
+          </script>';
+    array_map('unlink', glob("updateVerify/*.*"));
+    rmdir("updateVerify");
+    
+    $zip->close();
+    unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
 }else{
     echo '<script type="text/javascript">
                         alert("Ocorreu um erro durante a atualização, tente novamente mais tarde ou contacte a equipe de suporte.");
@@ -47,5 +59,8 @@ if($zip->extractTo("updateVerify") === TRUE){
                     </script>';
     array_map('unlink', glob("updateVerify/*.*"));
     rmdir("updateVerify");
+
+    $zip->close();
+    unlink($_SERVER['DOCUMENT_ROOT']."/config/updates/deploy.zip");
 }
 ?>
