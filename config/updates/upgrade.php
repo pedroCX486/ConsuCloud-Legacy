@@ -39,7 +39,7 @@ if($zip->extractTo("updateVerify") === TRUE){
     unlink($updateFile);
 
     //Conexão com db
-    require $_SERVER['DOCUMENT_ROOT']."/assets/connect.php";
+    require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
 
     //Executar query
     $query = $mysqli->query("UPDATE configs SET version = '$version'");

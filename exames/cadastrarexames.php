@@ -1,7 +1,7 @@
 <?php
 
 //Connect do DB
-include_once("../assets/connect.php");
+include_once("../componentes/db/connect.php");
 
 //Iniciando session
 session_start();
@@ -24,12 +24,12 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
   <meta charset="UTF-8">
   <title>Exames - ConsuCloud</title>
 
-   <?php include "../assets/bootstrap.php";?>
+   <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
 <script>
   function formatar(mascara, documento) {
@@ -127,7 +127,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
           <textarea required name="descExame" class="form-control" rows="5"></textarea>
         </div>
 
-        <script src="../assets/fileSelect.js"></script>
+        <script src="../componentes/fileSelect.js"></script>
 
         <br>Tamanho máximo: 10MB/Arquivo (50MB somando todos os arquivos.)
         <br>Tipos de arquivos aceitos: .jpg, .png, .jpeg, .gif, .bmp, .avi, .mp4, .pdf

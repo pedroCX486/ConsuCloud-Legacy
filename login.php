@@ -1,5 +1,5 @@
 <?php
-require("assets/connect.php");
+require("componentes/db/connect.php");
 
 //Matar seções prévias
 session_start();

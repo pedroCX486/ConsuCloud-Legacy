@@ -23,7 +23,7 @@ if(!ctype_digit($endereco_cep)) {
 	exit();
 }
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE planos SET nomePlano = '$nomePlano', telFixo = '$telFixo', email = '$email', infoPlano = '$infoPlano', 

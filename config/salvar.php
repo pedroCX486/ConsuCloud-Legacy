@@ -74,7 +74,7 @@ $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
     }    
 
 //Conexão com db
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 if($files){
     $select = $mysqli->query("SELECT * FROM configs");

@@ -1,6 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 
 $idConsulta = $_GET['remover'];
 $confirmaRemover = $_GET['confirmaRemover'];

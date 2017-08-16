@@ -2,7 +2,7 @@
 header('Content-type: text/html; charset=UTF-8');
 
 //Buscar dados para conexão
-require "../assets/dblogin.php";
+require "../componentes/db/dblogin.php";
 
 $mysqli = new mysqli($serverAddr, $username, $pwd, $db);
 

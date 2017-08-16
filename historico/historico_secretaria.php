@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SESSION["isMedico"] == true || $_SESSION["isAdmin"] == true){
+if($_SESSION["isMedico"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
  }elseif(empty($_SESSION)){
@@ -9,7 +9,7 @@ if($_SESSION["isMedico"] == true || $_SESSION["isAdmin"] == true){
     exit();
 }
 
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +19,12 @@ require("../assets/connect.php");
   <meta charset="UTF-8">
   <title>Histórico - ConsuCloud</title>
 
-   <?php include "../assets/bootstrap.php";?>
+   <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

@@ -1,5 +1,5 @@
 <?php
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 
 session_start();
 
@@ -37,12 +37,12 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
   <meta charset="UTF-8">
   <title>Consultas - ConsuCloud</title>
     
-  <?php include "../assets/bootstrap.php";?>
+  <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
     <script>
       function formatar(mascara, documento) {

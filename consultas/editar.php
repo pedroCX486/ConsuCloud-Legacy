@@ -12,7 +12,7 @@ $idConsulta = trim(addslashes(strip_tags($_POST['idConsulta'])));
 
 $dataConsulta = date('Y-m-d',$dataConsulta);
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE consultas SET medico = '$medico', paciente = '$paciente', dataConsulta = '$dataConsulta', horaConsulta = '$horaConsulta',

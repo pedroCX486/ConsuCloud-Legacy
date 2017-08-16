@@ -2,12 +2,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="../js/bootstrap.min.js"></script>
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<script src="../componentes/bootstrap/js/bootstrap.min.js"></script>
+<link href="../componentes/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Material Design -->
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-material-design.css" />
-<link rel="stylesheet" type="text/css" href="../css/ripples.min.css" />
+<link rel="stylesheet" type="text/css" href="../componentes/bootstrap/css/bootstrap-material-design.css" />
+<link rel="stylesheet" type="text/css" href="../componentes/bootstrap/css/ripples.min.css" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" />
 

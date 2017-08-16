@@ -1,5 +1,5 @@
 <?php
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 
 session_start();
 
@@ -19,12 +19,12 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
   <meta charset="UTF-8">
   <title>Prontuários - ConsuCloud</title>
     
-  <?php include "../assets/bootstrap.php";?>
+  <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
     <script>
       function formatar(mascara, documento) {

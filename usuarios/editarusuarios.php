@@ -9,7 +9,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
     exit();
 }
 
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 
 $idUsuario = trim(addslashes(strip_tags($_GET['idUsuario'])));
 

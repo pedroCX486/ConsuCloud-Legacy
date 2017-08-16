@@ -55,7 +55,7 @@ $senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_D
 $dataNasc = date('Y-m-d',$dataNasc);
 
 //Conectar ao db
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 
 //Checar se nome de usuário já existe

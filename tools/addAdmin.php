@@ -29,7 +29,7 @@
 			$email = trim(addslashes(strip_tags($_POST['email'])));
 			$login = trim(addslashes(strip_tags($_POST['login'])));
 			
-			require "../assets/connect.php";
+			require "../componentes/db/connect.php";
 			
 			//Executar queries
 			$query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeCompleto,areaAtuacao,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,

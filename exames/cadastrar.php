@@ -140,7 +140,7 @@ session_start();
 $idUsuario = $_SESSION["idUsuario"];
 
 //Puxar o connect do banco
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 //Preparar a lista de arquivos pra ir ao banco
 $arqsExame = implode(",", array_filter($files));

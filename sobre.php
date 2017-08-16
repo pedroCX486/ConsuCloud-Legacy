@@ -15,12 +15,12 @@ if(empty($_SESSION)){
   <meta charset="UTF-8">
   <title>Sobre - ConsuCloud</title>
 
-   <?php include "assets/bootstrap.php";?>
+   <?php include "componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "barra.php"; ?>
+<?php include "componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -42,7 +42,7 @@ if(empty($_SESSION)){
       <b>Desenvolvimento:</b> Pedro Carneiro <br>
       <b>Banco de Dados:</b> Luan Gandhi <br>
       <b>Analista de Sistemas:</b> Marcela Oliveira <br>
-      <b>Analista de Negócios:</b> Márcio Melo <br>
+      <b>Analista de Sistemas:</b> Ivonaldo Torres <br>
       <b>Analista de Documentação:</b> José Jackson <br>
       <b>Analista de Testes:</b> Rodrigo Luna <br>
       

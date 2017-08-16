@@ -50,7 +50,7 @@ if(trim(addslashes(strip_tags($_POST['senha'])))){
 	$senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_DEFAULT);
 }
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 if($login != "" && $senha != ""){
 	// Perform queries

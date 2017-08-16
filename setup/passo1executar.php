@@ -12,7 +12,7 @@ $endereco_cidade = trim(addslashes(strip_tags($_POST['endereco_cidade'])));
 $endereco_cep = trim(addslashes(strip_tags($_POST['endereco_cep'])));
 $endereco_estado = trim(addslashes(strip_tags($_POST['endereco_estado'])));
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 $query = $mysqli->query("INSERT INTO configs (nomeConsultorio,email,telefone,logotipo,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado, version) 

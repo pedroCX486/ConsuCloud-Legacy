@@ -1,5 +1,5 @@
 <?php
-include "../assets/bootstrap.php";
+include "../componentes/boot.php";
 ?>
 
   <!DOCTYPE html>

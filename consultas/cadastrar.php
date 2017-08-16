@@ -11,7 +11,7 @@ $tipoConsulta = trim(addslashes(strip_tags($_POST['tipoConsulta'])));
 
 $dataConsulta = date('Y-m-d',$dataConsulta);
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 //Executar query
 $query = $mysqli->query("INSERT INTO consultas (paciente,medico,dataConsulta,horaConsulta,planoConsulta,carteiraPlano,tipoConsulta) 

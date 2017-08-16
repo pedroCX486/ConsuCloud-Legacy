@@ -4,7 +4,7 @@ header ('Content-type: text/html; charset=UTF-8');
 $idConsulta = trim(addslashes(strip_tags($_GET['confirmar'])));
 $confirmaConsulta = trim(addslashes(strip_tags($_GET['cod'])));
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE consultas SET confirmaConsulta = '$confirmaConsulta' WHERE idConsulta = '$idConsulta'");

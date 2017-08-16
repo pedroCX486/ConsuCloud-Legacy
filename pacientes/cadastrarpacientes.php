@@ -17,12 +17,12 @@ if($_SESSION["isMedico"] == true){
   <meta charset="UTF-8">
   <title>Pacientes - ConsuCloud</title>
 
-  <?php include "../assets/bootstrap.php";?>
+  <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
     <script>
       function formatar(mascara, documento) {

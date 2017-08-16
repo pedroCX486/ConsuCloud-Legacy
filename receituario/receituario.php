@@ -10,7 +10,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
     exit();
 }
 
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 
 $select = $mysqli->query("SELECT conf.nomeConsultorio, conf.telefone, conf.email, conf.endereco_logradouro, conf.endereco_numero, conf.endereco_complemento,
                           conf.endereco_bairro, conf.endereco_cidade, conf.endereco_cep, conf.endereco_estado AS consultorioEstado, areaAtuacao, nomeCompleto, u.endereco_estado, crm FROM usuarios AS u 
@@ -48,12 +48,12 @@ if($row){
     <meta charset="UTF-8">
     <title>Receituário - ConsuCloud</title>
 
-  <?php include "../assets/bootstrap.php";?>
+  <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
     <div>
 

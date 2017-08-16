@@ -17,12 +17,12 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
   <meta charset="UTF-8">
   <title>Usuários - ConsuCloud</title>
 
-  <?php include "../assets/bootstrap.php";?>
+  <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
     <script>
       function formatar(mascara, documento) {
@@ -37,7 +37,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
       }
     </script>
     
-    <script type="text/javascript" src="../assets/validadados.js"></script>
+    <script type="text/javascript" src="../componentes/validadados/validadados.js"></script>
 
     <div class="container">
       <div class="jumbotron">

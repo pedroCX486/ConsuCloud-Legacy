@@ -20,7 +20,7 @@
 
         <?php
 				header ('Content-type: text/html; charset=UTF-8');
-				require("../assets/connect.php");
+				require("../componentes/db/connect.php");
 				
 				$select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'admin' OR tipoUsuario = 'debug'");
 				$row = $select->num_rows;

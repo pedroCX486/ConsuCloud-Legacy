@@ -9,7 +9,7 @@ if($_SESSION["isMedico"] == true){
   exit();
 }
 
-require("../assets/connect.php");
+require("../componentes/db/connect.php");
 
 $select0 = $mysqli->query("SELECT * FROM configs");
 $row0 = $select0->num_rows;
@@ -35,7 +35,7 @@ if($row0){
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   
-  <?php include "../assets/bootstrap.php" ?>
+  <?php include "../componentes/boot.php" ?>
   
   <style>
     #pagina {

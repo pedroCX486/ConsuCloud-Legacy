@@ -9,7 +9,7 @@ if($_SESSION["isMedico"] == true || $_SESSION["isSecretaria"] == true){
     exit();
 }
 
-require "../assets/connect.php";
+require "../componentes/db/connect.php";
 
 $select = $mysqli->query("SELECT * FROM configs");
 $row = $select->num_rows;
@@ -40,12 +40,12 @@ $mysqli->close();
     <meta charset="UTF-8">
     <title>Configurações - ConsuCloud</title>
     
-    <?php include "../assets/bootstrap.php";?>
+    <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "../barra.php"; ?>
+<?php include "../componentes/barra.php"; ?>
 
     <div class="container">
       <div class="jumbotron">
@@ -82,7 +82,7 @@ $mysqli->close();
                     </div>
 
                     <!--JS do FileSelect-->
-                    <script src="../assets/fileSelect.js"></script>
+                    <script src="../componentes/fileSelect.js"></script>
 
                     <div class="input-group">
                       <label class="input-group-btn">

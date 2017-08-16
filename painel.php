@@ -1,5 +1,5 @@
 <?php
-require("assets/connect.php");
+require("componentes/db/connect.php");
 
 date_default_timezone_set('America/Recife');
 
@@ -19,12 +19,12 @@ if(empty($_SESSION)){
   <meta charset="UTF-8">
   <title>Painel - ConsuCloud</title>
 
-   <?php include "assets/bootstrap.php";?>
+   <?php include "componentes/boot.php";?>
 </head>
 
 <body>
 
-  <?php include "barra.php"; ?>
+  <?php include "componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

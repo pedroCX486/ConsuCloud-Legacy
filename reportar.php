@@ -14,12 +14,12 @@ if(empty($_SESSION)){
   <meta charset="UTF-8">
   <title>Reportar um Erro - ConsuCloud</title>
 
-   <?php include "assets/bootstrap.php";?>
+   <?php include "componentes/boot.php";?>
 </head>
 
 <body>
 
-<?php include "barra.php"; ?>
+<?php include "componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
