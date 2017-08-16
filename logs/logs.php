@@ -27,7 +27,7 @@ require "../componentes/db/connect.php";
   <div class="container">
     <div class="jumbotron">
       
-      <h1>Registros de Logs</h1>
+      <h1>Registro de Logs</h1>
       
         <div class="container">
           <button type="button" class="btn btn-info btn-raised pull-left" data-toggle="collapse" data-target="#filtros">FILTRAR LOGS</button>
@@ -88,31 +88,23 @@ require "../componentes/db/connect.php";
             <?php
              if(!empty($_GET)){
                
-                $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
-                $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
-               
-                if($_GET['usuario'] != ""){
-                $busca = $_GET['usuario'];
+               $busca = $_GET['usuario'];
+               $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
+               $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
                 
-                $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$busca'");
-              }elseif($dataInicio != "--" && $dataFim == "--"){
-                $busca = $dataInicio;
-                
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$busca'");
+              if($_GET['usuario'] != "" && $dataInicio != "--" && $dataFim != "--"){
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim AND usuario = '$busca'");
               }elseif($dataInicio != "--" && $dataFim != "--"){
-                $busca1 = $dataInicio;
-                $busca2 = $dataFim;
-                
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim'");
-              }elseif($_GET['usuario'] != "" && $dataInicio != "--" && $dataFim != "--"){
-                $busca1 = $_GET['usuario'];
-                $busca2 = $dataInicio;
-                $busca3 = $dataFim;
-                
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim AND usuario = '$busca3'");
+              }elseif($_GET['usuario'] != "" && $dataInicio != "--"){
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog WHERE dataLog >= '$dataInicio' AND usuario '$busca'");
+              }elseif($dataInicio != "--" && $dataFim == "--"){
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio'");
+              }elseif($_GET['usuario'] != ""){
+                $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$busca'");
               }
             }else{
-             $select = $mysqli->query("SELECT * FROM logs");
+             $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY )");
             }
               $row = $select->num_rows;
               if($row){
@@ -141,6 +133,34 @@ require "../componentes/db/connect.php";
              ?>
           </table>
         </center>
+        
+        <br><br>
+        
+        <?php
+        
+            if(!empty($_GET)){
+               
+              $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
+              $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
+               
+              if($_GET['usuario'] != "" && $dataInicio != "--" && $dataFim != "--"){
+                $link = "imprimirlogs.php?usuario=".$_GET['usuario']."&dataInicio=".$dataInicio."&dataFim=".$dataFim;
+              }elseif($dataInicio != "--" && $dataFim != "--"){
+                $link = "imprimirlogs.php?dataInicio=".$dataInicio."&dataFim=".$dataFim;
+              }elseif($_GET['usuario'] != "" && $dataInicio != "--"){
+                $link = "imprimirlogs.php?usuario=".$_GET['usuario']."&dataInicio=".$dataInicio;
+              }elseif($dataInicio != "--" && $dataFim == "--"){
+                $link = "imprimirlogs.php?dataInicio=".$dataInicio;
+              }elseif($_GET['usuario'] != ""){
+                $link = "imprimirlogs.php?usuario=".$_GET['usuario'];
+              }
+            }else{
+              $link = "imprimirlogs.php";
+            }
+        
+        ?>
+        
+        <center><a href="<?php echo $link ?>"><button class="btn btn-raised btn-success">IMPRIMIR LOGS</button></a></center>
 
     </div>
   </div>
