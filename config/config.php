@@ -27,9 +27,9 @@ if($row){
     $endereco_estado = $get['endereco_estado'];
     $logotipo = $get['logotipo'];
     $version = $get['version'];
-    
-$mysqli->close();
   }
+  
+  $mysqli->close();
 }
 ?>
 

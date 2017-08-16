@@ -52,7 +52,7 @@ if($row){
   }
 
 $_SESSION['log'] = "Login";
-require("logs/gravarlog.php");
+require("logs/gravarlogs.php");
 
 header("Location: ../painel.php");
 exit();

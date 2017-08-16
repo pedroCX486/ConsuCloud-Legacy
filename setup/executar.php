@@ -161,7 +161,20 @@ COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
 ;");
 
-if($query7){
+$query8 = $mysqli->query("CREATE TABLE `logs` (
+	`idLog` INT(11) NOT NULL AUTO_INCREMENT,
+	`log` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`usuario` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`ip` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`dataLog` DATE NULL DEFAULT NULL,
+	`horaLog` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	PRIMARY KEY (`idLog`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB
+;");
+
+if($query8){
   echo '<script type="text/javascript">
 			location.href="passo1.php";
 		</script>';

@@ -55,6 +55,7 @@
                   echo'<li><a href="../usuarios/usuarios.php">Usuários</a></li>';
                   echo'<li><a href="../planos/planos.php">Planos de Saúde</a></li>';
                   echo'<li><a href="../config/config.php">Configurações</a></li>';
+                  echo'<li><a href="../logs/logs.php">Logs</a></li>';
                   echo'<li role="separator" class="divider"></li>';
                 }
                 ?>

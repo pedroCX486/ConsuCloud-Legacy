@@ -167,7 +167,8 @@ ________________________________________
 CREATE TABLE `logs` (
 	`idLog` INT(11) NOT NULL AUTO_INCREMENT,
 	`log` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
-	`lido` VARCHAR(5) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`usuario` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`ip` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`dataLog` DATE NULL DEFAULT NULL,
 	`horaLog` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	PRIMARY KEY (`idLog`)

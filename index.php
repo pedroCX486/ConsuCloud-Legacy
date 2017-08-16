@@ -47,7 +47,7 @@
             echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>UMA TENTATIVA DE ACESSO NÃO AUTORIZADO FOI DETECTADA E REGISTRADA.</b><br>Para continuar informe novamente seu nome de usuário e senha.</div>';
             
             $_SESSION['log'] = "403";
-            require("logs/gravarlog.php");
+            require("logs/gravarlogs.php");
 
             session_unset();
             session_destroy();
@@ -59,7 +59,7 @@
             echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>ERRO DE CONEXÃO AO BANCO MYSQL.</b><br>Houve um erro de conexão com o Banco de Dados MySQL: <b>' . $_SESSION["ERROBANCO"] . '</b></div>';
             
             $_SESSION['log'] = "Banco";
-            require("logs/gravarlog.php");
+            require("logs/gravarlogs.php");
             
             session_unset();
             session_destroy();
