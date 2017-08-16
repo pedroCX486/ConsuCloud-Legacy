@@ -40,9 +40,9 @@ require("../componentes/db/connect.php");
           <p>
             <table style="width:350px;">
               <tr>
-                <th><input type="text" class="form-control" name="timestamp_day" placeholder="Dia" maxlength="2" value="<?php echo $_GET['timestamp_day']; ?>"></th>
-                <th><input required type="text" class="form-control" name="timestamp_month" placeholder="Mês" maxlength="2" value="<?php echo $_GET['timestamp_month']; ?>"></th>
-                <th><input required type="text" class="form-control" name="timestamp_year" placeholder="Ano" maxlength="4" value="<?php echo $_GET['timestamp_year']; ?>"></th>
+                <th><input type="number" min="1" max="31" class="form-control" name="timestamp_day" placeholder="Dia" maxlength="2" value="<?php echo $_GET['timestamp_day']; ?>"></th>
+                <th><input required type="number" min="1" max="12" class="form-control" name="timestamp_month" placeholder="Mês" maxlength="2" value="<?php echo $_GET['timestamp_month']; ?>"></th>
+                <th><input required type="number" min="1500" max="3999" class="form-control" name="timestamp_year" placeholder="Ano" maxlength="4" value="<?php echo $_GET['timestamp_year']; ?>"></th>
                 <th><a href="historico_medico.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></th>
               </tr>
             </table>

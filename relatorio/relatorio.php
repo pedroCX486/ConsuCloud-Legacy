@@ -42,15 +42,15 @@ require("../componentes/db/connect.php");
             <table>
               <tr>
                 <th width="50px">Início:</th>
-                <td><input required type="text" class="form-control" name="diaInicio" placeholder="Dia" maxlength="2"></td>
-                <td><input required type="text" class="form-control" name="mesInicio" placeholder="Mês" maxlength="2"></td>
-                <td><input required type="text" class="form-control" name="anoInicio" placeholder="Ano" maxlength="4"></td>
+                <td width="100px"><input required type="number" min="1" max="31" class="form-control" name="diaInicio" placeholder="Dia" maxlength="2"></td>
+                <td width="100px"><input required type="number" min="1" max="12" class="form-control" name="mesInicio" placeholder="Mês" maxlength="2"></td>
+                <td width="100px"><input required type="number" min="1500" max="3999" class="form-control" name="anoInicio" placeholder="Ano" maxlength="4"></td>
               </tr>
               <tr>
-                <th>Fim:</th>
-                <td><input required type="text" class="form-control" name="diaFim" placeholder="Dia" maxlength="2"></td>
-                <td><input required type="text" class="form-control" name="mesFim" placeholder="Mês" maxlength="2"></td>
-                <td><input required type="text" class="form-control" name="anoFim" placeholder="Ano" maxlength="4"></td>
+                <th width="50px">Fim:</th>
+                <td width="100px"><input required type="number" min="1" max="31" class="form-control" name="diaFim" placeholder="Dia" maxlength="2"></td>
+                <td width="100px"><input required type="number" min="1" max="12" class="form-control" name="mesFim" placeholder="Mês" maxlength="2"></td>
+                <td width="100px"><input required type="number" min="1500" max="3999" class="form-control" name="anoFim" placeholder="Ano" maxlength="4"></td>
               </tr>
             </table>
 
