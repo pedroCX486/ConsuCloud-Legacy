@@ -54,6 +54,8 @@ if($row){
     @page { size: A4 landscape; margin: 3mm; }
     html, body { height: 100%; width: 100%; margin: 0; }
   </style>
+  
+</head>
 
 <body>
   

@@ -2,7 +2,10 @@
 
 session_start();
 
-if(empty($_SESSION)){
+if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
+    header("Location: ../index.php?erro=ERROFATAL");
+    exit();
+}elseif(empty($_SESSION)){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }
@@ -88,20 +91,20 @@ require "../componentes/db/connect.php";
             <?php
              if(!empty($_GET)){
                
-               $busca = $_GET['usuario'];
+               $usuario = $_GET['usuario'];
                $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
                $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
                 
-              if($_GET['usuario'] != "" && $dataInicio != "--" && $dataFim != "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim AND usuario = '$busca'");
+              if($usuario != "" && $dataInicio != "--" && $dataFim != "--"){
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' AND usuario = '$usuario'");
               }elseif($dataInicio != "--" && $dataFim != "--"){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim'");
-              }elseif($_GET['usuario'] != "" && $dataInicio != "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog WHERE dataLog >= '$dataInicio' AND usuario '$busca'");
+              }elseif($usuario != "" && $dataInicio != "--"){
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' AND usuario = '$usuario'");
               }elseif($dataInicio != "--" && $dataFim == "--"){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio'");
-              }elseif($_GET['usuario'] != ""){
-                $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$busca'");
+              }elseif($usuario != ""){
+                $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$usuario'");
               }
             }else{
              $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY )");
@@ -136,31 +139,12 @@ require "../componentes/db/connect.php";
         
         <br><br>
         
-        <?php
-        
-            if(!empty($_GET)){
-               
-              $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
-              $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
-               
-              if($_GET['usuario'] != "" && $dataInicio != "--" && $dataFim != "--"){
-                $link = "imprimirlogs.php?usuario=".$_GET['usuario']."&dataInicio=".$dataInicio."&dataFim=".$dataFim;
-              }elseif($dataInicio != "--" && $dataFim != "--"){
-                $link = "imprimirlogs.php?dataInicio=".$dataInicio."&dataFim=".$dataFim;
-              }elseif($_GET['usuario'] != "" && $dataInicio != "--"){
-                $link = "imprimirlogs.php?usuario=".$_GET['usuario']."&dataInicio=".$dataInicio;
-              }elseif($dataInicio != "--" && $dataFim == "--"){
-                $link = "imprimirlogs.php?dataInicio=".$dataInicio;
-              }elseif($_GET['usuario'] != ""){
-                $link = "imprimirlogs.php?usuario=".$_GET['usuario'];
-              }
-            }else{
-              $link = "imprimirlogs.php";
-            }
-        
-        ?>
-        
-        <center><a href="<?php echo $link ?>"><button class="btn btn-raised btn-success">IMPRIMIR LOGS</button></a></center>
+        <form method="get" action="imprimirlogs.php" target="_blank">
+        <center><button type="submit" class="btn btn-raised btn-success">IMPRIMIR LOGS</button></center>
+          <input type="hidden" name="dataInicio" value="<?php echo $dataInicio; ?>">
+          <input type="hidden" name="dataFim" value="<?php echo $dataFim; ?>">
+          <input type="hidden" name="usuario" value="<?php echo $usuario; ?>">
+        </form>
 
     </div>
   </div>
