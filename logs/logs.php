@@ -78,7 +78,8 @@ require "../componentes/db/connect.php";
         </div>
       
        <center>
-          <table id="rcorners1" class="tg">
+        <div id="rcorners1" style="overflow-y: scroll; height: 400px; width: 80%; ">
+          <table class="tg">
             <tr>
               <b>
             <th class="titulos">LOG</th>
@@ -96,18 +97,18 @@ require "../componentes/db/connect.php";
                $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
                 
               if($usuario != "" && $dataInicio != "--" && $dataFim != "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' AND usuario = '$usuario'");
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($dataInicio != "--" && $dataFim != "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim'");
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($usuario != "" && $dataInicio != "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' AND usuario = '$usuario'");
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($dataInicio != "--" && $dataFim == "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio'");
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($usuario != ""){
-                $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$usuario'");
+                $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
               }
             }else{
-             $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY )");
+             $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY ) ORDER BY dataLog DESC, horaLog DESC");
             }
               $row = $select->num_rows;
               if($row){
@@ -135,6 +136,8 @@ require "../componentes/db/connect.php";
                 }else{echo '<b>Não existem registros de logs.</b>';}
              ?>
           </table>
+          
+          </div>
         </center>
         
         <br><br>
