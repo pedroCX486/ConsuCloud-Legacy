@@ -65,10 +65,10 @@ if($_SESSION["isMedico"] == true){
           <form method="post" action="cadastrar.php">
             
             <div class="form-group">
-              <select name="idPaciente" class="form-control">
+              <select name="paciente" class="form-control">
                   <option disabled selected value="">Nome do Paciente*</option>
                     <?php        
-                    if(!empty($_GET['nomePaciente'] || !$_GET['rgPaciente'])){
+                    if(!empty($_GET['nomePaciente'] || !empty($_GET['rgPaciente']))){
                       
                         $idUsuario = $_SESSION['idUsuario'];
                   
