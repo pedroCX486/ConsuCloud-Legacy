@@ -68,7 +68,7 @@ if($_SESSION["isMedico"] == true){
               <select name="paciente" class="form-control">
                   <option disabled selected value="">Nome do Paciente*</option>
                     <?php        
-                    if(!empty($_GET['nomePaciente'] || !empty($_GET['rgPaciente']))){
+                    if(!empty($_GET['nomePaciente']) || !empty($_GET['rgPaciente'])){
                       
                         $idUsuario = $_SESSION['idUsuario'];
                   
