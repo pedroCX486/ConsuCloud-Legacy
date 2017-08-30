@@ -61,7 +61,7 @@ require("componentes/db/connect.php");
           </div>
             
           <p>
-	          <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button>
+	          <button class="btn btn-raised btn-primary" type="submit">Filtrar Agenda</button>
           </p>
         </form>
         
