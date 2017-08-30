@@ -58,7 +58,7 @@ if($row0){
   <center>
     <div id="pagina" style="position:relative;">
       
-      <div id="cabecalho" style="text-align: left; position:relative;">
+      <div id="cabecalho" style="text-align: left; position:relative; left: 3%;">
       <h3>
         <b>Relatório Geral</b>
       </h3>
