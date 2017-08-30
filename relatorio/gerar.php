@@ -27,6 +27,10 @@ if($row0){
     $endereco_estado = $get0['endereco_estado'];
   }
 }
+
+  $dataInicio = date('d-m-Y', strtotime($_POST['dataInicio']));
+  $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
+
 ?>
 
 <!DOCTYPE html>
@@ -52,19 +56,29 @@ if($row0){
 <body>
 
   <center>
-    <div id="pagina">
-      <center>
-        <h1> Relatório Geral - <?php echo $nomeConsultorio;?>
-          <h3><?php echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . "<br>" . "Telefones: " . $telefone; ?></h2>
-
-            <?php
-              $dataInicio = date('d-m-Y', strtotime($_POST['dataInicio']));
-              $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
-            ?>
-
-            <h5>
-              <br><p>Relatório abrange o período de <?php echo $dataInicio . ' até ' . $dataFim; ?>.</p><br>
-            </h5>
+    <div id="pagina" style="position:relative;">
+      
+      <div id="cabecalho" style="text-align: left; position:relative;">
+      <h3>
+        <b>Relatório Geral</b>
+      </h3>
+      <h4>
+        <?php echo $nomeConsultorio;?>
+        <br>
+          <?php
+            echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . 
+            " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . 
+            "<br>" . "Telefones: " . $telefone; 
+          ?>
+      </h4>
+        <h5>
+          <br><p>Relatório abrange o período de <?php echo $dataInicio . ' até ' . $dataFim; ?>.</p><br>
+        </h5>
+            
+      </div>
+            
+            <center>
+              
             <table id="rcorners1" class="tg">
               <tr>
                 <th class="titulos">PACIENTE</th>
@@ -124,14 +138,16 @@ if($row0){
                 }else{echo '<b>Sem resultados.</b>';}
               ?>
             </table>
-
-            <br><br>
-            <p>
+            
+          <div id="carimbo" style="position: absolute;top:2%; right:5%;">
+                    <p>
               Total de Consultas: <?php echo mysqli_num_rows($select) ?>
               <br><br><br>
               ____________________________________________<br>
               Carimbo & Assinatura
             </p>
+          </div>
+
           </div>
 
           <script type="text/JavaScript">
