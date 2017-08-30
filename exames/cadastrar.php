@@ -154,7 +154,7 @@ if ($query){
   
   //Salvar log
   $_SESSION['log'] = "Upload";
-  require("logs/gravarlogs.php");
+  require("../logs/gravarlogs.php");
 
   //Exibir mensagem e finalizar
   $arqsMensagem = implode("\\n", array_filter($files));

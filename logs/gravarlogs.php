@@ -32,7 +32,7 @@
     }elseif($_SESSION['log'] == "403"){
         $log = "Acesso Não Autorizado";
     }elseif($_SESSION['log'] == "Upload"){
-        $log = "Upload Executado";
+        $log = "Upload de Exame Executado";
     }elseif($_SESSION['log'] == "Banco"){
         $log = "Erro de Conexão ao Banco de Dados - " . $_SESSION["ERROBANCO"];
     }

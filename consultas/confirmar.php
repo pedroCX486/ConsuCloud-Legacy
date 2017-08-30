@@ -1,8 +1,8 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
 
-$idConsulta = trim(addslashes(strip_tags($_GET['confirmar'])));
-$confirmaConsulta = trim(addslashes(strip_tags($_GET['cod'])));
+$idConsulta = trim(addslashes(strip_tags($_POST['confirmar'])));
+$confirmaConsulta = trim(addslashes(strip_tags($_POST['cod'])));
 
 require "../componentes/db/connect.php";
 

@@ -42,16 +42,16 @@ if($_SESSION["isMedico"] == true){
             <p>Filtrar pacientes:</p>
   
             <div class="buscar">
-              <form method="get" action="pacientes.php">
+              <form method="post" action="pacientes.php">
       
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
-                <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['nomePaciente']; ?>">
+                <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['nomePaciente']; ?>">
               </div>
               
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-                <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_GET['rgPaciente']; ?>">
+                <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
               </div>
       
                 <br>
@@ -80,21 +80,21 @@ if($_SESSION["isMedico"] == true){
             </b>
             </tr>
             <?php
-              if(!empty($_GET)){
+              if(!empty($_POST)){
               
                 $idUsuario = $_SESSION['idUsuario'];
                 
-                if($_GET['nomePaciente'] != ""){
-                $busca = $_GET['nomePaciente'];
+                if($_POST['nomePaciente'] != ""){
+                $busca = $_POST['nomePaciente'];
                 
                 $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca'");
-              }elseif($_GET['rgPaciente'] != ""){
-                $busca = $_GET['rgPaciente'];
+              }elseif($_POST['rgPaciente'] != ""){
+                $busca = $_POST['rgPaciente'];
                 
                 $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
               }else{
-                $busca1 = $_GET['rgPaciente'];
-                $busca2 = $_GET['nomePaciente'];
+                $busca1 = $_POST['rgPaciente'];
+                $busca2 = $_POST['nomePaciente'];
                 
                 $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca1' and nomePaciente = '$busca2'");
               }

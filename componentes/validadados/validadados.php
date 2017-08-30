@@ -1,8 +1,8 @@
 <?php
 // Campo que fez requisição
-$campo = $_GET['campo'];
+$campo = $_POST['campo'];
 // Valor do campo que fez requisição
-$valor = $_GET['valor'];
+$valor = $_POST['valor'];
  
 // Verificando o campo email
 if ($campo == "email") {

@@ -45,27 +45,3 @@
     ?>
   </div>
 </div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Registro de Logs</h3>
-  </div>
-  <div class="panel-body">
-    <div id="log" style="overflow-y: scroll; height: 100px;">
-      <?php
-        if(file_exists("{$_SERVER['DOCUMENT_ROOT']}/logs/logs.txt")){
-          $logfile = fopen("{$_SERVER['DOCUMENT_ROOT']}/logs/logs.txt","r");
-          while ($line = fgets($logfile)) {
-            echo($line) . '<br> ';
-          }
-          fclose($logfile);
-        }else{
-          echo "Não existem logs gravados.";
-        }
-      ?>
-    </div>
-    <!--Animar Scroll -->
-    <script>$("#log").animate({ scrollTop: $('#log')[0].scrollHeight}, 1000);</script>
-  </div>
-</div>
-

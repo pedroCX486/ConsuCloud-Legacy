@@ -40,11 +40,11 @@ require "../componentes/db/connect.php";
           <div id="filtros" class="collapse">
   
             <div class="buscar">
-              <form method="get" action="logs.php">
+              <form method="post" action="logs.php">
       
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Nome de Usuário:</span>
-                <input type="text" class="form-control" name="usuario" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional." value="<?php echo $_GET['usuario']; ?>">
+                <input type="text" class="form-control" name="usuario" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional." value="<?php echo $_POST['usuario']; ?>">
               </div>
               
               <br>
@@ -53,15 +53,15 @@ require "../componentes/db/connect.php";
                 <table>
                   <tr>
                     <th width="100px">Data Inicial:</th>
-                    <td width="100px"><input type="number" min="1" max="31" class="form-control" name="diaInicio" placeholder="Dia" maxlength="2" value="<?php echo $_GET['diaInicio']; ?>"></td>
-                    <td width="100px"><input type="number" min="1" max="12" class="form-control" name="mesInicio" placeholder="Mês" maxlength="2" value="<?php echo $_GET['mesInicio']; ?>"></td>
-                    <td width="100px"><input type="number" min="1500" max="3999" class="form-control" name="anoInicio" placeholder="Ano" maxlength="4" value="<?php echo $_GET['anoInicio']; ?>"></td>
+                    <td width="100px"><input type="number" min="1" max="31" class="form-control" name="diaInicio" placeholder="Dia" maxlength="2" value="<?php echo $_POST['diaInicio']; ?>"></td>
+                    <td width="100px"><input type="number" min="1" max="12" class="form-control" name="mesInicio" placeholder="Mês" maxlength="2" value="<?php echo $_POST['mesInicio']; ?>"></td>
+                    <td width="100px"><input type="number" min="1500" max="3999" class="form-control" name="anoInicio" placeholder="Ano" maxlength="4" value="<?php echo $_POST['anoInicio']; ?>"></td>
                   </tr>
                   <tr>
                     <th width="100px">Data Final:</th>
-                    <td width="100px"><input type="number" min="1" max="31" class="form-control" name="diaFim" placeholder="Dia" maxlength="2" value="<?php echo $_GET['diaFim']; ?>"></td>
-                    <td width="100px"><input type="number" min="1" max="12" class="form-control" name="mesFim" placeholder="Mês" maxlength="2" value="<?php echo $_GET['mesFim']; ?>"></td>
-                    <td width="100px"><input type="number" min="1500" max="3999" class="form-control" name="anoFim" placeholder="Ano" maxlength="4" value="<?php echo $_GET['anoFim']; ?>"></td>
+                    <td width="100px"><input type="number" min="1" max="31" class="form-control" name="diaFim" placeholder="Dia" maxlength="2" value="<?php echo $_POST['diaFim']; ?>"></td>
+                    <td width="100px"><input type="number" min="1" max="12" class="form-control" name="mesFim" placeholder="Mês" maxlength="2" value="<?php echo $_POST['mesFim']; ?>"></td>
+                    <td width="100px"><input type="number" min="1500" max="3999" class="form-control" name="anoFim" placeholder="Ano" maxlength="4" value="<?php echo $_POST['anoFim']; ?>"></td>
                   </tr>
                 </table>
               </center>
@@ -90,11 +90,11 @@ require "../componentes/db/connect.php";
             </b>
             </tr>
             <?php
-             if(!empty($_GET)){
+             if(!empty($_POST)){
                
-               $usuario = $_GET['usuario'];
-               $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
-               $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
+               $usuario = $_POST['usuario'];
+               $dataInicio = $_POST['anoInicio'] . '-' . $_POST['mesInicio'] . '-' . $_POST['diaInicio'];
+               $dataFim = $_POST['anoFim'] . '-' . $_POST['mesFim'] . '-' . $_POST['diaFim'];
                 
               if($usuario != "" && $dataInicio != "--" && $dataFim != "--"){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
@@ -142,7 +142,7 @@ require "../componentes/db/connect.php";
         
         <br><br>
         
-        <form method="get" action="imprimirlogs.php" target="_blank">
+        <form method="post" action="imprimirlogs.php" target="_blank">
         <center><button type="submit" class="btn btn-raised btn-success">IMPRIMIR LOGS</button></center>
           <input type="hidden" name="dataInicio" value="<?php echo $dataInicio; ?>">
           <input type="hidden" name="dataFim" value="<?php echo $dataFim; ?>">

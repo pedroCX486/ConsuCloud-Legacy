@@ -32,10 +32,11 @@
 
         <?php
           if(stripos($_SERVER["HTTP_USER_AGENT"], 'Trident')) {
-            echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>O ConsuCloud não é compatível com o Internet Explorer.<br>Recomendamos o uso com Google Chrome para melhor eficiência e desempenho.</div>';
+            echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>O ConsuCloud não é compatível com o Internet Explorer.<br>Recomendamos o uso  o <a href="http://chrome.google.com">Google Chrome</a> para melhor eficiência e desempenho.</div>';
             echo '<style>#login {visibility: hidden;}</style>';
           }else if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox')){
-            echo '<div class="alert alert-info" id="rcorners2" role="alert"><b>Aviso! O Firefox não é totalmente suportado pelo ConsuCloud. <br>Recomendamos o uso com Google Chrome para melhor eficiência e desempenho.</div>';
+            echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>O ConsuCloud não é compatível com o Firefox.<br>Recomendamos o uso com o <a href="http://chrome.google.com">Google Chrome</a> para melhor eficiência e desempenho.</div>';
+            echo '<style>#login {visibility: hidden;}</style>';
           }
 
           session_start();

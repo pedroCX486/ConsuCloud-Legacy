@@ -34,28 +34,38 @@ require("../componentes/db/connect.php");
 
       <br>
       <center>
-
-        <form method="get" action="relatorio.php">
+        
+         <form method="post" action="relatorio.php">
+          <?php
+            $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+            $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+            
+            if($dataFim < $dataInicio){
+               echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Data Inicial não pode ser menor que Data Final!</b></div>';
+            }
+            
+            if(!empty($dataInicio)){
+              $dataInicio = date('Y-m-d',$dataInicio);
+            }
+          
+            if(!empty($dataFim)){
+              $dataFim = date('Y-m-d',$dataFim);
+            }
+          ?>
+          
+          <div class="form-group" style="width: 500px;">
           <p>
-
-            <!--Tabela/Campos para serem preenchidos-->
-            <table>
-              <tr>
-                <th width="50px">Início:</th>
-                <td width="100px"><input required type="number" min="1" max="31" class="form-control" name="diaInicio" placeholder="Dia" maxlength="2"></td>
-                <td width="100px"><input required type="number" min="1" max="12" class="form-control" name="mesInicio" placeholder="Mês" maxlength="2"></td>
-                <td width="100px"><input required type="number" min="1500" max="3999" class="form-control" name="anoInicio" placeholder="Ano" maxlength="4"></td>
-              </tr>
-              <tr>
-                <th width="50px">Fim:</th>
-                <td width="100px"><input required type="number" min="1" max="31" class="form-control" name="diaFim" placeholder="Dia" maxlength="2"></td>
-                <td width="100px"><input required type="number" min="1" max="12" class="form-control" name="mesFim" placeholder="Mês" maxlength="2"></td>
-                <td width="100px"><input required type="number" min="1500" max="3999" class="form-control" name="anoFim" placeholder="Ano" maxlength="4"></td>
-              </tr>
-            </table>
-
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Data Inicial:</span>
+              <input required value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+            </div>
+            
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Data Final:</span>
+              <input required value="<?php echo $dataFim ?>" type="date" class="form-control" name="dataFim" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+            </div>
+          
             <!--Médico das Consultas-->
-            <div class="form-group" style="width: 500px;">
               <select required name="medico" class="form-control">
                 <option disabled selected value="">Médico das Consultas*</option>
                 <?php
@@ -96,14 +106,19 @@ require("../componentes/db/connect.php");
 
         <!--Variáveis para Mega Query-->
         <?php
-          $dataInicio = $_GET['anoInicio'] . '-' . $_GET['mesInicio'] . '-' . $_GET['diaInicio'];
-          $dataFim = $_GET['anoFim'] . '-' . $_GET['mesFim'] . '-' . $_GET['diaFim'];
-          $medico = $_GET['medico'];
-          $plano = $_GET['plano'];
+          $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+          $dataInicio = date('Y-m-d',$dataInicio); 
+          
+          $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+          $dataFim = date('Y-m-d',$dataFim); 
+          
+          $medico = $_POST['medico'];
+          $plano = $_POST['plano'];
         ?>
 
+      <div id="rcorners1" style="overflow-y: auto; max-height: 400px; max-width: 80%; ">
         <!--Tabela 2/Cabeçalho da Tabela 2-->
-        <table id="rcorners1" class="tg">
+        <table class="tg">
           <tr>
             <th class="titulos">PACIENTE</th>
             <th class="titulos">MÉDICO</th>
@@ -166,12 +181,13 @@ require("../componentes/db/connect.php");
           }else{echo '<b>Sem resultados.</b>';}
           ?>
         </table>
+        </div>
 
         <br>
 
-        <form method="get" action="gerar.php" target="_blank">
+        <form method="post" action="gerar.php" target="_blank">
           <button class="btn btn-raised btn-primary" type="submit">Imprimir Relatório</button>
-          <p><h5><b>Nota:</b> Consultas não confirmadas (simbolo do <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>) não serão exibidas no relatório final.</h5></p>
+          <p><h5><b>Nota:</b> Consultas não executadas (simbolo do <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>) não serão exibidas no relatório final.</h5></p>
           <input type="hidden" name="dataInicio" value="<?php echo $dataInicio; ?>">
           <input type="hidden" name="dataFim" value="<?php echo $dataFim; ?>">
           <input type="hidden" name="medico" value="<?php echo $medico; ?>">

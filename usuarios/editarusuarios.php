@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+header ('Content-type: text/html; charset=UTF-8');
+
 if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();

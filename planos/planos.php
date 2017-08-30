@@ -67,7 +67,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
                   <?php echo $get['infoPlano']; ?>
                 </td>
                 <td class="tg-yw4l">
-                  <a href="editarplanos.php?editar=<?php echo $get['id']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+                  <a href="editarplanos.php?editar=<?php echo $get['idPlano']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
                 </td>
               </tr>
               <?php

@@ -31,11 +31,11 @@
         </tr>
             
 	<?php
-	if(!empty($_GET)){
+	if(!empty($_POST)){
                
-               $usuario = $_GET['usuario'];
-               $dataInicio = $_GET['dataInicio'];
-               $dataFim = $_GET['dataFim'];
+               $usuario = $_POST['usuario'];
+               $dataInicio = $_POST['dataInicio'];
+               $dataFim = $_POST['dataFim'];
                 
               if($usuario == "" && $dataInicio == "" && $dataFim == ""){
                  $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY ) ORDER BY dataLog DESC, horaLog DESC");

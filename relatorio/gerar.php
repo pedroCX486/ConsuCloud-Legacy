@@ -58,8 +58,8 @@ if($row0){
           <h3><?php echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . "<br>" . "Telefones: " . $telefone; ?></h2>
 
             <?php
-              $dataInicio = date('d-m-Y', strtotime($_GET['dataInicio']));
-              $dataFim = date('d-m-Y', strtotime($_GET['dataFim']));
+              $dataInicio = date('d-m-Y', strtotime($_POST['dataInicio']));
+              $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
             ?>
 
             <h5>
@@ -75,10 +75,10 @@ if($row0){
 
               <!--Mega Query para dados do relatório-->
               <?php
-                $dataInicio = $_GET['dataInicio'];
-                $dataFim = $_GET['dataFim'];
-                $medico = $_GET['medico'];
-                $plano = $_GET['plano'];
+                $dataInicio = $_POST['dataInicio'];
+                $dataFim = $_POST['dataFim'];
+                $medico = $_POST['medico'];
+                $plano = $_POST['plano'];
 
                 $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 

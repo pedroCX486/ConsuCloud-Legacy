@@ -36,21 +36,32 @@ require("../componentes/db/connect.php");
       <br>
       <center>
 
-        <form method="get" action="historico_medico.php">
+        <form method="post" action="historico_medico.php">
+          <?php
+            $dataFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['data'])))));
+            $mesFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['mes'])))));
+             if(!empty($mesFiltro)){
+               $mesFiltro = date('Y-m',$mesFiltro); 
+              }
+              if(!empty($dataFiltro)){
+                $dataFiltro = date('Y-m-d',$dataFiltro);
+              }
+          ?>
+          <div style="width:350px;">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Dia:</span>
+              <input value="<?php echo $dataFiltro ?>" type="date" class="form-control" name="data" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+            </div>
+            ou
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Mês:</span>
+              <input value="<?php echo $mesFiltro ?>" type="month" class="form-control" name="mes" aria-describedby="basic-addon1" max="9999-12" maxlength="7" OnKeyPress="formatar('##/####', this)">
+            </div>
+          </div>
+            
           <p>
-            <table style="width:350px;">
-              <tr>
-                <th><input type="number" min="1" max="31" class="form-control" name="timestamp_day" placeholder="Dia" maxlength="2" value="<?php echo $_GET['timestamp_day']; ?>"></th>
-                <th><input required type="number" min="1" max="12" class="form-control" name="timestamp_month" placeholder="Mês" maxlength="2" value="<?php echo $_GET['timestamp_month']; ?>"></th>
-                <th><input required type="number" min="1500" max="3999" class="form-control" name="timestamp_year" placeholder="Ano" maxlength="4" value="<?php echo $_GET['timestamp_year']; ?>"></th>
-                <th><a href="historico_medico.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></th>
-              </tr>
-            </table>
-
 	          <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button>
           </p>
-
-          <?php $mes = $_GET['timestamp_year'] . '-' . $_GET['timestamp_month'] . '-01'; ?>
         </form>
 
         <table id="rcorners1" class="tg">
@@ -62,13 +73,15 @@ require("../componentes/db/connect.php");
           </tr>
           <?php
           
-          if(!empty($_GET)){
-            if($_GET['timestamp_day'] == ""){
-              $mes = $_GET['timestamp_year'] . '-' . $_GET['timestamp_month'] . '-01';
-              unset($data);
-            }else{
-              $data = $_GET['timestamp_year'] . '-' . $_GET['timestamp_month'] . '-' . $_GET['timestamp_day'];  
-              unset($mes);
+          if(!empty($_POST)){
+            if(!empty($_POST['mes'])){
+              $mesFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['mes'])))));
+              $mesFiltro = date('Y-m-d',$mesFiltro); 
+              unset($dataFiltro);
+            }elseif (!empty($_POST['data'])){
+              $dataFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['data'])))));
+              $dataFiltro = date('Y-m-d',$dataFiltro);
+              unset($mesFiltro);
             }
           }
           
@@ -76,12 +89,12 @@ require("../componentes/db/connect.php");
             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                         JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE dataConsulta BETWEEN '$mes' AND LAST_DAY('$mes') AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+                                        WHERE dataConsulta BETWEEN '$mesFiltro' AND LAST_DAY('$mesFiltro') AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
           }elseif($data){
             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                         JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE dataConsulta = '$data' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+                                        WHERE dataConsulta = '$dataFiltro' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
           }
               $row = $select->num_rows;
               if($row){
