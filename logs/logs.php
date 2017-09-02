@@ -120,7 +120,7 @@ require "../componentes/db/connect.php";
               }elseif($usuario != "" && $dataInicio != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($dataInicio != "" && $dataFim == ""){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog = '$dataInicio' ORDER BY dataLog DESC, horaLog DESC");
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($usuario != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
               }
