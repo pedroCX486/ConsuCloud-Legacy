@@ -37,7 +37,7 @@ require "../componentes/db/connect.php";
           
           <br><br><br>
           
-          <div id="filtros" class="collapse">
+          <div id="filtros" class="collapse <?php if(!empty($_POST)){echo 'in';} ?>">
   
             <div class="buscar">
               <form method="post" action="logs.php">
@@ -49,22 +49,32 @@ require "../componentes/db/connect.php";
               
               <br>
               
-              <center>
-                <table>
-                  <tr>
-                    <th width="100px">Data Inicial:</th>
-                    <td width="100px"><input type="number" min="1" max="31" class="form-control" name="diaInicio" placeholder="Dia" maxlength="2" value="<?php echo $_POST['diaInicio']; ?>"></td>
-                    <td width="100px"><input type="number" min="1" max="12" class="form-control" name="mesInicio" placeholder="Mês" maxlength="2" value="<?php echo $_POST['mesInicio']; ?>"></td>
-                    <td width="100px"><input type="number" min="1500" max="3999" class="form-control" name="anoInicio" placeholder="Ano" maxlength="4" value="<?php echo $_POST['anoInicio']; ?>"></td>
-                  </tr>
-                  <tr>
-                    <th width="100px">Data Final:</th>
-                    <td width="100px"><input type="number" min="1" max="31" class="form-control" name="diaFim" placeholder="Dia" maxlength="2" value="<?php echo $_POST['diaFim']; ?>"></td>
-                    <td width="100px"><input type="number" min="1" max="12" class="form-control" name="mesFim" placeholder="Mês" maxlength="2" value="<?php echo $_POST['mesFim']; ?>"></td>
-                    <td width="100px"><input type="number" min="1500" max="3999" class="form-control" name="anoFim" placeholder="Ano" maxlength="4" value="<?php echo $_POST['anoFim']; ?>"></td>
-                  </tr>
-                </table>
-              </center>
+            <?php
+              $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+              $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+              
+              if($dataFim < $dataInicio && !empty($dataFim)){
+                 echo '<div class="alert alert-warning" id="rcorners2" role="alert"><b>Data Inicial não pode ser menor que Data Final!</b></div>';
+              }
+              
+              if(!empty($dataInicio)){
+                $dataInicio = date('Y-m-d',$dataInicio);
+              }
+            
+              if(!empty($dataFim)){
+                $dataFim = date('Y-m-d',$dataFim);
+              }
+            ?>
+            
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Data Inicial:</span>
+                <input value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+              </div>
+              
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Data Final:</span>
+                <input value="<?php echo $dataFim ?>" type="date" class="form-control" name="dataFim" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+              </div>
       
               <br>
       
@@ -73,7 +83,6 @@ require "../componentes/db/connect.php";
               
               <br>
               
-            </div>
           </div>
         </div>
       
@@ -81,7 +90,6 @@ require "../componentes/db/connect.php";
         <div id="rcorners1" style="overflow-y: scroll; height: 400px; width: 80%; ">
           <table class="tg">
             <tr>
-              <b>
             <th class="titulos">LOG</th>
             <th class="titulos">USUÁRIO</th>
             <th class="titulos">IP</th>
@@ -92,18 +100,27 @@ require "../componentes/db/connect.php";
             <?php
              if(!empty($_POST)){
                
-               $usuario = $_POST['usuario'];
-               $dataInicio = $_POST['anoInicio'] . '-' . $_POST['mesInicio'] . '-' . $_POST['diaInicio'];
-               $dataFim = $_POST['anoFim'] . '-' . $_POST['mesFim'] . '-' . $_POST['diaFim'];
+              $usuario = $_POST['usuario'];
+              $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+              
+              $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+              
+              if(!empty($dataInicio)){
+                $dataInicio = date('Y-m-d',$dataInicio);
+              }
+            
+              if(!empty($dataFim)){
+                $dataFim = date('Y-m-d',$dataFim);
+              }
                 
-              if($usuario != "" && $dataInicio != "--" && $dataFim != "--"){
+              if($usuario != "" && $dataInicio != "" && $dataFim != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($dataInicio != "--" && $dataFim != "--"){
+              }elseif($dataInicio != "" && $dataFim != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($usuario != "" && $dataInicio != "--"){
+              }elseif($usuario != "" && $dataInicio != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($dataInicio != "--" && $dataFim == "--"){
-                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' ORDER BY dataLog DESC, horaLog DESC");
+              }elseif($dataInicio != "" && $dataFim == ""){
+                $select = $mysqli->query("SELECT * FROM logs WHERE dataLog = '$dataInicio' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($usuario != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
               }

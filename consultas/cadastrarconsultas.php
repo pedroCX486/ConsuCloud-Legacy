@@ -54,7 +54,7 @@ if($_SESSION["isMedico"] == true){
             
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-              <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
+              <input type="number" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
             </div>
             
             <center><button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp; <a href="cadastrarconsultas.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>

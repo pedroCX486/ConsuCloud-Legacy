@@ -58,7 +58,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
           
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-            <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
+            <input type="number" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
           </div>
   
             <br>

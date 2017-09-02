@@ -37,7 +37,7 @@ if($_SESSION["isMedico"] == true){
           
           <br><br><br>
           
-          <div id="filtros" class="collapse">
+          <div id="filtros <?php if(!empty($_POST)){echo 'in';} ?>" class="collapse">
           
             <p>Filtrar consultas:</p>
   
@@ -51,7 +51,7 @@ if($_SESSION["isMedico"] == true){
               
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-                <input type="text" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
+                <input type="number" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
               </div>
       
                 <br>
