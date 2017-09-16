@@ -41,13 +41,23 @@ require "../componentes/db/connect.php";
   
             <div class="buscar">
               <form method="post" action="logs.php">
-      
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Nome de Usuário:</span>
-                <input type="text" class="form-control" name="usuario" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional." value="<?php echo $_POST['usuario']; ?>">
+                
+              <div class="form-group">
+                <select name="usuario" class="form-control">
+                    <option disabled <?php if(empty($_POST)){echo "selected";} ?> value="">Nome de Usuário (Opcional)</option>
+                      <?php        
+                        $select = $mysqli->query("SELECT distinct usuario FROM logs ORDER BY usuario ASC");
+                        $row = $select->num_rows;
+                        if($row){              
+                          while($get = $select->fetch_array()){
+                            ?>
+                              <option <?php if(!empty($_POST) && $_POST['usuario'] == $get['usuario']){echo "selected";}?> value="<?php echo $get['usuario']; ?>"><?php echo $get['usuario']; ?></option>
+                            <?php
+                          }
+                        }
+                      ?>
+                  </select>
               </div>
-              
-              <br>
               
             <?php
               $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
@@ -88,13 +98,13 @@ require "../componentes/db/connect.php";
       
        <center>
         <div id="rcorners1" style="overflow-y: scroll; height: 400px; width: 80%; ">
-          <table class="tg">
+          <table class="tg table-hover">
             <tr>
-            <th class="titulos">LOG</th>
-            <th class="titulos">USUÁRIO</th>
-            <th class="titulos">IP</th>
-            <th class="titulos">DIA</th>
-            <th class="titulos">HORA</th>
+              <th class="titulos">LOG</th>
+              <th class="titulos">USUÁRIO</th>
+              <th class="titulos">IP</th>
+              <th class="titulos">DIA</th>
+              <th class="titulos">HORA</th>
             </b>
             </tr>
             <?php
