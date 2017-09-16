@@ -37,7 +37,7 @@ if($_SESSION["isMedico"] == true){
           
           <br><br><br>
           
-          <div id="filtros <?php if(!empty($_POST)){echo 'in';} ?>" class="collapse">
+          <div id="filtros<?php if(!empty($_POST)){echo ' in';} ?>" class="collapse">
           
             <p>Filtrar consultas:</p>
   

@@ -37,7 +37,7 @@ require "../componentes/db/connect.php";
           
           <br><br><br>
           
-          <div id="filtros" class="collapse <?php if(!empty($_POST)){echo 'in';} ?>">
+          <div id="filtros" class="collapse<?php if(!empty($_POST)){echo ' in';} ?>">
   
             <div class="buscar">
               <form method="post" action="logs.php">

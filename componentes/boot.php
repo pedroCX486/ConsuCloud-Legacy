@@ -2,18 +2,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="../componentes/bootstrap/js/bootstrap.min.js"></script>
-<link href="../componentes/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Material Design -->
-<link rel="stylesheet" type="text/css" href="../componentes/bootstrap/css/bootstrap-material-design.css" />
-<link rel="stylesheet" type="text/css" href="../componentes/bootstrap/css/ripples.min.css" />
+<link rel="stylesheet" type="text/css" href="../componentes/materialdesign/bootstrap-material-design.min.css" />
+<link rel="stylesheet" type="text/css" href="../componentes/materialdesign/ripples.min.css" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" />
-
-<!-- Inicializando o Material Design -->
-
-<script>$.material.init();</script>
 
 <!-- Carregando o Favicon -->
 <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
