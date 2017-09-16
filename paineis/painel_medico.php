@@ -1,9 +1,10 @@
 <center>
-    <table id="rcorners1" class="tg">
+    <table id="rcorners1" class="tg table-hover">
         <tr>
             <th class="titulos">PACIENTE</th>
             <th class="titulos">TIPO</th>
             <th class="titulos">DATA - HORA</th>
+            <th class="titulos"></th>
         </tr>
         <?php
             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 

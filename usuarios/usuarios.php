@@ -36,7 +36,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
         <br><br>
 
         <center>
-          <table id="rcorners1" class="tg">
+          <table id="rcorners1" class="tg table-hover">
             <tr>
               <td class="titulos">TIPO DE CONTA</td>
               <td class="titulos">NOME</td>
@@ -44,6 +44,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
               <td class="titulos">CRM/CPF</td>
               <td class="titulos">TELEFONE</td>
               <td class="titulos">EMAIL</td>
+              <td class="titulos"></td>
               </b>
             </tr>
             <?php

@@ -70,14 +70,15 @@ if($_SESSION["isMedico"] == true){
         <br><br>
 
         <center>
-          <table id="rcorners1" class="tg">
+          <table id="rcorners1" class="tg table-hover">
             <tr>
               <b>
-            <th class="titulos">PACIENTE</th>
-            <th class="titulos">RG</th>
-            <th class="titulos">NASCIMENTO</th>
-            <th class="titulos">EMAIL</th>
-            </b>
+                <th class="titulos">PACIENTE</th>
+                <th class="titulos">RG</th>
+                <th class="titulos">NASCIMENTO</th>
+                <th class="titulos">EMAIL</th>
+                <th class="titulos"></th>
+              </b>
             </tr>
             <?php
               if(!empty($_POST)){

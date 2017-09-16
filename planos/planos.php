@@ -38,13 +38,14 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
         <br><br>
 
         <center>
-          <table id="rcorners1" class="tg">
+          <table id="rcorners1" class="tg table-hover">
             <tr>
               <b>
             <th class="titulos">NOME</th>
             <th class="titulos">TELEFONE</th>
             <th class="titulos">EMAIL</th>
             <th class="titulos">INFORMAÇÕES</th>
+            <th class="titulos"></th>
             </b>
             </tr>
             <?php
