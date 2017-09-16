@@ -39,13 +39,13 @@
                 
               if($usuario == "" && $dataInicio == "" && $dataFim == ""){
                  $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY ) ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($usuario != "" && $dataInicio != "--" && $dataFim != "--"){
+              }elseif($usuario != "" && $dataInicio != "" && $dataFim != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($dataInicio != "--" && $dataFim != "--"){
+              }elseif($dataInicio != "" && $dataFim != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog BETWEEN '$dataInicio' AND '$dataFim' ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($usuario != "" && $dataInicio != "--"){
+              }elseif($usuario != "" && $dataInicio != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' AND usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
-              }elseif($dataInicio != "--" && $dataFim == "--"){
+              }elseif($dataInicio != "--" && $dataFim == ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= '$dataInicio' ORDER BY dataLog DESC, horaLog DESC");
               }elseif($usuario != ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE usuario = '$usuario' ORDER BY dataLog DESC, horaLog DESC");
