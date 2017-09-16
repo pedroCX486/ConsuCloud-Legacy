@@ -46,7 +46,7 @@ require "../componentes/db/connect.php";
                 <select name="usuario" class="form-control">
                     <option disabled <?php if(empty($_POST)){echo "selected";} ?> value="">Nome de Usuário (Opcional)</option>
                       <?php        
-                        $select = $mysqli->query("SELECT distinct usuario FROM logs ORDER BY usuario ASC");
+                        $select = $mysqli->query("SELECT DISTINCT usuario FROM logs ORDER BY usuario ASC");
                         $row = $select->num_rows;
                         if($row){              
                           while($get = $select->fetch_array()){
