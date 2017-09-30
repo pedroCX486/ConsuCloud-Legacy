@@ -38,31 +38,42 @@ require("../componentes/db/connect.php");
 
         <form method="post" action="historico_medico.php">
           <?php
-            $dataFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['data'])))));
-            $mesFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['mes'])))));
-             if(!empty($mesFiltro)){
-               $mesFiltro = date('Y-m',$mesFiltro); 
+            $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+            $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+
+            if(!empty($dataFim)){
+              if($dataFim < $dataInicio){
+                 echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Data Inicial não pode ser menor que Data Final!</b></div>';
+                 unset($_POST);
               }
-              if(!empty($dataFiltro)){
-                $dataFiltro = date('Y-m-d',$dataFiltro);
+            }
+            
+             if(!empty($dataInicio)){
+               $dataInicio = date('Y-m-d',$dataInicio); 
+              }
+              if(!empty($dataFim)){
+                $dataFim = date('Y-m-d',$dataFim);
               }
           ?>
+          
           <div style="width:350px;">
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Dia:</span>
-              <input value="<?php echo $dataFiltro ?>" type="date" class="form-control" name="data" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+              <span class="input-group-addon" id="basic-addon1">Data Inicial:</span>
+              <input value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
             </div>
-            ou
+            e / ou
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Mês:</span>
-              <input value="<?php echo $mesFiltro ?>" type="month" class="form-control" name="mes" aria-describedby="basic-addon1" max="9999-12" maxlength="7" OnKeyPress="formatar('##/####', this)">
+              <span class="input-group-addon" id="basic-addon1">Data Final:</span>
+              <input value="<?php echo $dataFim ?>" type="date" class="form-control" name="dataFim" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
             </div>
-          </div>
-            
+          </div>  
+          
           <p>
-	          <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button>
+	          <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button> &nbsp; <a href="historico_medico.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
           </p>
         </form>
+        
+        <br><br>
 
         <table id="rcorners1" class="tg">
           <tr>
@@ -74,27 +85,25 @@ require("../componentes/db/connect.php");
           <?php
           
           if(!empty($_POST)){
-            if(!empty($_POST['mes'])){
-              $mesFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['mes'])))));
-              $mesFiltro = date('Y-m-d',$mesFiltro); 
-              unset($dataFiltro);
-            }elseif (!empty($_POST['data'])){
-              $dataFiltro = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['data'])))));
-              $dataFiltro = date('Y-m-d',$dataFiltro);
-              unset($mesFiltro);
+            if(!empty($_POST['dataInicio'])){
+              $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+              $dataInicio = date('Y-m-d',$dataInicio); 
+            }elseif (!empty($_POST['dataFim'])){
+              $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+              $dataFim = date('Y-m-d',$dataFim);
             }
           }
           
-          if($mes){
+          if(!empty($dataInicio) && empty($dataFim)){
             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                         JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE dataConsulta BETWEEN '$mesFiltro' AND LAST_DAY('$mesFiltro') AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
-          }elseif($data){
+                                        WHERE dataConsulta = '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+          }elseif(!empty($dataInicio) && !empty($dataFim)){
             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                         JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE dataConsulta = '$dataFiltro' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+                                        WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
           }
               $row = $select->num_rows;
               if($row){
