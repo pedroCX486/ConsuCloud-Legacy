@@ -1,0 +1,53 @@
+<?php
+    //Header UTF-8
+    header ('Content-type: text/html; charset=UTF-8');
+    
+    //Configurar Timezone
+    date_default_timezone_set('America/Recife');
+    
+    //Buscar por Username (se aplicável)
+    if(!isset($_SESSION["username"])){
+        $usuario = "Sem Username";
+    }elseif($_SESSION['username'] == ""){
+        $usuario = "Sem Username";
+    }else{
+        $usuario = $_SESSION["username"];
+    }
+    
+    //Fazer request pelo IP do client (nem sempre retorna o IP real)
+    $ip = $_SERVER['REMOTE_ADDR'];
+    if($ip == ""){
+        $ip = "Sem IP";
+    }
+    
+    //Dia - Em formato MySQL
+    $dia = date('Y/m/d');
+    
+    //Hora
+    $hora = date('h:i a');
+    
+    //Processar tipo de Log
+    if($_SESSION['log'] == "Login"){
+        $log = "Login Efetuado";
+    }elseif($_SESSION['log'] == "403"){
+        $log = "Acesso Não Autorizado";
+    }elseif($_SESSION['log'] == "Upload"){
+        $log = "Upload de Exame Executado";
+    }elseif($_SESSION['log'] == "Banco"){
+        $log = "Erro de Conexão ao Banco de Dados - " . $_SESSION["ERROBANCO"];
+    }
+    
+    //Connect
+    require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
+    
+    //Salvar no banco
+    $query = $mysqli->query("INSERT INTO logs (log,usuario,ip,dataLog,horaLog) VALUES ('$log', '$usuario', '$ip', '$dia', '$hora')");
+    
+    //Testar se foi
+    if (!$query){
+        echo $mysqli->error;
+    }
+    
+    //Fim
+    $mysqli->close();
+?>
