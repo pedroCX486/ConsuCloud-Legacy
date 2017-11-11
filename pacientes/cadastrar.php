@@ -25,7 +25,7 @@ if(!ctype_digit($RG)) {
 					window.history.back();
 				</script>';
 	exit();
-}elseif(!ctype_digit($endereco_cep)) {
+}elseif(!ctype_digit($endereco_cep) && !empty($endereco_cep)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();

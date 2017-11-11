@@ -1,3 +1,5 @@
+<script>window.localStorage.clear();</script>
+
 <?php
     //Carregar session
     session_start();

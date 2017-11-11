@@ -4,11 +4,12 @@ require("componentes/db/connect.php");
 date_default_timezone_set('America/Recife');
 
 session_start();
+
 $idUsuario = $_SESSION["idUsuario"];
 
 if(empty($_SESSION)){
-    header("Location: ../index.php?erro=ERROFATAL");
-    exit();
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }
 ?>
 
@@ -23,8 +24,6 @@ if(empty($_SESSION)){
 </head>
 
 <body>
-
-  <?php include "componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

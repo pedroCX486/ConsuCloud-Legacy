@@ -22,8 +22,6 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
     <script>
       function formatar(mascara, documento) {
         var i = documento.value.length;
@@ -49,38 +47,38 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Telefone:*</span>
-              <input required type="text" class="form-control" name="telFixo" aria-describedby="basic-addon1" placeholder="00 12345678" maxlength="11" OnKeyPress="formatar('## ########', this)">
+              <span class="input-group-addon" id="basic-addon1">Telefone:</span>
+              <input type="text" class="form-control" name="telFixo" aria-describedby="basic-addon1" placeholder="00 12345678" maxlength="11" OnKeyPress="formatar('## ########', this)">
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Email:*</span>
-              <input required type="text" class="form-control" name="email" aria-describedby="basic-addon1" maxlength="150">
+              <span class="input-group-addon" id="basic-addon1">Email:</span>
+              <input type="text" class="form-control" name="email" aria-describedby="basic-addon1" maxlength="150" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="exemplo@exemplo.com">
             </div>
 
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Informação sobre:*</span>
-              <input required type="text" class="form-control" name="infoPlano" aria-describedby="basic-addon1" maxlength="200">
+              <span class="input-group-addon" id="basic-addon1">Informação sobre:</span>
+              <input type="text" class="form-control" name="infoPlano" aria-describedby="basic-addon1" maxlength="200">
             </div>
 
             <div class="panel-group" id="accordion">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾ (Opcional)</a>
               </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                   <div class="panel-body">
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Logradouro:*</span>
-                      <input required type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
+                      <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
+                      <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Número:*</span>
-                      <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10">
+                      <span class="input-group-addon" id="basic-addon1">Número:</span>
+                      <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10">
                     </div>
 
                     <div class="input-group">
@@ -89,22 +87,22 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Bairro:*</span>
-                      <input required type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
+                      <span class="input-group-addon" id="basic-addon1">Bairro:</span>
+                      <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Cidade:*</span>
+                      <span class="input-group-addon" id="basic-addon1">Cidade:</span>
                       <input required type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" maxlength="100">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">CEP:*</span>
-                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                      <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
 
                     <div class="form-group">
-                      <select required name="endereco_estado" class="form-control">
+                      <select name="endereco_estado" class="form-control">
                           <option disabled selected value="">Estado ▾*</option>
                           <option value="Acre">Acre</option> 
                           <option value="Alagoas">Alagoas</option> 

@@ -23,9 +23,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
 </head>
 
 <body>
-
-<?php include "../componentes/barra.php"; ?>
-
+  
     <div class="container">
       <div class="jumbotron">
 

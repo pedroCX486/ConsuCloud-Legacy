@@ -2,6 +2,6 @@
     //Dados de Conexão
     $serverAddr = "localhost";
     $username = "root";
-    $pwd = "";
+    $pwd = "root";
     $db = "consucloud";
 ?>

@@ -67,8 +67,6 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
     <script>
       function formatar(mascara, documento) {
         var i = documento.value.length;
@@ -145,7 +143,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Email:*</span>
-              <input required type="text" class="form-control" name="email" aria-describedby="basic-addon1" value="<?php echo $email; ?>" maxlength="100">
+              <input required type="text" class="form-control" name="email" aria-describedby="basic-addon1" value="<?php echo $email; ?>" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="exemplo@exemplo.com">
             </div>
 
             <div class="input-group">
@@ -167,20 +165,20 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾ (Opcional)</a>
               </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                   <div class="panel-body">
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Logradouro:*</span>
-                      <input required type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>" maxlength="150">
+                      <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
+                      <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>" maxlength="150">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Número:*</span>
-                      <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <span class="input-group-addon" id="basic-addon1">Número:</span>
+                      <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
 
                     <div class="input-group">
@@ -189,18 +187,18 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Bairro:*</span>
-                      <input required type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>" maxlength="100">
+                      <span class="input-group-addon" id="basic-addon1">Bairro:span>
+                      <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>" maxlength="100">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Cidade:*</span>
-                      <input required type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>" maxlength="100">
+                      <span class="input-group-addon" id="basic-addon1">Cidade:</span>
+                      <input type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>" maxlength="100">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">CEP:*</span>
-                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                      <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
 
                     <div class="form-group">

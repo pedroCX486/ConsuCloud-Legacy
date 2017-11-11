@@ -25,8 +25,6 @@ require("../componentes/db/connect.php");
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
   <div class="container">
     <div class="jumbotron">
 

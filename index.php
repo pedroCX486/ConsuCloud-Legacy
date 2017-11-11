@@ -12,9 +12,11 @@
   <title>Login - ConsuCloud</title>
 
   <?php include "componentes/boot.php";?>
+
+  <script>window.localStorage.clear();</script>
 </head>
 
-  <body>
+  <body class="loginbody">
     <div class="borda">
 
     <div class="container">

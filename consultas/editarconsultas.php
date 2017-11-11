@@ -42,9 +42,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
-    <script>
+<script>
       function formatar(mascara, documento) {
         var i = documento.value.length;
         var saida = mascara.substring(0, 1);

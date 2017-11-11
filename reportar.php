@@ -19,8 +19,6 @@ if(empty($_SESSION)){
 
 <body>
 
-<?php include "componentes/barra.php"; ?>
-
   <div class="container">
     <div class="jumbotron">
       <h1>Reportar um Erro</h1>

@@ -1,6 +1,15 @@
 /* Plano de Fundo da Página */
   body {
+    background:none transparent;
+  }  
+
+  .navbody {
     background-image: url("../assets/fundo.png");
+  }
+
+  .loginbody
+  {
+    background-color: #2F4F4F;
   }
 
 /* Estilos da Barra do Sistema */

@@ -29,8 +29,6 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
 <script>
   function formatar(mascara, documento) {
     var i = documento.value.length;

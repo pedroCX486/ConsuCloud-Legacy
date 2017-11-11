@@ -24,9 +24,7 @@ if($_SESSION["isMedico"] == true){
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
-    <script>
+<script>
       function formatar(mascara, documento) {
         var i = documento.value.length;
         var saida = mascara.substring(0, 1);

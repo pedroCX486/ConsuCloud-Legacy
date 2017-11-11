@@ -19,8 +19,6 @@
 
 <body>
 
-<?php include "componentes/barra.php"; ?>
-
   <div class="container">
     <div class="jumbotron">
       <h1>Ajuda</h1>

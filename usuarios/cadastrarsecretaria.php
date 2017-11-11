@@ -18,13 +18,8 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
   <title>Usuários - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
-</head>
 
-<body>
-
-<?php include "../componentes/barra.php"; ?>
-
-    <script>
+  <script>
       function formatar(mascara, documento) {
         var i = documento.value.length;
         var saida = mascara.substring(0, 1);
@@ -36,8 +31,9 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
 
       }
     </script>
-    
-    <script type="text/javascript" src="../componentes/validadados/validadados.js"></script>
+</head>
+
+<body>
 
     <div class="container">
       <div class="jumbotron">
@@ -48,11 +44,10 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
             
             <input required type="radio" name="tipoUsuario" value="secretaria" checked hidden />
             
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1" style="color: black"><b>CPF</b>:*</span>
-                  <input required type="text" class="form-control validate" name="crm" id="cpf" aria-describedby="basic-addon1" maxlength="12" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onblur="validarDados('cpf', document.getElementById('cpf').value);">
-                  <div id="campo_cpf"> </div>
-                </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1" style="color: black"><b>CPF</b>:*</span>
+              <input required type="text" class="form-control validate" name="crm" id="cpf" aria-describedby="basic-addon1" maxlength="11" onKeyPress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]{11}" title="Digite sem traços, pontos e todos os 11 dígitos. Exemplo: 99999999999">
+            </div>
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
@@ -91,8 +86,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Email:*</span>
-              <input required type="text" class="form-control" id="email" name="email" aria-describedby="basic-addon1" maxlength="100" onblur="validarDados('email', document.getElementById('email').value);">
-              <div id="campo_email"> </div> <br />
+              <input required type="text" class="form-control" id="email" name="email" aria-describedby="basic-addon1" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="exemplo@exemplo.com">
             </div>
 
             <div class="input-group">
@@ -114,20 +108,20 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Endereço ▾ (Opcional)</a>
               </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                   <div class="panel-body">
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Logradouro:*</span>
-                      <input required type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
+                      <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
+                      <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Número:*</span>
-                      <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <span class="input-group-addon" id="basic-addon1">Número:</span>
+                      <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
 
                     <div class="input-group">
@@ -136,23 +130,23 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Bairro:*</span>
-                      <input required type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
+                      <span class="input-group-addon" id="basic-addon1">Bairro:</span>
+                      <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Cidade:*</span>
-                      <input required type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" maxlength="100">
+                      <span class="input-group-addon" id="basic-addon1">Cidade:</span>
+                      <input type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" maxlength="100">
                     </div>
 
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">CEP:*</span>
-                      <input required type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                      <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
 
                     <div class="form-group">
-                      <select required name="endereco_estado" class="form-control">
-                          <option disabled selected value="">Estado ▾*</option>
+                      <select name="endereco_estado" class="form-control">
+                          <option disabled selected value="">Estado ▾</option>
                           <option value="AC">Acre</option> 
                           <option value="AL">Alagoas</option> 
                           <option value="AP">Amapá</option> 

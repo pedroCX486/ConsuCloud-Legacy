@@ -20,9 +20,7 @@ if(empty($_SESSION)){
 
 <body>
 
-<?php include "componentes/barra.php"; ?>
-
-  <div class="container">
+<div class="container">
     <div class="jumbotron">
       <h1>ConsuCloud</h1>
       <p>Desenvolvido por OrangeMayhem Softworks</p>

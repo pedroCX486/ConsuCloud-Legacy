@@ -53,9 +53,7 @@ if($row){
 
 <body>
 
-<?php include "../componentes/barra.php"; ?>
-
-    <div>
+ <div>
 
       <div class="container">
         <div class="jumbotron">
