@@ -1,15 +1,15 @@
 <?php
-require("../componentes/db/connect.php");
-
 session_start();
 
-if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
-    header("Location: ../index.php?erro=ERROFATAL");
-    exit();
+if(!$_SESSION["isAdmin"]){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
  }elseif(empty($_SESSION)){
-    header("Location: ../index.php?erro=ERROFATAL");
-    exit();
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }
+
+require("../componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -50,27 +50,27 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
               if($row){
                 while($get = $select->fetch_array()){
             ?>
-              <tr>
-                <td class="tg-yw4l">
-                  <?php echo $get['nomePlano']; ?>
-                </td>
-                <td class="tg-yw4l">
-                  <?php echo $get['telFixo']; ?>
-                </td>
-                <td class="tg-yw4l">
-                  <?php echo $get['email']; ?>
-                </td>
-                <td class="tg-yw4l">
-                  <?php echo $get['infoPlano']; ?>
-                </td>
-                <td class="tg-yw4l">
-                  <a href="editarplanos.php?editar=<?php echo $get['idPlano']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
-                </td>
-              </tr>
-              <?php
-               }
-                }else{echo '<b>Não existem planos cadastrados.</b>';}
-             ?>
+            <tr>
+              <td class="tg-yw4l">
+                <?php echo $get['nomePlano']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <?php echo $get['telFixo']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <?php echo $get['email']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <?php echo $get['infoPlano']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <a href="editarplanos.php?editar=<?php echo $get['idPlano']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+              </td>
+            </tr>
+            <?php
+                }
+              }else{echo '<b>Não existem planos cadastrados.</b>';}
+            ?>
           </table>
         </center>
 

@@ -21,7 +21,7 @@ if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
 					location.href="../consultas/consultas.php";
-					</script>';
+        </script>';
 }else{
   echo $mysqli->error;
 }

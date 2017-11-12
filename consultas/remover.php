@@ -13,15 +13,15 @@ if($confirmaRemover == 0){
 			}else{
   			location.href="../consultas/consultas.php";
 			}
-			</script>';
+		</script>';
 }else{
 	// Perform queries 
 	$query = $mysqli->query("DELETE FROM consultas WHERE idConsulta = '$idConsulta'");
 
 	if ($query){
   	echo '<script type="text/javascript">
-					alert("Consulta removida com sucesso.");
-					location.href="../consultas/consultas.php";
+            alert("Consulta removida com sucesso.");
+            location.href="../consultas/consultas.php";
 					</script>';
 	}else{
   	echo $mysqli->error;

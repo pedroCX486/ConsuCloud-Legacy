@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if($_SESSION["isMedico"] == true || $_SESSION["isSecretaria"] == true){
-    header("Location: ../index.php?erro=ERROFATAL");
-    exit();
+if(!$_SESSION["isAdmin"]){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
  }elseif(empty($_SESSION)){
-    header("Location: ../index.php?erro=ERROFATAL");
-    exit();
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }
 
 require "../componentes/db/connect.php";
@@ -87,8 +87,7 @@ if($row){
                     <label class="input-group-btn">
                       <span class="btn btn-raised btn-primary">
                         LOGOTIPO (MÁX. 10MB)
-                        <input type="file" id="arquivo" name="arquivos[]" accept=".jpg, .png, .jpeg, .gif, .bmp, .avi, .mp4, .pdf"
-                          style="display: none;">
+                        <input type="file" id="arquivo" name="arquivos[]" accept=".jpg, .png, .jpeg, .gif, .bmp, .avi, .mp4, .pdf" style="display: none;">
                       </span>
                     </label>
                     <input type="text" class="form-control" placeholder="Arquivo atual: <?php echo $logotipo; ?> - Apenas altere em caso de necessidade."

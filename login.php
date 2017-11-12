@@ -39,11 +39,6 @@ if($row){
       $_SESSION['isSecretaria'] = true;
     }elseif($tipoUsuario == "admin"){ //Testar se usuário é tipo admin
       $_SESSION['isAdmin'] = true;
-    }elseif($tipoUsuario == "debug"){ //Testar se usuário é tipo debug
-      $_SESSION['isDebug'] = true;
-      $_SESSION['isAdmin'] = true;
-      $_SESSION['isSecretaria'] = true;
-      $_SESSION['isMedico'] = true;
     }
   }else{
     if($contaAtiva == "1"){ //Se a conta estiver ativa mas a senha não for validada, retorne com erro

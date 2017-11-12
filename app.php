@@ -37,7 +37,7 @@ require("componentes/db/connect.php");
 
   <?php include "componentes/barra.php"; ?>
 
-  <iframe id="navegador" allowtransparency="true" frameborder="0" height="90%" width="100%" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:90%;width:100%;position:absolute;top:80px;left:0px;right:0px;bottom:0px">
+  <iframe id="navegador" name="navegador" allowtransparency="true" frameborder="0" height="90%" width="100%" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:90%;width:100%;position:absolute;top:80px;left:0px;right:0px;bottom:0px">
     Seu browser não suporta a navegação usada pelo ConsuCloud. Recomendamos o Google Chrome para total compatibilidade.
   </iframe>
 

@@ -39,7 +39,9 @@
                 <br> O seu navegador encontra-se com o JavaScript desativado ou não suporta JavaScript.
                 <br>Recomendamos o uso com Google Chrome para melhor eficiência e desempenho, também com o JavaScript ativado.
                 <br>
-                <br>Por favor verifique também se você não está usando nenhuma extensão do tipo NoScript.</div>
+                <br>Por favor verifique também se você não está usando nenhuma extensão do tipo NoScript.
+              </b>
+            </div>
           </div>
         </noscript>
 
@@ -79,6 +81,7 @@
             session_destroy();
           }
         ?>
+        
         <center>
           <img src="../assets/login.png" align="middle">
         </center>

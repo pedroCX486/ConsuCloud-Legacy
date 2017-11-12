@@ -98,62 +98,62 @@
   }
 
 /* Estilos das Tabelas do Sistema */
-    .tg {
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
+  .tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 
-    .tg td {
-      font-size: 14px;
-      padding: 10px 30px;
-      overflow: hidden;
-      word-break: normal;
-    }
+  .tg td {
+    font-size: 14px;
+    padding: 10px 30px;
+    overflow: hidden;
+    word-break: normal;
+  }
 
-    .tg th {
-      font-size: 14px;
-      font-weight: normal;
-      padding: 10px 30px;
-      overflow: hidden;
-      word-break: normal;
-    }
+  .tg th {
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 30px;
+    overflow: hidden;
+    word-break: normal;
+  }
 
-    .tg .tg-yw4l {
-      vertical-align: top;
-      text-align: center;
-    }
+  .tg .tg-yw4l {
+    vertical-align: top;
+    text-align: center;
+  }
 
-    .tg .titulos {
-      text-align: center;
-      font-weight: bold;
-    }
+  .tg .titulos {
+    text-align: center;
+    font-weight: bold;
+  }
 
-    #rcorners1 {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      border-radius: 5px;
-      background: #c7ecc1;
-      padding: 20px;
-    }
+  #rcorners1 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    background: #c7ecc1;
+    padding: 20px;
+  }
 
 /* Estilos da Página de Login */
-    .borda {
-      margin-top: 30px;
-    }
+  .borda {
+    margin-top: 30px;
+  }
 
 /* Estilos de Margem de Campos de Input */
-    div.input-group {
-      margin-bottom: 5px;
-    }
+  div.input-group {
+    margin-bottom: 5px;
+  }
 
 /* Estilos de Mensagens de Alerta */
-    #rcorners2 {
-      border-radius: 5px;
-      padding: 20px;
-    }
+  #rcorners2 {
+    border-radius: 5px;
+    padding: 20px;
+  }
 
 /* Estilos da Busca de Exames e Prontuários */
-    .buscar {
-      margin-left: 230px;
-      margin-right: 230px;
-      margin-top: 50px;
-    }
+  .buscar {
+    margin-left: 230px;
+    margin-right: 230px;
+    margin-top: 50px;
+  }

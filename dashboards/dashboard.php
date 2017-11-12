@@ -48,14 +48,15 @@ require("../componentes/db/connect.php");
       <br>
 
       <?php
-        if($_SESSION["isAdmin"] == true || $_SESSION["isDebug"] == true){
+        if($_SESSION["isAdmin"] == true){
           require "dashboard_default.php";
         }elseif($_SESSION["isSecretaria"] == true){
           require "dashboard_secretaria.php";
         }elseif($_SESSION["isMedico"] == true){
           require "dashboard_medico.php";
         }else{
-          header("Location: ../index.php?erro=ERROFATAL");
+          echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+          die;
         }
       ?>
 

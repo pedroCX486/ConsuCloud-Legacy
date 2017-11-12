@@ -1,15 +1,15 @@
 <?php
-require("../componentes/db/connect.php");
-
 session_start();
 
-if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
+if(!$_SESSION["isMedico"]){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }elseif(empty($_SESSION)){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }
+
+require("../componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
   <meta charset="UTF-8">
   <title>Exames - ConsuCloud</title>
 
-   <?php include "../componentes/boot.php";?>
+  <?php include "../componentes/boot.php";?>
 </head>
 
 <body>
@@ -28,31 +28,40 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
     <div class="jumbotron">
 
       <h1>Exames</h1>
-      <a href="cadastrarexames.php"><button class="btn btn-raised btn-success pull-right">Novo Exame</button></a>
+      <a href="cadastrarexames.php">
+        <button class="btn btn-raised btn-success pull-right">Novo Exame</button>
+      </a>
 
       <p>Consultar exame:</p>
 
       <div class="buscar">
         <form method="post" action="exames.php">
-        
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
-          <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['nomePaciente']; ?>">
-        </div>
-        
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-          <input type="number" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos." value="<?php echo $_POST['rgPaciente']; ?>">
-        </div>
-        
-        <center><button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp; <a href="exames.php"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></center>
+
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
+            <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos."
+              value="<?php echo $_POST['nomePaciente']; ?>">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
+            <input type="number" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos."
+              value="<?php echo $_POST['rgPaciente']; ?>">
+          </div>
+
+          <center>
+            <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
+            <a href="exames.php">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>
+          </center>
 
           <br>
-          
-        <div class="form-group">
-          <select name="idPaciente" class="form-control">
+
+          <div class="form-group">
+            <select name="idPaciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
-                <?php        
+              <?php        
                 if(!empty($_POST['nomePaciente']) || !empty($_POST['rgPaciente'])){
                   
                     $idUsuario = $_SESSION['idUsuario'];
@@ -76,27 +85,31 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
                     }
                 
                   }
-                  $row = $select->num_rows;
-                  if($row){              
-                    while($get = $select->fetch_array()){
-                      ?>
-                        <option value="<?php echo $get['idPaciente']; ?>" ><?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?></option>
-                      <?php
-                    }
+                $row = $select->num_rows;
+                if($row){              
+                  while($get = $select->fetch_array()){
+              ?>
+              <option value="<?php echo $get['idPaciente']; ?>">
+                <?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?>
+              </option>
+              <?php
                   }
-                ?>
-              </select>
-        </div>
+                }
+              ?>
+            </select>
+          </div>
 
-          <center><button type="submit" class="btn btn-raised btn-info">Buscar Exames</button></center>
+          <center>
+            <button type="submit" class="btn btn-raised btn-info">Buscar Exames</button>
+          </center>
         </form>
       </div>
 
-      <br><br>
+      <br>
+      <br>
 
-      
       <div class="panel-group" id="accordion">
-        <?php
+      <?php
         if(!empty($_POST['idPaciente'])){
         if($_POST['nomePaciente'] != ""){
             $busca = $_POST['nomePaciente'];
@@ -118,49 +131,53 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
                                     JOIN pacientes AS p ON p.idPaciente = ex.paciente 
                                     WHERE p.RG = $busca1 AND p.nomePaciente = '$busca2' ORDER BY dataExame ASC");
           }
-          $row = $select->num_rows;
-          if($row){
-            while($get = $select->fetch_array()){
-              ?>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idExame'];?>">
-                      <?php
-                        echo $get['nomePaciente'] . ' - ' . $get['nomeExame']  . ' (' . $data = date('d-m-Y', strtotime($get['dataExame'])) . ')';
-                      ?> ▾
-                    </a>
-                  </h4>
-                </div>
-                <div id="<?php echo $get['idExame'];?>" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    <h4>Descrição do Exame:</h4>
-                    
-                    <?php echo nl2br($get['descExame']); ?>
-
-                    <br><br>
-                    
-                    <h4>Arquivos do Exame:<br><h5>(clique para baixar)</h5></h4>
-
-                    <?php
-                    $arquivos = explode(",", $get['arqsExame']);
-                      
-                      foreach($arquivos as $arquivo){
-                        $mimeType = mime_content_type('arquivos/' . $_POST['idPaciente'] . '/' . $arquivo);
-                        $encodedFile = chunk_split(base64_encode(file_get_contents('arquivos/' . $_POST['idPaciente'] . '/' . $arquivo)));
-                        
-                        echo '<a href="data:'.$mimeType.';base64,'.$encodedFile.'" download="'.$arquivo.'" /> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
-                      }
-                    ?>
-
-                  </div>
-                </div>
-              </div>
+        $row = $select->num_rows;
+        if($row){
+          while($get = $select->fetch_array()){
+      ?>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idExame'];?>">
               <?php
+                  echo $get['nomePaciente'] . ' - ' . $get['nomeExame']  . ' (' . $data = date('d-m-Y', strtotime($get['dataExame'])) . ')';
+              ?> ▾
+            </a>
+          </h4>
+        </div>
+        <div id="<?php echo $get['idExame'];?>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <h4>Descrição do Exame:</h4>
+
+            <?php echo nl2br($get['descExame']); ?>
+
+            <br>
+            <br>
+
+            <h4>Arquivos do Exame:
+              <br>
+              <h5>(clique para baixar)</h5>
+            </h4>
+
+            <?php
+              $arquivos = explode(",", $get['arqsExame']);
+                
+              foreach($arquivos as $arquivo){
+                $mimeType = mime_content_type('arquivos/' . $_POST['idPaciente'] . '/' . $arquivo);
+                $encodedFile = chunk_split(base64_encode(file_get_contents('arquivos/' . $_POST['idPaciente'] . '/' . $arquivo)));
+                
+                echo '<a href="data:'.$mimeType.';base64,'.$encodedFile.'" download="'.$arquivo.'" /> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
+              }
+            ?>
+
+          </div>
+        </div>
+      </div>
+      <?php
             }
           }
         }
-        ?>
+      ?>
       </div>
 
     </div>
