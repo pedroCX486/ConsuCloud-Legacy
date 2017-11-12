@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if(!$_SESSION["isAdmin"]){
@@ -21,6 +20,12 @@ require "../componentes/db/connect.php";
   <title>Logs - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+
+  <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+</script>
 </head>
 
 <body>
@@ -51,14 +56,13 @@ require "../componentes/db/connect.php";
                     if($row){              
                       while($get = $select->fetch_array()){
                   ?>
-                  <option <?php if(!empty($_POST) && $_POST[ 'usuario']==$ get[ 'usuario']){echo "selected";}?> value="
-                    <?php echo $get['usuario']; ?>">
+                  <option <?php if(!empty($_POST) && $_POST['usuario'] == $get['usuario']){echo "selected";}?> value="<?php echo $get['usuario']; ?>">
                     <?php echo $get['usuario']; ?>
                   </option>
                   <?php
                         }
                       }
-                    ?>
+                  ?>
                 </select>
               </div>
 

@@ -27,14 +27,16 @@ $dia = date('Y/m/d');
 $hora = date('h:i a');
 
 //Processar tipo de Log
-if($_SESSION['log'] == "Login"){
+if($_SESSION['log'] == "LOGIN"){
     $log = "Login Efetuado";
 }elseif($_SESSION['log'] == "403"){
     $log = "Acesso Não Autorizado";
-}elseif($_SESSION['log'] == "Upload"){
+}elseif($_SESSION['log'] == "UPLOAD"){
     $log = "Upload de Exame Executado";
-}elseif($_SESSION['log'] == "Banco"){
-    $log = "Erro de Conexão ao Banco de Dados - " . $_SESSION["ERROBANCO"];
+}elseif($_SESSION['log'] == "ERROBANCO"){
+    $log = '<a href="#" data-toggle="tooltip" data-container="body" title="'. $_SESSION['ERROBANCO'] .'">Erro no Banco de Dados</a>';
+}elseif($_SESSION['log'] == "INATIVA"){
+    $log = "Tentativa de Login";
 }
 
 //Connect

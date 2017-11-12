@@ -153,7 +153,7 @@ VALUES ('$idPaciente', '$idUsuario', '$dataExame', '$nomeExame', '$descExame', '
 if ($query){
   
   //Salvar log
-  $_SESSION['log'] = "Upload";
+  $_SESSION['log'] = "UPLOAD";
   require("../logs/gravarlogs.php");
 
   //Exibir mensagem e finalizar
