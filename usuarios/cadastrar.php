@@ -24,27 +24,27 @@ $nomeCurto = trim(addslashes(strip_tags($_POST['nomeCurto'])));
 //Chegacem de caracteres invalidos em alguns campos (caso usuário burle no front-end)
 if(!ctype_digit($crm)) {
     echo '<script type="text/javascript">
-					alert("ERRO: Caracteres inválidos no campo CRM.\nApenas caracteres numéricos são permitidos.");
-					window.history.back();
-				</script>';
+            alert("ERRO: Caracteres inválidos no campo CRM.\nApenas caracteres numéricos são permitidos.");
+            window.history.back();
+				  </script>';
 	exit();
 }elseif(!ctype_digit($RG)) {
     echo '<script type="text/javascript">
-					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
-					window.history.back();
-				</script>';
+            alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
+            window.history.back();
+				  </script>';
 	exit();
 }elseif(!ctype_digit($endereco_cep) && !empty($endereco_cep)) {
     echo '<script type="text/javascript">
-					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
-					window.history.back();
-				</script>';
+            alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
+            window.history.back();
+			  	</script>';
 	exit();
 }elseif($tipoUsuario == "admin" || $tipoUsuario == "debug"){
     echo '<script type="text/javascript">
-					alert("ERRO FATAL: Dados inválidos foram enviados ao servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
-					location.href="../index.php?erro=ERROFATAL";
-				</script>';
+            alert("ERRO FATAL: Dados inválidos foram enviados ao servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
+            location.href="../index.php?erro=ERROFATAL";
+			  	</script>';
 	exit();
 }
 
@@ -62,9 +62,9 @@ require "../componentes/db/connect.php";
 $select = $mysqli->query("SELECT * FROM usuarios WHERE login = '" . $login . "'");
 if($select->num_rows) {
 	echo '<script type="text/javascript">
-						alert("ERRO: Nome de usuário já existe.");
-						window.history.back();
-					</script>';
+          alert("ERRO: Nome de usuário já existe.");
+          window.history.back();
+        </script>';
 	exit();
 }else{
 	

@@ -26,11 +26,13 @@ if($row){
 }
 
   //Validar Senha
+  //Nota - 11/11/2017: Se você tem problemas do coração, não leia esse treço if/else.
   if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
     session_start();
     $_SESSION["username"] = $nomeCurto;
     $_SESSION["idUsuario"] = $idUsuario;
   
+    //Controle de permissões
     if($tipoUsuario == "medico"){ //Testar se usuário é tipo médico
       $_SESSION['isMedico'] = true;
     }elseif($tipoUsuario == "secretaria"){ //Testar se usuário é tipo secretária
@@ -39,6 +41,9 @@ if($row){
       $_SESSION['isAdmin'] = true;
     }elseif($tipoUsuario == "debug"){ //Testar se usuário é tipo debug
       $_SESSION['isDebug'] = true;
+      $_SESSION['isAdmin'] = true;
+      $_SESSION['isSecretaria'] = true;
+      $_SESSION['isMedico'] = true;
     }
   }else{
     if($contaAtiva == "1"){ //Se a conta estiver ativa mas a senha não for validada, retorne com erro
@@ -54,6 +59,6 @@ if($row){
 $_SESSION['log'] = "Login";
 require("logs/gravarlogs.php");
 
-header("Location: ../nav.php");
+header("Location: ../app.php");
 exit();
 ?>

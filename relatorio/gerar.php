@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if($_SESSION["isMedico"] == true){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
+if($_SESSION["isMedico"]){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }elseif(empty($_SESSION)){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }
 
 require("../componentes/db/connect.php");
@@ -28,8 +28,8 @@ if($row0){
   }
 }
 
-  $dataInicio = date('d-m-Y', strtotime($_POST['dataInicio']));
-  $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
+$dataInicio = date('d-m-Y', strtotime($_POST['dataInicio']));
+$dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
 
 ?>
 
@@ -38,14 +38,15 @@ if($row0){
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  
+
   <?php include "../componentes/boot.php" ?>
-  
+
   <style>
     #pagina {
       height: 297mm;
       width: 210mm;
     }
+
     @page {
       size: A4;
       margin: 5mm;
@@ -57,104 +58,112 @@ if($row0){
 
   <center>
     <div id="pagina" style="position:relative;">
-      
+
       <div id="cabecalho" style="text-align: left; position:relative; left: 3%;">
-      <h3>
-        <b>Relatório Geral</b>
-      </h3>
-      <h4>
-        <?php echo $nomeConsultorio;?>
-        <br>
+        <h3>
+          <b>Relatório Geral</b>
+        </h3>
+        <h4>
+          <?php echo $nomeConsultorio;?>
+          <br>
           <?php
-            echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . 
-            " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . 
-            "<br>" . "Telefones: " . $telefone; 
-          ?>
-      </h4>
+          echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . 
+          " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . 
+          "<br>" . "Telefones: " . $telefone; 
+        ?>
+        </h4>
         <h5>
-          <br><p>Relatório abrange o período de <?php echo $dataInicio . ' até ' . $dataFim; ?>.</p><br>
+          <br>
+          <p>Relatório abrange o período de
+            <?php echo $dataInicio . ' até ' . $dataFim; ?>.</p>
+          <br>
         </h5>
-            
+
       </div>
-            
-            <center>
-              
-            <table id="rcorners1" class="tg">
-              <tr>
-                <th class="titulos">PACIENTE</th>
-                <th class="titulos">MÉDICO</th>
-                <th class="titulos">DATA - HORA</th>
-                <th class="titulos">PLANO (CARTEIRA)</th>
-              </tr>
 
-              <!--Mega Query para dados do relatório-->
+      <center>
+
+        <table id="rcorners1" class="tg">
+          <tr>
+            <th class="titulos">PACIENTE</th>
+            <th class="titulos">MÉDICO</th>
+            <th class="titulos">DATA - HORA</th>
+            <th class="titulos">PLANO (CARTEIRA)</th>
+          </tr>
+
+          <!--Mega Query para dados do relatório-->
+          <?php
+            $dataInicio = $_POST['dataInicio'];
+            $dataFim = $_POST['dataFim'];
+            $medico = $_POST['medico'];
+            $plano = $_POST['plano'];
+
+            $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
+                                    JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                    JOIN planos AS pl ON pl.idPlano = c.planoConsulta
+                                    JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                    WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' AND confirmaConsulta = '1' 
+                                    ORDER BY dataConsulta DESC, horaConsulta DESC");
+            $row = $select->num_rows;
+            if($row){
+              while($get = $select->fetch_array()){
+          ?>
+
+          <tr>
+
+            <!--Nome do Paciente-->
+            <td class="tg-yw4l">
+              <?php echo $get['nomePaciente']; ?>
+            </td>
+
+            <!--Nome do Medico-->
+            <td class="tg-yw4l">
+              <?php echo $get['nomeCompleto']; ?>
+            </td>
+
+            <!--Data da Consulta-->
+            <td class="tg-yw4l">
               <?php
-                $dataInicio = $_POST['dataInicio'];
-                $dataFim = $_POST['dataFim'];
-                $medico = $_POST['medico'];
-                $plano = $_POST['plano'];
+                    $data = date('d-m-Y', strtotime($get['dataConsulta']));
+                    $hora = date('H:i', strtotime($get['horaConsulta']));
+                    echo $data . ' - ' . $hora;
+                  ?>
+            </td>
 
-                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
-                                        JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                        JOIN planos AS pl ON pl.idPlano = c.planoConsulta
-                                        JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                        WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = '$medico' AND c.planoConsulta = '$plano' AND confirmaConsulta = '1' 
-                                        ORDER BY dataConsulta DESC, horaConsulta DESC");
-                $row = $select->num_rows;
-                if($row){
-                  while($get = $select->fetch_array()){
-              ?>
-                  <tr>
+            <!--Plano da Consulta-->
+            <td class="tg-yw4l">
+              <?php
+                    echo $get['nomePlano'];
+                    if($get['carteiraPlano'] != '0'){echo ' ('.$get['carteiraPlano'].')';}
+                  ?>
+            </td>
+          </tr>
 
-                    <!--Nome do Paciente-->
-                    <td class="tg-yw4l">
-                      <?php echo $get['nomePaciente']; ?>
-                    </td>
+          <?php
+              }
+            }else{echo '<b>Sem resultados.</b>';}
+          ?>
+        </table>
 
-                    <!--Nome do Medico-->
-                    <td class="tg-yw4l">
-                      <?php echo $get['nomeCompleto']; ?>
-                    </td>
+        <div id="carimbo" style="position: absolute;top:2%; right:5%;">
+          <p>
+            Total de Consultas:
+            <?php echo mysqli_num_rows($select) ?>
+            <br>
+            <br>
+            <br> ____________________________________________
+            <br> Carimbo & Assinatura
+          </p>
+        </div>
 
-                    <!--Data da Consulta-->
-                    <td class="tg-yw4l">
-                      <?php
-                        $data = date('d-m-Y', strtotime($get['dataConsulta']));
-                        $hora = date('H:i', strtotime($get['horaConsulta']));
-                        echo $data . ' - ' . $hora;
-                      ?>
-                    </td>
+      </center>
+      
+    </div>
 
-                    <!--Plano da Consulta-->
-                    <td class="tg-yw4l">
-                      <?php
-                        echo $get['nomePlano'];
-                        if($get['carteiraPlano'] != '0'){echo ' ('.$get['carteiraPlano'].')';}
-                      ?>
-                    </td>
-                  </tr>
-                  <?php
-                  }
-                }else{echo '<b>Sem resultados.</b>';}
-              ?>
-            </table>
-            
-          <div id="carimbo" style="position: absolute;top:2%; right:5%;">
-                    <p>
-              Total de Consultas: <?php echo mysqli_num_rows($select) ?>
-              <br><br><br>
-              ____________________________________________<br>
-              Carimbo & Assinatura
-            </p>
-          </div>
+    <script type="text/JavaScript">
+      setTimeout(function () { window.print(); }, 500); setTimeout(window.close, 500);
+    </script>
 
-          </div>
+</body>
 
-          <script type="text/JavaScript">
-            setTimeout(function () { window.print(); }, 500);
-            setTimeout(window.close, 500);
-          </script>
-
-        </body>
-
-        </html>
+</html>

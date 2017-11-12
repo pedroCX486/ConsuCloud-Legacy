@@ -2,12 +2,12 @@
 session_start();
 $idUsuario = $_SESSION['idUsuario'];
 
-if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
-}elseif(empty($_SESSION)){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
+if(!$_SESSION["isMedico"]){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
+ }elseif(empty($_SESSION)){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
 }
 
 require("../componentes/db/connect.php");
