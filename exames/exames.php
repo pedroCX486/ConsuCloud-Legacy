@@ -163,10 +163,8 @@ require("../componentes/db/connect.php");
               $arquivos = explode(",", $get['arqsExame']);
                 
               foreach($arquivos as $arquivo){
-                $mimeType = mime_content_type('arquivos/' . $_POST['idPaciente'] . '/' . $arquivo);
-                $encodedFile = chunk_split(base64_encode(file_get_contents('arquivos/' . $_POST['idPaciente'] . '/' . $arquivo)));
                 
-                echo '<a href="data:'.$mimeType.';base64,'.$encodedFile.'" download="'.$arquivo.'" /> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
+                echo '<a target="_blank" href="../componentes/contentdelivery.php?arquivo=' . $arquivo . '&paciente=' . $_POST['idPaciente'] . '"> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
               }
             ?>
 

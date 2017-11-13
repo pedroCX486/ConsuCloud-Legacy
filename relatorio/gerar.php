@@ -160,9 +160,15 @@ $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
       
     </div>
 
+    <!--JS para Invocar Impressão-->
     <script type="text/JavaScript">
-      setTimeout(function () { window.print(); }, 500); setTimeout(window.close, 500);
+      $(window).bind("load", function() {
+        window.print();
+        window.top.close();
+      });
     </script>
+    
+  </center>
 
 </body>
 

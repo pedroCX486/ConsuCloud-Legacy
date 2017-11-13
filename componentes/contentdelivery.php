@@ -1,0 +1,29 @@
+<?php
+//Loading
+echo '<html><body style="background-color: #39b49a"><center><img width="400px" height="300px" src="../assets/carregando.gif"/><br><b>Carregando download...</b></center>';
+
+//Preciso do JQuery
+include "boot.php";
+
+//Montar caminho
+$filename = '../exames/arquivos/' . $_GET['paciente'] . '/' . $_GET['arquivo'];
+
+//Pegar mimetype
+$finfo = finfo_open(FILEINFO_MIME_TYPE);
+$mimeType = finfo_file($finfo, $filename);
+finfo_close($finfo);
+
+//Montar base64
+$encodedFile = chunk_split(base64_encode(file_get_contents($filename)));
+
+//Montar href para download
+echo '<a id="download" href="data:'.$mimeType.';base64,'.$encodedFile.'" download="'.$_GET['arquivo'].'" />';
+
+//Invocar click no href e encerrar a janela automaticamente
+?>
+<script type="text/JavaScript">
+  $(window).bind("load", function() {
+    $('#download').get(0).click();
+    window.top.close();
+  });
+</script>
