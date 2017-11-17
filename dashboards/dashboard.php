@@ -20,6 +20,12 @@ require("../componentes/db/connect.php");
   <title>Painel - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+
+  <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+  </script>
 </head>
 
 <body>

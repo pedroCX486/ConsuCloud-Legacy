@@ -25,7 +25,7 @@ require "../componentes/db/connect.php";
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 
     });
-</script>
+  </script>
 </head>
 
 <body>

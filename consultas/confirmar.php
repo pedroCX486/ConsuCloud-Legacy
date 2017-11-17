@@ -13,12 +13,12 @@ if ($query){
 	if($confirmaConsulta == '1'){
 		echo '<script type="text/javascript">
             alert("Consulta confirmada com sucesso.");
-            location.href="../painel.php";
+            location.href="../dashboards/dashboard.php";
 					</script>';
 	}else{
 		echo '<script type="text/javascript">
             alert("Consulta desconfirmada com sucesso.");
-            location.href="../painel.php";
+            location.href="../dashboards/dashboard.php";
 					</script>';
 	}
 }else{

@@ -39,7 +39,7 @@
       <!--Confirmação de Consulta-->
       <td>
         <?php
-          if($get['confirmaConsulta'] == '1'){echo '<span class="glyphicon glyphicon-thumbs-up" title="Consulta Confirmada" aria-hidden="true"></span>';}
+          if($get['confirmaConsulta'] == '1'){echo '<a href="#" data-toggle="tooltip" data-container="body" title="Consulta Confirmada"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>';}
         ?>
       </td>
     </tr>

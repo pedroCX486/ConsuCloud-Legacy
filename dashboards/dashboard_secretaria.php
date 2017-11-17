@@ -51,8 +51,8 @@
 
         <!-- Confirmar/Desconfirmar Consultas-->
         <?php
-          if($get['confirmaConsulta'] == '0'){echo '<a href="consultas/confirmar.php?confirmar='.$get['idConsulta'].'&cod=1" title="Confirmar Consulta"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>';}
-          else{echo '<a href="consultas/confirmar.php?confirmar='.$get['idConsulta'].'&cod=0" title="Desconfirmar Consulta"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>';}
+          if($get['confirmaConsulta'] == '0'){echo '<a href="../consultas/confirmar.php?confirmar='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Confirmar Consulta"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>';}
+          else{echo '<a href="../consultas/confirmar.php?confirmar='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Desconfirmar Consulta"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>';}
         ?>
       </td>
     </tr>
