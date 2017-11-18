@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require("../componentes/sessionbuster.php");
+require("componentes/sessionbuster.php");
 
 $idUsuario = $_SESSION["idUsuario"];
 

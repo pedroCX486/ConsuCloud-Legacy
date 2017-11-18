@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require("../componentes/sessionbuster.php");
+require("componentes/sessionbuster.php");
 
 $erro = $_GET['erro'];
 ?>

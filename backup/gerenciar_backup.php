@@ -33,20 +33,23 @@ if(!$_SESSION["isAdmin"]){
         $backupinfo = "../backup/backup_info.txt";
         
         if (file_exists($backupinfo)) {
-            echo '<center>
-            <br><br>
-            Existe um backup com a data ' . file_get_contents($backupinfo) . '.
-            <br><br>
-            <a target="_blank" href="../componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
-                <button class="btn btn-raised btn-info btn-lg">FAZER DOWNLOAD DO BACKUP</button>
-            </a>
-            <br><br>
-            <a href="executar_backup.php" target="navegador">
-               <button class="btn btn-raised btn-primary btn-lg">EXECUTAR NOVO BACKUP</button>
-            </a>
-            </center>';
+          echo '<center>
+          <br><br>
+          Existe um backup com a data ' . file_get_contents($backupinfo) . '.
+          <br><br>
+          <a target="_blank" href="../componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
+            <button class="btn btn-raised btn-info btn-lg">FAZER DOWNLOAD DO BACKUP</button>
+          </a>
+          </center>';
         }
       ?>
+
+      <br><br>
+      <center>
+        <a href="executar_backup.php" target="navegador">
+            <button class="btn btn-raised btn-primary btn-lg">EXECUTAR NOVO BACKUP</button>
+        </a>
+      </center>
 
       <br>
 
