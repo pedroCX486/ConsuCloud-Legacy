@@ -45,10 +45,10 @@ require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
 //Salvar no banco
 $query = $mysqli->query("INSERT INTO logs (log,usuario,ip,dataLog,horaLog) VALUES ('$log', '$usuario', '$ip', '$dia', '$hora')");
 
-//Testar se foi
-if (!$query){
-    echo $mysqli->error;
-}
+//Um breve teste, só para debug
+//if (!$query){
+//    echo $mysqli->error;
+//}
 
 //Fim
 $mysqli->close();
