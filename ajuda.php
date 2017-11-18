@@ -1,6 +1,8 @@
 <?php
   session_start();
 
+  require("../componentes/sessionbuster.php");
+
   if(empty($_SESSION)){
     echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
     die;

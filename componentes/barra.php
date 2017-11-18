@@ -58,6 +58,7 @@
                   echo'<li><a target="navegador" href="../planos/planos.php">Planos de Saúde</a></li>';
                   echo'<li><a target="navegador" href="../config/config.php">Configurações</a></li>';
                   echo'<li><a target="navegador" href="../logs/logs.php">Logs</a></li>';
+                  echo'<li><a target="navegador" href="../backup/gerenciar_backup.php">Backup</a></li>';
                   echo'<li role="separator" class="divider"></li>';
                 }
               ?>

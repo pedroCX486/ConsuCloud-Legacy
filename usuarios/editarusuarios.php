@@ -3,6 +3,8 @@ header ('Content-type: text/html; charset=UTF-8');
 
 session_start();
 
+require("../componentes/sessionbuster.php");
+
 if(!$_SESSION["isAdmin"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;

@@ -1,5 +1,8 @@
 <?php
   session_start();
+
+  require("../componentes/sessionbuster.php");
+  
   require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
 ?>
 

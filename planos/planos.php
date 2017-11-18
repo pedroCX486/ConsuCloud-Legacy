@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require("../componentes/sessionbuster.php");
+
 if(!$_SESSION["isAdmin"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;

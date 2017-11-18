@@ -5,8 +5,13 @@ echo '<html><body style="background-color: #39b49a"><center><img width="400px" h
 //Preciso do JQuery
 include "boot.php";
 
-//Montar caminho
-$filename = '../exames/arquivos/' . $_GET['paciente'] . '/' . $_GET['arquivo'];
+if($_GET['backup']){
+  //Montar caminho para download do backup
+  $filename = '../backup/' . $_GET['arquivo'];
+}else{
+  //Montar caminho para download de exames
+  $filename = '../exames/arquivos/' . $_GET['paciente'] . '/' . $_GET['arquivo'];
+}
 
 //Pegar mimetype
 $finfo = finfo_open(FILEINFO_MIME_TYPE);

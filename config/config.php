@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require("../componentes/sessionbuster.php");
+
 if(!$_SESSION["isAdmin"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;
@@ -9,7 +11,7 @@ if(!$_SESSION["isAdmin"]){
   die;
 }
 
-require "../componentes/db/connect.php";
+require("../componentes/db/connect.php");
 
 $select = $mysqli->query("SELECT * FROM configs");
 $row = $select->num_rows;

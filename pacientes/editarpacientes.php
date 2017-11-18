@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require("../componentes/sessionbuster.php");
+
 if($_SESSION["isMedico"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;
@@ -9,7 +11,7 @@ if($_SESSION["isMedico"]){
   die;
 }
 
-require "../componentes/db/connect.php";
+require("../componentes/db/connect.php");
 
 $idPaciente = trim(addslashes(strip_tags($_GET['idPaciente'])));
 

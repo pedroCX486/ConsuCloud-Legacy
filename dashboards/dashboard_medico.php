@@ -49,3 +49,9 @@
     ?>
   </table>
 </center>
+
+<script>
+  setTimeout(function(){
+   window.location.reload(1);
+  }, 20000);
+</script>

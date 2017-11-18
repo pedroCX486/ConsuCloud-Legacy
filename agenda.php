@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+require("../componentes/sessionbuster.php");
+
 $idUsuario = $_SESSION["idUsuario"];
 
 if(!$_SESSION["isMedico"]){

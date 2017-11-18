@@ -1,7 +1,7 @@
 <?php
-require("../componentes/db/connect.php");
-
 session_start();
+
+require("../componentes/sessionbuster.php");
 
 if(!$_SESSION["isAdmin"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
@@ -10,6 +10,8 @@ if(!$_SESSION["isAdmin"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;
 }
+
+require("../componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>

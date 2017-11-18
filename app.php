@@ -2,6 +2,9 @@
 date_default_timezone_set('America/Recife');
 
 session_start();
+
+require("../componentes/sessionbuster.php");
+
 $idUsuario = $_SESSION["idUsuario"];
 
 if(empty($_SESSION)){
