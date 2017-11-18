@@ -30,7 +30,7 @@ if(!$_SESSION["isAdmin"]){
       <p>Execute aqui um backup completo do sistema.</p>
 
       <?php
-        $backupinfo = "../backup/backup_info.txt";
+        $backupinfo = "../backup/generated/backup_info.txt";
         
         if (file_exists($backupinfo)) {
           echo '<center>
