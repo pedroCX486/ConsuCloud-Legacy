@@ -106,13 +106,13 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">
               <?php if($tipoUsuario == 'medico'){echo "CRM (Médicos)";} else{echo "CPF (Secretárias)";} ?>:</span>
-            <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $crm; ?>">
+            <input required type="number" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $crm; ?>" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
           </div>
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
             <input required type="text" class="form-control" name="nomeCompleto" aria-describedby="basic-addon1" value="<?php echo $nomeCompleto; ?>"
-              maxlength="150">
+              maxlength="150" pattern="([A-zÀ-ž\s]){2,}" title="Dr João da Silva Filho (Apenas Letras)">
           </div>
 
           <div class="input-group" <?php if($tipoUsuario=='secretaria'){echo "style=\"display: none;\"";}?>>
@@ -143,7 +143,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $RG; ?>">
+                <input required type="number" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $RG; ?>" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
               </div>
             </div>
             <div class="col-lg-6">
@@ -163,7 +163,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Nome Curto:*</span>
             <input required type="text" class="form-control" name="nomeCurto" aria-describedby="basic-addon1" placeholder="Para exibição no sistema, exemplo: Dr. João Cláudio"
-              maxlength="25" value="<?php echo $nomeCurto; ?>">
+              maxlength="25" value="<?php echo $nomeCurto; ?>" pattern="([A-zÀ-ž\s.]){2,}" title="Sr. João (Apenas Letras)">
           </div>
 
           <div class="input-group">
@@ -196,8 +196,8 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
-                      maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <input type="number" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
+                      maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">
@@ -221,7 +221,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
                     <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                      pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="form-group">

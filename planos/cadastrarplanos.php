@@ -85,7 +85,7 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10">
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">
@@ -105,7 +105,7 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="form-group">

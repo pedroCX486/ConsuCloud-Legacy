@@ -112,7 +112,7 @@ if($row){
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
                     <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
-                      maxlength="10">
+                      maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">
@@ -135,7 +135,7 @@ if($row){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>">
+                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="form-group">

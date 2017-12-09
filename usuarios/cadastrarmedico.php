@@ -52,12 +52,12 @@ if(!$_SESSION["isAdmin"]){
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1" style="color: black">
               <b>CRM</b>:*</span>
-            <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <input required type="number" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
           </div>
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Nome Completo:*</span>
-            <input required type="text" class="form-control" name="nomeCompleto" aria-describedby="basic-addon1" maxlength="150">
+            <input required type="text" class="form-control" name="nomeCompleto" aria-describedby="basic-addon1" maxlength="150" pattern="([A-zÀ-ž\s]){2,}" title="Dr João da Silva Filho (Apenas Letras)">
           </div>
 
           <div class="input-group">
@@ -66,7 +66,7 @@ if(!$_SESSION["isAdmin"]){
           </div>
 
           <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</span>
+            <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</pan>
             <input required type="date" class="form-control" name="dataNasc" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10"
               OnKeyPress="formatar('##/##/####', this)">
           </div>
@@ -87,7 +87,7 @@ if(!$_SESSION["isAdmin"]){
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
               </div>
             </div>
             <div class="col-lg-6">
@@ -107,7 +107,7 @@ if(!$_SESSION["isAdmin"]){
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Nome Curto:*</span>
             <input required type="text" class="form-control" name="nomeCurto" aria-describedby="basic-addon1" placeholder="Para exibição no sistema, exemplo: Dr. Antônio Silva"
-              maxlength="25">
+              maxlength="25" pattern="([A-zÀ-ž\s.]){2,}" title="Dr. João (Apenas Letras)">
           </div>
 
           <div class="input-group">
@@ -137,7 +137,7 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <input type="number" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">
@@ -157,7 +157,7 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="form-group">
