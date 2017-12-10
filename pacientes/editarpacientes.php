@@ -102,7 +102,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                <input required type="number" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $RG; ?>" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" value="<?php echo $RG; ?>" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
               </div>
             </div>
             <div class="col-lg-6">
@@ -137,7 +137,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="number" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
                       maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 

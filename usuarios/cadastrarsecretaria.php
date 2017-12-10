@@ -52,7 +52,7 @@ if(!$_SESSION["isAdmin"]){
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1" style="color: black">
               <b>CPF</b>:*</span>
-            <input required type="number" class="form-control validate" name="crm" aria-describedby="basic-addon1" maxlength="11"
+            <input required type="text" class="form-control validate" name="crm" aria-describedby="basic-addon1" maxlength="11"
               pattern="([0-9]){2,}" title="12345678 (Apenas Números)" pattern="[0-9]{11}" title="Digite sem traços, pontos e todos os 11 dígitos. Exemplo: 99999999999">
           </div>
 
@@ -83,7 +83,7 @@ if(!$_SESSION["isAdmin"]){
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Número da Identidade/RG:*</span>
-                <input required type="number" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                <input required type="text" class="form-control" name="RG" aria-describedby="basic-addon1" maxlength="20" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
               </div>
             </div>
             <div class="col-lg-6">
@@ -133,7 +133,7 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="number" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">

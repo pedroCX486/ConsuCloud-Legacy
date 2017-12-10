@@ -52,7 +52,7 @@ if(!$_SESSION["isAdmin"]){
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1" style="color: black">
               <b>CRM</b>:*</span>
-            <input required type="number" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+            <input required type="text" class="form-control" name="crm" aria-describedby="basic-addon1" maxlength="20" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
           </div>
 
           <div class="input-group">
@@ -66,7 +66,7 @@ if(!$_SESSION["isAdmin"]){
           </div>
 
           <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</pan>
+            <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</span>
             <input required type="date" class="form-control" name="dataNasc" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10"
               OnKeyPress="formatar('##/##/####', this)">
           </div>
@@ -137,7 +137,7 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="number" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">
