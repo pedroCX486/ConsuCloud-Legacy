@@ -96,8 +96,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Hora da Consulta:*</span>
-                <input required type="time" class="form-control" name="horaConsulta" aria-describedby="basic-addon1" value="<?php echo $horaConsulta = date("
-                  H:i ", strtotime($horaConsulta)); ?>" maxlength="5" OnKeyPress="formatar('##:##', this)">
+                <input required type="time" class="form-control" name="horaConsulta" aria-describedby="basic-addon1" value="<?php echo $horaConsulta = date("H:i", strtotime($horaConsulta)); ?>" maxlength="5" OnKeyPress="formatar('##:##', this)">
               </div>
             </div>
           </div>
@@ -112,7 +111,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
                     if($row){              
                       while($get = $select->fetch_array()){
                   ?>
-                <option value="<?php echo $get['idUsuario'] . '" '; if($medico == $get['idUsuario ']){echo 'selected';}?>><?php echo $get['nomeCompleto ']; ?></option>
+                <option value="<?php echo $get['idUsuario'] . '" '; if($medico == $get['idUsuario']){echo 'selected';}?>><?php echo $get['nomeCompleto']; ?></option>
                   <?php
                       }
                     }

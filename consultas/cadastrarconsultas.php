@@ -135,18 +135,16 @@ require("../componentes/db/connect.php");
               <select required name="medico" class="form-control">
                 <option disabled selected value="">Médico da Consulta*</option>
                 <?php
-              $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
-              $row = $select->num_rows;
-                if($row){              
-                  while($get = $select->fetch_array()){
-                  ?>
-                  <option value="<?php echo $get['idUsuario']; ?>">
-                    <?php echo $get['nomeCompleto']; ?>
-                  </option>
-                  <?php
+                  $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
+                  $row = $select->num_rows;
+                    if($row){              
+                      while($get = $select->fetch_array()){
+                ?>
+                <option value="<?php echo $get['idUsuario']; ?>"><?php echo $get['nomeCompleto']; ?></option>
+                <?php
+                    }
                   }
-                }
-              ?>
+                ?>
               </select>
             </div>
           </p>
@@ -157,12 +155,10 @@ require("../componentes/db/connect.php");
               <?php        
                 $select = $mysqli->query("SELECT * FROM planos");
                 $row = $select->num_rows;
-                  if($row){              
-                    while($get = $select->fetch_array()){
+                if($row){              
+                  while($get = $select->fetch_array()){
               ?>
-              <option value="<?php echo $get['idPlano']; ?>">
-                <?php echo $get['nomePlano']; ?>
-              </option>
+              <option value="<?php echo $get['idPlano']; ?>"><?php echo $get['nomePlano']; ?></option>
               <?php
                   }
                 }
