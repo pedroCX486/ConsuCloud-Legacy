@@ -92,21 +92,21 @@ require("../componentes/db/connect.php");
           <?php
         
             if(!empty($_POST)){
-              if(!empty($dataInicio) && empty($dataFim)){
+              if(!empty($_POST['dataInicio'])){
                 $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
                 $dataInicio = date('Y-m-d',$dataInicio); 
-              }elseif(!empty($dataInicio) && !empty($dataFim)){
+              }elseif (!empty($_POST['dataFim'])){
                 $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
                 $dataFim = date('Y-m-d',$dataFim);
               }
             }       
-            if($mesFiltro){
+            if(!empty($dataInicio) && empty($dataFim)){
                 $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
                                           JOIN planos AS pl ON c.planoConsulta = pl.idPlano
                                           WHERE dataConsulta = '$dataInicio' ORDER BY dataConsulta ASC, horaConsulta ASC");
-            }elseif($dataFiltro){
+            }elseif(!empty($dataInicio) && !empty($dataFim)){
                $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
