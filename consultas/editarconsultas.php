@@ -149,6 +149,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
             <select required name="tipoConsulta" class="form-control">
               <option disabled>Tipo de Consulta</option>
               <option value="primeiraConsulta" <?php if($tipoConsulta=='primeiraConsulta' ){echo 'selected';} ?>>Primeira Consulta</option>
+              <option value="seguimento" <?php if($tipoConsulta=='seguimento' ){echo 'selected';} ?>>Seguimento</option>
               <option value="retorno" <?php if($tipoConsulta=='retorno' ){echo 'selected';} ?>>Retorno</option>
             </select>
           </div>

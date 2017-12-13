@@ -177,6 +177,7 @@ require("../componentes/db/connect.php");
             <select required name="tipoConsulta" class="form-control">
               <option disabled selected value="">Tipo de Consulta*</option>
               <option value="primeiraConsulta">Primeira Consulta</option>
+              <option value="seguimento">Seguimento</option>
               <option value="retorno">Retorno</option>
             </select>
           </div>
