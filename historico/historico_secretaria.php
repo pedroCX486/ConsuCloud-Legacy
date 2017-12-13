@@ -101,11 +101,11 @@ require("../componentes/db/connect.php");
               }
             }       
             if(!empty($dataInicio) && empty($dataFim)){
-                $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
+               $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
                                           JOIN planos AS pl ON c.planoConsulta = pl.idPlano
-                                          WHERE dataConsulta = '$dataInicio' ORDER BY dataConsulta ASC, horaConsulta ASC");
+                                          WHERE dataConsulta >= '$dataInicio' ORDER BY dataConsulta ASC, horaConsulta ASC");
             }elseif(!empty($dataInicio) && !empty($dataFim)){
                $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 

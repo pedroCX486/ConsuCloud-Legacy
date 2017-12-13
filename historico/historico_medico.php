@@ -105,7 +105,7 @@ require("../componentes/db/connect.php");
               $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                          WHERE dataConsulta = '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+                                          WHERE dataConsulta >= '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
             }elseif(!empty($dataInicio) && !empty($dataFim)){
               $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
