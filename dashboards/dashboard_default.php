@@ -25,21 +25,6 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Versão do Servidor HTTP</h3>
-  </div>
-  <div class="panel-body">
-    <?php 
-      try {
-        echo apache_get_version();
-      } catch (Exception $e) {
-          echo 'Exceção capturada: ',  $e->getMessage(), "\n";
-      }
-    ?>
-  </div>
-</div>
-
 <?php
   $query = $mysqli->query("SELECT * FROM logs WHERE dataLog < ( CURDATE() - INTERVAL 365 DAY )");
   if(mysqli_num_rows($query) != 0){
