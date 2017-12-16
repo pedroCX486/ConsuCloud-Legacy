@@ -86,6 +86,9 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
     <div class="jumbotron">
       <h1>
         <small>Editar Usuário</small>
+				 <a href="usuarios.php">
+          <button class="btn btn-raised btn-danger pull-right">CANCELAR EDIÇÃO</button>
+        </a>
       </h1>
       <br>
       <div class="cadastro">

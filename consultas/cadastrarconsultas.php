@@ -39,10 +39,15 @@ require("../componentes/db/connect.php");
   </script>
 
   <div class="container">
+    
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Consultas</small>
+        <a href="consultas.php">
+          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+        </a>
       </h1>
+      
       <br>
       <div class="cadastro">
 

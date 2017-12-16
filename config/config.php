@@ -50,6 +50,9 @@ if($row){
   <div class="container">
     <div class="jumbotron">
       <h1>Configurações</h1>
+      <a href="../dashboards/dashboard.php">
+        <button class="btn btn-raised btn-danger pull-right">VOLTAR AO INÍCIO</button>
+      </a>
       <p>As informações básicas do consultório ficam aqui.</p>
       <br>
       <p>

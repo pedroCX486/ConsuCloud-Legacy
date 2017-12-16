@@ -42,6 +42,9 @@ require("../componentes/db/connect.php");
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Prontuário</small>
+        <a href="prontuarios.php">
+          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+        </a>
       </h1>
       <br>
 

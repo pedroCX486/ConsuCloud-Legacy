@@ -41,6 +41,9 @@ if(!$_SESSION["isAdmin"]){
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Médico</small>
+         <a href="usuarios.php">
+          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+        </a>
       </h1>
       <br>
       <div class="cadastro">

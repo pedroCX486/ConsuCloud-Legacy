@@ -63,6 +63,9 @@ if($row){
     <div class="jumbotron">
       <h1>
         <small>Editar Plano de Saúde</small>
+         <a href="planos.php">
+          <button class="btn btn-raised btn-danger pull-right">CANCELAR EDIÇÃO</button>
+        </a>
       </h1>
       <br>
       <div class="cadastro">

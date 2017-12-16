@@ -41,6 +41,9 @@ if($_SESSION["isMedico"]){
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Paciente</small>
+         <a href="pacientes.php">
+          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+        </a>
       </h1>
       <br>
       <div class="cadastro">
