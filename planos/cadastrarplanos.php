@@ -28,7 +28,7 @@ if(!$_SESSION["isAdmin"]){
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Plano de Saúde</small>
-         <a href="exames.php">
+         <a href="planos.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>
