@@ -56,7 +56,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
       <h1>
         <small>Editar Pacientes</small>
          <a href="pacientes.php">
-          <button class="btn btn-raised btn-danger pull-right">CANCELAR EDIÇÃO</button>
+          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR EDIÇÃO</button>
         </a>
       </h1>
       <br>

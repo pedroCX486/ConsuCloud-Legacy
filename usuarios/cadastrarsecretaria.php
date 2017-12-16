@@ -29,7 +29,7 @@ if(!$_SESSION["isAdmin"]){
       <h1>
         <small>Cadastrar Secretária</small>
         <a href="usuarios.php">
-          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>
       <br>

@@ -18,4 +18,17 @@
 <link rel="stylesheet" href="/componentes/estilos.css">
 
 <!-- Gambiarra pra Evitar Usuários de Fazerem Merda -->
-<?php if(basename($_SERVER['PHP_SELF']) != "app.php"){echo '<script src="../componentes/anchorKidnap.js"></script>';} ?>
+<?php if(basename($_SERVER['PHP_SELF']) != "app.php" &&
+         basename($_SERVER['PHP_SELF']) != "config.php" &&
+         basename($_SERVER['PHP_SELF']) != "exames.php" &&
+         basename($_SERVER['PHP_SELF']) != "cadastrarpacientes.php" &&
+         basename($_SERVER['PHP_SELF']) != "editarpacientes.php" &&
+         basename($_SERVER['PHP_SELF']) != "cadastrarplanos.php" &&
+         basename($_SERVER['PHP_SELF']) != "editarplanos.php" &&
+         basename($_SERVER['PHP_SELF']) != "prontuarios.php" &&
+         basename($_SERVER['PHP_SELF']) != "cadastrarmedico.php" &&
+         basename($_SERVER['PHP_SELF']) != "cadastrarsecretaria.php" &&
+         basename($_SERVER['PHP_SELF']) != "editarusuarios.php"){
+        echo '<script src="../componentes/anchorKidnap.js"></script>';
+      }
+?>

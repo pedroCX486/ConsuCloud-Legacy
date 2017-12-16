@@ -31,7 +31,7 @@ require("../componentes/db/connect.php");
       <h1>
         <small>Cadastrar Exame</small>
          <a href="exames.php">
-          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>
       <br>

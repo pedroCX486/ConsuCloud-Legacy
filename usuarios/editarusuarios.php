@@ -74,7 +74,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
       <h1>
         <small>Editar Usuário</small>
 				 <a href="usuarios.php">
-          <button class="btn btn-raised btn-danger pull-right">CANCELAR EDIÇÃO</button>
+          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR EDIÇÃO</button>
         </a>
       </h1>
       <br>
@@ -197,7 +197,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
                   </div>
 
                   <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Bairro:span>
+										<span class="input-group-addon" id="basic-addon1">Bairro:</span>
                       <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
                         maxlength="100">
                   </div>

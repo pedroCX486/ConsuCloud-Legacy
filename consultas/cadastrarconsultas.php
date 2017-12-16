@@ -32,7 +32,7 @@ require("../componentes/db/connect.php");
       <h1>
         <small>Cadastrar Consultas</small>
         <a href="consultas.php">
-          <button class="btn btn-raised btn-danger pull-right">CANCELAR CADASTRO</button>
+          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>
       
