@@ -25,6 +25,16 @@ require("componentes/db/connect.php");
   <?php include "componentes/boot.php";?>
 
   <script>
+    //Impedir CTRL+Click
+    $(document).ready(function () {
+      $('a').click(function (e){  
+        if (e.ctrlKey) {
+            return false;
+        }
+      })
+    });
+    
+    //Salvar localização do iFrame Navegador
     $(document).ready(function () {
       currentLocation = localStorage.prevUrl || 'dashboards/dashboard.php';
 
@@ -32,7 +42,7 @@ require("componentes/db/connect.php");
       $('#navegador').load(function () {
         localStorage.prevUrl = $(this)[0].contentWindow.location.href;
       })
-    })
+    });
   </script>
 </head>
 

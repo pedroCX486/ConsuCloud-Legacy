@@ -47,23 +47,10 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
   <title>Pacientes - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+  <script src="../componentes/maskFormat.js"></script>
 </head>
 
 <body>
-
-  <script>
-    function formatar(mascara, documento) {
-      var i = documento.value.length;
-      var saida = mascara.substring(0, 1);
-      var texto = mascara.substring(i)
-
-      if (texto.substring(0, 1) != saida) {
-        documento.value += texto.substring(0, 1);
-      }
-
-    }
-  </script>
-
   <div class="container">
     <div class="jumbotron">
       <h1>
