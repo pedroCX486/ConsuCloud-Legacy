@@ -18,31 +18,4 @@
 <link rel="stylesheet" href="/componentes/estilos.css">
 
 <!-- Gambiarra pra Evitar Usuários de Fazerem Merda -->
-<?php
-if(basename($_SERVER['PHP_SELF']) != "app.php"){
-  echo "<script>
-          $(document).ready(function()
-          {
-              $('a').each(function() {
-                  var href= $(this).attr('href');
-                  $(this).attr('href','javascript:void(0);');
-                  $(this).attr('jshref',href);
-              });
-              $('a').bind('click', function(e) 
-              {
-                  e.stopImmediatePropagation();           
-                  e.preventDefault();
-                  e.stopPropagation();
-                  var href= $(this).attr('jshref');
-                  if ( !e.metaKey && e.ctrlKey )
-                      e.metaKey = e.ctrlKey;
-                  if(!e.metaKey)
-                  {
-                      location.href= href;
-                  }
-                  return false;
-              })
-          });
-        </script>";
-}
-?>
+<?php if(basename($_SERVER['PHP_SELF']) != "app.php"){echo '<script src="../componentes/anchorKidnap.js"></script>';} ?>

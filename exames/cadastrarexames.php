@@ -22,12 +22,10 @@ require("../componentes/db/connect.php");
   <title>Exames - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+  <script src="../componentes/maskFormat.js"></script>
 </head>
 
 <body>
-
-  <script src="../componentes/maskFormat.js"></script>
-
   <div class="container">
     <div class="jumbotron">
       <h1>

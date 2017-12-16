@@ -30,7 +30,13 @@
     <h3 class="panel-title">Versão do Servidor HTTP</h3>
   </div>
   <div class="panel-body">
-    <?php echo apache_get_version(); ?>
+    <?php 
+      try {
+        echo apache_get_version();
+      } catch (Exception $e) {
+          echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+      }
+    ?>
   </div>
 </div>
 

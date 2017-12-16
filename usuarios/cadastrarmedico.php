@@ -20,7 +20,6 @@ if(!$_SESSION["isAdmin"]){
   <title>Usuários - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
-  
   <script src="../componentes/maskFormat.js"></script>
 </head>
 

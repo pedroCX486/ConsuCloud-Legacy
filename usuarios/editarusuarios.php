@@ -65,12 +65,10 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
   <title>Usuários - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+	<script src="../componentes/maskFormat.js"></script>
 </head>
 
 <body>
-
-  <script src="../componentes/maskFormat.js"></script>
-
   <div class="container">
     <div class="jumbotron">
       <h1>
