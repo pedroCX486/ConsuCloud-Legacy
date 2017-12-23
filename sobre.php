@@ -51,17 +51,15 @@ if(empty($_SESSION)){
       <br>
       <b>Banco de Dados:</b> Luan Gandhi
       <br>
-      <b>Analista de Sistemas:</b> Marcela Oliveira
-      <br>
-      <b>Analista de Sistemas:</b> Ivonaldo Torres
+      <b>Analistas de Sistemas:</b> Ivonaldo Torres, Marcela Oliveira
       <br>
       <b>Analista de Documentação:</b> José Jackson
       <br>
-      <b>Analista de Testes:</b> Rodrigo Luna
+      <b>Analista de Testes:</b> Rodrigo Luna, Ramon Dantas
       <br>
 
       <br>
-      <br> Copyright © 2017 - Todos os direitos reservados - Versão 20171216
+      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20171224
 
     </div>
   </div>
