@@ -28,7 +28,8 @@
          basename($_SERVER['PHP_SELF']) != "prontuarios.php" &&
          basename($_SERVER['PHP_SELF']) != "cadastrarmedico.php" &&
          basename($_SERVER['PHP_SELF']) != "cadastrarsecretaria.php" &&
-         basename($_SERVER['PHP_SELF']) != "editarusuarios.php"){
+         basename($_SERVER['PHP_SELF']) != "editarusuarios.php" && 
+        basename($_SERVER['PHP_SELF']) != "contentdelivery.php"){
         echo '<script src="../componentes/anchorKidnap.js"></script>';
       }
 ?>
