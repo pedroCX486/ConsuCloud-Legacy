@@ -22,6 +22,7 @@ require("../componentes/db/connect.php");
   <title>Exames - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+  <script src="../componentes/tabBusca.js"></script>
 </head>
 
 <body>
@@ -39,16 +40,21 @@ require("../componentes/db/connect.php");
       <div class="buscar">
         <form method="post" action="exames.php">
 
-          <div class="input-group">
+          <center>
+            <b>Tipo de Busca:</b>
+            <br>
+            <input type="radio" name="tabBusca" onclick="showNome();" value="nome" <?php if($_POST['tabBusca'] == 'nome' || empty($_POST['tabBusca'])){echo 'checked';}?>/> Por Nome &nbsp;
+            <input type="radio" name="tabBusca" onclick="showRG();" value="rg" <?php if($_POST['tabBusca'] == 'rg'){echo 'checked';}?>/> Por RG
+          </center>
+
+          <div class="input-group" id="divNOME" <?php if($_POST['tabBusca'] == 'nome' || empty($_POST['tabBusca'])){echo 'style="display: inline-table;"';}else{echo 'style="display: none;"';}?>>
             <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
-            <input type="text" class="form-control" name="nomePaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos."
-              value="<?php echo $_POST['nomePaciente']; ?>">
+            <input type="text" class="form-control" name="nomePaciente" id="nomePaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['nomePaciente']; ?>" pattern="([A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho (Apenas Letras)">
           </div>
 
-          <div class="input-group">
+          <div class="input-group" id="divRG" <?php if($_POST['tabBusca'] == 'rg'){echo 'style="display: inline-table;"';}else{echo 'style="display: none;"';}?>>
             <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-            <input type="number" class="form-control" name="rgPaciente" aria-describedby="basic-addon1" maxlength="150" placeholder="Campo opcional. Preencha um ou ambos campos."
-              value="<?php echo $_POST['rgPaciente']; ?>">
+            <input type="number" class="form-control" name="rgPaciente" id="rgPaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['rgPaciente']; ?>">
           </div>
 
           <center>
@@ -65,33 +71,26 @@ require("../componentes/db/connect.php");
               <option disabled selected value="">Nome do Paciente*</option>
               <?php        
                 if(!empty($_POST['nomePaciente']) || !empty($_POST['rgPaciente'])){
-                  
+
                     $idUsuario = $_SESSION['idUsuario'];
-              
+
                     if($_POST['nomePaciente'] != ""){
                       $busca = $_POST['nomePaciente'];
-                      
-                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca'");
-                      
+
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente LIKE '%$busca%'");
+
                     }elseif($_POST['rgPaciente'] != ""){
                       $busca = $_POST['rgPaciente'];
-                      
+
                       $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
-                      
-                    }else{
-                      $busca1 = $_POST['rgPaciente'];
-                      $busca2 = $_POST['nomePaciente'];
-                      
-                      $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente = '$busca1' AND RG = '$busca2'");
-                      
-                    }
-                
+
+                    }              
                   }
-                $row = $select->num_rows;
-                if($row){              
-                  while($get = $select->fetch_array()){
-              ?>
-              <option value="<?php echo $get['idPaciente']; ?>">
+                  $row = $select->num_rows;
+                  if($row){              
+                    while($get = $select->fetch_array()){
+                ?>
+              <option value="<?php echo $get['idPaciente']; ?>" <?php if(!empty($_POST['idPaciente']) && $_POST['idPaciente'] == $get['idPaciente']){echo ' selected';} ?>>
                 <?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?>
               </option>
               <?php
@@ -113,26 +112,12 @@ require("../componentes/db/connect.php");
       <div class="panel-group" id="accordion">
       <?php
         if(!empty($_POST['idPaciente'])){
-        if($_POST['nomePaciente'] != ""){
-            $busca = $_POST['nomePaciente'];
+            $buscaExame = $_POST['idPaciente'];
             
             $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
                                     JOIN pacientes AS p ON p.idPaciente = ex.paciente 
-                                    WHERE p.nomePaciente = '$busca' ORDER BY dataExame ASC");
-          }elseif($_POST['rgPaciente'] != ""){
-            $busca = $_POST['rgPaciente'];
-            
-            $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
-                                    JOIN pacientes AS p ON p.idPaciente = ex.paciente 
-                                    WHERE p.RG = $busca ORDER BY dataExame ASC");
-          }else{
-            $busca1 = $_POST['rgPaciente'];
-            $busca2 = $_POST['nomePaciente'];
-            
-            $select = $mysqli->query("SELECT p.nomePaciente, idExame, medico, paciente, dataExame, nomeExame, descExame, arqsExame FROM exames AS ex 
-                                    JOIN pacientes AS p ON p.idPaciente = ex.paciente 
-                                    WHERE p.RG = $busca1 AND p.nomePaciente = '$busca2' ORDER BY dataExame ASC");
-          }
+                                    WHERE p.idPaciente = '$buscaExame' ORDER BY dataExame ASC");
+        
         $row = $select->num_rows;
         if($row){
           while($get = $select->fetch_array()){

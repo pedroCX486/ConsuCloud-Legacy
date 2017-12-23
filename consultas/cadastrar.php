@@ -13,6 +13,11 @@ $dataConsulta = date('Y-m-d',$dataConsulta);
 
 require "../componentes/db/connect.php";
 
+//Para consultas particulares, o campo fica em branco, então defaultamos para zero
+if(empty($carteiraPlano)){
+	$carteiraPlano = 0;
+}
+
 //Executar query
 $query = $mysqli->query("INSERT INTO consultas (paciente,medico,dataConsulta,horaConsulta,planoConsulta,carteiraPlano,tipoConsulta) 
 VALUES ('$paciente', '$medico', '$dataConsulta', '$horaConsulta', '$planoConsulta', '$carteiraPlano', '$tipoConsulta')"); 

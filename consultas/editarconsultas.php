@@ -129,10 +129,9 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
           </div>
 
           <p>
-            <div class="input-group ">
-              <span class="input-group-addon " id="basic-addon1 ">Número da Carteira do Plano:*</span>
-              <input required type="text " class="form-control " name="carteiraPlano " aria-describedby="basic-addon1
-                  " maxlength="20 " value="<?php echo $carteiraPlano; ?>">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Número da Carteira do Plano:*</span>
+              <input required type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" value="<?php if($carteiraPlano != 0){echo $carteiraPlano;}else{echo "";} ?>" placeholder="Apenas números. Deixe em branco para consultas particulares.">
             </div>
           </p>
 
