@@ -96,7 +96,7 @@ if($row){
   
   <!--JS para Invocar Impressão-->
   <script type="text/JavaScript">
-    $(window).bind("load", function() {
+    $(document).ready(function() {
       window.print();
       window.top.close();
     });

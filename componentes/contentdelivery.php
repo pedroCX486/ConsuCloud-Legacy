@@ -27,8 +27,7 @@ echo '<a id="download" href="data:'.$mimeType.';base64,'.$encodedFile.'" downloa
 //Invocar click no href e encerrar a janela automaticamente
 ?>
 <script type="text/JavaScript">
-  $(window).bind("load", function() {
+  $(document).ready(function() {
     $('#download').get(0).click();
-    window.top.close();
   });
 </script>

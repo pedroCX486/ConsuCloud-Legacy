@@ -69,10 +69,10 @@ $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
           <?php echo $nomeConsultorio;?>
           <br>
           <?php
-          echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . 
-          " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . 
-          "<br>" . "Telefones: " . $telefone; 
-        ?>
+            echo $endereco_logradouro . ", " . $endereco_numero . " - " . $endereco_complemento . 
+            " - CEP: " . $endereco_cep . "<br>" . $endereco_bairro . " - " . $endereco_cidade . " - " . $endereco_estado . 
+            "<br>" . "Telefones: " . $telefone; 
+          ?>
         </h4>
         <h5>
           <br>
@@ -164,7 +164,7 @@ $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
 
     <!--JS para Invocar Impressão-->
     <script type="text/JavaScript">
-      $(window).bind("load", function() {
+      $(document).ready(function() {
         window.print();
         window.top.close();
       });
