@@ -29,5 +29,6 @@ echo '<a id="download" href="data:'.$mimeType.';base64,'.$encodedFile.'" downloa
 <script type="text/JavaScript">
   $(document).ready(function() {
     $('#download').get(0).click();
+    window.top.close();
   });
 </script>
