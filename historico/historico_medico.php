@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Recife');
+
 session_start();
 
 require("../componentes/sessionbuster.php");
@@ -44,8 +46,15 @@ require("../componentes/db/connect.php");
 
             if(!empty($dataFim)){
               if($dataFim < $dataInicio){
-                  echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Data Inicial não pode ser menor que Data Final!</b></div>';
-                  unset($_POST);
+                echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Data Inicial não pode ser menor que Data Final!</b></div>';
+                unset($_POST);
+              }
+            }
+          
+            if(!empty($dataFim)){
+              if($dataFim > time()){
+                echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Para buscar consultas futuras use a função de Agenda!</b></div>';
+                unset($_POST);
               }
             }
             
@@ -99,18 +108,19 @@ require("../componentes/db/connect.php");
                 $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
                 $dataFim = date('Y-m-d',$dataFim);
               }
-            }
-          
-            if(!empty($dataInicio) && empty($dataFim)){
-              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
-                                          JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                          JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                          WHERE dataConsulta >= '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
-            }elseif(!empty($dataInicio) && !empty($dataFim)){
-              $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
-                                          JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                          JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                          WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+                   
+              if(!empty($dataInicio) && empty($dataFim)){
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
+                                            JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                            JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                            WHERE dataConsulta >= '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+              }elseif(!empty($dataInicio) && !empty($dataFim)){
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
+                                            JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                            JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                            WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = $idUsuario ORDER BY dataConsulta DESC, horaConsulta DESC");
+              }
+              
             }
             $row = $select->num_rows;
             if($row){
@@ -139,7 +149,7 @@ require("../componentes/db/connect.php");
 
             <!--Tipo de Consulta -->
             <td class="tg-yw4l">
-              <?php if($get['tipoConsulta'] == "retorno"){echo "Retorno";}elseif($get['tipoConsulta'] == "primeiraConsulta"){echo "Primeira Consulta";}?>
+              <?php echo $get['tipoConsulta']; ?>
             </td>
 
             <!-- Confirmar/Desconfirmar Consultas-->

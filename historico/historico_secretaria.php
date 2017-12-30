@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Recife');
+
 session_start();
 
 require("../componentes/sessionbuster.php");
@@ -90,7 +92,6 @@ require("../componentes/db/connect.php");
           </tr>
 
           <?php
-        
             if(!empty($_POST)){
               if(!empty($_POST['dataInicio'])){
                 $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
@@ -139,7 +140,7 @@ require("../componentes/db/connect.php");
 
             <!--Tipo de Consulta -->
             <td class="tg-yw4l">
-              <?php if($get['tipoConsulta'] == "retorno"){echo "Retorno";}elseif($get['tipoConsulta'] == "primeiraConsulta"){echo "Primeira Consulta";}?>
+              <?php echo $get['tipoConsulta']; ?>
             </td>
 
             <!--Plano da Consulta/Carteira do Plano-->

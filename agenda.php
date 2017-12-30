@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Recife');
+
 session_start();
 
 require("componentes/sessionbuster.php");
@@ -40,51 +42,51 @@ require("componentes/db/connect.php");
 
         <form method="post" action="agenda.php">
           <?php
-          $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
-          $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+            $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+            $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
 
-          if(!empty($dataFim)){
-            if($dataFim < $dataInicio){
+            if(!empty($dataFim)){
+              if($dataFim < $dataInicio){
                 echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Data Inicial não pode ser menor que Data Final!</b></div>';
                 unset($_POST);
+              }
             }
-          }
-          
-          if(!empty($dataInicio) || !empty($dataFim)){
-            if($dataInicio < time() || $dataFim < time()){
+
+            if(!empty($dataInicio) || !empty($dataFim)){
+              if($dataInicio < time() || $dataFim < time()){
                 echo '<div style="width: 500px;" class="alert alert-warning" id="rcorners2" role="alert"><b>Para buscar consultas anteriores use a função de histórico!</b></div>';
                 unset($_POST);
+              }
             }
-          }
-          
+
             if(!empty($dataInicio)){
               $dataInicio = date('Y-m-d',$dataInicio); 
             }
             if(!empty($dataFim)){
               $dataFim = date('Y-m-d',$dataFim);
             }
-        ?>
+          ?>
 
-            <div style="width:350px;">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Data Inicial:</span>
-                <input value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1"
-                  max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
-              </div>
-              e / ou
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Data Final:</span>
-                <input value="<?php echo $dataFim ?>" type="date" class="form-control" name="dataFim" aria-describedby="basic-addon1" max="9999-12-31"
-                  maxlength="10" OnKeyPress="formatar('##/##/####', this)">
-              </div>
+          <div style="width:350px;">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Data Inicial:</span>
+              <input value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1"
+                max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
             </div>
+            e / ou
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Data Final:</span>
+              <input value="<?php echo $dataFim ?>" type="date" class="form-control" name="dataFim" aria-describedby="basic-addon1" max="9999-12-31"
+                maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+            </div>
+          </div>
 
-            <p>
-              <button class="btn btn-raised btn-primary" type="submit">Filtrar Agenda</button> &nbsp;
-              <a href="agenda.php">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </a>
-            </p>
+          <p>
+            <button class="btn btn-raised btn-primary" type="submit">Filtrar Agenda</button> &nbsp;
+            <a href="agenda.php">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>
+          </p>
         </form>
 
         <br>
@@ -97,33 +99,32 @@ require("componentes/db/connect.php");
             <th class="titulos">DATA - HORA</th>
           </tr>
           <?php
-        
-        if(!empty($_POST)){
-          if(!empty($_POST['dataInicio'])){
-            $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
-            $dataInicio = date('Y-m-d',$dataInicio); 
-          }elseif (!empty($_POST['dataFim'])){
-            $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
-            $dataFim = date('Y-m-d',$dataFim);
-          }
-        }
-        
-        if(!empty($dataInicio) && empty($dataFim)){
-          $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
-                                      JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                      JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                      WHERE dataConsulta = '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
-        }elseif(!empty($dataInicio) && !empty($dataFim)){
-          $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
-                                      JOIN pacientes AS p ON p.idPaciente = c.paciente 
-                                      JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                      WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
-        }else{
-          $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
-                                      JOIN pacientes AS p ON p.idPaciente = c.paciente
-                                      JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                      WHERE dataConsulta > CURDATE() AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
-        }
+            if(!empty($_POST)){
+              if(!empty($_POST['dataInicio'])){
+                $dataInicio = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataInicio'])))));
+                $dataInicio = date('Y-m-d',$dataInicio); 
+              }elseif (!empty($_POST['dataFim'])){
+                $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
+                $dataFim = date('Y-m-d',$dataFim);
+              }
+
+              if(!empty($dataInicio) && empty($dataFim)){
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
+                                            JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                            JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                            WHERE dataConsulta = '$dataInicio' AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
+              }elseif(!empty($dataInicio) && !empty($dataFim)){
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
+                                            JOIN pacientes AS p ON p.idPaciente = c.paciente 
+                                            JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                            WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
+              }else{
+                $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta FROM consultas AS c 
+                                            JOIN pacientes AS p ON p.idPaciente = c.paciente
+                                            JOIN usuarios AS u ON u.idUsuario = c.medico 
+                                            WHERE dataConsulta > CURDATE() AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
+              }
+            }
             $row = $select->num_rows; 
             if($row){
               while($get = $select->fetch_array()){
@@ -136,21 +137,21 @@ require("componentes/db/connect.php");
 
               <!--Tipo da Consulta-->
               <td class="tg-yw4l">
-                <?php if($get['tipoConsulta'] == "retorno"){echo "Retorno";}elseif($get['tipoConsulta'] == "primeiraConsulta"){echo "Primeira Consulta";}?>
+                <?php echo $get['tipoConsulta']; ?>
               </td>
 
               <!--Data da Consulta-->
               <td class="tg-yw4l">
                 <?php
-                $data = date('d-m-Y', strtotime($get['dataConsulta']));
-                $hora = date('H:i', strtotime($get['horaConsulta']));
-                echo $data . ' - ' . $hora;
+                  $data = date('d-m-Y', strtotime($get['dataConsulta']));
+                  $hora = date('H:i', strtotime($get['horaConsulta']));
+                  echo $data . ' - ' . $hora;
                 ?>
               </td>
             </tr>
             <?php
               }
-              }else{echo '<b>Não existem consultas agendadas.</b>';}
+                }else{echo '<b>Não existem consultas agendadas.</b>';}
             ?>
         </table>
       </center>

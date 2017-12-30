@@ -162,16 +162,16 @@ require("../componentes/db/connect.php");
           <p>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Número da Carteira do Plano:*</span>
-              <input required type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" placeholder="Digite apenas números. Para consultas particulares, deixe em branco.">
+              <input type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" placeholder="Digite apenas números. Para consultas particulares, deixe em branco.">
             </div>
           </p>
 
           <div class="form-group">
             <select required name="tipoConsulta" class="form-control">
               <option disabled selected value="">Tipo de Consulta*</option>
-              <option value="primeiraConsulta">Primeira Consulta</option>
-              <option value="seguimento">Seguimento</option>
-              <option value="retorno">Retorno</option>
+              <option value="Primeira Consulta">Primeira Consulta</option>
+              <option value="Seguimento">Seguimento</option>
+              <option value="Retorno">Retorno</option>
             </select>
           </div>
 

@@ -162,7 +162,7 @@ require("../componentes/db/connect.php");
 
             <!--Tipo de Consulta -->
             <td class="tg-yw4l">
-              <?php if($get['tipoConsulta'] == "retorno"){echo "Retorno";}elseif($get['tipoConsulta'] == "primeiraConsulta"){echo "Primeira Consulta";}?>
+              <?php echo $get['tipoConsulta']; ?>
             </td>
 
             <!--Nome do Medico-->

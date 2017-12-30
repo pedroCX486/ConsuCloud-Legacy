@@ -131,16 +131,16 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
           <p>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Número da Carteira do Plano:*</span>
-              <input required type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" value="<?php if($carteiraPlano != 0){echo $carteiraPlano;}else{echo "";} ?>" placeholder="Apenas números. Deixe em branco para consultas particulares.">
+              <input type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" value="<?php if($carteiraPlano != 0){echo $carteiraPlano;}else{echo "";} ?>" placeholder="Apenas números. Deixe em branco para consultas particulares.">
             </div>
           </p>
 
           <div class="form-group">
             <select required name="tipoConsulta" class="form-control">
               <option disabled>Tipo de Consulta</option>
-              <option value="primeiraConsulta" <?php if($tipoConsulta=='primeiraConsulta' ){echo 'selected';} ?>>Primeira Consulta</option>
-              <option value="seguimento" <?php if($tipoConsulta=='seguimento' ){echo 'selected';} ?>>Seguimento</option>
-              <option value="retorno" <?php if($tipoConsulta=='retorno' ){echo 'selected';} ?>>Retorno</option>
+              <option value="Primeira Consulta" <?php if($tipoConsulta == 'Primeira Consulta'){echo 'selected';} ?>>Primeira Consulta</option>
+              <option value="Seguimento" <?php if($tipoConsulta == 'Seguimento'){echo 'selected';} ?>>Seguimento</option>
+              <option value="Retorno" <?php if($tipoConsulta == 'Retorno'){echo 'selected';} ?>>Retorno</option>
             </select>
           </div>
 
