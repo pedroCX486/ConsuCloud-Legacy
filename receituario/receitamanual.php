@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require("../componentes/sessionbuster.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
 $idUsuario = $_SESSION['idUsuario'];
 
@@ -13,7 +13,7 @@ if(!$_SESSION["isMedico"]){
   die;
 }
 
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 $select = $mysqli->query("SELECT conf.nomeConsultorio, conf.telefone, conf.email, conf.endereco_logradouro, conf.endereco_numero, conf.endereco_complemento,
                           conf.endereco_bairro, conf.endereco_cidade, conf.endereco_cep, conf.endereco_estado AS consultorioEstado, areaAtuacao, nomeCompleto, u.endereco_estado, crm FROM usuarios AS u 
@@ -51,7 +51,7 @@ if($row){
   <meta charset="UTF-8">
   <title>Receituário - ConsuCloud</title>
 
-  <?php include "../componentes/boot.php";?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
 </head>
 
 <body>
@@ -93,35 +93,7 @@ if($row){
 
   </div>
 
-  <script>
-    var limit = 30; //Máximo de linhas contando a partir de zero
-    var textarea = document.getElementById("receita");
-    var spaces = textarea.getAttribute("cols");
-
-    textarea.onkeyup = function () {
-      var lines = textarea.value.split("\n");
-
-      for (var i = 0; i < lines.length; i++) {
-        if (lines[i].length <= spaces) continue;
-        var j = 0;
-
-        var space = spaces;
-
-        while (j++ <= spaces) {
-          if (lines[i].charAt(j) === " ") space = j;
-        }
-        lines[i + 1] = lines[i].substring(space + 1) + (lines[i + 1] || "");
-        lines[i] = lines[i].substring(0, space);
-      }
-      if (lines.length > limit) {
-        textarea.style.color = 'red';
-        setTimeout(function () {
-          textarea.style.color = '';
-        }, 500);
-      }
-      textarea.value = lines.slice(0, limit).join("\n");
-    };
-  </script>
+  <script src="../componentes/slicer.js"></script>
 
 </body>
 

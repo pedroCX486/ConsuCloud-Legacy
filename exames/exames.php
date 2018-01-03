@@ -32,7 +32,7 @@ require("../componentes/db/connect.php");
 
       <h1>Exames</h1>
       <a href="cadastrarexames.php">
-        <button class="btn btn-raised btn-success pull-right">Novo Exame</button>
+        <button class="btn btn-raised btn-success pull-right">NOVO EXAME</button>
       </a>
 
       <p>Consultar exame:</p>

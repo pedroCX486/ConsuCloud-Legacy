@@ -34,13 +34,23 @@
 
           </ul>
         </li>
+        
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Receituário
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
 
-        <!-- Filtrando Receituário -->
-        <?php
-          if($_SESSION["isMedico"] == true){
-            echo '<li><a target="navegador" href="../receituario/receituario.php">Receituário</a></li>';
-          }
-        ?>
+            <!-- Filtrando Receituário -->
+            <?php
+              if($_SESSION["isMedico"] == true){
+                echo '<li><a target="navegador" href="../receituario/receitas.php">Gereciamento de Receitas</a></li>';
+                echo '<li><a target="navegador" href="../receituario/receitamanual.php">Receita Manual</a></li>';
+              }
+            ?>
+
+          </ul>
+        </li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

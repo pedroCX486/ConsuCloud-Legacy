@@ -80,8 +80,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Data da Consulta:*</span>
-                <input required type="date" class="form-control" name="dataConsulta" aria-describedby="basic-addon1" value="<?php echo $dataConsulta; ?>"
-                  max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
+                <input required type="date" class="form-control" name="dataConsulta" aria-describedby="basic-addon1" value="<?php echo $dataConsulta; ?>" max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
               </div>
             </div>
             <div class="col-lg-6">

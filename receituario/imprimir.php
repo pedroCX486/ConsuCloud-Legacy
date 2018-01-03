@@ -81,7 +81,35 @@ if($row){
     
     <div style="margin-left: 20px;">
       <br>
-      <?php echo nl2br($_POST["receita"]); ?>
+      <?php 
+      if(!empty($_GET["receita"])){
+        $receita = $_GET["receita"];
+        
+        if($_GET["noPaciente"]){
+          
+          $select = $mysqli->query("SELECT idReceita, receita FROM receitas WHERE idReceita = '$receita'");
+          
+        }else{
+          
+          $select = $mysqli->query("SELECT p.nomePaciente AS nomePaciente, paciente, idReceita, receita FROM receitas AS r 
+                                    JOIN pacientes AS p ON p.idPaciente = r.paciente
+                                    WHERE idReceita = '$receita'");
+
+        }
+        
+        $row = $select->num_rows;
+        if($row){
+          while($get = $select->fetch_array()){
+            if(!empty($get['paciente'])){
+              echo "Paciente: " . $get['nomePaciente'];
+              echo "<br><br>";
+            }
+            echo nl2br($get['receita']);
+          }
+        }
+      }else{
+        echo nl2br($_POST["receita"]);
+      }?>
     </div>
   </div>
   

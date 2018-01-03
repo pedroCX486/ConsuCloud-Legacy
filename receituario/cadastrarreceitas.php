@@ -3,9 +3,9 @@ session_start();
 
 require("../componentes/sessionbuster.php");
 
-if($_SESSION["isMedico"]){
+if(!$_SESSION["isMedico"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;  
+  die;
 }elseif(empty($_SESSION)){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;
@@ -19,7 +19,7 @@ require("../componentes/db/connect.php");
 
 <head>
   <meta charset="UTF-8">
-  <title>Consultas - ConsuCloud</title>
+  <title>Receitas - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
   <script src="../componentes/maskFormat.js"></script>
@@ -31,8 +31,8 @@ require("../componentes/db/connect.php");
     
     <div class="jumbotron">
       <h1>
-        <small>Cadastrar Consultas</small>
-        <a href="consultas.php">
+        <small>Cadastrar Receitas</small>
+        <a href="receitas.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>
@@ -41,7 +41,7 @@ require("../componentes/db/connect.php");
       <div class="cadastro">
 
         <div class="buscar">
-          <form method="post" action="cadastrarconsultas.php">
+          <form method="post" action="cadastrarreceitas.php">
 
             <center>
               <b>Tipo de Busca:</b>
@@ -62,7 +62,7 @@ require("../componentes/db/connect.php");
 
             <center>
               <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-              <a href="cadastrarconsultas.php">
+              <a href="cadastrarreceitas.php">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </a>
             </center>
@@ -73,7 +73,7 @@ require("../componentes/db/connect.php");
         <form method="post" action="cadastrar.php">
 
           <div class="form-group">
-            <select name="paciente" class="form-control">
+            <select id="paciente" name="paciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
               <?php
                 if(!empty($_POST)){
@@ -106,19 +106,28 @@ require("../componentes/db/connect.php");
               ?>
             </select>
           </div>
+          
+          <div class="form-group">
+            <select required name="tipoReceita" class="form-control">
+              <option disabled selected value="">Tipo de Receita*</option>
+              <option value="Receita de Medicação">Receita de Medicação</option>
+              <option value="Receita de Paciente">Receita de Paciente</option>
+              <option value="Atestado">Atestado</option>
+            </select>
+          </div>
 
           <div class="row">
             <div class="col-lg-6">
               <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Data da Consulta:*</span>
-                <input required type="date" class="form-control" name="dataConsulta" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10"
+                <span class="input-group-addon" id="basic-addon1">Data do Cadastro da Receita:*</span>
+                <input required type="date" class="form-control" name="dataReceita" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10"
                   OnKeyPress="formatar('##/##/####', this)">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Hora da Consulta:*</span>
-                <input required type="time" class="form-control" name="horaConsulta" aria-describedby="basic-addon1" maxlength="5" OnKeyPress="formatar('##:##', this)">
+                <span class="input-group-addon" id="basic-addon1">Hora do Cadastro da Receita:*</span>
+                <input required type="time" class="form-control" name="horaReceita" aria-describedby="basic-addon1" maxlength="5" OnKeyPress="formatar('##:##', this)">
               </div>
             </div>
           </div>
@@ -126,7 +135,7 @@ require("../componentes/db/connect.php");
           <p>
             <div class="form-group">
               <select required name="medico" class="form-control">
-                <option disabled selected value="">Médico da Consulta*</option>
+                <option disabled selected value="">Médico Prescritor*</option>
                 <?php
                   $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
                   $row = $select->num_rows;
@@ -142,43 +151,22 @@ require("../componentes/db/connect.php");
             </div>
           </p>
 
-          <div class="form-group">
-            <select required name="planoConsulta" class="form-control">
-              <option disabled selected value="">Plano de Consulta*</option>
-              <?php        
-                $select = $mysqli->query("SELECT * FROM planos");
-                $row = $select->num_rows;
-                if($row){              
-                  while($get = $select->fetch_array()){
-              ?>
-              <option value="<?php echo $get['idPlano']; ?>"><?php echo $get['nomePlano']; ?></option>
-              <?php
-                  }
-                }
-              ?>
-            </select>
-          </div>
-
           <p>
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Número da Carteira do Plano:*</span>
-              <input type="text" class="form-control" name="carteiraPlano" aria-describedby="basic-addon1" maxlength="20" placeholder="Digite apenas números. Para consultas particulares, deixe em branco.">
+              <span class="input-group-addon" id="basic-addon1">Nome Descritivo da Receita:*</span>
+              <input required type="text" class="form-control" name="nomeReceita" aria-describedby="basic-addon1" maxlength="250" placeholder="Um nome curto para descrever a receita: Receita de Gláucio Silva ou Receita de Oxalato de Escitalopram">
             </div>
           </p>
 
-          <div class="form-group">
-            <select required name="tipoConsulta" class="form-control">
-              <option disabled selected value="">Tipo de Consulta*</option>
-              <option value="Primeira Consulta">Primeira Consulta</option>
-              <option value="Seguimento">Seguimento</option>
-              <option value="Retorno">Retorno</option>
-            </select>
-          </div>
-
+          <br>
+      
+          <span class="input-group-addon" style="text-align: left;" id="basic-addon1">Receita:*</span>
+          <textarea required style="border-style: groove; border-width: 1px;" name="receita" id="receita" class="form-control" rows="10" cols="70" wrap="hard"></textarea>
+      
           <br>
 
           <center>
-            <button type="submit" class="btn btn-raised btn-primary btn-lg">CADASTRAR CONSULTA</button>
+            <button type="submit" class="btn btn-raised btn-primary btn-lg">CADASTRAR RECEITA</button>
           </center>
 
         </form>
@@ -186,6 +174,8 @@ require("../componentes/db/connect.php");
       </div>
     </div>
   </div>
+
+  <script src="../componentes/slicer.js"></script>
 
 </body>
 
