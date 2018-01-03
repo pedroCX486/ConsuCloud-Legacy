@@ -44,7 +44,7 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                   <li><a target="navegador" href="../receituario/receitas.php">Gereciamento de Receitas</a></li>
+                   <li><a target="navegador" href="../receituario/receitas.php">Gerenciamento de Receitas</a></li>
                     <li><a target="navegador" href="../receituario/receitamanual.php">Receita Manual</a></li>
                 </ul>
               </li>
