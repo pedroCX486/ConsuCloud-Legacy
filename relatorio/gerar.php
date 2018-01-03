@@ -164,7 +164,7 @@ $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
 
     <!--JS para Invocar Impressão-->
     <script type="text/JavaScript">
-      $(document).ready(function() {
+      $(window).bind(“load”, function() {
         window.print();
         window.top.close();
       });
