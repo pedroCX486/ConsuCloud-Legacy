@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Material Design -->
-<link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/materialdesign/bootstrap-material-design.min.css" />
-<link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/materialdesign/ripples.min.css" />
+<link rel="stylesheet" type="text/css" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/materialdesign/bootstrap-material-design.min.css" />
+<link rel="stylesheet" type="text/css" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/materialdesign/ripples.min.css" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" />
 
@@ -34,6 +34,6 @@
          basename($_SERVER['PHP_SELF']) != "cadastrarsecretaria.php" &&
          basename($_SERVER['PHP_SELF']) != "editarusuarios.php" &&
          basename($_SERVER['PHP_SELF']) != "receitas.php"){
-        echo '<script src="http://'.$_SERVER['HTTP_HOST'].'/componentes/anchorKidnap.js"></script>';
+        echo '<script src="https://'.$_SERVER['HTTP_HOST'].'/componentes/anchorKidnap.js"></script>';
       }
 ?>
