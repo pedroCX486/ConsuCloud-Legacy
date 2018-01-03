@@ -3,16 +3,6 @@ ConsuCloud - CODENAME BOLO DE ROLO // (C) 2018 OrangeMayhem Softworks
 Configurações PHP Recomendadas:  
 upload_max_filesize: 60M, max_file_uploads: 10, post_max_size: 128M  
   
-Senha dos Deploys:  
-C0Sult8r10sp8wnom4yhemsoftw8ks  
-  
-Backdoor para Debugging/Teste: (DESATIVADO/ABANDONADO)  
-Login: Debug  
-Senha: c0sult8r10s  
-  
-Cloud9 IDE  
-PHPmyAdmin: https://consucloud-gafanhotz.c9users.io/  
-  
 ________________________________________
 
 
