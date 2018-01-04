@@ -26,8 +26,12 @@ require("../componentes/db/connect.php");
 
   <script>
     $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip(); 
+      $('[data-toggle="tooltip"]').tooltip(); 
     });
+    
+    setTimeout(function(){
+      window.location.reload(1);
+    }, 20000);
   </script>
 </head>
 
