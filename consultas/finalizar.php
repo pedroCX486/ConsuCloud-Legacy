@@ -2,22 +2,22 @@
 header ('Content-type: text/html; charset=UTF-8');
 
 $idConsulta = trim(addslashes(strip_tags($_GET['consulta'])));
-$confirmaConsulta = trim(addslashes(strip_tags($_GET['cod'])));
+$finalizaConsulta = trim(addslashes(strip_tags($_GET['cod'])));
 
 require "../componentes/db/connect.php";
 
 // Perform queries 
-$query = $mysqli->query("UPDATE consultas SET confirmaConsulta = '$confirmaConsulta' WHERE idConsulta = '$idConsulta'");
+$query = $mysqli->query("UPDATE consultas SET consultaFinalizada = '$finalizaConsulta' WHERE idConsulta = '$idConsulta'");
 
-if ($query){
-	if($confirmaConsulta == '1'){
+if($query){
+	if($finalizaConsulta == '1'){
 		echo '<script type="text/javascript">
-            alert("Consulta confirmada com sucesso.");
+            alert("Consulta finalizada com sucesso.");
             location.href="../dashboards/dashboard.php";
 					</script>';
 	}else{
 		echo '<script type="text/javascript">
-            alert("Consulta desconfirmada com sucesso.");
+            alert("Consulta reaberta com sucesso.");
             location.href="../dashboards/dashboard.php";
 					</script>';
 	}

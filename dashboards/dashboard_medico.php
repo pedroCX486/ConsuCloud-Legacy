@@ -7,7 +7,7 @@
       <th class="titulos"></th>
     </tr>
     <?php
-      $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta FROM consultas AS c 
+      $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, consultaFinalizada, idConsulta FROM consultas AS c 
                                   JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                   JOIN usuarios AS u ON u.idUsuario = c.medico 
                                   WHERE dataConsulta = CURDATE() AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
@@ -36,12 +36,22 @@
         ?>
       </td>
 
-      <!--Confirmação de Consulta-->
+      
       <td>
+        <!--Confirmação de Consulta-->
         <?php
           if($get['confirmaConsulta'] == '1'){echo '<a href="#" data-toggle="tooltip" data-container="body" title="Consulta Confirmada"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>';}
         ?>
+        
+        &nbsp;
+        
+        <!--Finalização de Consulta-->
+        <?php
+          if($get['consultaFinalizada'] == '0'){echo '<a href="../consultas/finalizar.php?consulta='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Finalizar Consulta"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';}
+          else{echo '<a href="../consultas/finalizar.php?consulta='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Reabrir Consulta"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';}
+        ?>
       </td>
+      
     </tr>
     <?php
         }

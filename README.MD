@@ -96,6 +96,7 @@ CREATE TABLE `consultas` (
 	`carteiraPlano` VARCHAR(20) NULL DEFAULT NULL,
 	`tipoConsulta` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`confirmaConsulta` VARCHAR(1) NOT NULL DEFAULT '0',
+	`consultaFinalizada` VARCHAR(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`idConsulta`)
 )
 COLLATE='utf8_unicode_ci'

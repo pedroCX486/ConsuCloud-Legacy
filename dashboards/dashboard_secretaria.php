@@ -8,7 +8,7 @@
       <th class="titulos"></th>
     </tr>
     <?php
-      $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta, confirmaConsulta FROM consultas AS c 
+      $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta, confirmaConsulta, consultaFinalizada FROM consultas AS c 
                               JOIN pacientes AS p ON p.idPaciente = c.paciente 
                               JOIN usuarios AS u ON u.idUsuario = c.medico 
                               WHERE dataConsulta = CURDATE() ORDER BY dataConsulta ASC");
@@ -43,7 +43,7 @@
 
       <!--Editar Consultas-->
       <td class="tg-yw4l">
-        <a href="consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" title="Editar Consulta">
+        <a href="consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" data-toggle="tooltip" data-container="body" title="Editar Consulta">
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
         </a>
 
@@ -51,8 +51,15 @@
 
         <!-- Confirmar/Desconfirmar Consultas-->
         <?php
-          if($get['confirmaConsulta'] == '0'){echo '<a href="../consultas/confirmar.php?confirmar='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Confirmar Consulta"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>';}
-          else{echo '<a href="../consultas/confirmar.php?confirmar='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Desconfirmar Consulta"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>';}
+          if($get['confirmaConsulta'] == '0'){echo '<a href="../consultas/confirmar.php?consulta='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Confirmar Consulta"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>';}
+          else{echo '<a href="../consultas/confirmar.php?consulta='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Desconfirmar Consulta"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>';}
+        ?>
+        
+        &nbsp;
+        
+        <!--Finalização de Consulta-->
+        <?php
+          if($get['consultaFinalizada'] == '1'){echo '<a href="#" data-toggle="tooltip" data-container="body" title="Consulta Finalizada"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>';}
         ?>
       </td>
     </tr>
