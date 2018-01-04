@@ -119,7 +119,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
                   if($row){              
                     while($get = $select->fetch_array()){
                 ?>
-              <option value="<?php echo $get['idPlano '] . ' "'; if($planoConsulta == $get['idPlano']){echo 'selected';}?>><?php echo $get['nomePlano']; ?></option>
+              <option value="<?php echo $get['idPlano'] . '" '; if($planoConsulta == $get['idPlano']){echo ' selected';}?>><?php echo $get['nomePlano']; ?></option>
                 <?php
                     }
                   }
