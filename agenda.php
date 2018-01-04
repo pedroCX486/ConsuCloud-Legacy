@@ -26,6 +26,7 @@ require("componentes/db/connect.php");
   <title>Agenda - ConsuCloud</title>
 
   <?php include "componentes/boot.php";?>
+  <script src="../componentes/maskFormat.js"></script>
 </head>
 
 <body>

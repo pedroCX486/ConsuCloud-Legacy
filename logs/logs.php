@@ -22,6 +22,7 @@ require("../componentes/db/connect.php");
   <title>Logs - ConsuCloud</title>
 
   <?php include "../componentes/boot.php";?>
+  <script src="../componentes/maskFormat.js"></script>
 
   <script>
     $(document).ready(function(){
