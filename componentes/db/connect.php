@@ -16,6 +16,7 @@ if($mysqli->connect_errno){
 
 //Configurar timezone GMT-3 no DB
 $mysqli->query("SET GLOBAL time_zone = '-3:00';");
+$mysqli->query("SET time_zone = '-03:00';");
 
 //Forçar o charset para UTF-8
 if(!$mysqli->set_charset("utf8")){

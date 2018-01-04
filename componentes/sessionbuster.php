@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Recife');
+
 //Matar Session se não houver atividade por mais de 30 minutos
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
     echo "<script>top.window.location = '../logout.php'</script>";

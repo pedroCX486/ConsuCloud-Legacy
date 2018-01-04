@@ -35,12 +35,6 @@ require("../componentes/db/connect.php");
       <a href="cadastrarreceitas.php">
         <button class="btn btn-raised btn-success pull-right">NOVA RECEITA</button>
       </a>
-		
-			<div style="position: fixed; bottom: 0; left: 15px;">
-				<a href="receitas.php?todasReceitas=true">
-       		<button class="btn btn-raised btn-info pull-right btn-sm">LISTAR TODAS AS RECEITAS</button>
-      	</a>
-			</div>
 
       <p>Consultar receita:</p>
 
@@ -226,6 +220,12 @@ require("../componentes/db/connect.php");
         }
       ?>
       </div>
+			
+			<div>
+				<a href="receitas.php?todasReceitas=true">
+       		<button class="btn btn-raised btn-warning btn-sm">LISTAR TODAS AS RECEITAS</button>
+      	</a>
+			</div>
 
     </div>
   </div>

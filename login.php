@@ -26,7 +26,7 @@ if($row){
 }
 
   //Validar Senha
-  //Nota - 11/11/2017: Se você tem problemas do coração, não leia esse treço if/else.
+  //Nota - 11/11/2017: Se você tem problemas do coração, não leia esse trecho if/else.
 
   session_start();
   $_SESSION["username"] = $nomeCurto;
