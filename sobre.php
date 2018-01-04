@@ -59,7 +59,7 @@ if(empty($_SESSION)){
       <br>
 
       <br>
-      <br> Copyright © 2018 - Todos os direitos reservados - Versão 201801
+      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20180105
 
     </div>
   </div>
