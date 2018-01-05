@@ -36,6 +36,8 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

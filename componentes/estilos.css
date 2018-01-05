@@ -1,9 +1,5 @@
 /* Plano de Fundo da Página */
   body {
-    background:none transparent;
-  }  
-
-  .navbody {
     background-image: url("../assets/fundo.png");
   }
 

@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/componentes/estilos.css">
 
 <!-- Gambiarra pra Evitar Usuários de Fazerem Merda -->
-<?php if(basename($_SERVER['PHP_SELF']) != "app.php" &&
+<?php /* if(basename($_SERVER['PHP_SELF']) != "app.php" &&
          basename($_SERVER['PHP_SELF']) != "sobre.php" &&
          basename($_SERVER['PHP_SELF']) != "reportar.php" &&
          basename($_SERVER['PHP_SELF']) != "ajuda.php" &&
@@ -36,4 +36,4 @@
          basename($_SERVER['PHP_SELF']) != "receitas.php"){
         echo '<script src="https://'.$_SERVER['HTTP_HOST'].'/componentes/anchorKidnap.js"></script>';
       }
-?>
+*/?>
