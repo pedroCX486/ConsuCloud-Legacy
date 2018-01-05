@@ -43,7 +43,7 @@
 
       <!--Editar Consultas-->
       <td class="tg-yw4l">
-        <a href="consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" data-toggle="tooltip" data-container="body" title="Editar Consulta">
+        <a class="anchor" href="consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" data-toggle="tooltip" data-container="body" title="Editar Consulta">
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
         </a>
 
@@ -51,8 +51,8 @@
 
         <!-- Confirmar/Desconfirmar Consultas-->
         <?php
-          if($get['confirmaConsulta'] == '0'){echo '<a href="../consultas/confirmar.php?consulta='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Confirmar Consulta"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>';}
-          else{echo '<a href="../consultas/confirmar.php?consulta='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Desconfirmar Consulta"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>';}
+          if($get['confirmaConsulta'] == '0'){echo '<a class="anchor" href="../consultas/confirmar.php?consulta='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Confirmar Consulta"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>';}
+          else{echo '<a class="anchor" href="../consultas/confirmar.php?consulta='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Desconfirmar Consulta"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>';}
         ?>
         
         &nbsp;

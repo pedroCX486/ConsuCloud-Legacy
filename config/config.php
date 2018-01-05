@@ -46,11 +46,13 @@ if($row){
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
       <h1>Configurações</h1>
-      <a href="../dashboards/dashboard.php">
+      <a class="anchor" href="../dashboards/dashboard.php">
         <button class="btn btn-raised btn-danger pull-right">VOLTAR AO INÍCIO</button>
       </a>
       <p>As informações básicas do consultório ficam aqui.</p>

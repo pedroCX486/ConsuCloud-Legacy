@@ -26,13 +26,15 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
 
       <h1>Prontuários</h1>
-      <a href="cadastrarprontuarios.php">
-        <button class="btn btn-raised btn-success pull-right">Novo Prontuário</button>
+      <a class="anchor" href="cadastrarprontuarios.php">
+        <button class="btn btn-raised btn-success pull-right">NOVO PRONTUÁRIO</button>
       </a>
 
       <p>Consultar prontuário:</p>
@@ -60,7 +62,7 @@ require("../componentes/db/connect.php");
 
           <center>
             <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-            <a href="prontuarios.php">
+            <a class="anchor" href="prontuarios.php">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
           </center>

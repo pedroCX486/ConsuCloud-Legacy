@@ -26,12 +26,14 @@ require("../componentes/db/connect.php");
 
 <body>
   
+  <?php include "../componentes/barra.php"; ?>
+  
     <div class="container">
       <div class="jumbotron">
 
         <h1>Planos de Saúde</h1>
 
-        <a href="cadastrarplanos.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PLANO</button></a>
+        <a class="anchor" href="cadastrarplanos.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PLANO</button></a>
 
         <p>Planos cadastrados:</p>
 
@@ -66,7 +68,7 @@ require("../componentes/db/connect.php");
                 <?php echo $get['infoPlano']; ?>
               </td>
               <td class="tg-yw4l">
-                <a href="editarplanos.php?editar=<?php echo $get['idPlano']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+                <a class="anchor" href="editarplanos.php?editar=<?php echo $get['idPlano']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
               </td>
             </tr>
             <?php

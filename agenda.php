@@ -26,10 +26,12 @@ require("componentes/db/connect.php");
   <title>Agenda - ConsuCloud</title>
 
   <?php include "componentes/boot.php";?>
-  <script src="../componentes/maskFormat.js"></script>
+  <script src="componentes/maskFormat.js"></script>
 </head>
 
 <body>
+  
+  <?php include "componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -84,7 +86,7 @@ require("componentes/db/connect.php");
 
           <p>
             <button class="btn btn-raised btn-primary" type="submit">Filtrar Agenda</button> &nbsp;
-            <a href="agenda.php">
+            <a class="anchor" href="agenda.php">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
           </p>

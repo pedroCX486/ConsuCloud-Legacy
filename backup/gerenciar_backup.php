@@ -23,6 +23,8 @@ if(!$_SESSION["isAdmin"]){
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -34,20 +36,20 @@ if(!$_SESSION["isAdmin"]){
         
         if (file_exists($backupinfo)) {
           echo '<center>
-          <br><br>
-          Existe um backup com a data ' . file_get_contents($backupinfo) . '.
-          <br><br>
-          <a target="_blank" href="../componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
-            <button class="btn btn-raised btn-info btn-lg">FAZER DOWNLOAD DO BACKUP</button>
-          </a>
-          </center>';
+                  <br><br>
+                  Existe um backup com a data ' . file_get_contents($backupinfo) . '.
+                  <br><br>
+                  <a target="_blank" href="../componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
+                    <button class="btn btn-raised btn-info btn-lg">FAZER DOWNLOAD DO BACKUP</button>
+                  </a>
+                </center>';
         }
       ?>
 
       <br><br>
       <center>
-        <a href="executar_backup.php" target="navegador">
-            <button class="btn btn-raised btn-primary btn-lg">EXECUTAR NOVO BACKUP</button>
+        <a class="anchor" href="executar_backup.php" target="navegador">
+          <button class="btn btn-raised btn-primary btn-lg">EXECUTAR NOVO BACKUP</button>
         </a>
       </center>
 

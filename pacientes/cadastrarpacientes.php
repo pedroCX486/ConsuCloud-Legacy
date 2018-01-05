@@ -24,11 +24,14 @@ if($_SESSION["isMedico"]){
 </head>
 
 <body>
+  
+ <?php include "../componentes/barra.php"; ?>
+  
  <div class="container">
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Paciente</small>
-         <a href="pacientes.php">
+         <a class="anchor" href="pacientes.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>

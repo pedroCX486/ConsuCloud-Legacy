@@ -20,7 +20,7 @@ $erro = $_GET['erro'];
   </script>
 </head>
 
-<body class="loginbody">
+<body>
   <div class="borda">
 
     <div class="container">

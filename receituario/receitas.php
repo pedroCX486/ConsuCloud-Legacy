@@ -27,12 +27,13 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+	
+	<?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
-
       <h1>Receitas</h1>
-      <a href="cadastrarreceitas.php">
+      <a class="anchor" href="cadastrarreceitas.php">
         <button class="btn btn-raised btn-success pull-right">NOVA RECEITA</button>
       </a>
 
@@ -57,7 +58,7 @@ require("../componentes/db/connect.php");
 
           <center>
             <button type="submit" class="btn btn-raised btn-info">Buscar Receita</button> &nbsp;
-            <a href="receitas.php">
+            <a class="anchor" href="receitas.php">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
           </center>
@@ -142,11 +143,11 @@ require("../componentes/db/connect.php");
         <div id="<?php echo $get['idReceita'];?>" class="panel-collapse collapse">
           <div class="panel-body">
             
-             <a href="editarreceitas.php?editar=<?php echo $get['idReceita']; ?>">
+             <a class="anchor" href="editarreceitas.php?editar=<?php echo $get['idReceita']; ?>">
               <button class="btn btn-raised btn-info pull-right">EDITAR RECEITA</button>
             </a>
             
-            <a href="remover.php?remover=<?php echo $get['idReceita']; ?>">
+            <a class="anchor" href="remover.php?remover=<?php echo $get['idReceita']; ?>">
               <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja apagar esta receita?')">APAGAR RECEITA</button>
             </a>
             
@@ -156,7 +157,7 @@ require("../componentes/db/connect.php");
 
             <br>
             
-            <a href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
+            <a class="anchor" href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
               <button class="btn btn-raised btn-primary btn-lg">IMPRIMIR RECEITA</button>
             </a>
 
@@ -169,6 +170,8 @@ require("../componentes/db/connect.php");
         }
       ?>
       </div>
+			
+			<!--Listagem de Todas as Receitas -->
 			
 			<div class="panel-group" id="accordion">
       <?php
@@ -193,11 +196,11 @@ require("../componentes/db/connect.php");
         <div id="<?php echo $get['idReceita'];?>" class="panel-collapse collapse">
           <div class="panel-body">
             
-             <a href="editarreceitas.php?editar=<?php echo $get['idReceita']; ?>">
+             <a class="anchor" href="editarreceitas.php?editar=<?php echo $get['idReceita']; ?>">
               <button class="btn btn-raised btn-info pull-right">EDITAR RECEITA</button>
             </a>
             
-            <a href="remover.php?remover=<?php echo $get['idReceita']; ?>">
+            <a class="anchor" href="remover.php?remover=<?php echo $get['idReceita']; ?>">
               <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja apagar esta receita?')">APAGAR RECEITA</button>
             </a>
             
@@ -207,7 +210,7 @@ require("../componentes/db/connect.php");
 
             <br>
             
-            <a href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
+            <a class="anchor" href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
               <button class="btn btn-raised btn-primary btn-lg">IMPRIMIR RECEITA</button>
             </a>
 
@@ -222,7 +225,7 @@ require("../componentes/db/connect.php");
       </div>
 			
 			<div>
-				<a href="receitas.php?todasReceitas=true">
+				<a class="anchor" href="receitas.php?todasReceitas=true">
        		<button class="btn btn-raised btn-warning btn-sm">LISTAR TODAS AS RECEITAS</button>
       	</a>
 			</div>

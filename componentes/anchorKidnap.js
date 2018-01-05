@@ -1,11 +1,11 @@
 $(document).ready(function(){
-  $('a').each(function() {
-      var href= $(this).attr('href');
+  $('.anchor').each(function() {
+      var href = $(this).attr('href');
       $(this).attr('href','about:blank');
       $(this).attr('jshref',href);
   });
 
-  $('a').bind('click', function(e){
+  $('.anchor').bind('click', function(e){
     e.stopImmediatePropagation();           
     e.preventDefault();
     e.stopPropagation();

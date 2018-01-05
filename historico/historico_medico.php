@@ -30,6 +30,8 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -83,7 +85,7 @@ require("../componentes/db/connect.php");
 
           <p>
             <button class="btn btn-raised btn-primary" type="submit">Buscar Histórico</button> &nbsp;
-            <a href="historico_medico.php">
+            <a class="anchor" href="historico_medico.php">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
           </p>

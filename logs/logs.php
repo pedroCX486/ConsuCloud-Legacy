@@ -32,6 +32,8 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -102,7 +104,7 @@ require("../componentes/db/connect.php");
 
               <center>
                 <button type="submit" class="btn btn-raised btn-info">Filtrar</button> &nbsp;
-                <a href="logs.php">
+                <a class="anchor" href="logs.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
               </center>

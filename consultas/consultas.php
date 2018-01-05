@@ -26,6 +26,8 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -33,7 +35,7 @@ require("../componentes/db/connect.php");
       <h1>Consultas</h1>
 
       <div class="container">
-        <a href="cadastrarconsultas.php">
+        <a class="anchor" href="cadastrarconsultas.php">
           <button class="btn btn-raised btn-success pull-right">CADASTRAR NOVA CONSULTA</button>
         </a>
         <button type="button" class="btn btn-info btn-raised pull-left" data-toggle="collapse" data-target="#filtros">FILTRAR CONSULTAS</button>
@@ -68,7 +70,7 @@ require("../componentes/db/connect.php");
 
               <center>
                 <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-                <a href="prontuarios.php">
+                <a class="anchor" href="prontuarios.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
               </center>
@@ -109,7 +111,7 @@ require("../componentes/db/connect.php");
 
               <center>
                 <button type="submit" class="btn btn-raised btn-info">Filtrar</button> &nbsp;
-                <a href="consultas.php">
+                <a class="anchor" href="consultas.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
               </center>
@@ -181,10 +183,10 @@ require("../componentes/db/connect.php");
 
             <!--Editar/Remover Consultas-->
             <td class="tg-yw4l">
-              <a href="editarconsultas.php?editar=<?php echo $get['idConsulta']; ?>" title="Editar Consulta">
+              <a class="anchor" href="editarconsultas.php?editar=<?php echo $get['idConsulta']; ?>" title="Editar Consulta">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
               </a> &nbsp;
-              <a href="remover.php?remover=<?php echo $get['idConsulta']; ?>" title="Remover Consulta" onClick="return confirm('Tem certeza que deseja cancelar esta consulta?')">
+              <a class="anchor" href="remover.php?remover=<?php echo $get['idConsulta']; ?>" title="Remover Consulta" onClick="return confirm('Tem certeza que deseja cancelar esta consulta?')">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true" />
               </a>
             </td>

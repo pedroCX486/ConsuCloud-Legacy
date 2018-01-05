@@ -55,6 +55,8 @@ if($row){
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div>
 

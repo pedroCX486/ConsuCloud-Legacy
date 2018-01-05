@@ -26,6 +26,8 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -33,7 +35,7 @@ require("../componentes/db/connect.php");
       <h1>Pacientes</h1>
 
       <div class="container">
-        <a href="cadastrarpacientes.php">
+        <a class="anchor" href="cadastrarpacientes.php">
           <button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PACIENTE</button>
         </a>
         <button type="button" class="btn btn-info btn-raised pull-left" data-toggle="collapse" data-target="#filtros">FILTRAR PACIENTES</button>
@@ -68,7 +70,7 @@ require("../componentes/db/connect.php");
 
               <center>
                 <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-                <a href="prontuarios.php">
+                <a class="anchor" href="prontuarios.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
               </center>
@@ -109,7 +111,7 @@ require("../componentes/db/connect.php");
 
               <center>
                 <button type="submit" class="btn btn-raised btn-info">Filtrar</button> &nbsp;
-                <a href="pacientes.php">
+                <a class="anchor" href="pacientes.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
               </center>
@@ -163,7 +165,7 @@ require("../componentes/db/connect.php");
               <?php echo $get['email']; ?>
             </td>
             <td class="tg-yw4l">
-              <a href="editarpacientes.php?idPaciente=<?php echo $get['idPaciente']; ?>" title="Editar Paciente">
+              <a class="anchor" href="editarpacientes.php?idPaciente=<?php echo $get['idPaciente']; ?>" title="Editar Paciente">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
               </a>
             </td>

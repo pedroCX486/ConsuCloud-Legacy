@@ -26,12 +26,14 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
 
       <h1>Exames</h1>
-      <a href="cadastrarexames.php">
+      <a class="anchor" href="cadastrarexames.php">
         <button class="btn btn-raised btn-success pull-right">NOVO EXAME</button>
       </a>
 
@@ -59,7 +61,7 @@ require("../componentes/db/connect.php");
 
           <center>
             <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-            <a href="exames.php">
+            <a class="anchor" href="exames.php">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
           </center>
@@ -151,7 +153,7 @@ require("../componentes/db/connect.php");
                 
               foreach($arquivos as $arquivo){
                 
-                echo '<a target="_blank" href="../componentes/contentdelivery.php?arquivo=' . $arquivo . '&paciente=' . $_POST['idPaciente'] . '"> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
+                echo '<a class="anchor" target="_blank" href="../componentes/contentdelivery.php?arquivo=' . $arquivo . '&paciente=' . $_POST['idPaciente'] . '"> <img style="width: 3%; height: 3%" src="../assets/baixar.png" /> ' . $arquivo . '<br>';
               }
             ?>
 

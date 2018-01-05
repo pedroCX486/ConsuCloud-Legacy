@@ -55,6 +55,6 @@ if($row){
 $_SESSION['log'] = "LOGIN";
 require("logs/gravarlogs.php");
 
-header("Location: ../app.php");
+header("Location: ../dashboards/dashboard.php");
 exit();
 ?>

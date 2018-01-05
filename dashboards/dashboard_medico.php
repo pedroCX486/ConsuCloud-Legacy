@@ -47,8 +47,8 @@
         
         <!--Finalização de Consulta-->
         <?php
-          if($get['consultaFinalizada'] == '0'){echo '<a href="../consultas/finalizar.php?consulta='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Finalizar Consulta"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';}
-          else{echo '<a href="../consultas/finalizar.php?consulta='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Reabrir Consulta"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';}
+          if($get['consultaFinalizada'] == '0'){echo '<a class="anchor" href="../consultas/finalizar.php?consulta='.$get['idConsulta'].'&cod=1" data-toggle="tooltip" data-container="body" title="Clique para Finalizar Consulta"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';}
+          else{echo '<a class="anchor" href="../consultas/finalizar.php?consulta='.$get['idConsulta'].'&cod=0" data-toggle="tooltip" data-container="body" title="Clique para Reabrir Consulta"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';}
         ?>
       </td>
       

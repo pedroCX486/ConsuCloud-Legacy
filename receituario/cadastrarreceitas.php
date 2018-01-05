@@ -27,12 +27,14 @@ require("../componentes/db/connect.php");
 </head>
 
 <body>
+  
+  <?php include "../componentes/barra.php"; ?>
+  
   <div class="container">
-    
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Receitas</small>
-        <a href="receitas.php">
+        <a class="anchor" href="receitas.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>
@@ -62,7 +64,7 @@ require("../componentes/db/connect.php");
 
             <center>
               <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-              <a href="cadastrarreceitas.php">
+              <a class="anchor" href="cadastrarreceitas.php">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </a>
             </center>

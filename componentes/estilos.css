@@ -1,10 +1,5 @@
 /* Plano de Fundo da Página */
   body {
-    background-image: url("../assets/fundo.png");
-  }
-
-  .loginbody
-  {
     background-color: #2F4F4F;
   }
 

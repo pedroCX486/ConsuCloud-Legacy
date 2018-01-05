@@ -69,11 +69,14 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 </head>
 
 <body>
+	
+	<?php include "../componentes/barra.php"; ?>
+	
   <div class="container">
     <div class="jumbotron">
       <h1>
         <small>Editar Usuário</small>
-				 <a href="usuarios.php">
+				 <a class="anchor" href="usuarios.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR EDIÇÃO</button>
         </a>
       </h1>
