@@ -12,21 +12,13 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" />
 
 <!-- Carregando o Favicon -->
-<link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/assets/favicon.ico" type="image/x-icon" />
 
 <!-- Carregando a Folha de Estilos -->
-<link rel="stylesheet" href="/componentes/estilos.css">
+<link rel="stylesheet" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/estilos.css">
 
 <!-- Gambiarra pra Evitar Usuários de Fazerem Merda -->
 <script src="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/anchorKidnap.js"></script>
 
 <!-- Impedir CTRL-Click -->
-<script>
-  $(document).ready(function () {
-    $('a').click(function (e){  
-      if (e.ctrlKey) {
-          return false;
-      }
-    })
-  });
-</script>
+<script src="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/noCtrlClick.js"></script>
