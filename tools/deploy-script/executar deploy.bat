@@ -25,13 +25,12 @@ set datestr=%day%%month%%year%
 @echo.
 
 xcopy  %userprofile%\Source\Repos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
-@echo DEPLOY-%datestr%-CONSUCLOUD-PROD> %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\version.txt
 @echo.
 
 @echo Comprimindo...
 @timeout 2 > NUL
 @echo.
-@7z a -tzip  %userprofile%\Desktop\deploy.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\*
+@7z a -tzip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\*
 @echo.
 
 @echo Executando limpeza...
