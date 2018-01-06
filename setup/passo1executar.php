@@ -15,9 +15,9 @@ $endereco_estado = trim(addslashes(strip_tags($_POST['endereco_estado'])));
 require "../componentes/db/connect.php";
 
 $query = $mysqli->query("INSERT INTO configs (nomeConsultorio,email,telefone,logotipo,endereco_logradouro,
-endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado, version) 
+endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado, setupDate) 
 VALUES ('$nomeConsultorio', '$email', '$telefone', 'logotipo_consucloud.png', '$endereco_logradouro', '$endereco_numero', 
-'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado')");
+'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', NOW())");
 
 $query1 = $mysqli->query("INSERT INTO planos (nomePlano,telFixo,email,infoPlano,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado) 

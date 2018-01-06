@@ -78,6 +78,7 @@ CREATE TABLE `configs` (
 	`endereco_cidade` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`setupDate` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	PRIMARY KEY (`idConsultorio`)
 )
 COLLATE='utf8_unicode_ci'
