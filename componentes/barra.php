@@ -71,6 +71,20 @@
                   echo'<li role="separator" class="divider"></li>';
                 }
               ?>
+
+              <!-- Filtrando Agenda e Histórico de Consulta -->
+              <?php
+                if($_SESSION["isMedico"] == true){
+                  echo '<li><a class="anchor" href="../agenda.php">Agenda</a></li>';
+                  echo '<li><a class="anchor" href="../historico/historico_medico.php">Histórico de Consultas</a></li>';
+                }elseif($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
+                  echo '<li><a class="anchor" href="../historico/historico_secretaria.php">Histórico de Consultas</a></li>';
+                  echo '<li><a class="anchor" href="../relatorio/relatorio.php">Relatório de Consultas</a></li>';
+                }
+              ?>
+            
+              <!-- Opções básicas do Sistema -->
+              <li role="separator" class="divider"></li>
               <li>
                 <a class="anchor" href="../ajuda.php">Ajuda</a>
               </li>
@@ -80,19 +94,7 @@
               <li>
                 <a class="anchor" href="../sobre.php">Sobre o ConsuCloud</a>
               </li>
-
-              <!-- Filtrando Agenda e Histórico de Consulta -->
-              <?php
-                if($_SESSION["isMedico"] == true){
-                  echo '<li role="separator" class="divider"></li>';
-                  echo '<li><a class="anchor" href="../agenda.php">Agenda</a></li>';
-                  echo '<li><a class="anchor" href="../historico/historico_medico.php">Histórico de Consultas</a></li>';
-                }elseif($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
-                  echo '<li role="separator" class="divider"></li>';
-                  echo '<li><a class="anchor" href="../historico/historico_secretaria.php">Histórico de Consultas</a></li>';
-                  echo '<li><a class="anchor" href="../relatorio/relatorio.php">Relatório de Consultas</a></li>';
-                }
-              ?>
+            
               <li role="separator" class="divider"></li>
               <li>
                 <a class="anchor" href="../logout.php">Sair</a>

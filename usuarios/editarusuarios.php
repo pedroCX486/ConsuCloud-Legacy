@@ -161,14 +161,14 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Login:</span>
-            <input autocomplete="off" type="text" class="form-control" name="login" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade."
+            <input type="text" class="form-control" name="login" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade."
               maxlength="30" value="<?php echo $login; ?>">
           </div>
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Senha:</span>
-            <input autocomplete="off" type="password" class="form-control" name="senha" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade."
-              maxlength="20">
+            <input type="password" class="form-control" name="senha" aria-describedby="basic-addon1" placeholder="Apenas altere este campo em caso de necessidade."
+              maxlength="20" autocomplete="new-password">
           </div>
 
           <div class="panel-group" id="accordion">

@@ -110,7 +110,7 @@ if(!$_SESSION["isAdmin"]){
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Senha:*</span>
-            <input required type="password" class="form-control" name="senha" aria-describedby="basic-addon1" maxlength="20">
+            <input required type="password" class="form-control" name="senha" aria-describedby="basic-addon1" maxlength="20" autocomplete="new-password">
           </div>
 
           <div class="panel-group" id="accordion">
