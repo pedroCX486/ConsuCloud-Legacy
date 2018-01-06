@@ -22,6 +22,7 @@ $dataNasc = date('Y-m-d',$dataNasc);
 //Chegacem de caracteres invalidos em alguns campos (caso usuário burle no front-end)
 if(!ctype_digit($RG)) {
     echo '<script type="text/javascript">
+<<<<<<< HEAD
 					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();
 				</script>';
@@ -31,6 +32,17 @@ if(!ctype_digit($RG)) {
 					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
 					window.history.back();
 				</script>';
+=======
+			  		alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
+			  		window.history.back();
+			  	</script>';
+	exit();
+}elseif(!ctype_digit($endereco_cep) && !empty($endereco_cep)) {
+    echo '<script type="text/javascript">
+			  		alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
+			  		window.history.back();
+			  	</script>';
+>>>>>>> consucloud-2/master
 	exit();
 }
 
@@ -41,7 +53,10 @@ $query = $mysqli->query("UPDATE pacientes SET RG = '$RG', nomePaciente = '$nomeP
 telFixo = '$telFixo', email = '$email', endereco_logradouro = '$endereco_logradouro', endereco_numero = '$endereco_numero', endereco_complemento = '$endereco_complemento', endereco_bairro = '$endereco_bairro', 
 endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_estado = '$endereco_estado' WHERE idPaciente = '$idPaciente'");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> consucloud-2/master
 if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");

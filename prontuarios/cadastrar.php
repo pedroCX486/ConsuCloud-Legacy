@@ -7,7 +7,11 @@ $dataProntuario = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_P
 $horaProntuario = date("H:i:s");
 $prontuario = trim(addslashes(strip_tags($_POST['prontuario'])));
 
+<<<<<<< HEAD
 $dataProntuario = date('Y-m-d',$dataProntuario);
+=======
+$dataProntuario = date('Y-m-d', $dataProntuario);
+>>>>>>> consucloud-2/master
 
 session_start();
 $medico = $_SESSION["idUsuario"];

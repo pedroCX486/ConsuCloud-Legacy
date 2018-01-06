@@ -107,6 +107,10 @@ $query4 = $mysqli->query("CREATE TABLE `consultas` (
 	`carteiraPlano` VARCHAR(20) NULL DEFAULT NULL,
 	`tipoConsulta` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`confirmaConsulta` VARCHAR(1) NOT NULL DEFAULT '0',
+<<<<<<< HEAD
+=======
+	`consultaFinalizada` VARCHAR(1) NOT NULL DEFAULT '0',
+>>>>>>> consucloud-2/master
 	PRIMARY KEY (`idConsulta`)
 )
 COLLATE='utf8_unicode_ci'
@@ -174,7 +178,26 @@ COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
 ;");
 
+<<<<<<< HEAD
 if($query8){
+=======
+$query9 = $mysqli->query("CREATE TABLE `receitas` (
+	`idReceita` INT(11) NOT NULL AUTO_INCREMENT,
+	`nomeReceita` VARCHAR(250) NULL DEFAULT NULL,
+	`tipoReceita` VARCHAR(100) NULL DEFAULT NULL,
+	`medico` VARCHAR(20) NULL DEFAULT NULL,
+	`paciente` VARCHAR(20) NULL DEFAULT NULL,
+	`dataReceita` DATE NULL DEFAULT NULL,
+	`horaReceita` TIME NULL DEFAULT NULL,
+	`receita` LONGTEXT NULL COLLATE 'utf8_unicode_ci',
+	PRIMARY KEY (`idReceita`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB
+;");
+
+if($query9){
+>>>>>>> consucloud-2/master
   echo '<script type="text/javascript">
 			location.href="passo1.php";
 		</script>';

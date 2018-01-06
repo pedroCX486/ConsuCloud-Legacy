@@ -14,11 +14,19 @@ $endereco_cep = trim(addslashes(strip_tags($_POST['endereco_cep'])));
 $endereco_estado = trim(addslashes(strip_tags($_POST['endereco_estado'])));
 
 //Chegacem de caracteres invalidos em alguns campos (caso usuário burle no front-end)
+<<<<<<< HEAD
 if(!ctype_digit($endereco_cep)) {
     echo '<script type="text/javascript">
 					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
 					location.href="../usuarios/cadastrarusuarios.php";
 					</script>';
+=======
+if(!ctype_digit($endereco_cep) && !empty($endereco_cep)) {
+    echo '<script type="text/javascript">
+			      alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
+			      location.href="../usuarios/cadastrarusuarios.php";
+          </script>';
+>>>>>>> consucloud-2/master
 	exit();
 }
 

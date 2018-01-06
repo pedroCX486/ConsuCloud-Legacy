@@ -26,19 +26,33 @@ if($row){
 }
 
   //Validar Senha
+<<<<<<< HEAD
   if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
     session_start();
     $_SESSION["username"] = $nomeCurto;
     $_SESSION["idUsuario"] = $idUsuario;
   
+=======
+  //Nota - 11/11/2017: Se você tem problemas do coração, não leia esse trecho if/else.
+
+  session_start();
+  $_SESSION["username"] = $nomeCurto;
+  $_SESSION["idUsuario"] = $idUsuario;
+  
+  if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
+    //Controle de permissões
+>>>>>>> consucloud-2/master
     if($tipoUsuario == "medico"){ //Testar se usuário é tipo médico
       $_SESSION['isMedico'] = true;
     }elseif($tipoUsuario == "secretaria"){ //Testar se usuário é tipo secretária
       $_SESSION['isSecretaria'] = true;
     }elseif($tipoUsuario == "admin"){ //Testar se usuário é tipo admin
       $_SESSION['isAdmin'] = true;
+<<<<<<< HEAD
     }elseif($tipoUsuario == "debug"){ //Testar se usuário é tipo debug
       $_SESSION['isDebug'] = true;
+=======
+>>>>>>> consucloud-2/master
     }
   }else{
     if($contaAtiva == "1"){ //Se a conta estiver ativa mas a senha não for validada, retorne com erro
@@ -51,9 +65,16 @@ if($row){
     exit();
   }
 
+<<<<<<< HEAD
 $_SESSION['log'] = "Login";
 require("logs/gravarlogs.php");
 
 header("Location: ../painel.php");
+=======
+$_SESSION['log'] = "LOGIN";
+require("logs/gravarlogs.php");
+
+header("Location: ../dashboards/dashboard.php");
+>>>>>>> consucloud-2/master
 exit();
 ?>

@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 ﻿ConsuCloud - CODENAME RAPADURA // (C) 2017 OrangeMayhem Softworks
+=======
+ConsuCloud - CODENAME BOLO DE ROLO // (C) 2018 OrangeMayhem Softworks
+>>>>>>> consucloud-2/master
 
 Configurações PHP Recomendadas:  
 upload_max_filesize: 60M, max_file_uploads: 10, post_max_size: 128M  
   
+<<<<<<< HEAD
 Senha dos Deploys:  
 C0Sult8r10sp8wnom4yhemsoftw8ks  
   
@@ -13,6 +18,8 @@ Senha: c0sult8r10s
 Cloud9 IDE  
 PHPmyAdmin: https://consucloud-gafanhotz.c9users.io/  
 
+=======
+>>>>>>> consucloud-2/master
 ________________________________________
 
 
@@ -106,6 +113,10 @@ CREATE TABLE `consultas` (
 	`carteiraPlano` VARCHAR(20) NULL DEFAULT NULL,
 	`tipoConsulta` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`confirmaConsulta` VARCHAR(1) NOT NULL DEFAULT '0',
+<<<<<<< HEAD
+=======
+	`consultaFinalizada` VARCHAR(1) NOT NULL DEFAULT '0',
+>>>>>>> consucloud-2/master
 	PRIMARY KEY (`idConsulta`)
 )
 COLLATE='utf8_unicode_ci'
@@ -176,4 +187,23 @@ CREATE TABLE `logs` (
 COLLATE='utf8_unicode_ci'
 ENGINE=InnoDB
 ;
+<<<<<<< HEAD
+=======
+________________________________________
+
+CREATE TABLE `receitas` (
+	`idReceita` INT(11) NOT NULL AUTO_INCREMENT,
+	`nomeReceita` VARCHAR(250) NULL DEFAULT NULL,
+	`tipoReceita` VARCHAR(100) NULL DEFAULT NULL,
+	`medico` VARCHAR(20) NULL DEFAULT NULL,
+	`paciente` VARCHAR(20) NULL DEFAULT NULL,
+	`dataReceita` DATE NULL DEFAULT NULL,
+	`horaReceita` TIME NULL DEFAULT NULL,
+	`receita` LONGTEXT NULL COLLATE 'utf8_unicode_ci',
+	PRIMARY KEY (`idReceita`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB
+;
+>>>>>>> consucloud-2/master
 ________________________________________

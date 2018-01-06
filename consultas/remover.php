@@ -3,6 +3,7 @@ header ('Content-type: text/html; charset=UTF-8');
 require("../componentes/db/connect.php");
 
 $idConsulta = $_GET['remover'];
+<<<<<<< HEAD
 $confirmaRemover = $_GET['confirmaRemover'];
 
 if($confirmaRemover == 0){
@@ -29,4 +30,20 @@ if($confirmaRemover == 0){
 	
 	$mysqli->close();
 }
+=======
+
+// Perform queries 
+$query = $mysqli->query("DELETE FROM consultas WHERE idConsulta = '$idConsulta'");
+
+if ($query){
+	echo '<script type="text/javascript">
+					alert("Consulta cancelada com sucesso.");
+					location.href="../consultas/consultas.php";
+				</script>';
+}else{
+	echo $mysqli->error;
+}
+
+$mysqli->close();
+>>>>>>> consucloud-2/master
 ?>

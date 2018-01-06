@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require("../componentes/db/connect.php");
 
 session_start();
@@ -10,6 +11,21 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
     header("Location: ../index.php?erro=ERROFATAL");
     exit();
 }
+=======
+session_start();
+
+require("../componentes/sessionbuster.php");
+
+if(!$_SESSION["isAdmin"]){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
+ }elseif(empty($_SESSION)){
+  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  die;
+}
+
+require("../componentes/db/connect.php");
+>>>>>>> consucloud-2/master
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +39,25 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
 </head>
 
 <body>
+<<<<<<< HEAD
 
 <?php include "../componentes/barra.php"; ?>
 
+=======
+  
+  <?php include "../componentes/barra.php"; ?>
+  
+>>>>>>> consucloud-2/master
     <div class="container">
       <div class="jumbotron">
 
         <h1>Planos de Saúde</h1>
 
+<<<<<<< HEAD
         <a href="cadastrarplanos.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PLANO</button></a>
+=======
+        <a class="anchor" href="cadastrarplanos.php"><button class="btn btn-raised btn-success pull-right">CADASTRAR NOVO PLANO</button></a>
+>>>>>>> consucloud-2/master
 
         <p>Planos cadastrados:</p>
 
@@ -52,6 +78,7 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
               if($row){
                 while($get = $select->fetch_array()){
             ?>
+<<<<<<< HEAD
               <tr>
                 <td class="tg-yw4l">
                   <?php echo $get['nomePlano']; ?>
@@ -73,6 +100,29 @@ if($_SESSION["isSecretaria"] == true || $_SESSION["isMedico"] == true){
                }
                 }else{echo '<b>Não existem planos cadastrados.</b>';}
              ?>
+=======
+            <tr>
+              <td class="tg-yw4l">
+                <?php echo $get['nomePlano']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <?php echo $get['telFixo']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <?php echo $get['email']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <?php echo $get['infoPlano']; ?>
+              </td>
+              <td class="tg-yw4l">
+                <a class="anchor" href="editarplanos.php?editar=<?php echo $get['idPlano']; ?>" title="Editar Plano"><span class="glyphicon glyphicon-pencil" aria-hidden="true" /></a>
+              </td>
+            </tr>
+            <?php
+                }
+              }else{echo '<b>Não existem planos cadastrados.</b>';}
+            ?>
+>>>>>>> consucloud-2/master
           </table>
         </center>
 
