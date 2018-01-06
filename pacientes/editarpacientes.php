@@ -163,6 +163,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
                   <div class="form-group">
                     <select name="endereco_estado" id="uf" class="form-control">
+											<option disabled selected value="">Estado ▾</option>
                       <option value="AC" <?php if($endereco_estado=='AC' ){echo 'selected';} ?>>Acre</option>
                       <option value="AL" <?php if($endereco_estado=='AL' ){echo 'selected';} ?>>Alagoas</option>
                       <option value="AP" <?php if($endereco_estado=='AP' ){echo 'selected';} ?>>Amapá</option>
