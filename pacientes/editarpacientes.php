@@ -48,6 +48,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
   <?php include "../componentes/boot.php";?>
   <script src="../componentes/maskFormat.js"></script>
+  <script src="../componentes/buscaCEP.js"></script>
 </head>
 
 <body>
@@ -121,10 +122,18 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
               </div>
               <div id="collapse1" class="panel-collapse collapse">
                 <div class="panel-body">
+									
+									<div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" <?php echo $endereco_cep; ?>>
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-raised btn-info pull-right" id="buscaCEP">BUSCAR CEP</button>
+                    </div>
+                  </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
-                    <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>"
+                    <input type="text" class="form-control" name="endereco_logradouro" id="rua" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>"
                       maxlength="150">
                   </div>
 
@@ -141,52 +150,46 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
                   </div>
 
                   <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Bairro:</span>
-                    <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
-                      maxlength="100">
+										<span class="input-group-addon" id="basic-addon1">Bairro:</span>
+                      <input type="text" class="form-control" name="endereco_bairro" id="bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
+                        maxlength="100">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Cidade:</span>
-                    <input type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>"
+                    <input type="text" class="form-control" name="endereco_cidade" id="cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>"
                       maxlength="100">
                   </div>
 
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>"
-                      pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
-                  </div>
-
                   <div class="form-group">
-                    <select name="endereco_estado" class="form-control">
-                      <option value="Acre" <?php if($endereco_estado=='Acre' ){echo 'selected';} ?>>Acre</option>
-                      <option value="Alagoas" <?php if($endereco_estado=='Alagoas' ){echo 'selected';} ?>>Alagoas</option>
-                      <option value="Amapá" <?php if($endereco_estado=='Amapá' ){echo 'selected';} ?>>Amapá</option>
-                      <option value="Amazonas" <?php if($endereco_estado=='Amazonas' ){echo 'selected';} ?>>Amazonas</option>
-                      <option value="Bahia" <?php if($endereco_estado=='Bahia' ){echo 'selected';} ?>>Bahia</option>
-                      <option value="Ceará" <?php if($endereco_estado=='Ceará' ){echo 'selected';} ?>>Ceará</option>
-                      <option value="Distrito Federal" <?php if($endereco_estado=='Distrito Federal' ){echo 'selected';} ?>>Distrito Federal</option>
-                      <option value="Espírito Santo" <?php if($endereco_estado=='Espírito Santo' ){echo 'selected';} ?>>Espírito Santo</option>
-                      <option value="Goiás" <?php if($endereco_estado=='Goiás' ){echo 'selected';} ?>>Goiás</option>
-                      <option value="Maranhão" <?php if($endereco_estado=='Maranhão' ){echo 'selected';} ?>>Maranhão</option>
-                      <option value="Mato Grosso" <?php if($endereco_estado=='Mato Grosso' ){echo 'selected';} ?>>Mato Grosso</option>
-                      <option value="Mato Grosso do Sul" <?php if($endereco_estado=='Mato Grosso do Sul' ){echo 'selected';} ?>>Mato Grosso do Sul</option>
-                      <option value="Minas Gerais" <?php if($endereco_estado=='Minas Gerais' ){echo 'selected';} ?>>Minas Gerais</option>
-                      <option value="Pará" <?php if($endereco_estado=='Pará' ){echo 'selected';} ?>>Pará</option>
-                      <option value="Paraíba" <?php if($endereco_estado=='Paraíba' ){echo 'selected';} ?>>Paraíba</option>
-                      <option value="Paraná" <?php if($endereco_estado=='Paraná' ){echo 'selected';} ?>>Paraná</option>
-                      <option value="Pernambuco" <?php if($endereco_estado=='Pernambuco' ){echo 'selected';} ?>>Pernambuco</option>
-                      <option value="Piauí" <?php if($endereco_estado=='Piauí' ){echo 'selected';} ?>>Piauí</option>
-                      <option value="Rio de Janeiro" <?php if($endereco_estado=='Rio de Janeiro' ){echo 'selected';} ?>>Rio de Janeiro</option>
-                      <option value="Rio Grande do Norte" <?php if($endereco_estado=='Rio Grande do Norte' ){echo 'selected';} ?>>Rio Grande do Norte</option>
-                      <option value="Rio Grande do Sul" <?php if($endereco_estado=='Rio Grande do Sul' ){echo 'selected';} ?>>Rio Grande do Sul</option>
-                      <option value="Rondônia" <?php if($endereco_estado=='Rondônia' ){echo 'selected';} ?>>Rondônia</option>
-                      <option value="Roraima" <?php if($endereco_estado=='Roraima' ){echo 'selected';} ?>>Roraima</option>
-                      <option value="Santa Catarina" <?php if($endereco_estado=='Santa Catarina' ){echo 'selected';} ?>>Santa Catarina</option>
-                      <option value="São Paulo" <?php if($endereco_estado=='São Paulo' ){echo 'selected';} ?>>São Paulo</option>
-                      <option value="Sergipe" <?php if($endereco_estado=='Sergipe' ){echo 'selected';} ?>>Sergipe</option>
-                      <option value="Tocantins" <?php if($endereco_estado=='Tocantins' ){echo 'selected';} ?>>Tocantins</option>
+                    <select name="endereco_estado" id="uf" class="form-control">
+                      <option value="AC" <?php if($endereco_estado=='AC' ){echo 'selected';} ?>>Acre</option>
+                      <option value="AL" <?php if($endereco_estado=='AL' ){echo 'selected';} ?>>Alagoas</option>
+                      <option value="AP" <?php if($endereco_estado=='AP' ){echo 'selected';} ?>>Amapá</option>
+                      <option value="AM" <?php if($endereco_estado=='AM' ){echo 'selected';} ?>>Amazonas</option>
+                      <option value="BA" <?php if($endereco_estado=='BA' ){echo 'selected';} ?>>Bahia</option>
+                      <option value="CE" <?php if($endereco_estado=='CE' ){echo 'selected';} ?>>Ceará</option>
+                      <option value="DF" <?php if($endereco_estado=='DF' ){echo 'selected';} ?>>Distrito Federal</option>
+                      <option value="ES" <?php if($endereco_estado=='ES' ){echo 'selected';} ?>>Espírito Santo</option>
+                      <option value="GO" <?php if($endereco_estado=='GO' ){echo 'selected';} ?>>Goiás</option>
+                      <option value="MA" <?php if($endereco_estado=='MA' ){echo 'selected';} ?>>Maranhão</option>
+                      <option value="MT" <?php if($endereco_estado=='MT' ){echo 'selected';} ?>>Mato Grosso</option>
+                      <option value="MS" <?php if($endereco_estado=='MS' ){echo 'selected';} ?>>Mato Grosso do Sul</option>
+                      <option value="MG" <?php if($endereco_estado=='MG' ){echo 'selected';} ?>>Minas Gerais</option>
+                      <option value="PA" <?php if($endereco_estado=='PA' ){echo 'selected';} ?>>Pará</option>
+                      <option value="PB" <?php if($endereco_estado=='PB' ){echo 'selected';} ?>>Paraíba</option>
+                      <option value="PR" <?php if($endereco_estado=='PR' ){echo 'selected';} ?>>Paraná</option>
+                      <option value="PE" <?php if($endereco_estado=='PE' ){echo 'selected';} ?>>Pernambuco</option>
+                      <option value="PI" <?php if($endereco_estado=='PI' ){echo 'selected';} ?>>Piauí</option>
+                      <option value="RJ" <?php if($endereco_estado=='RJ' ){echo 'selected';} ?>>Rio de Janeiro</option>
+                      <option value="RN" <?php if($endereco_estado=='RN' ){echo 'selected';} ?>>Rio Grande do Norte</option>
+                      <option value="RS" <?php if($endereco_estado=='RS' ){echo 'selected';} ?>>Rio Grande do Sul</option>
+                      <option value="RR" <?php if($endereco_estado=='RR' ){echo 'selected';} ?>>Rondônia</option>
+                      <option value="RR" <?php if($endereco_estado=='RR' ){echo 'selected';} ?>>Roraima</option>
+                      <option value="SC" <?php if($endereco_estado=='SC' ){echo 'selected';} ?>>Santa Catarina</option>
+                      <option value="SP" <?php if($endereco_estado=='SP' ){echo 'selected';} ?>>São Paulo</option>
+                      <option value="SE" <?php if($endereco_estado=='SE' ){echo 'selected';} ?>>Sergipe</option>
+                      <option value="TO" <?php if($endereco_estado=='TO' ){echo 'selected';} ?>>Tocantins</option>
                     </select>
                   </div>
 

@@ -66,6 +66,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
   <?php include "../componentes/boot.php";?>
 	<script src="../componentes/maskFormat.js"></script>
+	<script src="../componentes/buscaCEP.js"></script>
 </head>
 
 <body>
@@ -180,10 +181,18 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
               </div>
               <div id="collapse1" class="panel-collapse collapse">
                 <div class="panel-body">
+									
+									<div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" <?php echo $endereco_cep; ?>>
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-raised btn-info pull-right" id="buscaCEP">BUSCAR CEP</button>
+                    </div>
+                  </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
-                    <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>"
+                    <input type="text" class="form-control" name="endereco_logradouro" id="rua" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>"
                       maxlength="150">
                   </div>
 
@@ -201,24 +210,18 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
 
                   <div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Bairro:</span>
-                      <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
+                      <input type="text" class="form-control" name="endereco_bairro" id="bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
                         maxlength="100">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Cidade:</span>
-                    <input type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>"
+                    <input type="text" class="form-control" name="endereco_cidade" id="cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>"
                       maxlength="100">
                   </div>
 
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" value="<?php echo $endereco_cep; ?>"
-                      pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
-                  </div>
-
                   <div class="form-group">
-                    <select name="endereco_estado" class="form-control">
+                    <select name="endereco_estado" id="uf" class="form-control">
                       <option value="AC" <?php if($endereco_estado=='AC' ){echo 'selected';} ?>>Acre</option>
                       <option value="AL" <?php if($endereco_estado=='AL' ){echo 'selected';} ?>>Alagoas</option>
                       <option value="AP" <?php if($endereco_estado=='AP' ){echo 'selected';} ?>>Amapá</option>

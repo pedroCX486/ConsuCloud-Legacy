@@ -21,6 +21,7 @@ if($_SESSION["isMedico"]){
 
   <?php include "../componentes/boot.php";?>
   <script src="../componentes/maskFormat.js"></script>
+  <script src="../componentes/buscaCEP.js"></script>
 </head>
 
 <body>
@@ -92,10 +93,18 @@ if($_SESSION["isMedico"]){
               </div>
               <div id="collapse1" class="panel-collapse collapse">
                 <div class="panel-body">
+                  
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-raised btn-info pull-right" id="buscaCEP">BUSCAR CEP</button>
+                    </div>
+                  </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
-                    <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
+                    <input type="text" class="form-control" name="endereco_logradouro" id="rua" aria-describedby="basic-addon1" maxlength="150">
                   </div>
 
                   <div class="input-group">
@@ -110,49 +119,44 @@ if($_SESSION["isMedico"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Bairro:</span>
-                    <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
+                    <input type="text" class="form-control" name="endereco_bairro" id="bairro" aria-describedby="basic-addon1" maxlength="100">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Cidade:</span>
-                    <input type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" maxlength="100">
-                  </div>
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_cidade" id="cidade" aria-describedby="basic-addon1" maxlength="100">
                   </div>
 
                   <div class="form-group">
-                    <select name="endereco_estado" class="form-control">
+                    <select name="endereco_estado" id="uf" class="form-control">
                       <option disabled selected value="">Estado ▾</option>
-                      <option value="Acre">Acre</option>
-                      <option value="Alagoas">Alagoas</option>
-                      <option value="Amapá">Amapá</option>
-                      <option value="Amazonas">Amazonas</option>
-                      <option value="Bahia">Bahia</option>
-                      <option value="Ceará">Ceará</option>
-                      <option value="Distrito Federal">Distrito Federal</option>
-                      <option value="Espírito Santo">Espírito Santo</option>
-                      <option value="Goiás">Goiás</option>
-                      <option value="Maranhão">Maranhão</option>
-                      <option value="Mato Grosso">Mato Grosso</option>
-                      <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
-                      <option value="Minas Gerais">Minas Gerais</option>
-                      <option value="Pará">Pará</option>
-                      <option value="Paraíba">Paraíba</option>
-                      <option value="Paraná">Paraná</option>
-                      <option value="Pernambuco">Pernambuco</option>
-                      <option value="Piauí">Piauí</option>
-                      <option value="Rio de Janeiro">Rio de Janeiro</option>
-                      <option value="Rio Grande do Norte">Rio Grande do Norte</option>
-                      <option value="Rio Grande do Sul">Rio Grande do Sul</option>
-                      <option value="Rondônia">Rondônia</option>
-                      <option value="Roraima">Roraima</option>
-                      <option value="Santa Catarina">Santa Catarina</option>
-                      <option value="São Paulo">São Paulo</option>
-                      <option value="Sergipe">Sergipe</option>
-                      <option value="Tocantins">Tocantins</option>
+                      <option value="AC">Acre</option>
+                      <option value="AL">Alagoas</option>
+                      <option value="AP">Amapá</option>
+                      <option value="AM">Amazonas</option>
+                      <option value="BA">Bahia</option>
+                      <option value="CE">Ceará</option>
+                      <option value="DF">Distrito Federal</option>
+                      <option value="ES">Espírito Santo</option>
+                      <option value="GO">Goiás</option>
+                      <option value="MA">Maranhão</option>
+                      <option value="MT">Mato Grosso</option>
+                      <option value="MS">Mato Grosso do Sul</option>
+                      <option value="MG">Minas Gerais</option>
+                      <option value="PA">Pará</option>
+                      <option value="PB">Paraíba</option>
+                      <option value="PR">Paraná</option>
+                      <option value="PE">Pernambuco</option>
+                      <option value="PI">Piauí</option>
+                      <option value="RJ">Rio de Janeiro</option>
+                      <option value="RN">Rio Grande do Norte</option>
+                      <option value="RS">Rio Grande do Sul</option>
+                      <option value="RR">Rondônia</option>
+                      <option value="RR">Roraima</option>
+                      <option value="SC">Santa Catarina</option>
+                      <option value="SP">São Paulo</option>
+                      <option value="SE">Sergipe</option>
+                      <option value="TO">Tocantins</option>
                     </select>
                   </div>
 

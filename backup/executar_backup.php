@@ -38,6 +38,9 @@ $result .= $mysqli->query("SELECT * FROM prontuarios INTO OUTFILE '$file'");
 $file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/usuarios.sql";
 $result .= $mysqli->query("SELECT * FROM usuarios INTO OUTFILE '$file'");
 
+$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/receitas.sql";
+$result .= $mysqli->query("SELECT * FROM receitas INTO OUTFILE '$file'");
+
 /** Fazer Backup dos Arquivos de Exames **/
 $zipexames = '../backup/generated/backup_exames.zip';
 $examesdir = $_SERVER['DOCUMENT_ROOT']."/exames/arquivos";
@@ -97,6 +100,7 @@ unlink('../backup/generated/pacientes.sql');
 unlink('../backup/generated/planos.sql');
 unlink('../backup/generated/prontuarios.sql');
 unlink('../backup/generated/usuarios.sql');
+unlink('../backup/generated/receitas.sql');
 
 /** Escrever Informação de Data Sobre o Backup **/
 $backupinfo = "../backup/generated/backup_info.txt";

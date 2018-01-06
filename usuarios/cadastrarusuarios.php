@@ -22,6 +22,7 @@ if(!$_SESSION["isAdmin"]){
   <?php include "../componentes/boot.php";?>
   <script src="../componentes/maskFormat.js"></script>
   <script src="../componentes/tabCadastro.js"></script>
+  <script src="../componentes/buscaCEP.js"></script>
 </head>
 
 <body>
@@ -142,8 +143,16 @@ if(!$_SESSION["isAdmin"]){
                 <div class="panel-body">
 
                   <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
+                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-raised btn-info pull-right" id="buscaCEP">BUSCAR CEP</button>
+                    </div>
+                  </div>
+
+                  <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
-                    <input type="text" class="form-control" name="endereco_logradouro" aria-describedby="basic-addon1" maxlength="150">
+                    <input type="text" class="form-control" name="endereco_logradouro" id="rua" aria-describedby="basic-addon1" maxlength="150">
                   </div>
 
                   <div class="input-group">
@@ -158,21 +167,16 @@ if(!$_SESSION["isAdmin"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Bairro:</span>
-                    <input type="text" class="form-control" name="endereco_bairro" aria-describedby="basic-addon1" maxlength="100">
+                    <input type="text" class="form-control" name="endereco_bairro" id="bairro" aria-describedby="basic-addon1" maxlength="100">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Cidade:</span>
-                    <input type="text" class="form-control" name="endereco_cidade" aria-describedby="basic-addon1" maxlength="100">
-                  </div>
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_cidade" id="cidade" aria-describedby="basic-addon1" maxlength="100">
                   </div>
 
                   <div class="form-group">
-                    <select name="endereco_estado" class="form-control">
+                    <select name="endereco_estado" id="uf" class="form-control">
                       <option disabled selected value="">Estado ▾</option>
                       <option value="AC">Acre</option>
                       <option value="AL">Alagoas</option>
