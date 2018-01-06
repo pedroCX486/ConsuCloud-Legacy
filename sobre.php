@@ -25,7 +25,7 @@ if(empty($_SESSION)){
 
   <div class="container">
     <div class="jumbotron">
-      <h1>ConsuCloud 2.0</h1>
+      <h1>ConsuCloud</h1>
       <p>Desenvolvido por OrangeMayhem Softworks</p>
 
       <br>
@@ -61,7 +61,7 @@ if(empty($_SESSION)){
       <br>
 
       <br>
-      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20180105
+      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20180106-01BCCB45
 
     </div>
   </div>

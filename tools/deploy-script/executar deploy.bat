@@ -1,11 +1,11 @@
 @echo off
 @cls
 
-@echo OrangeMayhem Softworks (C) 2017
+@echo OrangeMayhem Softworks (C) 2018
 @echo.
 @echo.
 
-@echo Script de deploy: ConsuCloud - Projeto RAPADURA
+@echo Script de deploy: ConsuCloud - Projeto CANJICA
 @echo.
 @pause
 @echo.
@@ -31,7 +31,7 @@ xcopy  %userprofile%\Source\Repos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%date
 @echo Comprimindo...
 @timeout 2 > NUL
 @echo.
-@7z a -tzip  %userprofile%\Desktop\deploy.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\* -PC0Sult8r10sp8wnom4yhemsoftw8ks
+@7z a -tzip  %userprofile%\Desktop\deploy.zip  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\*
 @echo.
 
 @echo Executando limpeza...
