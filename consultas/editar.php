@@ -14,14 +14,11 @@ $dataConsulta = date('Y-m-d',$dataConsulta);
 
 require "../componentes/db/connect.php";
 
-<<<<<<< HEAD
-=======
 //Para consultas particulares, o campo fica em branco, então defaultamos para zero
 if(empty($carteiraPlano)){
 	$carteiraPlano = 0;
 }
 
->>>>>>> consucloud-2/master
 // Perform queries 
 $query = $mysqli->query("UPDATE consultas SET medico = '$medico', paciente = '$paciente', dataConsulta = '$dataConsulta', horaConsulta = '$horaConsulta',
  planoConsulta = '$planoConsulta', carteiraPlano = '$carteiraPlano', tipoConsulta = '$tipoConsulta' WHERE idConsulta = '$idConsulta'");

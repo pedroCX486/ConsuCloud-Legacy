@@ -13,14 +13,11 @@ $dataConsulta = date('Y-m-d',$dataConsulta);
 
 require "../componentes/db/connect.php";
 
-<<<<<<< HEAD
-=======
 //Para consultas particulares, o campo fica em branco, então defaultamos para zero
 if(empty($carteiraPlano)){
 	$carteiraPlano = 0;
 }
 
->>>>>>> consucloud-2/master
 //Executar query
 $query = $mysqli->query("INSERT INTO consultas (paciente,medico,dataConsulta,horaConsulta,planoConsulta,carteiraPlano,tipoConsulta) 
 VALUES ('$paciente', '$medico', '$dataConsulta', '$horaConsulta', '$planoConsulta', '$carteiraPlano', '$tipoConsulta')"); 
@@ -29,11 +26,7 @@ if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
 					location.href="../consultas/consultas.php";
-<<<<<<< HEAD
-					</script>';
-=======
         </script>';
->>>>>>> consucloud-2/master
 }else{
   echo $mysqli->error;
 }

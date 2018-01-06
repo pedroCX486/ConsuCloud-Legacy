@@ -1,14 +1,5 @@
 //Código roubado de algum blog de tutoriais. Esqueci de dar créditos a quem fez.
 
-<<<<<<< HEAD
-$(function() {
-
-  //We can attach the `fileselect` event to all file inputs on the page
-  $(document).on('change', ':file', function() {
-    var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-=======
 $(function () {
 
   //We can attach the `fileselect` event to all file inputs on the page
@@ -16,28 +7,10 @@ $(function () {
     var input = $(this),
       numFiles = input.get(0).files ? input.get(0).files.length : 1,
       label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
->>>>>>> consucloud-2/master
     input.trigger('fileselect', [numFiles, label]);
   });
 
   //We can watch for our custom `fileselect` event like this
-<<<<<<< HEAD
-  $(document).ready( function() {
-      $(':file').on('fileselect', function(event, numFiles, label) {
-
-          var input = $(this).parents('.input-group').find(':text'),
-              log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-          if( input.length ) {
-              input.val(log);
-          } else {
-              if( log ) alert(log);
-          }
-
-      });
-  });
-  
-=======
   $(document).ready(function () {
     $(':file').on('fileselect', function (event, numFiles, label) {
 
@@ -53,5 +26,4 @@ $(function () {
     });
   });
 
->>>>>>> consucloud-2/master
 });

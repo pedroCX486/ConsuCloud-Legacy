@@ -2,21 +2,12 @@
 session_start();
 $idUsuario = $_SESSION['idUsuario'];
 
-<<<<<<< HEAD
-if($_SESSION["isSecretaria"] == true || $_SESSION["isAdmin"] == true){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
-}elseif(empty($_SESSION)){
-  header("Location: ../index.php?erro=ERROFATAL");
-  exit();
-=======
 if(!$_SESSION["isMedico"]){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;
  }elseif(empty($_SESSION)){
   echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
   die;
->>>>>>> consucloud-2/master
 }
 
 require("../componentes/db/connect.php");
@@ -90,9 +81,6 @@ if($row){
     
     <div style="margin-left: 20px;">
       <br>
-<<<<<<< HEAD
-      <?php echo nl2br($_POST["receita"]); ?>
-=======
       <?php 
       if(!empty($_GET["receita"])){
         $receita = $_GET["receita"];
@@ -122,7 +110,6 @@ if($row){
       }else{
         echo nl2br($_POST["receita"]);
       }?>
->>>>>>> consucloud-2/master
     </div>
   </div>
   

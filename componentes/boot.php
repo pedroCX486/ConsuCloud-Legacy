@@ -6,23 +6,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Material Design -->
-<<<<<<< HEAD
-<link rel="stylesheet" type="text/css" href="../componentes/materialdesign/bootstrap-material-design.min.css" />
-<link rel="stylesheet" type="text/css" href="../componentes/materialdesign/ripples.min.css" />
-=======
 <link rel="stylesheet" type="text/css" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/materialdesign/bootstrap-material-design.min.css" />
 <link rel="stylesheet" type="text/css" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/materialdesign/ripples.min.css" />
->>>>>>> consucloud-2/master
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" />
 
 <!-- Carregando o Favicon -->
-<<<<<<< HEAD
-<link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-
-<!-- Carregando a Folha de Estilos -->
-<link rel="stylesheet" href="/assets/estilos.css">
-=======
 <link rel="icon" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/assets/favicon.ico" type="image/x-icon" />
 
 <!-- Carregando a Folha de Estilos -->
@@ -33,4 +22,3 @@
 
 <!-- Impedir CTRL-Click -->
 <script src="https://<?php echo $_SERVER['HTTP_HOST'];?>/componentes/noCtrlClick.js"></script>
->>>>>>> consucloud-2/master

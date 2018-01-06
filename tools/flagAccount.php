@@ -22,11 +22,7 @@
 				header ('Content-type: text/html; charset=UTF-8');
 				require("../componentes/db/connect.php");
 				
-<<<<<<< HEAD
-				$select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'admin' OR tipoUsuario = 'debug'");
-=======
 				$select = $mysqli->query("SELECT * FROM usuarios");
->>>>>>> consucloud-2/master
 				$row = $select->num_rows;
 				if($row){
 				  while($get = $select->fetch_array()){

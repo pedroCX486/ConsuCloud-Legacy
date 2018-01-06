@@ -21,17 +21,6 @@ $dataNasc = date('Y-m-d',$dataNasc);
 //Chegacem de caracteres invalidos em alguns campos (caso usuário burle no front-end)
 if(!ctype_digit($RG)) {
     echo '<script type="text/javascript">
-<<<<<<< HEAD
-					alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
-					window.history.back();
-				</script>';
-	exit();
-}elseif(!ctype_digit($endereco_cep)) {
-    echo '<script type="text/javascript">
-					alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
-					window.history.back();
-				</script>';
-=======
 				  	alert("ERRO: Caracteres inválidos no campo Documento de Identidade\/RG.\nApenas caracteres numéricos são permitidos.");
 				  	window.history.back();
 				  </script>';
@@ -41,7 +30,6 @@ if(!ctype_digit($RG)) {
 					  alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
 				  	window.history.back();
 			  	</script>';
->>>>>>> consucloud-2/master
 	exit();
 }
 

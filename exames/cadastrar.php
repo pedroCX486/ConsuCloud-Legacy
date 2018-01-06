@@ -21,120 +21,6 @@ if (!file_exists('arquivos/' . $idPaciente . '/')) {
 //Arquivos válidos para upload
 $valid_formats = array("png", "jpg", "bmp", "gif", "jpeg", "avi", "mp4", "pdf");
 
-<<<<<<< HEAD
-    //Se encontrar arquivos enviados, hora do upload
-    if(count($_FILES['arquivos']['name']) > 0){
-        
-        //Fazer loop pela array de arquivos
-        for($i=0; $i<count($_FILES['arquivos']['name']); $i++) {
-
-            //Pegar o caminho e nome temporário dos arquivos
-            $tmpFilePath = $_FILES['arquivos']['tmp_name'][$i];
-
-            //Testar tamanho dos arquivos
-            if($_FILES['arquivos']['size'][$i] > 10485760) { //10 MB (size is also in bytes)
-                $erroArquivoGrande = 1;
-                $nomeArquivoGrande[] = $_FILES['arquivos']['name'][$i];
-                $tmpFilePath = "";
-
-            //Testar tipos de arquivos
-            }elseif(!in_array(pathinfo($_FILES['arquivos']['name'][$i], PATHINFO_EXTENSION), $valid_formats)){
-                //Ignorar campos em branco pra áreas de multiupload
-                if($_FILES['arquivos']['name'][$i] != ""){
-                    $erroArquivoInvalido = 1;
-                    $nomeArquivoInvalido[] = $_FILES['arquivos']['name'][$i];
-                    $tmpFilePath = "";
-                }
-            }
-
-            //Verificar se o arquivo passou nos testes
-            if($tmpFilePath != ""){
-            
-                //Salvar o nome do arquivo
-                $shortname = $_FILES['arquivos']['name'][$i];
-
-                //Salvar a URL e o arquivo
-                $filePath = "arquivos/" . $idPaciente . "/" . $_FILES['arquivos']['name'][$i];
-
-								//Verificar se o arquivo já existe
-								if(file_exists($filePath)) {
-									$filePath = "arquivos/" . $idPaciente . "/" . date('dmY-H.i A') . " " . $_FILES['arquivos']['name'][$i];
-                                    $shortname = date('dmY-H.i A') . " " .  $_FILES['arquivos']['name'][$i];
-								}
-
-                //Enviar arquivo ao diretório de trabalho
-                if(move_uploaded_file($tmpFilePath, $filePath)) {
-                    $files[] = $shortname;
-                }
-              }
-        }
-    }
-
-    /*
-        Papo reto e bem simples:
-
-        $files == 0 se der true, singifica que não tem nenhum arquivo
-        $erroArquivoInvalido == 1 se der true, significa que o arquivo é inválido
-        $erroArquivoGrande == 1 se der true, significa que o arquivo é muito grande
-
-        Mas, se $files != 0 mesmo com as outras dando true, significa que ainda tem coisa a ser enviada e o upload vai ser finalizado.
-
-        Esse behaviour pode ser alterado no futuro, caso o cliente prefira que o upload seja cancelado TODO caso ocorra erro mesmo que em apenas um arquivo.
-    */
-
-    if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande, arquivo inválido e nenhum arquivo foi ligada
-        $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
-        $msgErroArqGrande = implode(" \\n ", array_filter($nomeArquivoGrande));
-        echo '<script type="text/javascript">
-             alert("Os seguintes arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . ' \n\nO envio foi cancelado.");
-             location.href="../exames/exames.php";
-             </script>';
-        exit();
-    }elseif(count($files) != 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande e arquivo inválido foi ligada mas com arquivos válidos
-        $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
-        $msgErroArqGrande = implode(" \\n ", array_filter($nomeArquivoGrande));
-        echo '<script type="text/javascript">
-             alert("Os seguintes arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . '");
-             </script>';
-        //Resetar flags
-        $erroArquivoInvalido = 0;
-        $erroArquivoGrande = 0;
-    }elseif(count($files) == 0 && $erroArquivoInvalido == 1){ //Verificar se a flag de arquivo inválido e nenhum arquivo foi ligada
-        $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
-        echo '<script type="text/javascript">
-             alert("Os seguintes arquivos não são válidos e não foram enviados: \n\n'. $msgErroArqInvalido .' \n\nO envio foi cancelado.");
-             location.href="../exames/exames.php";
-             </script>';
-        exit();
-    }elseif(count($files) != 0 && $erroArquivoInvalido == 1){ //Verificar se a flag de arquivo inválido foi ligada mas com arquivos válidos
-        $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
-        echo '<script type="text/javascript">
-             alert("Os seguintes arquivos não são válidos e não foram enviados: \n\n'. $msgErroArqInvalido .'");
-             </script>'; 
-        //Resetar flags
-        $erroArquivoInvalido = 0;   
-    }elseif(count($files) == 0 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande e nenhum arquivo foi ligada
-        $msgErroArqGrande = implode("\\n", array_filter($nomeArquivoGrande));
-        echo '<script type="text/javascript">
-             alert("Os seguintes arquivos são muito grandes e não foram enviados: \n\n'. $msgErroArqGrande .' \n\nO envio foi cancelado.");
-             location.href="../exames/exames.php";
-             </script>';
-        exit();
-    }elseif(count($files) != 0 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande foi ligada mas com arquivos válidos
-        $msgErroArqGrande = implode("\\n", array_filter($nomeArquivoGrande));
-        echo '<script type="text/javascript">
-             alert("Os seguintes arquivos são muito grandes e não foram enviados: \n\n'. $msgErroArqGrande .'");
-             </script>';
-        //Resetar flags
-        $erroArquivoGrande = 0;
-    }elseif(count($files) == 0){ //Verificar se a flag de nenhum arquivo foi ligada
-        echo '<script type="text/javascript">
-             alert("Houve um erro no upload. Por favor contacte o administrador do sistema ou tente novamente mais tarde.");
-             location.href="../exames/exames.php";
-             </script>';
-        exit();
-    }
-=======
 //Se encontrar arquivos enviados, hora do upload
 if(count($_FILES['arquivos']['name']) > 0){
     
@@ -247,7 +133,6 @@ if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ 
         </script>';
   exit();
 }
->>>>>>> consucloud-2/master
 
 
 //Iniciar a session e pegar o CRM do médico logado
@@ -268,11 +153,7 @@ VALUES ('$idPaciente', '$idUsuario', '$dataExame', '$nomeExame', '$descExame', '
 if ($query){
   
   //Salvar log
-<<<<<<< HEAD
-  $_SESSION['log'] = "Upload";
-=======
   $_SESSION['log'] = "UPLOAD";
->>>>>>> consucloud-2/master
   require("../logs/gravarlogs.php");
 
   //Exibir mensagem e finalizar
