@@ -104,7 +104,7 @@ if($_SESSION["isMedico"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
-                    <input type="text" class="form-control" name="endereco_logradouro" id="rua" aria-describedby="basic-addon1" maxlength="150">
+                    <input type="text" class="form-control" name="endereco_logradouro" id="logradouro" aria-describedby="basic-addon1" maxlength="150">
                   </div>
 
                   <div class="input-group">
