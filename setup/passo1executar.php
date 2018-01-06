@@ -17,7 +17,7 @@ require "../componentes/db/connect.php";
 $query = $mysqli->query("INSERT INTO configs (nomeConsultorio,email,telefone,logotipo,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado, version) 
 VALUES ('$nomeConsultorio', '$email', '$telefone', 'logotipo_consucloud.png', '$endereco_logradouro', '$endereco_numero', 
-'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', 'DEPLOY-FIRSTINSTALL-CONSUCLOUD-PROD')");
+'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado')");
 
 $query1 = $mysqli->query("INSERT INTO planos (nomePlano,telFixo,email,infoPlano,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado) 
