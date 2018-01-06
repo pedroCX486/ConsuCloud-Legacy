@@ -99,7 +99,7 @@ if($row){
 									
 									<div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" <?php echo $endereco_cep; ?>>
+                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" value="<?php echo $endereco_cep; ?>">
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-raised btn-info pull-right" id="buscaCEP">BUSCAR CEP</button>
                     </div>
