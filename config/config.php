@@ -117,7 +117,7 @@ if($row){
 									
 									<div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
-                    <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" value="<?php echo $endereco_cep; ?>">
+                    <input required type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" value="<?php echo $endereco_cep; ?>">
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-raised btn-info pull-right" id="buscaCEP">BUSCAR CEP</button>
                     </div>
@@ -125,13 +125,13 @@ if($row){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Logradouro:</span>
-                    <input type="text" class="form-control" name="endereco_logradouro" id="logradouro" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>"
+                    <input required type="text" class="form-control" name="endereco_logradouro" id="logradouro" aria-describedby="basic-addon1" value="<?php echo $endereco_logradouro; ?>"
                       maxlength="150">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
+                    <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
                       maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
                   </div>
 
@@ -143,18 +143,18 @@ if($row){
 
                   <div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Bairro:</span>
-                      <input type="text" class="form-control" name="endereco_bairro" id="bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
+                      <input required type="text" class="form-control" name="endereco_bairro" id="bairro" aria-describedby="basic-addon1" value="<?php echo $endereco_bairro; ?>"
                         maxlength="100">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Cidade:</span>
-                    <input type="text" class="form-control" name="endereco_cidade" id="cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>"
+                    <input required type="text" class="form-control" name="endereco_cidade" id="cidade" aria-describedby="basic-addon1" value="<?php echo $endereco_cidade; ?>"
                       maxlength="100">
                   </div>
 
                   <div class="form-group">
-                    <select name="endereco_estado" id="uf" class="form-control">
+                    <select required name="endereco_estado" id="uf" class="form-control">
 											<option disabled selected value="">Estado ▾</option>
                       <option value="AC" <?php if($endereco_estado=='AC' ){echo 'selected';} ?>>Acre</option>
                       <option value="AL" <?php if($endereco_estado=='AL' ){echo 'selected';} ?>>Alagoas</option>
