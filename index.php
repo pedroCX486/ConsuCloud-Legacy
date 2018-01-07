@@ -63,6 +63,8 @@ $erro = $_GET['erro'];
               <span class="input-group-addon" id="basic-addon1">Usuário:</span>
               <input required type="text" class="form-control" name="login" aria-describedby="basic-addon1">
             </div>
+            
+            <br>
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Senha:</span>

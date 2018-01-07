@@ -16,15 +16,12 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" crossorigin="anonymous"/>
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons" crossorigin="anonymous"/>
 
-<script>
-  $(document).ready(function() 
-  {
-    $(function() 
-    {
-      $.material.init();
-    });
-  });    
-</script>
+<?php
+//Só inicializar o MD dentro do sistema
+if($_SERVER['PHP_SELF'] != '/index.php'){
+  echo '<script src="https://'.$_SERVER['HTTP_HOST'].'/componentes/materialInit.js"> </script>';
+}
+?>
 
 <!-- Carregando o Favicon -->
 <link rel="icon" href="https://<?php echo $_SERVER['HTTP_HOST'];?>/assets/favicon.ico" type="image/x-icon"/>
