@@ -1,11 +1,15 @@
+function limpa_formulario_cep(){
+  $("#logradouro").val("");
+  $("#bairro").val("");
+  $("#cidade").val("");
+  $("#uf").val("");
+}
+
 $(document).ready(function(){
   $("#buscaCEP").click(function() {
 
     // Limpa valores do formulário de cep.
-    $("#logradouro").val("");
-    $("#bairro").val("");
-    $("#cidade").val("");
-    $("#uf").val("");
+    limpa_formulario_cep();
 
     //Nova variável "cep" somente com dígitos.
     var cep = $("#cep").val().replace(/\D/g, '');
@@ -37,20 +41,20 @@ $(document).ready(function(){
           } //end if.
           else {
             //CEP pesquisado não foi encontrado.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
             alert("CEP não encontrado.");
           }
         });
       } //end if.
       else {
         //cep é inválido.
-        limpa_formulário_cep();
+        limpa_formulario_cep();
         alert("Formato de CEP inválido.");
       }
     } //end if.
     else {
       //cep sem valor, limpa formulário.
-      limpa_formulário_cep();
+      limpa_formulario_cep();
     }
   });
 });
