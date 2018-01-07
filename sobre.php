@@ -61,7 +61,7 @@ if(empty($_SESSION)){
       <br>
 
       <br>
-      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20180107-E9B98C02
+      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20180107-C42D33F8
 
     </div>
   </div>
