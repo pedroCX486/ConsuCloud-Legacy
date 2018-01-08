@@ -157,7 +157,7 @@ require("../componentes/db/connect.php");
 
             <br>
             
-            <a class="anchor" href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
+            <a href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
               <button class="btn btn-raised btn-primary btn-lg">IMPRIMIR RECEITA</button>
             </a>
 
@@ -210,7 +210,7 @@ require("../componentes/db/connect.php");
 
             <br>
             
-            <a class="anchor" href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
+            <a href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
               <button class="btn btn-raised btn-primary btn-lg">IMPRIMIR RECEITA</button>
             </a>
 
