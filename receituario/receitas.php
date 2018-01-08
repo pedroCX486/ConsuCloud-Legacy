@@ -57,7 +57,7 @@ require("../componentes/db/connect.php");
           </div>
 
           <center>
-            <button type="submit" class="btn btn-raised btn-info">Buscar Receita</button> &nbsp;
+            <button type="submit" class="btn btn-raised btn-info">BUSCAR RECEITAS</button> &nbsp;
             <a class="anchor" href="receitas.php">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
@@ -111,7 +111,7 @@ require("../componentes/db/connect.php");
           </div>
 
           <center>
-            <button type="submit" class="btn btn-raised btn-info">Buscar Receitas</button>
+            <button type="submit" class="btn btn-raised btn-info">SELECIONAR RECEITA</button>
           </center>
         </form>
       </div>
