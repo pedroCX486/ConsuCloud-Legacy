@@ -147,7 +147,7 @@ require("../componentes/db/connect.php");
               <button class="btn btn-raised btn-info pull-right">EDITAR RECEITA</button>
             </a>
             
-            <a class="anchor" href="remover.php?remover=<?php echo $get['idReceita']; ?>">
+            <a href="remover.php?remover=<?php echo $get['idReceita']; ?>">
               <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja apagar esta receita?')">APAGAR RECEITA</button>
             </a>
             
@@ -200,7 +200,7 @@ require("../componentes/db/connect.php");
               <button class="btn btn-raised btn-info pull-right">EDITAR RECEITA</button>
             </a>
             
-            <a class="anchor" href="remover.php?remover=<?php echo $get['idReceita']; ?>">
+            <a href="remover.php?remover=<?php echo $get['idReceita']; ?>">
               <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja apagar esta receita?')">APAGAR RECEITA</button>
             </a>
             

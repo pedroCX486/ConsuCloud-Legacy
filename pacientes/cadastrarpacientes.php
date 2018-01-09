@@ -32,7 +32,7 @@ if($_SESSION["isMedico"]){
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Paciente</small>
-         <a class="anchor" href="pacientes.php">
+         <a href="pacientes.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
         </a>
       </h1>

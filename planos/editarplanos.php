@@ -54,7 +54,7 @@ if($row){
     <div class="jumbotron">
       <h1>
         <small>Editar Plano de Saúde</small>
-         <a class="anchor" href="planos.php">
+         <a href="planos.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR EDIÇÃO</button>
         </a>
       </h1>

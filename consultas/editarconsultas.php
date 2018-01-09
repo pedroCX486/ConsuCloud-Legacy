@@ -51,7 +51,7 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
     <div class="jumbotron">
       <h1>
         <small>Editar Consultas</small>
-         <a class="anchor" href="consultas.php">
+         <a href="consultas.php">
           <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR EDIÇÃO</button>
         </a>
       </h1>

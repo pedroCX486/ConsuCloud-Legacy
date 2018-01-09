@@ -183,7 +183,7 @@ require("../componentes/db/connect.php");
               <a class="anchor" href="editarconsultas.php?editar=<?php echo $get['idConsulta']; ?>" title="Editar Consulta">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
               </a> &nbsp;
-              <a class="anchor" href="remover.php?remover=<?php echo $get['idConsulta']; ?>" title="Remover Consulta" onClick="return confirm('Tem certeza que deseja cancelar esta consulta?')">
+              <a href="remover.php?remover=<?php echo $get['idConsulta']; ?>" title="Remover Consulta" onClick="return confirm('Tem certeza que deseja cancelar esta consulta?')">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true" />
               </a>
             </td>
