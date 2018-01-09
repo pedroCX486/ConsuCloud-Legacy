@@ -69,8 +69,8 @@ require("../componentes/db/connect.php");
               </div>
 
               <center>
-                <button type="submit" class="btn btn-raised btn-info">Buscar Paciente</button> &nbsp;
-                <a class="anchor" href="prontuarios.php">
+                <button type="submit" class="btn btn-raised btn-info">BUSCAR PACIENTE</button> &nbsp;
+                <a class="anchor" href="consultas.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
               </center>
@@ -110,10 +110,7 @@ require("../componentes/db/connect.php");
               </div>
 
               <center>
-                <button type="submit" class="btn btn-raised btn-info">Filtrar</button> &nbsp;
-                <a class="anchor" href="consultas.php">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </a>
+                <button type="submit" class="btn btn-raised btn-info">SELECIONAR PACIENTE</button> &nbsp;
               </center>
             </form>
 

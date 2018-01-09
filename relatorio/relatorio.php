@@ -79,7 +79,7 @@ require("../componentes/db/connect.php");
                 if($rowMedico){
                   while($getMedico = $selectMedico->fetch_array()){
               ?>
-              <option value="<?php echo $getMedico['idUsuario']; ?>">
+              <option value="<?php echo $getMedico['idUsuario']; ?>" <?php if($_POST['medico'] == $getMedico['idUsuario']){echo " selected";} ?>>
                 <?php echo $getMedico['nomeCompleto']; ?>
               </option>
               <?php
@@ -100,7 +100,7 @@ require("../componentes/db/connect.php");
               if($rowPlano){
                 while($getPlano = $selectPlano->fetch_array()){
                   ?>
-                <option value="<?php echo $getPlano['idPlano']; ?>">
+                <option value="<?php echo $getPlano['idPlano']; ?>" <?php if($_POST['plano'] == $getPlano['idPlano']){echo " selected";} ?>>
                   <?php echo $getPlano['nomePlano']; ?>
                 </option>
                 <?php
@@ -110,7 +110,10 @@ require("../componentes/db/connect.php");
             </select>
           </div>
 
-          <button class="btn btn-raised btn-primary" type="submit">Gerar Relatório</button>
+          <button class="btn btn-raised btn-primary" type="submit">GERAR RELATÓRIO</button>
+            <a class="anchor" href="relatorio.php">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>
           </p>
         </form>
 
@@ -198,7 +201,7 @@ require("../componentes/db/connect.php");
         <br>
 
         <form method="post" action="gerar.php" target="_blank">
-          <button class="btn btn-raised btn-primary" type="submit">Imprimir Relatório</button>
+          <button class="btn btn-raised btn-primary" type="submit">IMPRIMIR RELATÓRIO</button>
           <p>
             <h5>
               <b>Nota:</b> Consultas não executadas (simbolo do
