@@ -1,92 +1,4 @@
-/* Plano de Fundo da Página */
-  body {
-    background-color: #2F4F4F;
-  }
-
-/* Estilos da Barra do Sistema */
-  .navbar-default {
-    background-color: #25c594;
-    border-color: #008787;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .navbar-default .navbar-brand {
-    color: #ecf1f0;
-  }
-
-  .navbar-default .navbar-brand:hover,
-  .navbar-default .navbar-brand:focus {
-    color: #ffffff;
-  }
-
-  .navbar-default .navbar-text {
-    color: #ecf1f0;
-  }
-
-  .navbar-default .navbar-nav > li > a {
-    color: #ecf1f0;
-  }
-
-  .navbar-default .navbar-nav > li > a:hover,
-  .navbar-default .navbar-nav > li > a:focus {
-    color: #ffffff;
-  }
-
-  .navbar-default .navbar-nav > .active > a,
-  .navbar-default .navbar-nav > .active > a:hover,
-  .navbar-default .navbar-nav > .active > a:focus {
-    color: #ffffff;
-    background-color: #008787;
-  }
-
-  .navbar-default .navbar-nav > .open > a,
-  .navbar-default .navbar-nav > .open > a:hover,
-  .navbar-default .navbar-nav > .open > a:focus {
-    color: #ffffff;
-    background-color: #008787;
-  }
-
-  .navbar-default .navbar-toggle {
-    border-color: #008787;
-  }
-
-  .navbar-default .navbar-toggle:hover,
-  .navbar-default .navbar-toggle:focus {
-    background-color: #008787;
-  }
-
-  .navbar-default .navbar-toggle .icon-bar {
-    background-color: #ecf1f0;
-  }
-
-  .navbar-default .navbar-collapse,
-  .navbar-default .navbar-form {
-    border-color: #ecf1f0;
-  }
-
-  .navbar-default .navbar-link {
-    color: #ecf1f0;
-  }
-
-  .navbar-default .navbar-link:hover {
-    color: #ffffff;
-  }
-
-  @media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-      color: #ecf1f0;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: #ffffff;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-      color: #ffffff;
-      background-color: #008787;
-    }
-  }
+/* Estilos Base do Sistema */
 
 /* Estilos das Tabelas do Sistema */
   .tg {
@@ -122,8 +34,6 @@
   #rcorners1 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
-    background: #c7ecc1;
-    padding: 20px;
   }
 
 /* Estilos da Página de Login */

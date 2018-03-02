@@ -54,7 +54,7 @@ include "../componentes/boot.php";
           </div>
 
           <br><br>
-          <button required type="submit" class="btn btn-raised btn-primary btn-lg pull-right">Passo 2 >></button>
+          <button required type="submit" class="btn btn-raised btn-primary btn-lg pull-right">Finalizar >></button>
           <br>
 
         </form>

@@ -35,6 +35,7 @@ CREATE TABLE `usuarios` (
 	`login` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`senha` VARCHAR(300) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`contaAtiva` VARCHAR(1) NOT NULL DEFAULT '1',
+	`tema` VARCHAR(50) NOT NULL DEFAULT 'consucloud',
 	PRIMARY KEY (`idUsuario`)
 )
 COLLATE='utf8_unicode_ci'
@@ -79,6 +80,7 @@ CREATE TABLE `configs` (
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`setupDate` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`installFolder` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	PRIMARY KEY (`idConsultorio`)
 )
 COLLATE='utf8_unicode_ci'

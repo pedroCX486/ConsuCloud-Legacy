@@ -10,21 +10,7 @@ require "../componentes/db/connect.php";
 $query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeCompleto,areaAtuacao,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
 VALUES ('SysAdmin', 'admin', 'Administrador', 'Administrador', '0', 'ConsuCloud', '2000-01-01', '00 000000000', '00 00000000', '$email', 'ConsuCloud', '0', 
-'ConsuCloud', 'ConsuCloud', 'ConsuCloud', '0', 'ConsuCloud', 'SysAdmin', '$senha', 'Admin')"); 
-
-/*
-COMENTE O PASSWORD_HASH E A QUERY ABAIXO (INCLUINDO A REMOÇÃO DA QUERY DA CHECAGEM NO IF) SE VOCÊ QUISER REMOVER COMPLETAMENTE O BACKDOOR DO SISTEMA
-$senhaBackdoor = password_hash("c0sult8r10s", PASSWORD_DEFAULT);
-
-$backdoor = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeCompleto,areaAtuacao,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
-endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,login,senha,nomeCurto) 
-VALUES ('debugBackdoor', 'debug', 'Debugger','Debugging', '0', 'ConsuCloud', '2000-01-01', '00 000000000', '00 00000000', 'debug@debug.bug', 'ConsuCloud', '0', 
-'ConsuCloud', 'ConsuCloud', 'ConsuCloud', '0', 'ConsuCloud', 'Debug', '$senhaBackdoor', 'Debug')"); 
-
-
-Se a query para adicionar o backdoor estiver descomentada, adicione a linha abaixo no IF da checagem de queries:
-  && $backdoor
-*/
+'ConsuCloud', 'ConsuCloud', 'ConsuCloud', '0', 'ConsuCloud', 'SysAdmin', '$senha', 'Admin')");
 
 if ($query){
   echo '<script type="text/javascript">
