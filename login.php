@@ -59,10 +59,16 @@ if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
   //Controle de permissões
   if($tipoUsuario == "medico"){ //Testar se usuário é tipo médico
     $_SESSION['isMedico'] = true;
+    $_SESSION['isSecretaria'] = false;
+    $_SESSION['isAdmin'] = false;
   }elseif($tipoUsuario == "secretaria"){ //Testar se usuário é tipo secretária
     $_SESSION['isSecretaria'] = true;
+    $_SESSION['isAdmin'] = false;
+    $_SESSION['isMedico'] = false;
   }elseif($tipoUsuario == "admin"){ //Testar se usuário é tipo admin
     $_SESSION['isAdmin'] = true;
+    $_SESSION['isSecretaria'] = false;
+    $_SESSION['isMedico'] = false;
   }
 }else{
   if($contaAtiva == "1"){ //Se a conta estiver ativa mas a senha não for validada, retorne com erro

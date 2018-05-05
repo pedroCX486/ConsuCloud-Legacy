@@ -1,17 +1,13 @@
 <?php
 session_start();
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
-require("../componentes/sessionbuster.php");
-
-if(!$_SESSION["isAdmin"]){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;
- }elseif(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+if(!$_SESSION["isAdmin"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 $select = $mysqli->query("SELECT * FROM configs");
 $row = $select->num_rows;
@@ -28,7 +24,6 @@ if($row){
     $endereco_cep = $get['endereco_cep'];
     $endereco_estado = $get['endereco_estado'];
     $logotipo = $get['logotipo'];
-    $version = $get['version'];
   }
   
   $mysqli->close();
@@ -42,18 +37,18 @@ if($row){
   <meta charset="UTF-8">
   <title>Configurações - ConsuCloud</title>
 
-  <?php include "../componentes/boot.php";?>
-  <script src="../componentes/buscaCEP.js"></script>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/buscaCEP.js"></script>
 </head>
 
 <body>
   
-  <?php include "../componentes/barra.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
       <h1>Configurações</h1>
-      <a class="anchor" href="../dashboards/dashboard.php">
+      <a class="anchor" href="<?php echo $_SESSION["installAddress"]; ?>dashboards/dashboard.php">
         <button class="btn btn-raised btn-danger pull-right">VOLTAR AO INÍCIO</button>
       </a>
       <p>As informações básicas do consultório ficam aqui.</p>
@@ -89,7 +84,7 @@ if($row){
                   </div>
 
                   <!--JS do FileSelect-->
-                  <script src="../componentes/fileSelect.js"></script>
+                  <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/fileSelect.js"></script>
 
                   <div class="input-group">
                     <label class="input-group-btn">
@@ -132,7 +127,7 @@ if($row){
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
                     <input required type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" value="<?php echo $endereco_numero; ?>"
-                      maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                      maxlength="10" pattern="([0-9]){1,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">

@@ -13,9 +13,9 @@
 <?php
 //Só inicializar o MD dentro do sistema
 if($_SERVER['PHP_SELF'] != '/index.php'){
-  echo '<script src="'.$_SESSION["installAddress"].'/componentes/temas/consucloud/materialInit.js"> </script>';
+  echo '<script src="'.$_SESSION["installAddress"].'componentes/temas/consucloud/materialInit.js"> </script>';
 }
 ?>
 
 <!-- Folha de Estilos do Tema -->
-<link rel="stylesheet" href="<?php echo $_SESSION["installAddress"]; ?>/componentes/temas/consucloud/consucloud.css">
+<link rel="stylesheet" href="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/consucloud/consucloud.css">

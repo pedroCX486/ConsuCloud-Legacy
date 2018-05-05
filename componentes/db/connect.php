@@ -10,7 +10,7 @@ if($mysqli->connect_errno){
   session_start();
   $_SESSION["ERROBANCO"] = mysqli_connect_error() . ' (' . mysqli_connect_errno() . ')';
 
-  echo "<script>top.window.location = '../index.php?erro=ERROBANCO'</script>";
+  echo "<script>top.window.location = ".$_SESSION["installAddress"]."index.php?erro=ERROBANCO'</script>";
   die;
 }
 

@@ -1,5 +1,5 @@
 <?php
-header ('Content-type: text/html; charset=UTF-8');
+header('Content-type: text/html; charset=UTF-8');
 
 $nomeConsultorio = trim(addslashes(strip_tags($_POST['nomeConsultorio'])));
 $telefone = trim(addslashes(strip_tags($_POST['telefone'])));
@@ -61,20 +61,20 @@ if(count($files) == 0 && $erroArquivoInvalido == 1){ //Verificar se a flag de ar
   $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
   echo '<script type="text/javascript">
           alert("Os seguinte arquivos não são válidos e não foram enviados: \n\n'. $msgErroArqInvalido .' \n\nAs configurações não foram salvas");
-          location.href="../exames/exames.php";
+          location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
   exit();
 }elseif(count($files) == 0 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande e nenhum arquivo foi ligada
   $msgErroArqGrande = implode("\\n", array_filter($nomeArquivoGrande));
   echo '<script type="text/javascript">
           alert("Os seguintes arquivos são muito grandes e não foram enviados: \n\n'. $msgErroArqGrande .' \n\nAs configurações não foram salvas.");
-          location.href="../exames/exames.php";
+          location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
   exit();
 }    
 
 //Conexão com db
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
 
 if($files){
   $select = $mysqli->query("SELECT * FROM configs");
@@ -99,7 +99,7 @@ if($files){
 if ($query){
   echo '<script type="text/javascript">
 					alert("Configurações atualizadas com sucesso.");
-					location.href="../config/config.php";
+					location.href="'.$_SESSION["installAddress"].'/config/config.php";
         </script>';
 }else{
   echo $mysqli->error;

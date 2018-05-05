@@ -1,13 +1,13 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
 date_default_timezone_set('America/Recife');
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 if(file_exists("generated/backup_consucloud.zip")){
-  unlink('../backup/generated/backup_consucloud.zip');
+  unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_consucloud.zip');
 }
 if(file_exists("generated/backup_info.txt")){
-  unlink('../backup/generated/backup_info.txt');
+  unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_info.txt');
 }
 
 /** Abrir Permissão para Escrever em Arquivos**/
@@ -42,7 +42,7 @@ $file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/receitas.sql";
 $result .= $mysqli->query("SELECT * FROM receitas INTO OUTFILE '$file'");
 
 /** Fazer Backup dos Arquivos de Exames **/
-$zipexames = '../backup/generated/backup_exames.zip';
+$zipexames = $_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_exames.zip';
 $examesdir = $_SERVER['DOCUMENT_ROOT']."/exames/arquivos";
 $zip = new ZipArchive();
 $zip->open($zipexames, ZipArchive::CREATE | ZipArchive::OVERWRITE);
@@ -67,8 +67,8 @@ $zip->close();
 
 
 /** Zipar Backup Completo do Sistema **/
-$zipcompleto = '../backup/generated/backup_consucloud.zip';
-$backupdir = $_SERVER['DOCUMENT_ROOT']."/backup/generated";
+$zipcompleto = $_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_consucloud.zip';
+$backupdir = $_SERVER['DOCUMENT_ROOT'].'/backup/generated';
 $zip = new ZipArchive();
 $zip->open($zipcompleto, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
@@ -91,19 +91,19 @@ foreach ($files as $name => $file)
 $zip->close();
 
 /** Sanitizar Sistema **/
-unlink('../backup/generated/backup_exames.zip');
-unlink('../backup/generated/configs.sql');
-unlink('../backup/generated/consultas.sql');
-unlink('../backup/generated/exames.sql');
-unlink('../backup/generated/logs.sql');
-unlink('../backup/generated/pacientes.sql');
-unlink('../backup/generated/planos.sql');
-unlink('../backup/generated/prontuarios.sql');
-unlink('../backup/generated/usuarios.sql');
-unlink('../backup/generated/receitas.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_exames.zip');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/configs.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/consultas.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/exames.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/logs.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/pacientes.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/planos.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/prontuarios.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/usuarios.sql');
+unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/receitas.sql');
 
 /** Escrever Informação de Data Sobre o Backup **/
-$backupinfo = "../backup/generated/backup_info.txt";
+$backupinfo = "$_SERVER['DOCUMENT_ROOT']./backup/generated/backup_info.txt";
 $myfile = fopen($backupinfo, "w");
 $txt = date("d-m-Y");
 fwrite($myfile, $txt);
@@ -120,12 +120,12 @@ if($result == 111111111){
 if($erro){
   echo '<script type="text/javascript">
     alert("Erro ao executar backup completo! Código do Erro: ' . $result .'");
-    location.href="../backup/gerenciar_backup.php";
+    location.href="'.$_SESSION["installAddress"].'/backup/gerenciar_backup.php";
   </script>'; 
 }else{
   echo '<script type="text/javascript">
     alert("Backup completo efetuado com sucesso! Data do Backup: ' . file_get_contents($backupinfo) . '\n\n' . $status .'");
-    location.href="../backup/gerenciar_backup.php";
+    location.href="'.$_SESSION["installAddress"].'/backup/gerenciar_backup.php";
   </script>'; 
 }
 

@@ -1,13 +1,10 @@
 <?php
 session_start();
 
-require("../componentes/sessionbuster.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
-if(!$_SESSION["isAdmin"]){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;
-}elseif(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+if(!$_SESSION["isAdmin"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."/index.php?erro=ERROFATAL'</script>";
   die;
 }
 ?>
@@ -19,12 +16,12 @@ if(!$_SESSION["isAdmin"]){
   <meta charset="UTF-8">
   <title>Ajuda - ConsuCloud</title>
 
-  <?php include "../componentes/boot.php";?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
 </head>
 
 <body>
   
-  <?php include "../componentes/barra.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -39,7 +36,7 @@ if(!$_SESSION["isAdmin"]){
                   <br><br>
                   Existe um backup com a data ' . file_get_contents($backupinfo) . '.
                   <br><br>
-                  <a target="_blank" href="../componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
+                  <a target="_blank" href="'.$_SESSION["installAddress"].'/componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
                     <button class="btn btn-raised btn-info btn-lg">FAZER DOWNLOAD DO BACKUP</button>
                   </a>
                 </center>';
