@@ -1,5 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
 
 //Pegar dados enviados via POST
 $idPaciente = trim(addslashes(strip_tags($_POST['idPaciente'])));
@@ -135,8 +136,7 @@ if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ 
 }
 
 
-//Iniciar a session e pegar o CRM do médico logado
-session_start();
+//Pegar o CRM do médico logado
 $idUsuario = $_SESSION["idUsuario"];
 
 //Puxar o connect do banco

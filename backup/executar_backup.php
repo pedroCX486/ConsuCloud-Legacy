@@ -1,13 +1,15 @@
 <?php
-header ('Content-type: text/html; charset=UTF-8');
+header('Content-type: text/html; charset=UTF-8');
 date_default_timezone_set('America/Recife');
+session_start();
+
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 if(file_exists("generated/backup_consucloud.zip")){
-  unlink($_SESSION["installFolder"].'/backup/generated/backup_consucloud.zip');
+  unlink($_SESSION["installFolder"].'backup/generated/backup_consucloud.zip');
 }
 if(file_exists("generated/backup_info.txt")){
-  unlink($_SESSION["installFolder"].'/backup/generated/backup_info.txt');
+  unlink($_SESSION["installFolder"].'backup/generated/backup_info.txt');
 }
 
 /** Abrir Permissão para Escrever em Arquivos**/
@@ -67,8 +69,8 @@ $zip->close();
 
 
 /** Zipar Backup Completo do Sistema **/
-$zipcompleto = $_SESSION["installFolder"].'/backup/generated/backup_consucloud.zip';
-$backupdir = $_SESSION["installFolder"].'/backup/generated';
+$zipcompleto = $_SESSION["installFolder"].'backup/generated/backup_consucloud.zip';
+$backupdir = $_SESSION["installFolder"].'backup/generated';
 $zip = new ZipArchive();
 $zip->open($zipcompleto, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
@@ -91,19 +93,19 @@ foreach ($files as $name => $file)
 $zip->close();
 
 /** Sanitizar Sistema **/
-unlink($_SESSION["installFolder"].'/backup/generated/backup_exames.zip');
-unlink($_SESSION["installFolder"].'/backup/generated/configs.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/consultas.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/exames.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/logs.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/pacientes.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/planos.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/prontuarios.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/usuarios.sql');
-unlink($_SESSION["installFolder"].'/backup/generated/receitas.sql');
+unlink($_SESSION["installFolder"].'backup/generated/backup_exames.zip');
+unlink($_SESSION["installFolder"].'backup/generated/configs.sql');
+unlink($_SESSION["installFolder"].'backup/generated/consultas.sql');
+unlink($_SESSION["installFolder"].'backup/generated/exames.sql');
+unlink($_SESSION["installFolder"].'backup/generated/logs.sql');
+unlink($_SESSION["installFolder"].'backup/generated/pacientes.sql');
+unlink($_SESSION["installFolder"].'backup/generated/planos.sql');
+unlink($_SESSION["installFolder"].'backup/generated/prontuarios.sql');
+unlink($_SESSION["installFolder"].'backup/generated/usuarios.sql');
+unlink($_SESSION["installFolder"].'backup/generated/receitas.sql');
 
 /** Escrever Informação de Data Sobre o Backup **/
-$backupinfo = "$_SESSION["installFolder"]./backup/generated/backup_info.txt";
+$backupinfo = $_SESSION["installFolder"].'/backup/generated/backup_info.txt';
 $myfile = fopen($backupinfo, "w");
 $txt = date("d-m-Y");
 fwrite($myfile, $txt);
