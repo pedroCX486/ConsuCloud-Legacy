@@ -120,12 +120,12 @@ if($result == 111111111){
 if($erro){
   echo '<script type="text/javascript">
     alert("Erro ao executar backup completo! Código do Erro: ' . $result .'");
-    location.href="'.$_SESSION["installAddress"].'/backup/gerenciar_backup.php";
+    location.href="'.$_SESSION["installAddress"].'backup/gerenciar_backup.php";
   </script>'; 
 }else{
   echo '<script type="text/javascript">
     alert("Backup completo efetuado com sucesso! Data do Backup: ' . file_get_contents($backupinfo) . '\n\n' . $status .'");
-    location.href="'.$_SESSION["installAddress"].'/backup/gerenciar_backup.php";
+    location.href="'.$_SESSION["installAddress"].'backup/gerenciar_backup.php";
   </script>'; 
 }
 

@@ -1,17 +1,14 @@
 <?php
 session_start();
 
-require("../componentes/sessionbuster.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
-if($_SESSION["isMedico"]){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;
- }elseif(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+f(!$_SESSION["isMedico"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 $idConsulta = trim(addslashes(strip_tags($_GET['editar'])));
 
@@ -39,13 +36,13 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
   <meta charset="UTF-8">
   <title>Consultas - ConsuCloud</title>
 
-  <?php include "../componentes/boot.php";?>
-  <script src="../componentes/maskFormat.js"></script>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/maskFormat.js"></script>
 </head>
 
 <body>
   
-  <?php include "../componentes/barra.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
   
   <div class="container">
     <div class="jumbotron">

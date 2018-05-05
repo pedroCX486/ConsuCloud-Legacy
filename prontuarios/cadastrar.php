@@ -12,7 +12,7 @@ $dataProntuario = date('Y-m-d', $dataProntuario);
 session_start();
 $medico = $_SESSION["idUsuario"];
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("INSERT INTO prontuarios (paciente,medico,dataProntuario,horaProntuario,prontuario) 
@@ -21,7 +21,7 @@ VALUES ('$paciente', '$medico', '$dataProntuario', '$horaProntuario', '$prontuar
 if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
-					location.href="../prontuarios/prontuarios.php";
+					location.href="'.$_SESSION["installAddress"].'prontuarios/prontuarios.php";
 				</script>';
 }else{
   echo $mysqli->error;

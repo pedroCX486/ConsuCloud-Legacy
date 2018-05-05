@@ -19,7 +19,7 @@ if($tipoReceita != "Receita de Medicação" && empty($paciente)){
 	exit();
 }
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 //Executar query
 $query = $mysqli->query("INSERT INTO receitas (paciente,medico,dataReceita,horaReceita,nomeReceita,tipoReceita,receita) 
@@ -28,7 +28,7 @@ VALUES ('$paciente', '$medico', '$dataReceita', '$horaReceita', '$nomeReceita', 
 if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
-					location.href="../receituario/receitas.php";
+					location.href="'.$_SESSION["installAddress"].'receituario/receitas.php";
         </script>';
 }else{
   echo $mysqli->error;

@@ -2,15 +2,12 @@
 session_start();
 $idUsuario = $_SESSION['idUsuario'];
 
-if(!$_SESSION["isMedico"]){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;
- }elseif(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+if(!$_SESSION["isMedico"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 $select = $mysqli->query("SELECT conf.nomeConsultorio, conf.telefone, conf.email, conf.endereco_logradouro, conf.endereco_numero, conf.endereco_complemento,
                           conf.endereco_bairro, conf.endereco_cidade, conf.endereco_cep, conf.endereco_estado AS consultorioEstado, conf.logotipo,
@@ -49,7 +46,7 @@ if($row){
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <?php include "../componentes/boot.php";?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
   <style>
     @page { size: A4 landscape; margin: 3mm; }
     html, body { height: 100%; width: 100%; margin: 0; }
@@ -64,7 +61,7 @@ if($row){
   <!--Cabeçallho-->
   <div style="position: relative; height: 80px;">
     <div>
-      <img style="width: 12%; height: 12%; margin-left: 10px; margin-top: 15px;" align="left" src="../config/<?php echo $logotipo; ?>"/>
+      <img style="width: 12%; height: 12%; margin-left: 10px; margin-top: 15px;" align="left" src="<?php echo $_SESSION["installAddress"]; ?>config/<?php echo $logotipo; ?>"/>
     </div>
     
     <div style="position: absolute; left: 15%; top: 5%;">

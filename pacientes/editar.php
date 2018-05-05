@@ -34,7 +34,7 @@ if(!ctype_digit($RG)) {
 	exit();
 }
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE pacientes SET RG = '$RG', nomePaciente = '$nomePaciente', RGUFEXP = '$RGUFEXP', dataNasc = '$dataNasc', telCel ='$telCel', 
@@ -44,7 +44,7 @@ endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_e
 if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");
-					location.href="../pacientes/pacientes.php";
+					location.href="'.$_SESSION["installAddress"].'pacientes/pacientes.php";
 				</script>';
 }else{
   echo $mysqli->error;

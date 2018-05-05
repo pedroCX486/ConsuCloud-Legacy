@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require("componentes/sessionbuster.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
 $erro = $_GET['erro'];
 ?>
@@ -13,7 +13,7 @@ $erro = $_GET['erro'];
   <meta charset="UTF-8">
   <title>Login - ConsuCloud</title>
 
-  <?php include "componentes/boot.php";?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
 
   <script>
     window.localStorage.clear();
@@ -47,17 +47,17 @@ $erro = $_GET['erro'];
           </div>
         </noscript>
 
-        <?php include "componentes/errorhandler.php"; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/errorhandler.php"; ?>
         
         <center>
-          <img src="../assets/login.png" align="middle">
+          <img src="<?php echo $_SESSION["installAddress"]; ?>assets/login.png" align="middle">
         </center>
 
         <br>
         <br>
 
         <div id="login">
-          <form action="../login.php" method="post">
+          <form action="<?php echo $_SESSION["installAddress"]; ?>login.php" method="post">
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Usuário:</span>

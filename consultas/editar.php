@@ -12,7 +12,7 @@ $idConsulta = trim(addslashes(strip_tags($_POST['idConsulta'])));
 
 $dataConsulta = date('Y-m-d',$dataConsulta);
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
 
 //Para consultas particulares, o campo fica em branco, então defaultamos para zero
 if(empty($carteiraPlano)){
@@ -26,7 +26,7 @@ $query = $mysqli->query("UPDATE consultas SET medico = '$medico', paciente = '$p
 if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");
-					location.href="../consultas/consultas.php";
+					location.href="'.$_SESSION["installAddress"].'consultas/consultas.php";
 				</script>';
 }else{
   echo $mysqli->error;

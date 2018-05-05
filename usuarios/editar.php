@@ -50,7 +50,7 @@ if(trim(addslashes(strip_tags($_POST['senha'])))){
 	$senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_DEFAULT);
 }
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 if($login != "" && $senha != ""){
 	// Perform queries
@@ -67,7 +67,7 @@ if($login != "" && $senha != ""){
 if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");
-					location.href="../usuarios/usuarios.php";
+					location.href="'.$_SESSION["installAddress"].'usuarios/usuarios.php";
 				</script>';
 }else{
   echo $mysqli->error;

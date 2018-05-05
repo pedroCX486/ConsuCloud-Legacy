@@ -99,7 +99,7 @@ if($files){
 if ($query){
   echo '<script type="text/javascript">
 					alert("Configurações atualizadas com sucesso.");
-					location.href="'.$_SESSION["installAddress"].'/config/config.php";
+					location.href="'.$_SESSION["installAddress"].'config/config.php";
         </script>';
 }else{
   echo $mysqli->error;

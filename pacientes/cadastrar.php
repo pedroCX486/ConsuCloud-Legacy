@@ -33,7 +33,7 @@ if(!ctype_digit($RG)) {
 	exit();
 }
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("INSERT INTO pacientes (nomePaciente,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
@@ -44,7 +44,7 @@ VALUES ('$nomePaciente', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', 
 if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
-					location.href="../pacientes/pacientes.php";
+					location.href="'.$_SESSION["installAddress"].'pacientes/pacientes.php";
 				</script>';
 }else{
   echo $mysqli->error;

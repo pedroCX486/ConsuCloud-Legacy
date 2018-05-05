@@ -1,5 +1,5 @@
 <?php
-include "../componentes/boot.php";
+include $_SERVER['DOCUMENT_ROOT']."componentes/boot.php";
 ?>
 
   <!DOCTYPE html>
@@ -26,7 +26,7 @@ include "../componentes/boot.php";
       <div class="jumbotron">
 
         <p>
-          <center><img src="../assets/minibrand.png" align="right"></center>
+          <center><img src="<?php echo $_SESSION["installAddress"]; ?>assets/minibrand.png" align="right"></center>
         </p>
         <br><br>
 

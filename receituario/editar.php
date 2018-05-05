@@ -12,7 +12,7 @@ $idReceita = trim(addslashes(strip_tags($_POST['idReceita'])));
 
 $dataReceita = date('Y-m-d',$dataReceita);
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 //Executar query
 $query = $mysqli->query("UPDATE receitas SET medico = '$medico', paciente = '$paciente', dataReceita = '$dataReceita', horaReceita = '$horaReceita',
@@ -21,7 +21,7 @@ $query = $mysqli->query("UPDATE receitas SET medico = '$medico', paciente = '$pa
 if ($query){
   echo '<script type="text/javascript">
 					alert("Edição realizada com sucesso.");
-					location.href="../receituario/receitas.php";
+					location.href="'.$_SESSION["installAddress"].'receituario/receitas.php";
         </script>';
 }else{
   echo $mysqli->error;

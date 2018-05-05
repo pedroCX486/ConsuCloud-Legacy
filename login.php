@@ -1,5 +1,5 @@
 <?php
-require("componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 //Matar seções prévias
 session_start();
@@ -82,7 +82,7 @@ if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
 }
 
 $_SESSION['log'] = "LOGIN";
-require($_SESSION['installFolder']."logs/gravarlogs.php");
+require($_SERVER['DOCUMENT_ROOT']."/logs/gravarlogs.php");
 
 header("Location: ".$_SESSION["installAddress"]."dashboards/dashboard.php");
 exit();

@@ -1,5 +1,5 @@
 <?php
-include "../componentes/boot.php";
+include $_SERVER['DOCUMENT_ROOT']."componentes/boot.php";
 ?>
 
   <!DOCTYPE html>
@@ -22,7 +22,7 @@ include "../componentes/boot.php";
       <div class="jumbotron">
 
         <p>
-          <center><img src="../assets/bigbrand.png" align="middle">
+          <center><img src="<?php echo $_SESSION["installAddress"]; ?>assets/bigbrand.png" align="middle">
         </p>
         <br><br>
         <p>
@@ -32,7 +32,7 @@ include "../componentes/boot.php";
         </p>
         <br><br>
 
-        <a class="btn btn-primary btn-raised btn-lg" href="../index.php" role="button">Ir ao ConsuCloud >></a>
+        <a class="btn btn-primary btn-raised btn-lg" href="<?php echo $_SESSION["installAddress"]; ?>index.php" role="button">Ir ao ConsuCloud >></a>
 
         </center>
       </div>

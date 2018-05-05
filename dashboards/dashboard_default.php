@@ -34,7 +34,7 @@
             </div>
             <div class="panel-body">
               Existe uma limpeza de logs anteriores a 365 dias disponível. &nbsp;
-              <a href="../componentes/systemcleanup.php?logs=true" target="navegador">
+              <a href="<?php echo $_SESSION["installAddress"]; ?>componentes/systemcleanup.php?logs=true" target="navegador">
                 <button class="btn btn-raised btn-primary btn-sm">EXECUTAR LIMPEZA</button>
               </a>
             </div>

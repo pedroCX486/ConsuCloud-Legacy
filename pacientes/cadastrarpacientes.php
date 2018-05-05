@@ -1,13 +1,10 @@
 <?php
 session_start();
 
-require("../componentes/sessionbuster.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
-if($_SESSION["isMedico"]){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;
- }elseif(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+if($_SESSION["isMedico"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 ?>
@@ -19,14 +16,14 @@ if($_SESSION["isMedico"]){
   <meta charset="UTF-8">
   <title>Pacientes - ConsuCloud</title>
 
-  <?php include "../componentes/boot.php";?>
-  <script src="../componentes/maskFormat.js"></script>
-  <script src="../componentes/buscaCEP.js"></script>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/maskFormat.js"></script>
+  <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/buscaCEP.js"></script>
 </head>
 
 <body>
   
- <?php include "../componentes/barra.php"; ?>
+ <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
   
  <div class="container">
     <div class="jumbotron">
@@ -109,7 +106,7 @@ if($_SESSION["isMedico"]){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){1,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">

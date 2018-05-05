@@ -18,12 +18,12 @@ $endereco_estado = trim(addslashes(strip_tags($_POST['endereco_estado'])));
 if(!ctype_digit($endereco_cep)) {
     echo '<script type="text/javascript">
             alert("ERRO: Caracteres inválidos no campo CEP.\nApenas caracteres numéricos são permitidos.");
-            location.href="../usuarios/cadastrarusuarios.php";
+            location.href="'.$_SESSION["installAddress"].'usuarios/cadastrarusuarios.php";
           </script>';
 	exit();
 }
 
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE planos SET nomePlano = '$nomePlano', telFixo = '$telFixo', email = '$email', infoPlano = '$infoPlano', 
@@ -34,7 +34,7 @@ endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_e
 if ($query){
   echo '<script type="text/javascript">
 					alert("Atualização realizada com sucesso.");
-					location.href="../planos/planos.php";
+					location.href="'.$_SESSION["installAddress"].'planos/planos.php";
         </script>';
 }else{
   echo $mysqli->error;

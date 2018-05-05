@@ -1,6 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 $idReceita = $_GET['remover'];
 
@@ -10,7 +10,7 @@ $query = $mysqli->query("DELETE FROM receitas WHERE idReceita = '$idReceita'");
 if ($query){
 	echo '<script type="text/javascript">
 					alert("Receita apagada com sucesso.");
-					location.href="../receituario/receitas.php";
+					location.href="'.$_SESSION["installAddress"].'receituario/receitas.php";
 				</script>';
 }else{
 	echo $mysqli->error;

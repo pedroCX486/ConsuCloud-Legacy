@@ -5,11 +5,8 @@ require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
 $idUsuario = $_SESSION['idUsuario'];
 
-if(!$_SESSION["isMedico"]){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
-  die;
- }elseif(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+if(!$_SESSION["isMedico"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 
@@ -56,7 +53,7 @@ if($row){
 
 <body>
   
-  <?php include "../componentes/barra.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
 
   <div>
 
@@ -95,7 +92,7 @@ if($row){
 
   </div>
 
-  <script src="../componentes/slicer.js"></script>
+  <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/slicer.js"></script>
 
 </body>
 

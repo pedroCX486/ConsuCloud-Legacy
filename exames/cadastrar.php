@@ -86,7 +86,7 @@ if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ 
   $msgErroArqGrande = implode(" \\n ", array_filter($nomeArquivoGrande));
   echo '<script type="text/javascript">
           alert("Os seguintes arquivos são muito grandes e não foram enviados: \n ' . $msgErroArqGrande . ' \n\nOs seguintes arquivos da lista são inválidos: \n '. $msgErroArqInvalido . ' \n\nO envio foi cancelado.");
-          location.href="../exames/exames.php";
+          location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
   exit();
 }elseif(count($files) != 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande e arquivo inválido foi ligada mas com arquivos válidos
@@ -102,7 +102,7 @@ if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ 
   $msgErroArqInvalido = implode("\\n", array_filter($nomeArquivoInvalido));
   echo '<script type="text/javascript">
           alert("Os seguintes arquivos não são válidos e não foram enviados: \n\n'. $msgErroArqInvalido .' \n\nO envio foi cancelado.");
-          location.href="../exames/exames.php";
+          location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
   exit();
 }elseif(count($files) != 0 && $erroArquivoInvalido == 1){ //Verificar se a flag de arquivo inválido foi ligada mas com arquivos válidos
@@ -116,7 +116,7 @@ if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ 
   $msgErroArqGrande = implode("\\n", array_filter($nomeArquivoGrande));
   echo '<script type="text/javascript">
           alert("Os seguintes arquivos são muito grandes e não foram enviados: \n\n'. $msgErroArqGrande .' \n\nO envio foi cancelado.");
-          location.href="../exames/exames.php";
+          location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
   exit();
 }elseif(count($files) != 0 && $erroArquivoGrande == 1){ //Verificar se a flag de arquivo grande foi ligada mas com arquivos válidos
@@ -129,7 +129,7 @@ if(count($files) == 0 && $erroArquivoInvalido == 1 && $erroArquivoGrande == 1){ 
 }elseif(count($files) == 0){ //Verificar se a flag de nenhum arquivo foi ligada
   echo '<script type="text/javascript">
           alert("Houve um erro no upload. Por favor contacte o administrador do sistema ou tente novamente mais tarde.");
-          location.href="../exames/exames.php";
+          location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
   exit();
 }
@@ -140,7 +140,7 @@ session_start();
 $idUsuario = $_SESSION["idUsuario"];
 
 //Puxar o connect do banco
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 //Preparar a lista de arquivos pra ir ao banco
 $arqsExame = implode(",", array_filter($files));
@@ -154,13 +154,13 @@ if ($query){
   
   //Salvar log
   $_SESSION['log'] = "UPLOAD";
-  require("../logs/gravarlogs.php");
+  require($_SERVER['DOCUMENT_ROOT']."logs/gravarlogs.php");
 
   //Exibir mensagem e finalizar
   $arqsMensagem = implode("\\n", array_filter($files));
   echo '<script type="text/javascript">
             alert("Cadastro realizado com sucesso. Arquivos enviados:\n\n' . $arqsMensagem . '");
-            location.href="../exames/exames.php";
+            location.href="'.$_SESSION["installAddress"].'exames/exames.php";
         </script>';
 }else{
   echo $mysqli->error;

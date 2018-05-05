@@ -1,6 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
-require("../componentes/db/connect.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
 
 $idConsulta = $_GET['remover'];
 
@@ -10,7 +10,7 @@ $query = $mysqli->query("DELETE FROM consultas WHERE idConsulta = '$idConsulta'"
 if ($query){
 	echo '<script type="text/javascript">
 					alert("Consulta cancelada com sucesso.");
-					location.href="../consultas/consultas.php";
+					location.href="'.$_SESSION["installAddress"].'consultas/consultas.php";
 				</script>';
 }else{
 	echo $mysqli->error;

@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require("componentes/sessionbuster.php");
+require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
 if(empty($_SESSION)){
-  echo "<script>top.window.location = '../index.php?erro=ERROFATAL'</script>";
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 ?>
@@ -16,12 +16,12 @@ if(empty($_SESSION)){
   <meta charset="UTF-8">
   <title>Sobre - ConsuCloud</title>
 
-  <?php include "componentes/boot.php";?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
 </head>
 
 <body>
   
-  <?php include "componentes/barra.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

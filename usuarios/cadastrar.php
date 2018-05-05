@@ -43,7 +43,7 @@ if(!ctype_digit($crm)) {
 }elseif($tipoUsuario == "admin"){
     echo '<script type="text/javascript">
             alert("ERRO FATAL: Dados inválidos foram enviados ao servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
-            location.href="../index.php?erro=ERROFATAL";
+            location.href="'.$_SESSION["installAddress"].'index.php?erro=ERROFATAL";
 			  	</script>';
 	exit();
 }
@@ -55,7 +55,7 @@ $senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_D
 $dataNasc = date('Y-m-d',$dataNasc);
 
 //Conectar ao db
-require "../componentes/db/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
 
 
 //Checar se nome de usuário já existe
@@ -86,7 +86,7 @@ if($select->num_rows) {
 	if ($query){
 	  echo '<script type="text/javascript">
 						alert("Cadastro realizado com sucesso.");
-						location.href="../usuarios/usuarios.php";
+						location.href="'.$_SESSION["installAddress"].'usuarios/usuarios.php";
 					</script>';
 	}else{
 	  echo $mysqli->error;

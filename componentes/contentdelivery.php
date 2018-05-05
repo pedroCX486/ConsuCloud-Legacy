@@ -1,6 +1,6 @@
 <?php
 //Loading
-echo '<html><body style="background-color: #39b49a"><center><img width="400px" height="300px" src="../assets/carregando.gif"/><br><b>Carregando download...</b></center>';
+echo '<html><body style="background-color: #39b49a"><center><img width="400px" height="300px" src="<?php echo $_SESSION["installAddress"]; ?>assets/carregando.gif"/><br><b>Carregando download...</b></center>';
 
 //Preciso do JQuery
 include "boot.php";

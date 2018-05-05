@@ -25,7 +25,7 @@ VALUES ('$paciente', '$medico', '$dataConsulta', '$horaConsulta', '$planoConsult
 if ($query){
   echo '<script type="text/javascript">
 					alert("Cadastro realizado com sucesso.");
-					location.href="../consultas/consultas.php";
+					location.href="'.$_SESSION["installAddress"].'consultas/consultas.php";
         </script>';
 }else{
   echo $mysqli->error;

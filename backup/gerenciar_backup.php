@@ -4,7 +4,7 @@ session_start();
 require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
 if(!$_SESSION["isAdmin"] || empty($_SESSION)){
-  echo "<script>top.window.location = '".$_SESSION["installAddress"]."/index.php?erro=ERROFATAL'</script>";
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 ?>
@@ -29,14 +29,14 @@ if(!$_SESSION["isAdmin"] || empty($_SESSION)){
       <p>Execute aqui um backup completo do sistema.</p>
 
       <?php
-        $backupinfo = "../backup/generated/backup_info.txt";
+        $backupinfo = $_SERVER['DOCUMENT_ROOT']."/backup/generated/backup_info.txt";
         
         if (file_exists($backupinfo)) {
           echo '<center>
                   <br><br>
                   Existe um backup com a data ' . file_get_contents($backupinfo) . '.
                   <br><br>
-                  <a target="_blank" href="'.$_SESSION["installAddress"].'/componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
+                  <a target="_blank" href="'.$_SESSION["installAddress"].'componentes/contentdelivery.php?arquivo=backup_consucloud.zip&backup=true">
                     <button class="btn btn-raised btn-info btn-lg">FAZER DOWNLOAD DO BACKUP</button>
                   </a>
                 </center>';
