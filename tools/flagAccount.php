@@ -20,7 +20,7 @@
 
         <?php
 				header ('Content-type: text/html; charset=UTF-8');
-				require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+				require($_SESSION["installFolder"]."componentes/db/connect.php");
 				
 				$select = $mysqli->query("SELECT * FROM usuarios");
 				$row = $select->num_rows;

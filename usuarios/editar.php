@@ -50,7 +50,7 @@ if(trim(addslashes(strip_tags($_POST['senha'])))){
 	$senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_DEFAULT);
 }
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 if($login != "" && $senha != ""){
 	// Perform queries

@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."componentes/boot.php";
+include $_SESSION["installFolder"]."componentes/boot.php";
 
 $diretorio = basename(dirname(__FILE__));
 $diretorio = str_replace("setup", "", $diretorio);

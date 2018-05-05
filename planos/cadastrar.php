@@ -22,7 +22,7 @@ if(!ctype_digit($endereco_cep) && !empty($endereco_cep)) {
 	exit();
 }
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 $query = $mysqli->query("INSERT INTO planos (nomePlano,telFixo,email,infoPlano,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado) 

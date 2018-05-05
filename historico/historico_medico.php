@@ -3,7 +3,7 @@ date_default_timezone_set('America/Recife');
 
 session_start();
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
+require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 $idUsuario = $_SESSION['idUsuario'];
 
@@ -12,7 +12,7 @@ if(!$_SESSION["isMedico"] || empty($_SESSION)){
   die;
 }
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,13 +22,13 @@ require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
   <meta charset="UTF-8">
   <title>Histórico - ConsuCloud</title>
 
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/maskFormat.js"></script>
 </head>
 
 <body>
   
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
+  <?php include $_SESSION["installFolder"]."componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

@@ -74,7 +74,7 @@ if(count($files) == 0 && $erroArquivoInvalido == 1){ //Verificar se a flag de ar
 }    
 
 //Conexão com db
-require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 if($files){
   $select = $mysqli->query("SELECT * FROM configs");

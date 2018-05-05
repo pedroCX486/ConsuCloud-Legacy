@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
+  require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
   if(!$_SESSION["isAdmin"] || empty($_SESSION)){
     echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
@@ -16,7 +16,7 @@
   <meta charset="UTF-8">
   <title>Usuários - ConsuCloud</title>
 
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/maskFormat.js"></script>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/tabCadastro.js"></script>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/buscaCEP.js"></script>
@@ -24,7 +24,7 @@
 
 <body>
   
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
+  <?php include $_SESSION["installFolder"]."componentes/barra.php"; ?>
   
   <div class="container">
     <div class="jumbotron">

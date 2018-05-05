@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."componentes/boot.php";
+include $_SESSION["installFolder"]."componentes/boot.php";
 ?>
 
   <!DOCTYPE html>

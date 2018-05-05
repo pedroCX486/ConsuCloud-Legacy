@@ -1,49 +1,49 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
 date_default_timezone_set('America/Recife');
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 if(file_exists("generated/backup_consucloud.zip")){
-  unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_consucloud.zip');
+  unlink($_SESSION["installFolder"].'/backup/generated/backup_consucloud.zip');
 }
 if(file_exists("generated/backup_info.txt")){
-  unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_info.txt');
+  unlink($_SESSION["installFolder"].'/backup/generated/backup_info.txt');
 }
 
 /** Abrir Permissão para Escrever em Arquivos**/
 $result .= $mysqli->query("GRANT FILE ON *.* TO 'root'@'localhost'");
 
 /** Backup da Base de Dados **/
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/configs.sql";
+$file = $_SESSION["installFolder"]."backup/generated/configs.sql";
 $result .= $mysqli->query("SELECT * FROM configs INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/consultas.sql";
+$file = $_SESSION["installFolder"]."backup/generated/consultas.sql";
 $result .= $mysqli->query("SELECT * FROM consultas INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/exames.sql";
+$file = $_SESSION["installFolder"]."backup/generated/exames.sql";
 $result .= $mysqli->query("SELECT * FROM exames INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/logs.sql";
+$file = $_SESSION["installFolder"]."backup/generated/logs.sql";
 $result .= $mysqli->query("SELECT * FROM logs INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/pacientes.sql";
+$file = $_SESSION["installFolder"]."backup/generated/pacientes.sql";
 $result .= $mysqli->query("SELECT * FROM pacientes INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/planos.sql";
+$file = $_SESSION["installFolder"]."backup/generated/planos.sql";
 $result .= $mysqli->query("SELECT * FROM planos INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/prontuarios.sql";
+$file = $_SESSION["installFolder"]."backup/generated/prontuarios.sql";
 $result .= $mysqli->query("SELECT * FROM prontuarios INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/usuarios.sql";
+$file = $_SESSION["installFolder"]."backup/generated/usuarios.sql";
 $result .= $mysqli->query("SELECT * FROM usuarios INTO OUTFILE '$file'");
 
-$file = $_SERVER['DOCUMENT_ROOT']."/backup/generated/receitas.sql";
+$file = $_SESSION["installFolder"]."backup/generated/receitas.sql";
 $result .= $mysqli->query("SELECT * FROM receitas INTO OUTFILE '$file'");
 
 /** Fazer Backup dos Arquivos de Exames **/
-$zipexames = $_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_exames.zip';
-$examesdir = $_SERVER['DOCUMENT_ROOT']."/exames/arquivos";
+$zipexames = $_SESSION["installFolder"].'/backup/generated/backup_exames.zip';
+$examesdir = $_SESSION["installFolder"]."exames/arquivos";
 $zip = new ZipArchive();
 $zip->open($zipexames, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
@@ -67,8 +67,8 @@ $zip->close();
 
 
 /** Zipar Backup Completo do Sistema **/
-$zipcompleto = $_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_consucloud.zip';
-$backupdir = $_SERVER['DOCUMENT_ROOT'].'/backup/generated';
+$zipcompleto = $_SESSION["installFolder"].'/backup/generated/backup_consucloud.zip';
+$backupdir = $_SESSION["installFolder"].'/backup/generated';
 $zip = new ZipArchive();
 $zip->open($zipcompleto, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
@@ -91,19 +91,19 @@ foreach ($files as $name => $file)
 $zip->close();
 
 /** Sanitizar Sistema **/
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/backup_exames.zip');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/configs.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/consultas.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/exames.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/logs.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/pacientes.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/planos.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/prontuarios.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/usuarios.sql');
-unlink($_SERVER['DOCUMENT_ROOT'].'/backup/generated/receitas.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/backup_exames.zip');
+unlink($_SESSION["installFolder"].'/backup/generated/configs.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/consultas.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/exames.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/logs.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/pacientes.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/planos.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/prontuarios.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/usuarios.sql');
+unlink($_SESSION["installFolder"].'/backup/generated/receitas.sql');
 
 /** Escrever Informação de Data Sobre o Backup **/
-$backupinfo = "$_SERVER['DOCUMENT_ROOT']./backup/generated/backup_info.txt";
+$backupinfo = "$_SESSION["installFolder"]./backup/generated/backup_info.txt";
 $myfile = fopen($backupinfo, "w");
 $txt = date("d-m-Y");
 fwrite($myfile, $txt);

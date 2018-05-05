@@ -12,7 +12,7 @@ $dataProntuario = date('Y-m-d', $dataProntuario);
 session_start();
 $medico = $_SESSION["idUsuario"];
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("INSERT INTO prontuarios (paciente,medico,dataProntuario,horaProntuario,prontuario) 

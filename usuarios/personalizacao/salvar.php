@@ -6,7 +6,7 @@ $idUsuario = $_SESSION['idUsuario'];
 $tema = trim(addslashes(strip_tags($_POST['tema'])));
 
 //Conexão com db
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 //Executar query
 $query = $mysqli->query("UPDATE usuarios SET tema = '$tema' WHERE idUsuario = '$idUsuario'");

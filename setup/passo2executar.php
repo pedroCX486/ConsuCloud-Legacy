@@ -4,7 +4,7 @@ header ('Content-type: text/html; charset=UTF-8');
 $senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_DEFAULT);
 $email = trim(addslashes(strip_tags($_POST['email'])));
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Executar queries
 $query = $mysqli->query("INSERT INTO usuarios (crm,tipoUsuario,nomeCompleto,areaAtuacao,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,

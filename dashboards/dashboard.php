@@ -22,7 +22,7 @@ require($_SESSION["installFolder"]."/componentes/db/connect.php");
   <meta charset="UTF-8">
   <title>Painel - ConsuCloud</title>
 
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
   
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/tooltip.js"></script>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/windowReload.js"></script>
@@ -30,7 +30,7 @@ require($_SESSION["installFolder"]."/componentes/db/connect.php");
 
 <body>
   
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
+  <?php include $_SESSION["installFolder"]."componentes/barra.php"; ?>
 
   <div class="container">
     <div class="jumbotron">

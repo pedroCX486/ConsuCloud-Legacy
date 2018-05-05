@@ -2,7 +2,7 @@
 header('Content-type: text/html; charset=UTF-8');
 
 //Buscar dados para conexão
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/dblogin.php";
+require $_SESSION["installFolder"]."componentes/db/dblogin.php";
 
 $mysqli = new mysqli($serverAddr, $username, $pwd, $db);
 

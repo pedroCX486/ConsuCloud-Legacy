@@ -14,9 +14,9 @@
 
 <?php
 if($_SESSION["tema"] == "consucloud"){
-  include $_SERVER['DOCUMENT_ROOT'].'componentes/temas/consucloud/bootTheme.php';
+  include $_SESSION["installFolder"].'componentes/temas/consucloud/bootTheme.php';
 }elseif($_SESSION["tema"] == "mustang"){
-  include $_SERVER['DOCUMENT_ROOT'].'componentes/temas/mustang/bootTheme.php';
+  include $_SESSION["installFolder"].'componentes/temas/mustang/bootTheme.php';
 }
 ?>
 

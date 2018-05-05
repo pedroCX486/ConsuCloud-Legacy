@@ -11,7 +11,7 @@ $tipoConsulta = trim(addslashes(strip_tags($_POST['tipoConsulta'])));
 
 $dataConsulta = date('Y-m-d',$dataConsulta);
 
-require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Para consultas particulares, o campo fica em branco, então defaultamos para zero
 if(empty($carteiraPlano)){

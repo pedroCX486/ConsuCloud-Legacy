@@ -4,7 +4,7 @@ header ('Content-type: text/html; charset=UTF-8');
 $idConsulta = trim(addslashes(strip_tags($_GET['consulta'])));
 $finalizaConsulta = trim(addslashes(strip_tags($_GET['cod'])));
 
-require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE consultas SET consultaFinalizada = '$finalizaConsulta' WHERE idConsulta = '$idConsulta'");

@@ -23,7 +23,7 @@
                 $senha = password_hash(trim(addslashes(strip_tags($_POST['senha']))), PASSWORD_DEFAULT);
                 echo "HASH GERADO: <br>" . $senha . "<br><br><br><br>";
 
-                require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+                require($_SESSION["installFolder"]."componentes/db/connect.php");
                 $query = $mysqli->query("UPDATE usuarios SET senha = '$senha' WHERE crm = 'SysAdmin'");
 
                 if($query){

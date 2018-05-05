@@ -19,7 +19,7 @@ if($tipoReceita != "Receita de Medicação" && empty($paciente)){
 	exit();
 }
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Executar query
 $query = $mysqli->query("INSERT INTO receitas (paciente,medico,dataReceita,horaReceita,nomeReceita,tipoReceita,receita) 

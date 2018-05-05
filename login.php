@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 //Matar seções prévias
 session_start();
@@ -42,9 +42,9 @@ session_start();
 
 if(empty($installFolder)){
   $installFolder = "/";
-  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'];
+  $_SESSION["installFolder"] = $_SESSION["installFolder"];
 }else{
-  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
+  $_SESSION["installFolder"] = $_SESSION["installFolder"].$installFolder;
 }
 
 $_SESSION["installAddress"] = "https://".$_SERVER['HTTP_HOST'].$installFolder;
@@ -83,7 +83,7 @@ if(password_verify($senhaDigitada, $senhaBanco) && $contaAtiva == "1"){
 }
 
 $_SESSION['log'] = "LOGIN";
-require($_SERVER['DOCUMENT_ROOT']."/logs/gravarlogs.php");
+require($_SESSION["installFolder"]."logs/gravarlogs.php");
 
 header("Location: ".$_SESSION["installAddress"]."dashboards/dashboard.php");
 exit();

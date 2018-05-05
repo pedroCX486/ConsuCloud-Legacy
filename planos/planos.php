@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
+require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 if(!$_SESSION["isAdmin"] || empty($_SESSION)){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +18,12 @@ require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
   <meta charset="UTF-8">
   <title>Planos de Saúde - ConsuCloud</title>
 
-   <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+   <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
 </head>
 
 <body>
   
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
+  <?php include $_SESSION["installFolder"]."componentes/barra.php"; ?>
   
     <div class="container">
       <div class="jumbotron">

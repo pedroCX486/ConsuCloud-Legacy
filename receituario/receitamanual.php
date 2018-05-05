@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
+require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 $idUsuario = $_SESSION['idUsuario'];
 
@@ -10,7 +10,7 @@ if(!$_SESSION["isMedico"] || empty($_SESSION)){
   die;
 }
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 $select = $mysqli->query("SELECT conf.nomeConsultorio, conf.telefone, conf.email, conf.endereco_logradouro, conf.endereco_numero, conf.endereco_complemento,
                           conf.endereco_bairro, conf.endereco_cidade, conf.endereco_cep, conf.endereco_estado AS consultorioEstado, areaAtuacao, nomeCompleto, u.endereco_estado, crm FROM usuarios AS u 
@@ -48,12 +48,12 @@ if($row){
   <meta charset="UTF-8">
   <title>Receituário - ConsuCloud</title>
 
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+  <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
 </head>
 
 <body>
   
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/barra.php"; ?>
+  <?php include $_SESSION["installFolder"]."componentes/barra.php"; ?>
 
   <div>
 

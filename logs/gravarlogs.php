@@ -40,7 +40,7 @@ if($_SESSION['log'] == "LOGIN"){
 }
 
 //Connect
-require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Salvar no banco
 $query = $mysqli->query("INSERT INTO logs (log,usuario,ip,dataLog,horaLog) VALUES ('$log', '$usuario', '$ip', '$dia', '$hora')");

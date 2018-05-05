@@ -33,7 +33,7 @@ if(!ctype_digit($RG)) {
 	exit();
 }
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("INSERT INTO pacientes (nomePaciente,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,

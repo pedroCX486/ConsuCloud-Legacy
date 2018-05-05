@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
+require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 if($_SESSION["isMedico"] || empty($_SESSION)){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 $select0 = $mysqli->query("SELECT * FROM configs");
 $row0 = $select0->num_rows;
@@ -38,7 +38,7 @@ $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-  <?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php" ?>
+  <?php include $_SESSION["installFolder"]."componentes/boot.php" ?>
 
   <style>
     #pagina {

@@ -1,15 +1,15 @@
 <?php
   session_start();
 
-  require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
+  require($_SESSION["installFolder"]."componentes/sessionbuster.php");
   
-  require $_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php";
+  require $_SESSION["installFolder"]."componentes/db/connect.php";
 ?>
 
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<?php include $_SERVER['DOCUMENT_ROOT']."/componentes/boot.php";?>
+		<?php include $_SESSION["installFolder"]."componentes/boot.php";?>
 		<style>
 			@page { size: A4 portrait; margin: 3mm; }
 			html, body { height: 100%; width: 100%; margin: 0; }

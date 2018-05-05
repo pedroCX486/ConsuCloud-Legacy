@@ -12,7 +12,7 @@ $idReceita = trim(addslashes(strip_tags($_POST['idReceita'])));
 
 $dataReceita = date('Y-m-d',$dataReceita);
 
-require $_SERVER['DOCUMENT_ROOT']."componentes/db/connect.php";
+require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Executar query
 $query = $mysqli->query("UPDATE receitas SET medico = '$medico', paciente = '$paciente', dataReceita = '$dataReceita', horaReceita = '$horaReceita',
