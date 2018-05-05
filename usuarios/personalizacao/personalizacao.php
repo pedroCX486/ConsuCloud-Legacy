@@ -49,16 +49,29 @@ if($row){
 
         <form method="post" action="salvar.php">
 
-				<center>
-				
-				<input type="radio" name="tema" value="consucloud" <?php if($tema == "consucloud"){echo 'checked';}?>> ConsuCloud &nbsp;
-  			<input type="radio" name="tema" value="mustang" <?php if($tema == "mustang"){echo 'checked';}?>> Mustang<br>
-				
-				<br>
+        <center>
+ 
+        <div style="width: 100%; display: table;">
+          <div style="display: table-row">
+            <div style="display: table-cell;">
+              <img src="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/consucloud/thumb.png"/>
+              <br>
+              <input type="radio" name="tema" value="consucloud" <?php if($tema == "consucloud"){echo 'checked';}?>> ConsuCloud &nbsp;
+            </div>
 
-				<button type="submit" class="btn btn-raised btn-primary btn-lg">SALVAR</button>
-			
-				</center>
+            <div style="display: table-cell;">
+              <img src="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/mustang/thumb.png"/>
+              <br>
+              <input type="radio" name="tema" value="mustang" <?php if($tema == "mustang"){echo 'checked';}?>> Mustang<br>
+            </div>
+          </div>
+        </div>
+          
+        <br>
+
+        <button type="submit" class="btn btn-raised btn-primary btn-lg">SALVAR</button>
+
+        </center>
 
         </form>
 
