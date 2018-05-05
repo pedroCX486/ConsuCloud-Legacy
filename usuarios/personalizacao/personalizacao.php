@@ -40,7 +40,7 @@ if($row){
   <div class="container">
     <div class="jumbotron">
       <h1>Personalização</h1>
-      <a class="anchor" href="<?php echo $_SESSION["installAddress"]; ?>/dashboards/dashboard.php">
+      <a class="anchor" href="<?php echo $_SESSION["installAddress"]; ?>dashboards/dashboard.php">
         <button class="btn btn-raised btn-danger pull-right">VOLTAR AO INÍCIO</button>
       </a>
       <p>Aqui você pode mudar o tema do sistema.</p>
