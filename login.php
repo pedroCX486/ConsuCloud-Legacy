@@ -1,5 +1,5 @@
 <?php
-require($_SESSION["installFolder"]."componentes/db/connect.php");
+require("componentes/db/connect.php");
 
 //Matar seções prévias
 session_start();
@@ -42,9 +42,9 @@ session_start();
 
 if(empty($installFolder)){
   $installFolder = "/";
-  $_SESSION["installFolder"] = $_SESSION["installFolder"];
+  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'];
 }else{
-  $_SESSION["installFolder"] = $_SESSION["installFolder"].$installFolder;
+  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
 }
 
 $_SESSION["installAddress"] = "https://".$_SERVER['HTTP_HOST'].$installFolder;

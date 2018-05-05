@@ -27,4 +27,4 @@ if($_SESSION["tema"] == "consucloud"){
 <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/noCtrlClick.js"></script>
 
 <!-- Debug info -->
-<?php ini_set('display_errors', 1); ?>
+<?php //ini_set('display_errors', 1); ?>
