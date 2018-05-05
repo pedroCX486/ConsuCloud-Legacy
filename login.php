@@ -39,7 +39,9 @@ if($row){
 }
 
 if(empty($installFolder)){
-  $installFolder = "/";
+  $installFolder = $_SERVER['DOCUMENT_ROOT'];
+}else{
+  $installFolder = $_SERVER['DOCUMENT_ROOT'].$installFolder;
 }
 
 session_start();

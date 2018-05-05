@@ -7,10 +7,10 @@ include "boot.php";
 
 if($_GET['backup']){
   //Montar caminho para download do backup
-  $filename = $_SESSION["installFolder"].'backup/' . $_GET['arquivo'];
+  $filename = $_SESSION["installAddress"].'backup/' . $_GET['arquivo'];
 }else{
   //Montar caminho para download de exames
-  $filename = $_SESSION["installFolder"].'exames/arquivos/' . $_GET['paciente'] . '/' . $_GET['arquivo'];
+  $filename = $_SESSION["installAddress"].'exames/arquivos/' . $_GET['paciente'] . '/' . $_GET['arquivo'];
 }
 
 //Pegar mimetype

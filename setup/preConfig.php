@@ -6,9 +6,10 @@ $diretorio = str_replace("setup", "", $diretorio);
 if(empty($diretorio)){
   $diretorio = "/";
 }else{
-  $diretorio = "/".$diretorio."/";
+  $diretorio = $diretorio."/";
 }
 ?>
+
 
   <!DOCTYPE html>
   <html>
