@@ -38,16 +38,15 @@ if($row){
   }
 }
 
-if(empty($installFolder)){
-  $installFolder = $_SERVER['DOCUMENT_ROOT'];
-}else{
-  $installFolder = $_SERVER['DOCUMENT_ROOT'].$installFolder;
-}
-
 session_start();
 
-//TODO: Pegar local de instalação do db, que é gravado pelo setup
-$_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
+if(empty($installFolder)){
+  $installFolder = "/";
+  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'];
+}else{
+  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
+}
+
 $_SESSION["installAddress"] = "https://".$_SERVER['HTTP_HOST'].$installFolder;
 
 //Pegar dados do usuario

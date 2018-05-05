@@ -12,7 +12,7 @@ if(empty($_SESSION)){
   die;
 }
 
-require($_SERVER['DOCUMENT_ROOT']."/componentes/db/connect.php");
+require($_SESSION["installFolder"]."/componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>
