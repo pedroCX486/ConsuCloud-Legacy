@@ -3,7 +3,7 @@ session_start();
 
 require($_SERVER['DOCUMENT_ROOT']."/componentes/sessionbuster.php");
 
-f(!$_SESSION["isMedico"] || empty($_SESSION)){
+if($_SESSION["isMedico"] || empty($_SESSION)){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
 }
