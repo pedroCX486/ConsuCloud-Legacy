@@ -66,7 +66,7 @@ if(!empty($_GET['imprimirRedirect'])){
 
           <div class="form-group">
             <select name="idReceita" class="form-control">
-              <option disabled <?php if(empty($_POST['idReceita'])){echo ' selected';} ?> value="">Receitas*</option>
+              <option disabled <?php if(empty($_POST['idReceita'])){echo ' selected';} ?> value="">Selecione uma receita...</option>
               <?php
                 if(!empty($_POST['contentBusca'])){
 
