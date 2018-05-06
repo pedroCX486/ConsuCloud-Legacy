@@ -80,20 +80,10 @@ if($row){
       <br>
       <?php 
       if(!empty($_GET["receita"])){
-        $receita = $_GET["receita"];
-        
-        if($_GET["noPaciente"]){
-          
-          $select = $mysqli->query("SELECT idReceita, receita FROM receitas WHERE idReceita = '$receita'");
-          
-        }else{
-          
-          $select = $mysqli->query("SELECT p.nomePaciente AS nomePaciente, paciente, idReceita, receita FROM receitas AS r 
-                                    JOIN pacientes AS p ON p.idPaciente = r.paciente
-                                    WHERE idReceita = '$receita'");
-
-        }
-        
+        $receita = $_GET["receita"];          
+        $select = $mysqli->query("SELECT p.nomePaciente AS nomePaciente, paciente, idReceita, receita FROM receitas AS r 
+                                  JOIN pacientes AS p ON p.idPaciente = r.paciente
+                                  WHERE idReceita = '$receita'");
         $row = $select->num_rows;
         if($row){
           while($get = $select->fetch_array()){

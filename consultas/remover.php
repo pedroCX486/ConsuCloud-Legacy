@@ -1,5 +1,7 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
+
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 
 $idConsulta = $_GET['remover'];

@@ -115,8 +115,8 @@
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Nome Curto:*</span>
-            <input required type="text" class="form-control" name="nomeCurto" id="nomeCurto" aria-describedby="basic-addon1" placeholder="Para exibição no sistema, exemplo: Dr. Antônio Silva"
-              maxlength="25" pattern="([A-zÀ-ž\s.]){2,}" title="Dr. João (Apenas Letras)">
+            <input required type="text" class="form-control" name="nomeCurto" id="nomeCurto" aria-describedby="basic-addon1" placeholder="Para exibição no sistema, exemplo: Dr. João Silva"
+              maxlength="25" pattern="([A-zÀ-ž\s.]){2,}" title="Exemplo: Dr. João">
           </div>
 
           <div class="input-group">
@@ -154,7 +154,7 @@
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){1,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">

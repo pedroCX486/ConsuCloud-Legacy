@@ -21,7 +21,6 @@ if($row){
     $dataReceita = $get['dataReceita'];
     $horaReceita = $get['horaReceita'];
     $nomeReceita = $get['nomeReceita'];
-    $tipoReceita = $get['tipoReceita'];
     $receita = $get['receita'];
   }
 }
@@ -75,15 +74,6 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = d
                     }
                   }
                 ?>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <select required name="tipoReceita" class="form-control">
-              <option disabled selected value="">Tipo de Receita*</option>
-              <option value="Receita de Medicação" <?php if($tipoReceita == 'Receita de Medicação'){echo 'selected';} ?>>Receita de Medicação</option>
-              <option value="Receita de Paciente" <?php if($tipoReceita == 'Receita de Paciente'){echo 'selected';} ?>>Receita de Paciente</option>
-              <option value="Atestado" <?php if($tipoReceita == 'Atestado'){echo 'selected';} ?>>Atestado</option>
             </select>
           </div>
 

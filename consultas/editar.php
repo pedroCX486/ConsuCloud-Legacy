@@ -1,5 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
 
 $medico = trim(addslashes(strip_tags($_POST['medico'])));
 $paciente = trim(addslashes(strip_tags($_POST['paciente'])));

@@ -11,6 +11,17 @@ if(!$_SESSION["isMedico"] || empty($_SESSION)){
 $idUsuario = $_SESSION['idUsuario'];
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
+
+if(!empty($_GET['imprimirRedirect'])){
+ echo '<script type="text/javascript">
+         var ret = confirm("Deseja imprimir receita?");
+         if(ret == true){
+            window.open("'.$_SESSION["installAddress"].'receituario/imprimir.php?receita='.$_GET['imprimirRedirect'].'");
+         }else{
+            location.href="'.$_SESSION["installAddress"].'receituario/receitas.php";
+         }
+        </script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,18 +50,9 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
       <div class="buscar">
         <form method="post" action="receitas.php">
 
-          <center>
-            <b>Tipo de Busca:</b>
-            <br>
-            <input type="radio" onClick="document.getElementById('contentBusca').placeholder = 'Digite o nome da medicação.';" name="tipoReceita" value="Receita de Medicação" <?php if($_POST['tipoReceita'] == 'Receita de Medicação' || empty($_POST['tipoReceita'])){echo 'checked';}?>/> Receitas de Medicação &nbsp;
-	          <input type="radio" onClick="document.getElementById('contentBusca').placeholder = 'Digite o nome do paciente.';" name="tipoReceita" value="Receita de Paciente" <?php if($_POST['tipoReceita'] == 'Receita de Paciente'){echo 'checked';}?>/> Receitas de Paciente &nbsp;
-            <input type="radio" onClick="document.getElementById('contentBusca').placeholder = 'Digite o nome do paciente.';" name="tipoReceita" value="Atestado" <?php if($_POST['tipoReceita'] == 'Atestado'){echo 'checked';}?>/> Atestado
-            <br>
-          </center>
-
           <div class="input-group" id="divBUSCA">
             <span class="input-group-addon" id="basic-addon1">Dados para busca:</span>
-            <input required type="text" class="form-control" id="contentBusca" name="contentBusca" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['contentBusca']; ?>" pattern="([0-9A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho ou Oxalato de Escitalopram" placeholder="Digite o nome da medicação.">
+            <input required type="text" class="form-control" id="contentBusca" name="contentBusca" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['contentBusca']; ?>" pattern="([0-9A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho ou Oxalato de Escitalopram" placeholder="Digite o nome da medicação ou do paciente.">
           </div>
 
           <center>
@@ -70,28 +72,10 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
                     $idUsuario = $_SESSION['idUsuario'];
 
-                    if($_POST['tipoReceita'] == 'Receita de Medicação'){
-                      $busca = $_POST['contentBusca'];
+                    $busca = $_POST['contentBusca'];
 
-                      $select = $mysqli->query("SELECT * FROM receitas WHERE tipoReceita = 'Receita de Medicação' AND receita LIKE '%$busca%' AND medico = '$idUsuario'");
+                    $select = $mysqli->query("SELECT * FROM receitas WHERE receita LIKE '%$busca%' AND medico = '$idUsuario'");
 
-                   }elseif($_POST['tipoReceita'] == "Receita de Paciente"){
-                      $busca = $_POST['contentBusca'];
-
-                      $select = $mysqli->query("SELECT p.nomePaciente AS nomePaciente, nomeReceita, idReceita, tipoReceita, dataReceita, horaReceita FROM receitas AS r 
-                                                JOIN pacientes AS p ON p.idPaciente = r.paciente 
-                                                JOIN usuarios AS u ON u.idUsuario = r.medico 
-                                                WHERE p.nomePaciente LIKE '%$busca%' AND tipoReceita = 'Receita de Paciente' AND medico = '$idUsuario' ORDER BY dataReceita ASC, horaReceita ASC");
-
-                    }elseif($_POST['tipoReceita'] == "Atestado"){
-                      $busca = $_POST['contentBusca'];
-
-                      $select = $mysqli->query("SELECT p.nomePaciente AS nomePaciente, nomeReceita, idReceita, tipoReceita, dataReceita, horaReceita FROM receitas AS r 
-                                                JOIN pacientes AS p ON p.idPaciente = r.paciente 
-                                                JOIN usuarios AS u ON u.idUsuario = r.medico 
-                                                WHERE p.nomePaciente LIKE '%$busca%' AND tipoReceita = 'Atestado' AND medico = '$idUsuario' ORDER BY dataReceita ASC, horaReceita ASC");
-
-                    }
                   }
                   $row = $select->num_rows;
                   if($row){              
@@ -121,7 +105,9 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
         if(!empty($_POST['idReceita'])){
             $buscaReceita = $_POST['idReceita'];
             
-            $select = $mysqli->query("SELECT * FROM receitas WHERE idReceita = '$buscaReceita' AND medico = '$idUsuario'");
+            $select = $mysqli->query("SELECT p.nomePaciente, idReceita, nomeReceita, medico, paciente, dataReceita, horaReceita, receita FROM receitas AS r
+                                      JOIN pacientes AS p ON p.idPaciente = r.paciente 
+                                      WHERE idReceita = '$buscaReceita' AND medico = '$idUsuario'");
         
         $row = $select->num_rows;
         if($row){
@@ -132,7 +118,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idReceita'];?>">
               <?php
-                  echo $get['nomeReceita'] . ' (' . $data = date('d-m-Y', strtotime($get['dataReceita']))  . ' ás ' . $get['horaReceita'] . ')';
+                  echo $get['nomeReceita'] . ' (' . $data = date('d-m-Y', strtotime($get['dataReceita']))  . ' ás ' . $get['horaReceita'] . ') - ' . $get['nomePaciente'];
               ?> ▾
             </a>
           </h4>
@@ -154,7 +140,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
             <br>
             
-            <a href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
+            <a href="imprimir.php?receita=<?php echo $get['idReceita'];?>" target="_blank">
               <button class="btn btn-raised btn-primary btn-lg">IMPRIMIR RECEITA</button>
             </a>
 
@@ -174,7 +160,9 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
       <?php
         if($_GET['todasReceitas'] == true){
             
-            $select = $mysqli->query("SELECT * FROM receitas WHERE medico = '$idUsuario'");
+            $select = $mysqli->query("SELECT p.nomePaciente, idReceita, nomeReceita, medico, paciente, dataReceita, horaReceita, receita FROM receitas AS r
+                                      JOIN pacientes AS p ON p.idPaciente = r.paciente 
+                                      WHERE medico = '$idUsuario'");
         
         $row = $select->num_rows;
         if($row){
@@ -185,7 +173,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idReceita'];?>">
               <?php
-                  echo $get['nomeReceita'] . ' (' . $data = date('d-m-Y', strtotime($get['dataReceita']))  . ' ás ' . $get['horaReceita'] . ') - ' . $get['tipoReceita'];
+                  echo $get['nomeReceita'] . ' (' . $data = date('d-m-Y', strtotime($get['dataReceita']))  . ' ás ' . $get['horaReceita'] . ') - ' . $get['nomePaciente'];
               ?> ▾
             </a>
           </h4>
@@ -207,7 +195,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
             <br>
             
-            <a href="imprimir.php?receita=<?php echo $get['idReceita']; if(empty($get['paciente'])){echo "&noPaciente=true";}?>" target="_blank">
+            <a href="imprimir.php?receita=<?php echo $get['idReceita'];?>" target="_blank">
               <button class="btn btn-raised btn-primary btn-lg">IMPRIMIR RECEITA</button>
             </a>
 

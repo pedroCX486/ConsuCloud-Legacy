@@ -83,7 +83,7 @@ if(!$_SESSION["isAdmin"] || empty($_SESSION)){
 
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Número:</span>
-                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){2,}" title="12345678 (Apenas Números)">
+                    <input type="text" class="form-control" name="endereco_numero" aria-describedby="basic-addon1" maxlength="10" pattern="([0-9]){1,}" title="12345678 (Apenas Números)">
                   </div>
 
                   <div class="input-group">

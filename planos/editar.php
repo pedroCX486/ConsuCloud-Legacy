@@ -1,5 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
 
 $idPlano = trim(addslashes(strip_tags($_POST['idPlano'])));
 $nomePlano = trim(addslashes(strip_tags($_POST['nomePlano'])));

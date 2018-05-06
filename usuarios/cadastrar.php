@@ -1,5 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
 
 $crm = trim(addslashes(strip_tags($_POST['crm'])));
 $tipoUsuario = trim(addslashes(strip_tags($_POST['tipoUsuario'])));

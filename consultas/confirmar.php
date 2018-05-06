@@ -1,5 +1,6 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
 
 $idConsulta = trim(addslashes(strip_tags($_GET['consulta'])));
 $confirmaConsulta = trim(addslashes(strip_tags($_GET['cod'])));

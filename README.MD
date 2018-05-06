@@ -174,7 +174,6 @@ ________________________________________
 CREATE TABLE `receitas` (
 	`idReceita` INT(11) NOT NULL AUTO_INCREMENT,
 	`nomeReceita` VARCHAR(250) NULL DEFAULT NULL,
-	`tipoReceita` VARCHAR(100) NULL DEFAULT NULL,
 	`medico` VARCHAR(20) NULL DEFAULT NULL,
 	`paciente` VARCHAR(20) NULL DEFAULT NULL,
 	`dataReceita` DATE NULL DEFAULT NULL,

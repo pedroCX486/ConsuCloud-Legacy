@@ -105,15 +105,6 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
               ?>
             </select>
           </div>
-          
-          <div class="form-group">
-            <select required name="tipoReceita" class="form-control">
-              <option disabled selected value="">Tipo de Receita*</option>
-              <option value="Receita de Medicação">Receita de Medicação</option>
-              <option value="Receita de Paciente">Receita de Paciente</option>
-              <option value="Atestado">Atestado</option>
-            </select>
-          </div>
 
           <div class="row">
             <div class="col-lg-6">

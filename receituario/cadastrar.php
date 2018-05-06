@@ -1,34 +1,35 @@
 <?php
 header ('Content-type: text/html; charset=UTF-8');
+session_start();
 
 $paciente = trim(addslashes(strip_tags($_POST['paciente'])));
 $medico = trim(addslashes(strip_tags($_POST['medico'])));
 $dataReceita = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataReceita'])))));
 $horaReceita = trim(addslashes(strip_tags($_POST['horaReceita'])));
 $nomeReceita = trim(addslashes(strip_tags($_POST['nomeReceita'])));
-$tipoReceita = trim(addslashes(strip_tags($_POST['tipoReceita'])));
 $receita = trim(addslashes(strip_tags($_POST['receita'])));
 
 $dataReceita = date('Y-m-d',$dataReceita);
 
-if($tipoReceita != "Receita de Medicação" && empty($paciente)){
-	echo '<script type="text/javascript">
-					alert("ERRO: Tipo de receita não é medicação, é obrigatório informar paciente!");
-					window.history.back();
-        </script>';
-	exit();
-}
-
 require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Executar query
-$query = $mysqli->query("INSERT INTO receitas (paciente,medico,dataReceita,horaReceita,nomeReceita,tipoReceita,receita) 
-VALUES ('$paciente', '$medico', '$dataReceita', '$horaReceita', '$nomeReceita', '$tipoReceita', '$receita')"); 
+$query = $mysqli->query("INSERT INTO receitas (paciente,medico,dataReceita,horaReceita,nomeReceita,receita) 
+VALUES ('$paciente', '$medico', '$dataReceita', '$horaReceita', '$nomeReceita', '$receita')"); 
 
 if ($query){
+  
+  $select = $mysqli->query("SELECT LAST_INSERT_ID()");
+  $row = $select->num_rows;
+  if($row){              
+    while($get = $select->fetch_array()){
+      $idReceita = $get[0];
+    }
+  }
+  
   echo '<script type="text/javascript">
-					alert("Cadastro realizado com sucesso.");
-					location.href="'.$_SESSION["installAddress"].'receituario/receitas.php";
+          alert("Cadastro realizado com sucesso!");
+          location.href="'.$_SESSION["installAddress"].'receituario/receitas.php?imprimirRedirect='.$idReceita.'";
         </script>';
 }else{
   echo $mysqli->error;
