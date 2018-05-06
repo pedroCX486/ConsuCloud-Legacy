@@ -44,7 +44,7 @@ VALUES ('$nomePaciente', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', 
 
 if ($query){
   echo '<script type="text/javascript">
-					alert("Cadastro realizado com sucesso.");
+					alert("Paciente cadastrado com sucesso.");
 					location.href="'.$_SESSION["installAddress"].'pacientes/pacientes.php";
 				</script>';
 }else{

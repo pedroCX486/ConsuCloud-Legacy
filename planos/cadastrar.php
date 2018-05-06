@@ -32,7 +32,7 @@ VALUES ('$nomePlano', '$telFixo', '$email', '$infoPlano', '$endereco_logradouro'
 
 if ($query){
   echo '<script type="text/javascript">
-					alert("Cadastro realizado com sucesso.");
+					alert("Plano cadastrado com sucesso.");
 					window.history.back();
 				</script>';
 }else{

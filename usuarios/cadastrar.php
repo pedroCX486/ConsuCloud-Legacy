@@ -86,7 +86,7 @@ if($select->num_rows) {
 	
 	if ($query){
 	  echo '<script type="text/javascript">
-						alert("Cadastro realizado com sucesso.");
+						alert("Usuário cadastrado com sucesso.");
 						location.href="'.$_SESSION["installAddress"].'usuarios/usuarios.php";
 					</script>';
 	}else{

@@ -28,7 +28,7 @@ if ($query){
   }
   
   echo '<script type="text/javascript">
-          alert("Cadastro realizado com sucesso!");
+          alert("Receita cadastrada com sucesso.");
           location.href="'.$_SESSION["installAddress"].'receituario/receitas.php?imprimirRedirect='.$idReceita.'";
         </script>';
 }else{
