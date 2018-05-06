@@ -74,7 +74,11 @@ if(!empty($_GET['imprimirRedirect'])){
 
                     $busca = $_POST['contentBusca'];
 
-                    $select = $mysqli->query("SELECT * FROM receitas WHERE receita LIKE '%$busca%' AND medico = '$idUsuario'");
+                    //Data: 06/05/2018
+                    // Que fique marcado que eu fiquei rindo da gambiarra com CONCAT usada aqui.
+                    $select = $mysqli->query("SELECT p.nomePaciente, idReceita, nomeReceita, medico, paciente, dataReceita, horaReceita, receita FROM receitas AS r
+                                              JOIN pacientes AS p ON p.idPaciente = r.paciente 
+                                              WHERE CONCAT (p.nomePaciente, ' ', nomeReceita, ' ', receita) LIKE '%$busca%' AND medico = '$idUsuario'");
 
                   }
                   $row = $select->num_rows;
