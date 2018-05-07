@@ -3,7 +3,7 @@ header ('Content-type: text/html; charset=UTF-8');
 session_start();
 
 $paciente = trim(addslashes(strip_tags($_POST['paciente'])));
-$medico = trim(addslashes(strip_tags($_POST['medico'])));
+$medico = $_SESSION["idUsuario"];
 $dataReceita = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataReceita'])))));
 $horaReceita = trim(addslashes(strip_tags($_POST['horaReceita'])));
 $nomeReceita = trim(addslashes(strip_tags($_POST['nomeReceita'])));

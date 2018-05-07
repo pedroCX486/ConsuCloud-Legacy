@@ -136,27 +136,6 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           </div>
 
           <p>
-            <div class="form-group">
-              <select required name="medico" class="form-control">
-                <option disabled selected value="">Médico Prescritor*</option>
-                <?php
-                  $medico = $_SESSION["idUsuario"];
-                
-                  $select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = '$medico'");
-                  $row = $select->num_rows;
-                    if($row){              
-                      while($get = $select->fetch_array()){
-                ?>
-                <option value="<?php echo $get['idUsuario']; ?>" selected><?php echo $get['nomeCompleto']; ?></option>
-                <?php
-                    }
-                  }
-                ?>
-              </select>
-            </div>
-          </p>
-
-          <p>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">Nome Descritivo da Receita:*</span>
               <input required type="text" class="form-control" name="nomeReceita" aria-describedby="basic-addon1" maxlength="250" placeholder="Um nome curto para descrever a receita: Receita de Gláucio Silva ou Receita de Oxalato de Escitalopram">
