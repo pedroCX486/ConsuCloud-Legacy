@@ -158,10 +158,18 @@ if ($query){
 
   //Exibir mensagem e finalizar
   $arqsMensagem = implode("\\n", array_filter($files));
-  echo '<script type="text/javascript">
-            alert("Cadastro realizado com sucesso. Arquivos enviados:\n\n' . $arqsMensagem . '");
-            location.href="'.$_SESSION["installAddress"].'exames/exames.php";
-        </script>';
+  
+  if($_SESSION["WIZARD_start"]){
+    echo '<script type="text/javascript">
+					alert("Cadastro realizado com sucesso. Arquivos enviados:\n\n' . $arqsMensagem . '");
+					location.href="'.$_SESSION["installAddress"].'receituario/cadastrarreceitas.php";
+				</script>';
+  }else{
+    echo '<script type="text/javascript">
+              alert("Cadastro realizado com sucesso. Arquivos enviados:\n\n' . $arqsMensagem . '");
+              location.href="'.$_SESSION["installAddress"].'exames/exames.php";
+          </script>';
+  }
 }else{
   echo $mysqli->error;
 }

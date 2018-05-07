@@ -31,9 +31,21 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Exame</small>
-         <a href="exames.php">
-          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
-        </a>
+        <?php
+          if($_SESSION['WIZARD_start']){
+            echo '<a href="'.$_SESSION["installAddress"].'wizards/cancelarWizard.php">
+                    <button class="btn btn-raised btn-danger pull-right" onClick="return confirm("Tem certeza?")">CANCELAR MODO GUIADO</button>
+                  </a>
+                  <br>
+                  <a href="'.$_SESSION["installAddress"].'receituario/cadastrarreceitas.php">
+                    <button class="btn btn-raised btn-danger pull-right" onClick="return confirm("Tem certeza?")">PULAR EXAMES</button>
+                  </a>';
+          }else{
+            echo '<a href="exames.php">
+                    <button class="btn btn-raised btn-danger pull-right" onClick="return confirm("Tem certeza que deseja sair?")">CANCELAR CADASTRO</button>
+                  </a>';
+          }
+        ?>
       </h1>
       <br>
 
@@ -91,12 +103,17 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
                     }
                   }
+              
+                if($_SESSION['WIZARD_start']){
+                  $wizardPaciente = $_SESSION['WIZARD_start'];
+                  $select = $mysqli->query("SELECT * FROM pacientes WHERE idPaciente = '$wizardPaciente'");
+                }
 
                   $row = $select->num_rows;
                   if($row){              
                     while($get = $select->fetch_array()){
               ?>
-              <option value="<?php echo $get['idPaciente']; ?>">
+              <option value="<?php echo $get['idPaciente']; ?>" <?php if($_SESSION['WIZARD_start']){echo 'selected';}?>>
                 <?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?>
               </option>
               <?php
@@ -109,7 +126,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Data do Exame:*</span>
             <input required type="date" class="form-control" name="dataExame" aria-describedby="basic-addon1" maxlength="10" max="9999-12-31"
-              OnKeyPress="formatar('##/##/####', this)">
+              OnKeyPress="formatar('##/##/####', this)" value="<?php echo $_SESSION['WIZARD_data']; ?>">
           </div>
 
           <div class="input-group">

@@ -31,9 +31,17 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
     <div class="jumbotron">
       <h1>
         <small>Cadastrar Receitas</small>
-        <a href="receitas.php">
-          <button class="btn btn-raised btn-danger pull-right" onClick="return confirm('Tem certeza que deseja sair?')">CANCELAR CADASTRO</button>
-        </a>
+        <?php
+          if($_SESSION['WIZARD_start']){
+            echo '<a href="'.$_SESSION["installAddress"].'wizards/cancelarWizard.php">
+                    <button class="btn btn-raised btn-danger pull-right" onClick="return confirm("Tem certeza?")">CANCELAR MODO GUIADO/PULAR RECEITA</button>
+                  </a>';
+          }else{
+            echo '<a href="receitas.php">
+                    <button class="btn btn-raised btn-danger pull-right" onClick="return confirm("Tem certeza que deseja sair?")">CANCELAR CADASTRO</button>
+                  </a>';
+          }
+        ?>
       </h1>
       
       <br>
@@ -91,12 +99,17 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
                     }
                   }
+              
+                if($_SESSION['WIZARD_start']){
+                  $wizardPaciente = $_SESSION['WIZARD_start'];
+                  $select = $mysqli->query("SELECT * FROM pacientes WHERE idPaciente = '$wizardPaciente'");
+                }
 
                   $row = $select->num_rows;
                   if($row){              
                     while($get = $select->fetch_array()){
               ?>
-              <option value="<?php echo $get['idPaciente']; ?>">
+              <option value="<?php echo $get['idPaciente']; ?>" <?php if($_SESSION['WIZARD_start']){echo 'selected';}?>>
                 <?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?>
               </option>
               <?php
@@ -111,13 +124,13 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Data do Cadastro da Receita:*</span>
                 <input required type="date" class="form-control" name="dataReceita" aria-describedby="basic-addon1" max="9999-12-31" maxlength="10"
-                  OnKeyPress="formatar('##/##/####', this)">
+                  OnKeyPress="formatar('##/##/####', this)" value="<?php echo $_SESSION['WIZARD_data']; ?>">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Hora do Cadastro da Receita:*</span>
-                <input required type="time" class="form-control" name="horaReceita" aria-describedby="basic-addon1" maxlength="5" OnKeyPress="formatar('##:##', this)">
+                <input required type="time" class="form-control" name="horaReceita" aria-describedby="basic-addon1" maxlength="5" OnKeyPress="formatar('##:##', this)" value="<?php echo $_SESSION['WIZARD_hora']; ?>">
               </div>
             </div>
           </div>
@@ -127,12 +140,14 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
               <select required name="medico" class="form-control">
                 <option disabled selected value="">Médico Prescritor*</option>
                 <?php
-                  $select = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
+                  $medico = $_SESSION["idUsuario"];
+                
+                  $select = $mysqli->query("SELECT * FROM usuarios WHERE idUsuario = '$medico'");
                   $row = $select->num_rows;
                     if($row){              
                       while($get = $select->fetch_array()){
                 ?>
-                <option value="<?php echo $get['idUsuario']; ?>"><?php echo $get['nomeCompleto']; ?></option>
+                <option value="<?php echo $get['idUsuario']; ?>" selected><?php echo $get['nomeCompleto']; ?></option>
                 <?php
                     }
                   }

@@ -19,10 +19,18 @@ $query = $mysqli->query("INSERT INTO prontuarios (paciente,medico,dataProntuario
 VALUES ('$paciente', '$medico', '$dataProntuario', '$horaProntuario', '$prontuario')"); 
 
 if ($query){
-  echo '<script type="text/javascript">
-					alert("Cadastro realizado com sucesso.");
-					location.href="'.$_SESSION["installAddress"].'prontuarios/prontuarios.php";
+  
+  if($_SESSION["WIZARD_start"]){
+    echo '<script type="text/javascript">
+					alert("Prontuário registrado com sucesso.");
+					location.href="'.$_SESSION["installAddress"].'exames/cadastrarexames.php";
 				</script>';
+  }else{
+    echo '<script type="text/javascript">
+					alert("Prontuário registrado com sucesso.");
+					location.href="'.$_SESSION["installAddress"].'prontuarios/prontuarios.php";
+				</script>'; 
+  }
 }else{
   echo $mysqli->error;
 }

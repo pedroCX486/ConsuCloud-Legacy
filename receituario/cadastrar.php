@@ -27,10 +27,23 @@ if ($query){
     }
   }
   
-  echo '<script type="text/javascript">
+  if($_SESSION['WIZARD_start']){
+    unset($_SESSION["WIZARD_paciente"]);
+    unset($_SESSION["WIZARD_data"]);
+    unset($_SESSION["WIZARD_hora"]);
+    unset($_SESSION["WIZARD_start"]);
+    
+    echo '<script type="text/javascript">
+           alert("Receita cadastrada com sucesso. Consulta concluída! Encerrando modo guiado.");
+           location.href="'.$_SESSION["installAddress"].'receituario/receitas.php?imprimirRedirect='.$idReceita.'";
+          </script>';
+  }else{
+   echo '<script type="text/javascript">
           alert("Receita cadastrada com sucesso.");
           location.href="'.$_SESSION["installAddress"].'receituario/receitas.php?imprimirRedirect='.$idReceita.'";
-        </script>';
+        </script>'; 
+  }
+  
 }else{
   echo $mysqli->error;
 }
