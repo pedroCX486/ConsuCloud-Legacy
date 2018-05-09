@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-require($_SESSION["installFolder"]."componentes/sessionbuster.php");
+if(!$_SESSION["isMedico"] || empty($_SESSION)){
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
+  die();
+}
 
 $idUsuario = $_SESSION['idUsuario'];
 
-if(!$_SESSION["isMedico"] || empty($_SESSION)){
-  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
-  die;
-}
+require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 

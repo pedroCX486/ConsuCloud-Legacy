@@ -2,12 +2,12 @@
 header ('Content-type: text/html; charset=UTF-8');
 session_start();
 
-require($_SESSION["installFolder"]."componentes/sessionbuster.php");
-
 if(!$_SESSION["isAdmin"] || empty($_SESSION)){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
-  die;
+  die();
 }
+
+require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 

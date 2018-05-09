@@ -3,7 +3,7 @@
 
   require($_SESSION["installFolder"]."componentes/sessionbuster.php");
   
-  require $_SESSION["installFolder"]."componentes/db/connect.php";
+  require($_SESSION["installFolder"]."componentes/db/connect.php");
 ?>
 
 <html>

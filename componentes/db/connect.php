@@ -11,7 +11,7 @@ if($mysqli->connect_errno){
   $_SESSION["ERROBANCO"] = mysqli_connect_error() . ' (' . mysqli_connect_errno() . ')';
 
   echo "<script>top.window.location = ".$_SESSION["installAddress"]."index.php?erro=ERROBANCO'</script>";
-  die;
+  die();
 }
 
 //Configurar timezone GMT-3 no DB

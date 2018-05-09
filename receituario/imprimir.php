@@ -1,11 +1,12 @@
 <?php
 session_start();
-$idUsuario = $_SESSION['idUsuario'];
 
 if(!$_SESSION["isMedico"] || empty($_SESSION)){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
-  die;
+  die();
 }
+
+$idUsuario = $_SESSION['idUsuario'];
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 
