@@ -7,7 +7,7 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 $idUsuario = $_SESSION["idUsuario"];
 
-if(!$_SESSION["isMedico"] || empty($_SESSION){
+if(!$_SESSION["isMedico"] || empty($_SESSION)){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die;
  }

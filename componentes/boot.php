@@ -13,10 +13,16 @@
 <link rel="stylesheet" href="<?php echo $_SESSION["installAddress"]; ?>componentes/estilos.css">
 
 <?php
-if($_SESSION["tema"] == "consucloud"){
-  include $_SESSION["installFolder"].'componentes/temas/consucloud/bootTheme.php';
-}elseif($_SESSION["tema"] == "mustang"){
-  include $_SESSION["installFolder"].'componentes/temas/mustang/bootTheme.php';
+if($_SERVER['PHP_SELF'] != '/index.php'){
+  if($_SESSION["tema"] == "consucloud"){
+    include $_SESSION["installFolder"].'componentes/temas/consucloud/bootTheme.php';
+  }elseif($_SESSION["tema"] == "mustang"){
+    include $_SESSION["installFolder"].'componentes/temas/mustang/bootTheme.php';
+  }elseif($_SESSION["tema"] == "claro"){
+    include $_SESSION["installFolder"].'componentes/temas/claro/bootTheme.php';
+  }elseif($_SESSION["tema"] == "escuro"){
+    include $_SESSION["installFolder"].'componentes/temas/escuro/bootTheme.php';
+  }
 }
 ?>
 

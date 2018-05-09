@@ -51,7 +51,7 @@ if($row){
 
         <center>
  
-        <div style="width: 100%; display: table;">
+        <div style="width: 50%; display: table;">
           <div style="display: table-row">
             <div style="display: table-cell;">
               <img src="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/consucloud/thumb.png"/>
@@ -63,6 +63,22 @@ if($row){
               <img src="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/mustang/thumb.png"/>
               <br>
               <input type="radio" name="tema" value="mustang" <?php if($tema == "mustang"){echo 'checked';}?>> Mustang<br>
+            </div>
+          </div>
+          
+          <br>
+            
+          <div style="display: table-row">
+            <div style="display: table-cell;">
+              <img src="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/claro/thumb.png"/>
+              <br>
+              <input type="radio" name="tema" value="claro" <?php if($tema == "claro"){echo 'checked';}?>> Claro<br>
+            </div>
+            
+            <div style="display: table-cell;">
+              <img src="<?php echo $_SESSION["installAddress"]; ?>componentes/temas/escuro/thumb.png"/>
+              <br>
+              <input type="radio" name="tema" value="escuro" <?php if($tema == "escuro"){echo 'checked';}?>> Escuro<br>
             </div>
           </div>
         </div>

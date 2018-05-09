@@ -65,7 +65,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
                 <input type="number" class="form-control" name="rgPaciente" id="rgPaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['rgPaciente']; ?>">
               </div>
 
-              <center>
+              <center class="submitBusca">
                 <button type="submit" class="btn btn-raised btn-info">BUSCAR PACIENTE</button> &nbsp;
                 <a class="anchor" href="pacientes.php">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

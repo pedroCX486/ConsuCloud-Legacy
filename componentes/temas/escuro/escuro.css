@@ -1,0 +1,150 @@
+/* Estilos do Tema ConsuCloud */
+
+/* Plano de Fundo da Página */
+  body {
+    background-color: #585858;
+  }
+
+/* Estilos da Barra do Sistema */
+  .navbar-default {
+    background-color: #585858;
+    border-color: #838383;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .navbar-default .navbar-brand {
+    color: #d0cfcf;
+  }
+  .navbar-default .navbar-brand:hover,
+  .navbar-default .navbar-brand:focus {
+    color: #b2b2b2;
+  }
+  .navbar-default .navbar-text {
+    color: #d0cfcf;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: #d0cfcf;
+  }
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus {
+    color: #b2b2b2;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu {
+    background-color: #585858;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+    color: #d0cfcf;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+    color: #b2b2b2;
+    background-color: #838383;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu > li.divider {
+    background-color: #838383;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #b2b2b2;
+    background-color: #838383;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: #b2b2b2;
+    background-color: #838383;
+  }
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    color: #b2b2b2;
+    background-color: #838383;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #838383;
+  }
+  .navbar-default .navbar-toggle:hover,
+  .navbar-default .navbar-toggle:focus {
+    background-color: #838383;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #d0cfcf;
+  }
+  .navbar-default .navbar-collapse,
+  .navbar-default .navbar-form {
+    border-color: #d0cfcf;
+  }
+  .navbar-default .navbar-link {
+    color: #d0cfcf;
+  }
+  .navbar-default .navbar-link:hover {
+    color: #b2b2b2;
+  }
+
+  @media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #d0cfcf;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: #b2b2b2;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+      color: #b2b2b2;
+      background-color: #838383;
+    }
+  }
+
+/* Estilos das Tabelas do Sistema */
+  #rcorners1 {
+    background: #838383;
+    padding: 20px;
+  }
+
+/* Estilos de Margem de Campos de Input */
+  div.input-group {
+    margin-bottom: 5px;
+  }
+
+/* Jumbotron Escuro */
+  .jumbotron {
+    background-color: #ababab !important;
+  }
+
+/* Bootstrap Panel Escuro */
+  .panel-default {
+    border-color: #898585 !important;
+  }
+
+  .panel-heading {
+    background: #898585 !important;
+  }
+
+  .panel-body {
+    background: #c7c7c7 !important;
+  }
+
+/* Campos Escuros */
+  span, select, form-control {
+    background-color: #858585 !important;
+    color: #3e3d3d !important;
+    border: 1px solid #6f6d6d !important;
+  }
+
+  input, textarea {
+    background-color: #858585 !important;
+    color: #d0cfcf !important;
+    border: 1px solid #6f6d6d !important;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #d0cfcf !important;
+  }
+
+
+/* Forçando Margem em Botões de Busca */
+ .submitBusca {
+  margin-bottom: 50px !important;
+}
