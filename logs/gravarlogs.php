@@ -36,7 +36,9 @@ if($_SESSION['log'] == "LOGIN"){
 }elseif($_SESSION['log'] == "ERROBANCO"){
     $log = '<a href="#" data-toggle="tooltip" data-container="body" title="'. $_SESSION['ERROBANCO'] .'">Erro no Banco de Dados</a>';
 }elseif($_SESSION['log'] == "INATIVA"){
-    $log = "Tentativa de Login";
+    $log = '<a href="#" data-toggle="tooltip" data-container="body" title="Conta inativa tentou acesso ao sistema.">Tentativa de Login</a>';
+}elseif($_SESSION['log'] == "TIMEOUT"){
+    $log = "Sessão Encerrada (Timeout)";
 }
 
 //Connect

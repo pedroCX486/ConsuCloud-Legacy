@@ -45,5 +45,15 @@ if($erro == "LOGIN"){
   //Destruir session
   session_unset();
   session_destroy();
+}elseif($erro == "TIMEOUT"){
+  echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>SESSÃO ENCERRADA POR INATIVIDADE.</b><br>Para continuar informe novamente seu nome de usuário e senha.</div>';
+  
+  //Gravar Log
+  $_SESSION['log'] = "TIMEOUT";
+  require("logs/gravarlogs.php");
+
+  //Destruir session
+  session_unset();
+  session_destroy();
 }
 ?>
