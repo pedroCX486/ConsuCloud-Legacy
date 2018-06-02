@@ -1,5 +1,5 @@
 <?php
-include $_SESSION["installFolder"]."componentes/boot.php";
+include "../componentes/boot.php";
 
 $diretorio = basename(dirname(__FILE__));
 $diretorio = str_replace("setup", "", $diretorio);
@@ -35,7 +35,7 @@ if(empty($diretorio)){
       <div class="jumbotron">
 
         <p>
-          <center><img src="<?php echo $_SESSION["installAddress"]; ?>assets/minibrand.png" align="right"></center>
+          <center><img src="../assets/minibrand.png" align="right"></center>
         </p>
         <br><br>
 

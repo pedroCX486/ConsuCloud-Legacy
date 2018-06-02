@@ -41,7 +41,7 @@ if($row){
 session_start();
 
 if(empty($installFolder)){
-  $installFolder = "/";
+  $installFolder = "/"; //Usado no InstallAddress
   $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'];
 }else{
   $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
