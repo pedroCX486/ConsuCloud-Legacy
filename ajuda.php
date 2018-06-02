@@ -2,23 +2,7 @@
   session_start();
 
   if(empty($_SESSION["idUsuario"])){
-    if (file_exists('../index.php')){
-      include("../componentes/installdir.php");
-    }elseif(file_exists('../../index.php')){
-      include("../../componentes/installdir.php");
-    }elseif(file_exists('../../../index.php')){
-      include("../../../componentes/installdir.php");
-    }
-    
-    if(empty($installDir)){
-        $installDir = "/";
-        $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-      }else{
-        $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-      }
-    
-    echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
-    die();
+    include("componentes/redirect.php");
   }
 
   require($_SESSION["installFolder"]."componentes/sessionbuster.php");

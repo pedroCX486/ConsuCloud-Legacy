@@ -37,9 +37,9 @@
         <?php
           if(!empty($_POST)){
               
-              $usuario = $_POST['usuario'];
-              $dataInicio = $_POST['dataInicio'];
-              $dataFim = $_POST['dataFim'];
+              $usuario = trim(addslashes(strip_tags($_POST['usuario'])));
+              $dataInicio = trim(addslashes(strip_tags($_POST['dataInicio'])));
+              $dataFim = trim(addslashes(strip_tags($_POST['dataFim'])));
               
             if($usuario == "" && $dataInicio == "" && $dataFim == ""){
                 $select = $mysqli->query("SELECT * FROM logs WHERE dataLog >= ( CURDATE() - INTERVAL 15 DAY ) ORDER BY dataLog DESC, horaLog DESC");

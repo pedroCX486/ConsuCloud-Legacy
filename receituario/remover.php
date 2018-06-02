@@ -4,7 +4,7 @@ session_start();
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 
-$idReceita = $_GET['remover'];
+$idReceita = trim(addslashes(strip_tags($_GET['remover'])));
 
 // Perform queries 
 $query = $mysqli->query("DELETE FROM receitas WHERE idReceita = '$idReceita'");

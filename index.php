@@ -3,7 +3,7 @@ session_start();
 
 require("componentes/sessionbuster.php");
 
-$erro = $_GET['erro'];
+$erro = trim(addslashes(strip_tags($_GET['erro'])));
 ?>
 
 <!DOCTYPE html>

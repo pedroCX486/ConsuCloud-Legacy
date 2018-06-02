@@ -4,7 +4,7 @@ session_start();
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 
-$idConsulta = $_GET['remover'];
+$idConsulta = trim(addslashes(strip_tags($_GET['remover'])));
 
 // Perform queries 
 $query = $mysqli->query("DELETE FROM consultas WHERE idConsulta = '$idConsulta'");

@@ -2,23 +2,7 @@
 session_start();
 
 if(!$_SESSION["isMedico"] || empty($_SESSION["idUsuario"])){
-  if (file_exists('../index.php')){
-    include("../componentes/installdir.php");
-  }elseif(file_exists('../../index.php')){
-    include("../../componentes/installdir.php");
-  }elseif(file_exists('../../../index.php')){
-    include("../../../componentes/installdir.php");
-  }
-  
-  if(empty($installDir)){
-      $installDir = "/";
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }else{
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }
-  
-  echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
-  die();
+  include("../componentes/redirect.php");
 }
 
 require($_SESSION["installFolder"]."componentes/sessionbuster.php");
@@ -31,7 +15,7 @@ if(!empty($_GET['imprimirRedirect'])){
  echo '<script type="text/javascript">
          var ret = confirm("Deseja imprimir receita?");
          if(ret == true){
-            window.open("'.$_SESSION["installAddress"].'receituario/imprimir.php?receita='.$_GET['imprimirRedirect'].'");
+            window.open("'.$_SESSION["installAddress"].'receituario/imprimir.php?receita='.trim(addslashes(strip_tags($_GET['imprimirRedirect']))).'");
          }else{
             location.href="'.$_SESSION["installAddress"].'receituario/receitas.php";
          }
@@ -67,7 +51,7 @@ if(!empty($_GET['imprimirRedirect'])){
 
           <div class="input-group" id="divBUSCA">
             <span class="input-group-addon" id="basic-addon1">Dados para busca:</span>
-            <input required type="text" class="form-control" id="contentBusca" name="contentBusca" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['contentBusca']; ?>" pattern="([0-9A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho ou Oxalato de Escitalopram" placeholder="Digite o nome da medicação ou do paciente.">
+            <input required type="text" class="form-control" id="contentBusca" name="contentBusca" aria-describedby="basic-addon1" maxlength="150" value="<?php echo trim(addslashes(strip_tags($_POST['contentBusca']))); ?>" pattern="([0-9A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho ou Oxalato de Escitalopram" placeholder="Digite o nome da medicação ou do paciente.">
           </div>
 
           <center>
@@ -87,7 +71,7 @@ if(!empty($_GET['imprimirRedirect'])){
 
                     $idUsuario = $_SESSION['idUsuario'];
 
-                    $busca = $_POST['contentBusca'];
+                    $busca = trim(addslashes(strip_tags($_POST['contentBusca'])));
 
                     //Data: 06/05/2018
                     // Que fique marcado que eu fiquei rindo da gambiarra com CONCAT usada aqui.
@@ -122,7 +106,7 @@ if(!empty($_GET['imprimirRedirect'])){
       <div class="panel-group" id="accordion">
       <?php
         if(!empty($_POST['idReceita'])){
-            $buscaReceita = $_POST['idReceita'];
+            $buscaReceita = trim(addslashes(strip_tags($_POST['idReceita'])));
             
             $select = $mysqli->query("SELECT p.nomePaciente, idReceita, nomeReceita, medico, paciente, dataReceita, horaReceita, receita FROM receitas AS r
                                       JOIN pacientes AS p ON p.idPaciente = r.paciente 

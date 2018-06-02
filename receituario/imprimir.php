@@ -2,23 +2,7 @@
 session_start();
 
 if(!$_SESSION["isMedico"] || empty($_SESSION["idUsuario"])){
-  if (file_exists('../index.php')){
-    include("../componentes/installdir.php");
-  }elseif(file_exists('../../index.php')){
-    include("../../componentes/installdir.php");
-  }elseif(file_exists('../../../index.php')){
-    include("../../../componentes/installdir.php");
-  }
-  
-  if(empty($installDir)){
-      $installDir = "/";
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }else{
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }
-  
-  echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
-  die();
+  include("../componentes/redirect.php");
 }
 
 $idUsuario = $_SESSION['idUsuario'];
@@ -96,7 +80,7 @@ if($row){
       <br>
       <?php 
       if(!empty($_GET["receita"])){
-        $receita = $_GET["receita"];          
+        $receita = trim(addslashes(strip_tags($_GET["receita"])));          
         $select = $mysqli->query("SELECT p.nomePaciente AS nomePaciente, paciente, idReceita, receita FROM receitas AS r 
                                   JOIN pacientes AS p ON p.idPaciente = r.paciente
                                   WHERE idReceita = '$receita'");

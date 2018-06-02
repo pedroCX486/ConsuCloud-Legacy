@@ -2,23 +2,7 @@
 session_start();
 
 if($_SESSION["isMedico"] || empty($_SESSION["idUsuario"])){
-  if (file_exists('../index.php')){
-    include("../componentes/installdir.php");
-  }elseif(file_exists('../../index.php')){
-    include("../../componentes/installdir.php");
-  }elseif(file_exists('../../../index.php')){
-    include("../../../componentes/installdir.php");
-  }
-  
-  if(empty($installDir)){
-      $installDir = "/";
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }else{
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }
-  
-  echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
-  die();
+  include("../componentes/redirect.php");
 }
 
 require($_SESSION["installFolder"]."componentes/sessionbuster.php");
@@ -107,10 +91,10 @@ $dataFim = date('d-m-Y', strtotime($_POST['dataFim']));
 
           <!--Mega Query para dados do relatório-->
           <?php
-            $dataInicio = $_POST['dataInicio'];
-            $dataFim = $_POST['dataFim'];
-            $medico = $_POST['medico'];
-            $plano = $_POST['plano'];
+            $dataInicio = trim(addslashes(strip_tags($_POST['dataInicio'])));
+            $dataFim = trim(addslashes(strip_tags($_POST['dataFim'])));
+            $medico = trim(addslashes(strip_tags($_POST['medico'])));
+            $plano = trim(addslashes(strip_tags($_POST['plano'])));
 
             $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, dataConsulta, horaConsulta, pl.nomePlano, carteiraPlano, confirmaConsulta FROM consultas AS c 
                                     JOIN pacientes AS p ON p.idPaciente = c.paciente 

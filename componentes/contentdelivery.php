@@ -7,10 +7,10 @@ include "boot.php";
 
 if($_GET['backup']){
   //Montar caminho para download do backup
-  $filename = $_SESSION["installAddress"].'backup/' . $_GET['arquivo'];
+  $filename = $_SESSION["installAddress"].'backup/' . trim(addslashes(strip_tags($_GET['arquivo'])));
 }else{
   //Montar caminho para download de exames
-  $filename = $_SESSION["installAddress"].'exames/arquivos/' . $_GET['paciente'] . '/' . $_GET['arquivo'];
+  $filename = $_SESSION["installAddress"].'exames/arquivos/' . trim(addslashes(strip_tags($_GET['paciente']))) . '/' . trim(addslashes(strip_tags($_GET['arquivo'])));
 }
 
 //Pegar mimetype
@@ -22,7 +22,7 @@ finfo_close($finfo);
 $encodedFile = chunk_split(base64_encode(file_get_contents($filename)));
 
 //Montar href para download
-echo '<a id="download" href="data:'.$mimeType.';base64,'.$encodedFile.'" download="'.$_GET['arquivo'].'" />';
+echo '<a id="download" href="data:'.$mimeType.';base64,'.$encodedFile.'" download="'.trim(addslashes(strip_tags($_GET['arquivo']))).'" />';
 
 //Invocar click no href e encerrar a janela automaticamente
 ?>

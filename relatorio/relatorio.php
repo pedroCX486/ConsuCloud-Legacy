@@ -2,23 +2,7 @@
 session_start();
 
 if($_SESSION["isMedico"] || empty($_SESSION["idUsuario"])){
-  if (file_exists('../index.php')){
-    include("../componentes/installdir.php");
-  }elseif(file_exists('../../index.php')){
-    include("../../componentes/installdir.php");
-  }elseif(file_exists('../../../index.php')){
-    include("../../../componentes/installdir.php");
-  }
-  
-  if(empty($installDir)){
-      $installDir = "/";
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }else{
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }
-  
-  echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
-  die();
+  include("../componentes/redirect.php");
 }
 
 require($_SESSION["installFolder"]."componentes/sessionbuster.php");
@@ -137,8 +121,8 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
           $dataFim = date('Y-m-d',$dataFim); 
           
-          $medico = $_POST['medico'];
-          $plano = $_POST['plano'];
+          $medico = trim(addslashes(strip_tags($_POST['medico'])));
+          $plano = trim(addslashes(strip_tags($_POST['plano'])));
         ?>
 
         <div id="rcorners1" style="overflow-y: auto; max-height: 400px; max-width: 80%; ">

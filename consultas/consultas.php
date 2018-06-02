@@ -2,23 +2,7 @@
 session_start();
 
 if($_SESSION["isMedico"] || empty($_SESSION["idUsuario"])){
-  if (file_exists('../index.php')){
-    include("../componentes/installdir.php");
-  }elseif(file_exists('../../index.php')){
-    include("../../componentes/installdir.php");
-  }elseif(file_exists('../../../index.php')){
-    include("../../../componentes/installdir.php");
-  }
-  
-  if(empty($installDir)){
-      $installDir = "/";
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }else{
-      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
-    }
-  
-  echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
-  die();
+  include("../componentes/redirect.php");
 }
 
 require($_SESSION["installFolder"]."componentes/sessionbuster.php");
@@ -72,12 +56,12 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
               <div class="input-group" id="divNOME" <?php if($_POST['tabBusca'] == 'nome' || empty($_POST['tabBusca'])){echo 'style="display: inline-table;"';}else{echo 'style="display: none;"';}?>>
                 <span class="input-group-addon" id="basic-addon1">Nome do Paciente:</span>
-                <input type="text" class="form-control" name="nomePaciente" id="nomePaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['nomePaciente']; ?>" pattern="([A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho (Apenas Letras)">
+                <input type="text" class="form-control" name="nomePaciente" id="nomePaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo trim(addslashes(strip_tags($_POST['nomePaciente']))); ?>" pattern="([A-zÀ-ž\s]){2,}" title="Sr João da Silva Filho (Apenas Letras)">
               </div>
 
               <div class="input-group" id="divRG" <?php if($_POST['tabBusca'] == 'rg'){echo 'style="display: inline-table;"';}else{echo 'style="display: none;"';}?>>
                 <span class="input-group-addon" id="basic-addon1">RG do Paciente:</span>
-                <input type="number" class="form-control" name="rgPaciente" id="rgPaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo $_POST['rgPaciente']; ?>">
+                <input type="number" class="form-control" name="rgPaciente" id="rgPaciente" aria-describedby="basic-addon1" maxlength="150" value="<?php echo trim(addslashes(strip_tags($_POST['rgPaciente']))); ?>">
               </div>
 
               <center class="submitBusca">
@@ -96,12 +80,12 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
                         $idUsuario = $_SESSION['idUsuario'];
 
                         if($_POST['nomePaciente'] != ""){
-                          $busca = $_POST['nomePaciente'];
+                          $busca = trim(addslashes(strip_tags($_POST['nomePaciente'])));
 
                           $select = $mysqli->query("SELECT * FROM pacientes WHERE nomePaciente LIKE '%$busca%'");
 
                         }elseif($_POST['rgPaciente'] != ""){
-                          $busca = $_POST['rgPaciente'];
+                          $busca = trim(addslashes(strip_tags($_POST['rgPaciente'])));
 
                           $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
 
@@ -149,7 +133,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
             if(!empty($_POST)){
             
               $idUsuario = $_SESSION['idUsuario'];
-              $busca = $_POST['idPaciente'];
+              $busca = trim(addslashes(strip_tags($_POST['idPaciente'])));
               
               $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
                                         JOIN pacientes AS p ON p.idPaciente = c.paciente 
