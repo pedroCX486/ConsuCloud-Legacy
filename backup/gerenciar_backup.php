@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION["isAdmin"] || empty($_SESSION)){
+if(!$_SESSION["isAdmin"] || empty($_SESSION["idUsuario"])){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die();
 }

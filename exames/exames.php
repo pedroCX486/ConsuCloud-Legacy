@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION["isMedico"] || empty($_SESSION)){  
+if(!$_SESSION["isMedico"] || empty($_SESSION["idUsuario"])){  
   if (file_exists('../index.php')){
     include("../componentes/installdir.php");
   }elseif(file_exists('../../index.php')){

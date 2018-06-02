@@ -3,7 +3,7 @@ date_default_timezone_set('America/Recife');
 
 session_start();
 
-if(empty($_SESSION)){
+if(empty($_SESSION["idUsuario"])){
   echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die();
 }
