@@ -3,7 +3,7 @@ header ('Content-type: text/html; charset=UTF-8');
 session_start();
 
 if(!$_SESSION["isAdmin"] || empty($_SESSION)){
-  echo "<script>top.window.location = '".$_SESSION["installAddress"]."redirect.php'</script>";
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die();
 }
 
@@ -45,7 +45,7 @@ if($row){
 if($crm == 'SysAdmin'){
   echo '<script type="text/javascript">
 					alert("ERRO FATAL: Dados inválidos foram recebidos do servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
-					location.href="'.$_SESSION["installAddress"].'redirect.php";
+					location.href="'.$_SESSION["installAddress"].'index.php?erro=ERROFATAL";
 				</script>';
 	exit();
 }

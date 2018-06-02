@@ -44,7 +44,7 @@ if(!ctype_digit($crm)) {
 }elseif($tipoUsuario == "admin"){
     echo '<script type="text/javascript">
             alert("ERRO FATAL: Dados inválidos foram enviados ao servidor. Se você está vendo este erro, contacte a equipe de desenvolvimento.\n\n Um registro foi feito no log de eventos.");
-            location.href="'.$_SESSION["installAddress"].'redirect.php";
+            location.href="'.$_SESSION["installAddress"].'index.php?erro=ERROFATAL";
 			  	</script>';
 	exit();
 }

@@ -2,7 +2,7 @@
   session_start();
 
   if(empty($_SESSION)){
-    echo "<script>top.window.location = '".$_SESSION["installAddress"]."redirect.php'</script>";
+    echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
     die();
   }
 

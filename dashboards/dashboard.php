@@ -4,7 +4,7 @@ date_default_timezone_set('America/Recife');
 session_start();
 
 if(empty($_SESSION)){
-  echo "<script>top.window.location = '".$_SESSION["installAddress"]."redirect.php'</script>";
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
   die();
 }
 
@@ -63,7 +63,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
         }elseif($_SESSION["isMedico"] == true){
           require "dashboard_medico.php";
         }else{
-          echo "<script>top.window.location = '".$_SESSION["installAddress"]."redirect.php'</script>";
+          echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
           die();
         }
       ?>
