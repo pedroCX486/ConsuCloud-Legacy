@@ -3,7 +3,22 @@ header ('Content-type: text/html; charset=UTF-8');
 session_start();
 
 if(!$_SESSION["isAdmin"] || empty($_SESSION["idUsuario"])){
-  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
+  if (file_exists('../index.php')){
+    include("../componentes/installdir.php");
+  }elseif(file_exists('../../index.php')){
+    include("../../componentes/installdir.php");
+  }elseif(file_exists('../../../index.php')){
+    include("../../../componentes/installdir.php");
+  }
+  
+  if(empty($installDir)){
+      $installDir = "/";
+      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
+    }else{
+      $installAddr = "https://".$_SERVER['HTTP_HOST'].$installDir;
+    }
+  
+  echo "<script>top.window.location = '".$installAddr."index.php?erro=ERROFATAL'</script>";
   die();
 }
 
