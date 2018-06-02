@@ -4,7 +4,7 @@ date_default_timezone_set('America/Recife');
 session_start();
 
 if($_SESSION["isMedico"] || empty($_SESSION)){
-  echo "<script>top.window.location = '".$_SESSION["installAddress"]."index.php?erro=ERROFATAL'</script>";
+  echo "<script>top.window.location = '".$_SESSION["installAddress"]."redirect.php'</script>";
   die();
 }
 
