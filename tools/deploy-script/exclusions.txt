@@ -1,4 +1,3 @@
 .git\
-Docs\
 tools\
 README.MD
