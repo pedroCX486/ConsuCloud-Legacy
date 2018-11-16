@@ -79,7 +79,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
         <form method="post" action="cadastrar.php">
 
           <div class="form-group">
-            <select id="paciente" name="paciente" class="form-control">
+            <select required id="paciente" name="paciente" class="form-control">
               <option disabled selected value="">Nome do Paciente*</option>
               <?php
                 if(!empty($_POST)){
