@@ -7,10 +7,10 @@
       <th class="titulos"></th>
     </tr>
     <?php
-      $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, consultaFinalizada, idConsulta FROM consultas AS c 
+      $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, consultaFinalizada, idConsulta, idPaciente FROM consultas AS c 
                                   JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                   JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                  WHERE dataConsulta = CURDATE() AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
+                                  WHERE (dataConsulta BETWEEN DATE_ADD(CURDATE(), INTERVAL -1 DAY) AND CURDATE()) AND consultaFinalizada = 0 AND c.medico = $idUsuario ORDER BY dataConsulta ASC, horaConsulta ASC");
       $row = $select->num_rows;
       if($row){
         while($get = $select->fetch_array()){
@@ -19,7 +19,9 @@
 
       <!--Nome do Paciente INICIO-->
       <td class="tg-yw4l">
-        <?php echo $get['nomePaciente']; ?>
+        <a href="<?php echo $_SESSION["installAddress"].'prontuarios/prontuarios.php?idPaciente=' . $get['idPaciente']; ?>">
+          <?php echo $get['nomePaciente']; ?>
+        </a>
       </td>
 
       <!--Tipo de Consulta-->

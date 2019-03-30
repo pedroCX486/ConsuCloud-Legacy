@@ -133,7 +133,7 @@ if($row){
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Complemento:</span>
                     <input type="text" class="form-control" name="endereco_complemento" aria-describedby="basic-addon1" value="<?php echo $endereco_complemento; ?>"
-                      maxlength="20">
+                      maxlength="150">
                   </div>
 
                   <div class="input-group">

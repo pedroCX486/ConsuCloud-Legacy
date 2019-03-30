@@ -10,6 +10,7 @@ $dataNasc = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['d
 $telCel = trim(addslashes(strip_tags($_POST['telCel'])));
 $telFixo = trim(addslashes(strip_tags($_POST['telFixo'])));
 $email = trim(addslashes(strip_tags($_POST['email'])));
+$profissao = trim(addslashes(strip_tags($_POST['profissao'])));
 $endereco_logradouro = trim(addslashes(strip_tags($_POST['endereco_logradouro'])));
 $endereco_numero = trim(addslashes(strip_tags($_POST['endereco_numero'])));
 $endereco_complemento = trim(addslashes(strip_tags($_POST['endereco_complemento'])));
@@ -39,7 +40,7 @@ require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 // Perform queries 
 $query = $mysqli->query("UPDATE pacientes SET RG = '$RG', nomePaciente = '$nomePaciente', RGUFEXP = '$RGUFEXP', dataNasc = '$dataNasc', telCel ='$telCel', 
-telFixo = '$telFixo', email = '$email', endereco_logradouro = '$endereco_logradouro', endereco_numero = '$endereco_numero', endereco_complemento = '$endereco_complemento', endereco_bairro = '$endereco_bairro', 
+telFixo = '$telFixo', email = '$email', profissao = '$profissao', endereco_logradouro = '$endereco_logradouro', endereco_numero = '$endereco_numero', endereco_complemento = '$endereco_complemento', endereco_bairro = '$endereco_bairro', 
 endereco_cidade = '$endereco_cidade', endereco_cep = '$endereco_cep', endereco_estado = '$endereco_estado' WHERE idPaciente = '$idPaciente'");
 
 if ($query){

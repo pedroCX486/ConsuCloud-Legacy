@@ -69,7 +69,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
             <select name="idPaciente" class="form-control">
               <option disabled <?php if(empty($_POST['idPaciente'])){echo ' selected';} ?> value="">Nome do Paciente*</option>
               <?php        
-                if(!empty($_POST['nomePaciente']) || !empty($_POST['rgPaciente'])){
+                if(!empty($_POST['nomePaciente']) || !empty($_POST['rgPaciente']) || !empty($_GET['idPaciente'])){
 
                     $idUsuario = $_SESSION['idUsuario'];
 
@@ -83,13 +83,17 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
                       $select = $mysqli->query("SELECT * FROM pacientes WHERE RG = '$busca'");
 
-                    }              
+                    }else if(!empty($_GET["idPaciente"])){
+                      $busca = trim(addslashes(strip_tags($_GET['idPaciente'])));
+
+                      $select = $mysqli->query("SELECT * FROM pacientes WHERE idPaciente = '$busca'");
+                    }
                   }
                   $row = $select->num_rows;
                   if($row){              
                     while($get = $select->fetch_array()){
                 ?>
-              <option value="<?php echo $get['idPaciente']; ?>" <?php if(!empty($_POST['idPaciente']) && $_POST['idPaciente'] == $get['idPaciente']){echo ' selected';} ?>>
+              <option value="<?php echo $get['idPaciente']; ?>" <?php if($_POST['idPaciente'] == $get['idPaciente'] || $_GET['idPaciente'] == $get['idPaciente']){echo ' selected';} ?>>
                 <?php echo $get['RG'] . ' - ' . $get['nomePaciente']; ?>
               </option>
               <?php
@@ -110,14 +114,18 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
       <div class="panel-group" id="accordion">
         <?php
-          if(!empty($_POST['idPaciente'])){
-            
+          if(!empty($_POST['idPaciente']) || !empty($_GET["idPaciente"])){
             $idUsuario = $_SESSION['idUsuario'];
+
+          if(!empty($_GET["idPaciente"])){
+            $buscaPront = trim(addslashes(strip_tags($_GET['idPaciente'])));
+          }else if(!empty($_POST['idPaciente'])){
             $buscaPront = trim(addslashes(strip_tags($_POST['idPaciente'])));
+          }
             
-            $select = $mysqli->query("SELECT p.nomePaciente, dataProntuario, horaProntuario, prontuario, idProntuario FROM prontuarios AS pront 
-                                      JOIN pacientes AS p ON p.idPaciente = pront.paciente 
-                                      WHERE p.idPaciente = '$buscaPront' AND pront.medico = $idUsuario ORDER BY dataProntuario ASC, horaProntuario ASC");
+          $select = $mysqli->query("SELECT p.nomePaciente, dataProntuario, horaProntuario, prontuario, idProntuario FROM prontuarios AS pront 
+                                    JOIN pacientes AS p ON p.idPaciente = pront.paciente 
+                                    WHERE p.idPaciente = '$buscaPront' AND pront.medico = $idUsuario ORDER BY dataProntuario ASC, horaProntuario ASC");
 
           $row = $select->num_rows;
           if($row){
@@ -141,6 +149,8 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
         </div>
         <?php
               }
+            }else{
+              echo '<center>Nenhum prontuário cadastrado.</center>';
             }
           }
         ?>

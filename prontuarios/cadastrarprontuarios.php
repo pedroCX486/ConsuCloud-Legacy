@@ -20,6 +20,15 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
   <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/maskFormat.js"></script>
   <script src="<?php echo $_SESSION["installAddress"]; ?>componentes/tabBusca.js"></script>
+
+  <script>
+  function loadDados(id)
+  {
+    $.post('<?php echo $_SESSION["installAddress"]; ?>componentes/getPacienteData.php',{idPaciente: id},function(data){
+      dadosPaciente.innerHTML = "<strong>Dados do Paciente:</strong> <br>" + data;
+    });
+  }
+</script>
 </head>
 
 <body>
@@ -83,7 +92,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
       <form method="post" action="cadastrar.php">
 
         <div class="form-group">
-          <select required name="paciente" class="form-control">
+          <select required name="paciente" class="form-control" onChange="loadDados(this.value);">
             <option disabled selected value="">Nome do Paciente*</option>
             <?php
               if(!empty($_POST)){
@@ -121,6 +130,8 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
             ?>
           </select>
         </div>
+
+        <div id="dadosPaciente"></div>
 
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Data da Consulta:*</span>

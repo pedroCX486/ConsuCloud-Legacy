@@ -44,9 +44,10 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
       <br><br>
       <center>
-        <a class="anchor" href="executar_backup.php" target="navegador">
+        <!-- <a class="anchor" href="executar_backup.php" target="navegador">
           <button class="btn btn-raised btn-primary btn-lg">EXECUTAR NOVO BACKUP</button>
-        </a>
+        </a> -->
+		<strong>FUNÇÃO TEMPORARIAMENTE DESATIVADA</strong>
       </center>
 
       <br>

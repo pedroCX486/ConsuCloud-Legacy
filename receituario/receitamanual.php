@@ -66,8 +66,12 @@ if($row){
           <div id="infocheck">
             <b>Informações do Médico:</b>
             <br> Dr.
-            <?php echo $nomeCompleto . ' - ' . $areaAtuacao . ' - '; ?> CRM -
-            <?php echo $estado . ": " .  $crm; ?>
+            <?php
+				echo $nomeCompleto . ' - ' . $areaAtuacao . ' - ';
+				if($_SESSION["idUsuario"]=="5"){echo "CRP-02/".$crm;}
+				elseif($_SESSION["idUsuario"]=="2"){echo "CREMEPE: ".$crm;}
+				else{echo "CRM". $estado .": ".$crm;}
+			?>
             <br>
             <br>
             <b>Informações do Consultório:</b>

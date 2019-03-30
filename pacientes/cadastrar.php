@@ -9,6 +9,7 @@ $dataNasc = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['d
 $telCel = trim(addslashes(strip_tags($_POST['telCel'])));
 $telFixo = trim(addslashes(strip_tags($_POST['telFixo'])));
 $email = trim(addslashes(strip_tags($_POST['email'])));
+$profissao = trim(addslashes(strip_tags($_POST['profissao'])));
 $endereco_logradouro = trim(addslashes(strip_tags($_POST['endereco_logradouro'])));
 $endereco_numero = trim(addslashes(strip_tags($_POST['endereco_numero'])));
 $endereco_complemento = trim(addslashes(strip_tags($_POST['endereco_complemento'])));
@@ -37,9 +38,9 @@ if(!ctype_digit($RG)) {
 require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 // Perform queries 
-$query = $mysqli->query("INSERT INTO pacientes (nomePaciente,RG,RGUFEXP,dataNasc,telCel,telFixo,email,endereco_logradouro,
+$query = $mysqli->query("INSERT INTO pacientes (nomePaciente,RG,RGUFEXP,dataNasc,telCel,telFixo,email,profissao,endereco_logradouro,
 endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado) 
-VALUES ('$nomePaciente', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$endereco_logradouro', '$endereco_numero', 
+VALUES ('$nomePaciente', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$profissao', '$endereco_logradouro', '$endereco_numero', 
 '$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado')"); 
 
 if ($query){

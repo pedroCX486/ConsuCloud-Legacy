@@ -1,17 +1,17 @@
 <?php
-date_default_timezone_set('America/Recife');
+  date_default_timezone_set('America/Recife');
 
-session_start();
+  session_start();
 
-if(empty($_SESSION["idUsuario"])){
-  include("../componentes/redirect.php");
-}
+  if(empty($_SESSION["idUsuario"])){
+    include("../componentes/redirect.php");
+  }
 
-require($_SESSION["installFolder"]."componentes/sessionbuster.php");
+  require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
-$idUsuario = $_SESSION["idUsuario"];
+  $idUsuario = $_SESSION["idUsuario"];
 
-require($_SESSION["installFolder"]."componentes/db/connect.php");
+  require($_SESSION["installFolder"]."componentes/db/connect.php");
 ?>
 
 <!DOCTYPE html>

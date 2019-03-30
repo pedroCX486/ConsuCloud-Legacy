@@ -47,7 +47,7 @@
               
                 &nbsp;
               <label style="color: black">
-              <input required type="radio" name="tipoUsuario" value="secretaria" onClick="showSecretaria();"/> Secretária
+              <input required type="radio" name="tipoUsuario" value="secretaria" onClick="showSecretaria();"/> Atendimento
             </p>
           </div>
 

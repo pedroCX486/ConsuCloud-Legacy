@@ -36,6 +36,6 @@ function showSecretaria(){
   
   document.getElementById('nomeCompleto').title = 'Maria da Silva (Apenas Letras)';
   
-  document.getElementById('nomeCurto').placeholder = 'Para exibição no sistema, exemplo: Scr. Maria Silva';
-  document.getElementById('nomeCurto').title = 'Scr. Maria (Apenas Letras)';
+  document.getElementById('nomeCurto').placeholder = 'Para exibição no sistema, exemplo: Maria Silva';
+  document.getElementById('nomeCurto').title = 'Maria (Apenas Letras)';
 }

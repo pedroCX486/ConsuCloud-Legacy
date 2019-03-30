@@ -30,10 +30,10 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
       <br>
 
       <center>
-        <a href="http://php.net/">
+        <a href="https://php.net/">
           <img src="assets/php.png" />
         </a>
-        <a href="http://getbootstrap.com/">
+        <a href="https://getbootstrap.com/">
           <img src="assets/bootstrap.png" />
         </a>
         <br>

@@ -13,7 +13,7 @@ $idPaciente = trim(addslashes(strip_tags($_GET['idPaciente'])));
 
 $select = $mysqli->query("SELECT * FROM pacientes WHERE idPaciente = $idPaciente");
 $row = $select->num_rows;
-if($row){              
+if($row){
   while($get = $select->fetch_array()){
     $nomePaciente = $get['nomePaciente'];
     $RG = $get['RG'];
@@ -22,6 +22,7 @@ if($row){
     $telCel = $get['telCel'];
     $telFixo = $get['telFixo'];
     $email = $get['email'];
+    $profissao = $get['profissao'];
     $endereco_logradouro = $get['endereco_logradouro'];
     $endereco_numero = $get['endereco_numero'];
     $endereco_complemento = $get['endereco_complemento'];
@@ -107,6 +108,11 @@ if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date(
             <span class="input-group-addon" id="basic-addon1">Email:</span>
             <input type="text" class="form-control" name="email" aria-describedby="basic-addon1" value="<?php echo $email; ?>" maxlength="100"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="exemplo@exemplo.com">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Profissão:</span>
+            <input type="text" class="form-control" name="profissao" aria-describedby="basic-addon1" value="<?php echo $profissao; ?>" maxlength="100">
           </div>
 
           <div class="panel-group" id="accordion">

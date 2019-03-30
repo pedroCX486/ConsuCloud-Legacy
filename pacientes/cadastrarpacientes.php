@@ -80,6 +80,11 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
               title="exemplo@exemplo.com">
           </div>
 
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Profissão:</span>
+            <input type="text" class="form-control" name="profissao" aria-describedby="basic-addon1" maxlength="100">
+          </div>
+
           <div class="panel-group" id="accordion">
             <div class="panel panel-default">
               <div class="panel-heading">

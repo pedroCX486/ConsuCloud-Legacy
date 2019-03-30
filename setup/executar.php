@@ -93,6 +93,7 @@ $query3 = $mysqli->query("CREATE TABLE `pacientes` (
 	`endereco_cep` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`profissao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	PRIMARY KEY (`idPaciente`)
 )
 COLLATE='utf8_unicode_ci'

@@ -42,12 +42,12 @@ session_start();
 
 if(empty($installFolder)){
   $installFolder = "/"; //Usado no InstallAddress
-  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'];
+  $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
 }else{
   $_SESSION["installFolder"] = $_SERVER['DOCUMENT_ROOT'].$installFolder;
 }
 
-$_SESSION["installAddress"] = "https://".$_SERVER['HTTP_HOST'].$installFolder;
+$_SESSION["installAddress"] = "http://".$_SERVER['HTTP_HOST']."/";
 
 //Pegar dados do usuario
 $_SESSION["username"] = $nomeCurto;

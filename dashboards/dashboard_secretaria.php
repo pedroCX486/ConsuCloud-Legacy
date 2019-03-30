@@ -11,7 +11,7 @@
       $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta, confirmaConsulta, consultaFinalizada FROM consultas AS c 
                               JOIN pacientes AS p ON p.idPaciente = c.paciente 
                               JOIN usuarios AS u ON u.idUsuario = c.medico 
-                              WHERE dataConsulta = CURDATE() ORDER BY dataConsulta ASC");
+                              WHERE (dataConsulta BETWEEN DATE_ADD(CURDATE(), INTERVAL -1 DAY) AND CURDATE()) AND consultaFinalizada = 0 ORDER BY dataConsulta ASC");
       $row = $select->num_rows;
       if($row){
       while($get = $select->fetch_array()){

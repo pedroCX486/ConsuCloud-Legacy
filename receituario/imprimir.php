@@ -48,7 +48,7 @@ if($row){
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <?php include $_SESSION["installFolder"]."componentes/boot.php";?>
   <style>
-    @page { size: A4 landscape; margin: 3mm; }
+    @page { size: A5 portait; margin: 3mm; }
     html, body { height: 100%; width: 100%; margin: 0; }
   </style>
   
@@ -56,17 +56,22 @@ if($row){
 
 <body>
   
-  <div style="border-style: solid; border-width: 1px; height: 100%; width: 50%">
+  <div style="border-style: solid; border-width: 1px; height: 100%; width: 100%; float: right;">
 
   <!--Cabeçallho-->
   <div style="position: relative; height: 80px;">
     <div>
-      <img style="width: 12%; height: 12%; margin-left: 10px; margin-top: 15px;" align="left" src="<?php echo $_SESSION["installAddress"]; ?>config/<?php echo $logotipo; ?>"/>
+      <img style="width: 12%; height: 12%; margin-left: 10px; margin-top: 15px;" float="left" src="<?php echo $_SESSION["installAddress"]; ?>config/<?php echo $logotipo; ?>"/>
     </div>
     
     <div style="position: absolute; left: 15%; top: 5%;">
-      <div style="font-size: 35px;">Dr. <?php echo $nomeCompleto; ?></div>
-      <?php echo $areaAtuacao . ' - CRM-' . $estado . ": " .  $crm; ?>
+      <div style="font-size: 25px;">Dr. <?php echo $nomeCompleto; ?></div>
+		<?php
+			echo $areaAtuacao . ' - ' ;
+			if($_SESSION["idUsuario"]=="5"){echo "CRP-02/".$crm;}
+			elseif($_SESSION["idUsuario"]=="2"){echo "CREMEPE: ".$crm;}
+			else{echo "CRM". $estado .": ".$crm;}
+		?>
     </div>
   </div>
   
