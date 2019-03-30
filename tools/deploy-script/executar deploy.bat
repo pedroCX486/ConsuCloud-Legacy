@@ -1,7 +1,7 @@
 @echo off
 @cls
 
-@echo OrangeMayhem Softworks (C) 2018
+@echo OrangeMayhem Softworks (C) 2019
 @echo.
 @echo.
 
@@ -24,7 +24,7 @@ set datestr=%day%%month%%year%
 @echo Versao: DEPLOY-%datestr%-CONSUCLOUD-PROD
 @echo.
 
-xcopy  %userprofile%\Source\Repos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
+xcopy  %userprofile%\Desktop\Dev\gitRepos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
 @echo.
 
 @echo Comprimindo...
