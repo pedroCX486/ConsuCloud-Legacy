@@ -2,6 +2,9 @@ ConsuCloud - CODENAME CANJICA // (C) 2019 OrangeMayhem Softworks
 
 Configurações PHP Recomendadas:  
 upload_max_filesize: 60M, max_file_uploads: 10, post_max_size: 128M  
+
+Aviso:  
+Revisar se aplicação deve usar HTTP ou HTTPS baseado [neste commit](https://github.com/pedroCX486/ConsuCloud/commit/5cf19ccca8024ae47df48930701d8f7b3b6a0607).
   
 ________________________________________
 
