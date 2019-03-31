@@ -1,5 +1,5 @@
 <?php
-//Erros Baseado em Browser0
+//Erros Baseado em Browser
 if(stripos($_SERVER["HTTP_USER_AGENT"], 'Trident')) {
   echo '<div class="alert alert-danger" id="rcorners2" role="alert"><b>O ConsuCloud não é compatível com o Internet Explorer.<br>Recomendamos o uso  o <a href="http://chrome.google.com">Google Chrome</a> ou Microsoft Edge para melhor eficiência e desempenho.</div>';
   echo '<style>#login {visibility: hidden;}</style>';
