@@ -19,7 +19,7 @@ for /f "tokens=1-6 delims=/ " %%i in ("%date%") do (
      set month=%%j
      set year=%%k
 )
-set datestr=%day%%month%%year%
+set datestr=%year%%month%%day%
 
 @echo Versao: DEPLOY-%datestr%-CONSUCLOUD-PROD
 @echo.
