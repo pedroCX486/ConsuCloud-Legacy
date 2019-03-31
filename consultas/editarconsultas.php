@@ -9,7 +9,7 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
 
 require($_SESSION["installFolder"]."componentes/db/connect.php");
 
-$idConsulta = trim(addslashes(strip_tags($_GET['editar'])));
+$idConsulta = trim(addslashes(strip_tags($_GET['idConsulta'])));
 
 $select = $mysqli->query("SELECT * FROM consultas WHERE idConsulta = $idConsulta");
 $row = $select->num_rows;
@@ -24,8 +24,6 @@ if($row){
     $tipoConsulta = $get['tipoConsulta'];
   }
 }
-
-if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = date("d/m/Y", strtotime($dataConsulta));}
 ?>
 
 <!DOCTYPE html>

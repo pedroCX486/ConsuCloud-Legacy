@@ -48,8 +48,6 @@ if($crm == 'SysAdmin'){
 				</script>';
 	exit();
 }
-
-if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataNasc = date("d/m/Y", strtotime($dataNasc));}
 ?>
 
 <!DOCTYPE html>

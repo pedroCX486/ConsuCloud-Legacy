@@ -43,7 +43,7 @@
 
       <!--Editar Consultas-->
       <td class="tg-yw4l">
-        <a class="anchor" href="consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" data-toggle="tooltip" data-container="body" title="Editar Consulta">
+        <a class="anchor" href="<?php echo $_SESSION["installAddress"];?>consultas/editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" data-toggle="tooltip" data-container="body" title="Editar Consulta">
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
         </a>
 

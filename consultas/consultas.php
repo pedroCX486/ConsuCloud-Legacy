@@ -176,7 +176,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
             <!--Editar/Remover Consultas-->
             <td class="tg-yw4l">
-              <a class="anchor" href="editarconsultas.php?editar=<?php echo $get['idConsulta']; ?>" title="Editar Consulta">
+              <a class="anchor" href="editarconsultas.php?idConsulta=<?php echo $get['idConsulta']; ?>" title="Editar Consulta">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" />
               </a> &nbsp;
               <a href="remover.php?remover=<?php echo $get['idConsulta']; ?>" title="Remover Consulta" onClick="return confirm('Tem certeza que deseja cancelar esta consulta?')">

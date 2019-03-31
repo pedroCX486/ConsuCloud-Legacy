@@ -23,8 +23,6 @@ if($row){
     $receita = $get['receita'];
   }
 }
-
-if(stripos($_SERVER["HTTP_USER_AGENT"], 'Firefox') !== false) {$dataConsulta = date("d/m/Y", strtotime($dataConsulta));}
 ?>
 
 <!DOCTYPE html>

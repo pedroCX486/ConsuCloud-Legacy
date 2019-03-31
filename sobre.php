@@ -52,15 +52,11 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
       <br>
       <b>Banco de Dados:</b> Luan Gandhi
       <br>
-      <b>Analistas de Sistemas:</b> Marcela Oliveira
-      <br>
-      <b>Analista de Documentação:</b> José Jackson
-      <br>
-      <b>Analista de Testes:</b> Rodrigo Luna, Ramon Dantas
+      <b>Analista de Sistemas:</b> Marcela Oliveira
       <br>
 
       <br>
-      <br> Copyright © 2018 - Todos os direitos reservados - Versão 20180110-1
+      <br> Copyright © 2019 - Todos os direitos reservados - Versão 20190330-1
 
     </div>
   </div>

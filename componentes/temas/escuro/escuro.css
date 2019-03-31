@@ -139,7 +139,7 @@
     border: 1px solid #6f6d6d !important;
   }
 
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  ::placeholder {
     color: #d0cfcf !important;
   }
 
