@@ -14,8 +14,8 @@ if($row){
   while($get = $select->fetch_array()){
     $nomePaciente = $get['nomePaciente'];
     $RG = $get['RG'];
-    $CPF = $get['CPF'];
     $RGUFEXP = $get['RGUFEXP'];
+    $CPF = $get['CPF'];
     $dataNasc = $get['dataNasc'];
     $telCel = $get['telCel'];
     $telFixo = $get['telFixo'];
