@@ -18,6 +18,7 @@ if($row){
     $nomePaciente = $get['nomePaciente'];
     $RG = $get['RG'];
     $RGUFEXP = $get['RGUFEXP'];
+    $CPF = $get['CPF'];
     $dataNasc = $get['dataNasc'];
     $telCel = $get['telCel'];
     $telFixo = $get['telFixo'];
@@ -30,6 +31,7 @@ if($row){
     $endereco_cidade = $get['endereco_cidade'];
     $endereco_cep = $get['endereco_cep'];
     $endereco_estado = $get['endereco_estado'];
+    $notas = $get['notas'];
   }
 }
 ?>
@@ -101,6 +103,11 @@ if($row){
               </div>
             </div>
           </div>
+		
+	  <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">CPF:</span>
+            <input type="text" class="form-control" name="CPF" aria-describedby="basic-addon1" value="<?php echo $CPF; ?>" maxlength="20">
+          </div>
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Email:</span>
@@ -111,6 +118,11 @@ if($row){
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Profissão:</span>
             <input type="text" class="form-control" name="profissao" aria-describedby="basic-addon1" value="<?php echo $profissao; ?>" maxlength="100">
+          </div>
+		
+	  <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Notas:</span>
+            <input type="text" class="form-control" name="notas" aria-describedby="basic-addon1" value="<?php echo $notas; ?>" maxlength="250">
           </div>
 
           <div class="panel-group" id="accordion">
@@ -123,7 +135,7 @@ if($row){
               <div id="collapse1" class="panel-collapse collapse">
                 <div class="panel-body">
 									
-									<div class="input-group">
+		  <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">CEP:</span>
                     <input type="text" class="form-control" name="endereco_cep" id="cep" aria-describedby="basic-addon1" maxlength="8" pattern="([0-9]){2,}" title="12345678 (Apenas Números)" value="<?php echo $endereco_cep; ?>">
                     <div class="input-group-btn">
