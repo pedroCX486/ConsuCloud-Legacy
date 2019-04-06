@@ -55,6 +55,11 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
               </div>
             </div>
           </div>
+          
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">CPF:</span>
+            <input type="text" class="form-control" name="CPF" aria-describedby="basic-addon1" maxlength="20">
+          </div>
 
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Data de Nascimento:*</span>
@@ -83,6 +88,11 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Profissão:</span>
             <input type="text" class="form-control" name="profissao" aria-describedby="basic-addon1" maxlength="100">
+          </div>
+          
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Notas:</span>
+            <input type="text" class="form-control" name="notas" aria-describedby="basic-addon1" maxlength="250">
           </div>
 
           <div class="panel-group" id="accordion">
