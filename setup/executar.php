@@ -85,6 +85,7 @@ $query3 = $mysqli->query("CREATE TABLE `pacientes` (
 	`telCel` VARCHAR(12) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`RG` VARCHAR(20) NOT NULL,
 	`RGUFEXP` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`CPF` VARCHAR(20) NOT NULL,
 	`endereco_logradouro` VARCHAR(150) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_numero` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`endereco_complemento` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
@@ -94,6 +95,7 @@ $query3 = $mysqli->query("CREATE TABLE `pacientes` (
 	`endereco_estado` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`email` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	`profissao` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`notas` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
 	PRIMARY KEY (`idPaciente`)
 )
 COLLATE='utf8_unicode_ci'
