@@ -5,6 +5,7 @@ session_start();
 $nomePaciente = trim(addslashes(strip_tags($_POST['nomePaciente'])));
 $RG = trim(addslashes(strip_tags($_POST['RG'])));
 $RGUFEXP = trim(addslashes(strip_tags($_POST['RGUFEXP'])));
+$CPF = trim(addslashes(strip_tags($_POST['CPF'])));
 $dataNasc = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataNasc'])))));
 $telCel = trim(addslashes(strip_tags($_POST['telCel'])));
 $telFixo = trim(addslashes(strip_tags($_POST['telFixo'])));
@@ -17,6 +18,7 @@ $endereco_bairro = trim(addslashes(strip_tags($_POST['endereco_bairro'])));
 $endereco_cidade = trim(addslashes(strip_tags($_POST['endereco_cidade'])));
 $endereco_cep = trim(addslashes(strip_tags($_POST['endereco_cep'])));
 $endereco_estado = trim(addslashes(strip_tags($_POST['endereco_estado'])));
+$notas = trim(addslashes(strip_tags($_POST['notas'])));
 
 $dataNasc = date('Y-m-d',$dataNasc);
 
@@ -38,10 +40,10 @@ if(!ctype_digit($RG)) {
 require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 // Perform queries 
-$query = $mysqli->query("INSERT INTO pacientes (nomePaciente,RG,RGUFEXP,dataNasc,telCel,telFixo,email,profissao,endereco_logradouro,
-endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado) 
-VALUES ('$nomePaciente', '$RG', '$RGUFEXP', '$dataNasc', '$telCel', '$telFixo', '$email', '$profissao', '$endereco_logradouro', '$endereco_numero', 
-'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado')"); 
+$query = $mysqli->query("INSERT INTO pacientes (nomePaciente,RG,RGUFEXP,CPF,dataNasc,telCel,telFixo,email,profissao,endereco_logradouro,
+endereco_numero,endereco_complemento,endereco_bairro,endereco_cidade,endereco_cep,endereco_estado,notas) 
+VALUES ('$nomePaciente', '$RG', '$RGUFEXP', '$CPF', '$dataNasc', '$telCel', '$telFixo', '$email', '$profissao', '$endereco_logradouro', '$endereco_numero', 
+'$endereco_complemento', '$endereco_bairro', '$endereco_cidade', '$endereco_cep', '$endereco_estado', '$notas')"); 
 
 if ($query){
   echo '<script type="text/javascript">
