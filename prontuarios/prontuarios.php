@@ -134,14 +134,14 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse show" data-parent="#accordion" href="#<?php echo $get['idProntuario'];?>">
+              <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $get['idProntuario'];?>">
                 <?php
                     echo $get['nomePaciente'] . ' (' . date('d-m-Y', strtotime($get['dataProntuario'])) . ' - ' . $get['horaProntuario'] . ')';
                   ?> ▾
               </a>
             </h4>
           </div>
-          <div id="<?php echo $get['idProntuario'];?>" class="panel-collapse collapse">
+          <div id="<?php echo $get['idProntuario'];?>" class="panel-collapse in">
             <div class="panel-body">
               <?php echo nl2br($get['prontuario']); ?>
             </div>
