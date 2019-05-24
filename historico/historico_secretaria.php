@@ -58,8 +58,8 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
           <div style="width:350px;">
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Data Inicial:</span>
-              <input value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1"
+              <span class="input-group-addon" id="basic-addon1">Data Inicial:*</span>
+              <input required value="<?php echo $dataInicio ?>" type="date" class="form-control" name="dataInicio" aria-describedby="basic-addon1"
                 max="9999-12-31" maxlength="10" OnKeyPress="formatar('##/##/####', this)">
             </div>
             e / ou
@@ -68,6 +68,23 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
               <input value="<?php echo $dataFim ?>" type="date" class="form-control" name="dataFim" aria-describedby="basic-addon1" max="9999-12-31"
                 maxlength="10" OnKeyPress="formatar('##/##/####', this)">
             </div>
+
+            <select required name="medico" class="form-control">
+              <option disabled selected value="">Médico das Consultas:*</option>
+              <?php
+                $selectMedico = $mysqli->query("SELECT * FROM usuarios WHERE tipoUsuario = 'Medico'");
+                $rowMedico = $selectMedico->num_rows;
+                if($rowMedico){
+                  while($getMedico = $selectMedico->fetch_array()){
+              ?>
+              <option value="<?php echo $getMedico['idUsuario']; ?>" <?php if($_POST['medico'] == $getMedico['idUsuario']){echo " selected";} ?>>
+                <?php echo $getMedico['nomeCompleto']; ?>
+              </option>
+              <?php
+                  }
+                }
+              ?>
+            </select>
           </div>
 
           <p>
@@ -99,20 +116,22 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
                 $dataFim = strtotime(str_replace("/", "-", trim(addslashes(strip_tags($_POST['dataFim'])))));
                 $dataFim = date('Y-m-d',$dataFim);
               }
+
+              $medicoConsulta = trim(addslashes(strip_tags($_POST['medico'])));
             }       
             if(!empty($dataInicio) && empty($dataFim)){
                $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
                                           JOIN planos AS pl ON pl.idPlano = c.planoConsulta
-                                          WHERE dataConsulta >= '$dataInicio' ORDER BY dataConsulta ASC, horaConsulta ASC");
+                                          WHERE dataConsulta >= '$dataInicio' AND medico = '$medicoConsulta' ORDER BY dataConsulta ASC, horaConsulta ASC");
               
             }elseif(!empty($dataInicio) && !empty($dataFim)){
                $select = $mysqli->query("SELECT pl.nomePlano, p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, confirmaConsulta, carteiraPlano FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
                                           JOIN planos AS pl ON pl.idPlano = c.planoConsulta
-                                          WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' ORDER BY dataConsulta ASC, horaConsulta ASC");              
+                                          WHERE dataConsulta BETWEEN '$dataInicio' AND '$dataFim' AND medico = '$medicoConsulta' ORDER BY dataConsulta ASC, horaConsulta ASC");              
             }
             $row = $select->num_rows;
             if($row){

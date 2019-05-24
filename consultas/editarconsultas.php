@@ -98,7 +98,7 @@ if($row){
                     if($row){              
                       while($get = $select->fetch_array()){
                   ?>
-                <option value="<?php echo $get['idUsuario'] . '" '; if($medico == $get['idUsuario']){echo 'selected';}?>><?php echo $get['nomeCompleto']; ?></option>
+                <option value=<?php echo '"' . $get['idUsuario'] . '" '; if($medico == $get['idUsuario']){echo 'selected';}?>><?php echo $get['nomeCompleto']; ?></option>
                   <?php
                       }
                     }
@@ -116,7 +116,7 @@ if($row){
                   if($row){              
                     while($get = $select->fetch_array()){
                 ?>
-              <option value="<?php echo $get['idPlano'] . '" '; if($planoConsulta == $get['idPlano']){echo ' selected';}?>><?php echo $get['nomePlano']; ?></option>
+              <option value=<?php echo '"' . $get['idPlano'] . '" '; if($planoConsulta == $get['idPlano']){echo ' selected';}?>><?php echo $get['nomePlano']; ?></option>
                 <?php
                     }
                   }
@@ -136,6 +136,7 @@ if($row){
               <option disabled>Tipo de Consulta</option>
               <option value="Primeira Consulta" <?php if($tipoConsulta == 'Primeira Consulta'){echo 'selected';} ?>>Primeira Consulta</option>
               <option value="Seguimento" <?php if($tipoConsulta == 'Seguimento'){echo 'selected';} ?>>Seguimento</option>
+              <option value="Receita" <?php if($tipoConsulta == 'Receita'){echo 'selected';} ?>>Receita</option>
               <option value="Retorno" <?php if($tipoConsulta == 'Retorno'){echo 'selected';} ?>>Retorno</option>
             </select>
           </div>

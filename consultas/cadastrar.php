@@ -12,6 +12,8 @@ $tipoConsulta = trim(addslashes(strip_tags($_POST['tipoConsulta'])));
 
 $dataConsulta = date('Y-m-d',$dataConsulta);
 
+$consultaFinalizada = 0;
+
 require $_SESSION["installFolder"]."componentes/db/connect.php";
 
 //Para consultas particulares, o campo fica em branco, então defaultamos para zero
@@ -19,9 +21,13 @@ if(empty($carteiraPlano)){
 	$carteiraPlano = 0;
 }
 
+if($tipoConsulta == "Receita"){
+	$consultaFinalizada = 1;
+}
+
 //Executar query
-$query = $mysqli->query("INSERT INTO consultas (paciente,medico,dataConsulta,horaConsulta,planoConsulta,carteiraPlano,tipoConsulta) 
-VALUES ('$paciente', '$medico', '$dataConsulta', '$horaConsulta', '$planoConsulta', '$carteiraPlano', '$tipoConsulta')"); 
+$query = $mysqli->query("INSERT INTO consultas (paciente, medico, dataConsulta, horaConsulta, planoConsulta, carteiraPlano, tipoConsulta, consultaFinalizada) 
+				VALUES ('$paciente', '$medico', '$dataConsulta', '$horaConsulta', '$planoConsulta', '$carteiraPlano', '$tipoConsulta', '$consultaFinalizada')"); 
 
 if ($query){
   echo '<script type="text/javascript">
@@ -29,7 +35,7 @@ if ($query){
 					location.href="'.$_SESSION["installAddress"].'consultas/consultas.php";
         </script>';
 }else{
-  echo $mysqli->error;
+	echo $mysqli->error;
 }
 
 $mysqli->close();

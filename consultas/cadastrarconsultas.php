@@ -169,6 +169,7 @@
               <option disabled selected value="">Tipo de Consulta*</option>
               <option value="Primeira Consulta">Primeira Consulta</option>
               <option value="Seguimento">Seguimento</option>
+              <option value="Receita">Receita</option>
               <option value="Retorno">Retorno</option>
             </select>
           </div>
