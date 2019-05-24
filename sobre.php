@@ -56,7 +56,7 @@ require($_SESSION["installFolder"]."componentes/sessionbuster.php");
       <br>
 
       <br>
-      <br> Copyright © 2019 - Todos os direitos reservados - Versão 20190330-1
+      <br> Copyright © 2019 - Todos os direitos reservados - Versão 20190525
 
     </div>
   </div>

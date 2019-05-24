@@ -24,7 +24,7 @@ set datestr=%year%%month%%day%
 @echo Versao: DEPLOY-%datestr%-CONSUCLOUD-PROD
 @echo.
 
-xcopy  %userprofile%\Desktop\Dev\gitRepos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
+xcopy  %userprofile%\Repos\ConsuCloud  %userprofile%\Desktop\DEPLOY-%datestr%-CONSUCLOUD-PROD\ /EXCLUDE:exclusions.txt /E
 @echo.
 
 @echo Comprimindo...
