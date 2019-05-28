@@ -143,7 +143,7 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
               $select = $mysqli->query("SELECT p.nomePaciente, u.nomeCompleto, tipoConsulta, dataConsulta, horaConsulta, idConsulta FROM consultas AS c 
                                           JOIN pacientes AS p ON p.idPaciente = c.paciente 
                                           JOIN usuarios AS u ON u.idUsuario = c.medico 
-                                          WHERE dataConsulta >= CURDATE() consultaFinalizada = 0 ORDER BY dataConsulta ASC, horaConsulta ASC"); 
+                                          WHERE dataConsulta >= CURDATE() AND consultaFinalizada = 0 ORDER BY dataConsulta ASC, horaConsulta ASC"); 
             }
             $row = $select->num_rows;
             if($row){
