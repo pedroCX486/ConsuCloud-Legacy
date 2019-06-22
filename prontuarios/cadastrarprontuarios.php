@@ -137,6 +137,12 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
 
         <div id="dadosPaciente"></div>
 
+        <br>
+
+        <div id="prontuariosPaciente"></div>
+
+        <br>
+
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Data da Consulta:*</span>
           <input required type="date" class="form-control" name="dataProntuario" aria-describedby="basic-addon1" maxlength="10" max="9999-12-31"
@@ -149,10 +155,6 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           <label id="prontuario">Prontuário</label>
           <textarea required name="prontuario" class="form-control" rows="10"></textarea>
         </div>
-
-        <br>
-
-        <div id="prontuariosPaciente"></div>
 
         <br>
 
