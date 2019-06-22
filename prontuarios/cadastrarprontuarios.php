@@ -27,6 +27,10 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
     $.post('<?php echo $_SESSION["installAddress"]; ?>componentes/getPacienteData.php',{idPaciente: id},function(data){
       dadosPaciente.innerHTML = "<strong>Dados do Paciente:</strong> <br>" + data;
     });
+
+    $.post('<?php echo $_SESSION["installAddress"]; ?>componentes/getProntuarioData.php',{idPaciente: id},function(data){
+      prontuariosPaciente.innerHTML = "<strong>Prontuários Anteriores: </strong> <br><br>" + data;
+    });
   }
 </script>
 </head>
@@ -145,6 +149,10 @@ require($_SESSION["installFolder"]."componentes/db/connect.php");
           <label id="prontuario">Prontuário</label>
           <textarea required name="prontuario" class="form-control" rows="10"></textarea>
         </div>
+
+        <br>
+
+        <div id="prontuariosPaciente"></div>
 
         <br>
 
