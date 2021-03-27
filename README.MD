@@ -1,3 +1,5 @@
+AVISO: Projeto descontinuado e não será mais desenvolvido ou suportado.  
+  
 ConsuCloud - CODENAME CANJICA // 2019 OrangeMayhem Softworks // MIT LICENSE  
   
 Uma aplicação em PHP usada para gestão interna de consultórios via intranet. Projeto contém um setup em PHP para configuração do banco, requerendo apenas préviamente que o PHP.ini seja configurado de acordo com as configs recomendadas abaixo.
