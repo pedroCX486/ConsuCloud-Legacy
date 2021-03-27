@@ -2,7 +2,7 @@ ConsuCloud - CODENAME CANJICA // 2019 OrangeMayhem Softworks // MIT LICENSE
   
 Uma aplicação em PHP usada para gestão interna de consultórios via intranet. Projeto contém um setup em PHP para configuração do banco, requerendo apenas préviamente que o PHP.ini seja configurado de acordo com as configs recomendadas abaixo.
   
-------------------------------
+________________________________________
   
 Configurações PHP Recomendadas:  
 upload_max_filesize: 60M, max_file_uploads: 10, post_max_size: 128M  
@@ -14,7 +14,8 @@ Revisar se aplicação deve usar HTTP ou HTTPS baseado [neste commit](https://gi
 ________________________________________
 
 
-*DB:*
+*DB:* Scripts para criação manual do DB. (Testado no MariaDB versão 10.0)
+________________________________________
 
 CREATE DATABASE consucloud CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
